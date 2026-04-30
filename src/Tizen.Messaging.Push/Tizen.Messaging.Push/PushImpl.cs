@@ -103,7 +103,7 @@ namespace Tizen.Messaging.Push
                 DateTime utc;
                 if ((result == Interop.PushClient.ServiceError.None) && (time != 0))
                 {
-                    Log.Info(Interop.PushClient.LogTag, "Ticks received: " + time);
+                    Log.Info(Interop.PushClient.LogTag, $"Ticks received: {time}");
                     utc = DateTime.SpecifyKind(new DateTime(1970, 1, 1).AddSeconds(time), DateTimeKind.Utc);
                     ob.ReceivedAt = utc.ToLocalTime();
                 }
@@ -123,7 +123,7 @@ namespace Tizen.Messaging.Push
             Interop.PushClient.ServiceError connectResult = Interop.PushClient.ServiceConnect(pushAppId, stateDelegate, notifyDelegate, IntPtr.Zero, out _connection);
             if (connectResult != Interop.PushClient.ServiceError.None)
             {
-                Log.Error(Interop.PushClient.LogTag, "Connect failed with " + connectResult);
+                Log.Error(Interop.PushClient.LogTag, $"Connect failed with {connectResult}");
                 throw PushExceptionFactory.CreateResponseException(connectResult);
             }
         }
@@ -147,7 +147,7 @@ namespace Tizen.Messaging.Push
 
             registerResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
             {
-                Log.Info(Interop.PushClient.LogTag, "Register Callback Called with " + regResult);
+                Log.Info(Interop.PushClient.LogTag, $"Register Callback Called with {regResult}");
 
                 if (regResult < Interop.PushClient.Result.Success || regResult > Interop.PushClient.Result.SystemError)
                 {
@@ -179,7 +179,7 @@ namespace Tizen.Messaging.Push
             Log.Info(Interop.PushClient.LogTag, "Interop.PushClient.ServiceRegister Completed");
             if (result != Interop.PushClient.ServiceError.None)
             {
-                Log.Error(Interop.PushClient.LogTag, "Register failed with " + result);
+                Log.Error(Interop.PushClient.LogTag, $"Register failed with {result}");
                 task.SetException(PushExceptionFactory.CreateResponseException(result));
                 lock (_lock)
                 {
@@ -195,7 +195,7 @@ namespace Tizen.Messaging.Push
             var task = new TaskCompletionSource<ServerResponse>();
             unregisterResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
             {
-                Log.Info(Interop.PushClient.LogTag, "Unregister Callback Called with " + regResult);
+                Log.Info(Interop.PushClient.LogTag, $"Unregister Callback Called with {regResult}");
 
                 if (regResult < Interop.PushClient.Result.Success || regResult > Interop.PushClient.Result.SystemError)
                 {
@@ -234,7 +234,7 @@ namespace Tizen.Messaging.Push
             {
                 throw PushExceptionFactory.CreateResponseException(result);
             }
-            Log.Info(Interop.PushClient.LogTag, "Returning Reg Id: " + regID);
+            Log.Info(Interop.PushClient.LogTag, $"Returning Reg Id: {regID}");
             return regID;
         }
 

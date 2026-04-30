@@ -45,7 +45,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Filter.ContactsFilterCreate(viewUri, out _filterHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
@@ -53,7 +53,7 @@ namespace Tizen.Pims.Contacts
             if ((int)ContactsError.None != error)
             {
                 Interop.Filter.ContactsFilterDestroy(_filterHandle);
-                Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -76,7 +76,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Filter.ContactsFilterCreate(viewUri, out _filterHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
@@ -84,7 +84,7 @@ namespace Tizen.Pims.Contacts
             if ((int)ContactsError.None != error)
             {
                 Interop.Filter.ContactsFilterDestroy(_filterHandle);
-                Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -107,7 +107,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Filter.ContactsFilterCreate(viewUri, out _filterHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
@@ -115,7 +115,7 @@ namespace Tizen.Pims.Contacts
             if ((int)ContactsError.None != error)
             {
                 Interop.Filter.ContactsFilterDestroy(_filterHandle);
-                Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -138,7 +138,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Filter.ContactsFilterCreate(viewUri, out _filterHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
@@ -146,7 +146,7 @@ namespace Tizen.Pims.Contacts
             if ((int)ContactsError.None != error)
             {
                 Interop.Filter.ContactsFilterDestroy(_filterHandle);
-                Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -168,7 +168,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Filter.ContactsFilterCreate(viewUri, out _filterHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
@@ -176,7 +176,7 @@ namespace Tizen.Pims.Contacts
             if ((int)ContactsError.None != error)
             {
                 Interop.Filter.ContactsFilterDestroy(_filterHandle);
-                Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -311,7 +311,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Filter.ContactsFilterDestroy(_filterHandle);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "ContactsFilterDestroy Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"ContactsFilterDestroy Failed with error {error}");
                 }
 
                 disposedValue = true;
@@ -346,14 +346,14 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
             error = Interop.Filter.ContactsFilterAddStr(_filterHandle, propertyId, matchType, matchValue);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -374,14 +374,14 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
             error = Interop.Filter.ContactsFilterAddInt(_filterHandle, propertyId, matchType, matchValue);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -402,14 +402,14 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
             error = Interop.Filter.ContactsFilterAddLli(_filterHandle, propertyId, matchType, matchValue);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -430,14 +430,14 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
             error = Interop.Filter.ContactsFilterAddDouble(_filterHandle, propertyId, matchType, matchValue);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -457,14 +457,14 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
             error = Interop.Filter.ContactsFilterAddBool(_filterHandle, propertyId, matchValue);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -483,14 +483,14 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
             error = Interop.Filter.ContactsFilterAddFilter(_filterHandle, filter._filterHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }

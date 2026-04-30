@@ -38,7 +38,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Service.Connect();
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Connect Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Connect Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             _db = new CalendarDatabase();
@@ -65,12 +65,12 @@ namespace Tizen.Pims.Calendar
         {
             if (!disposedValue)
             {
-                Log.Debug(Globals.LogTag, "Dispose :" + disposing);
+                Log.Debug(Globals.LogTag, $"Dispose :{disposing}");
 
                 int error = Interop.Service.Disconnect();
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, "Disconnect Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Disconnect Failed with error {error}");
                 }
                 disposedValue = true;
             }

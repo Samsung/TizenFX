@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -113,7 +113,7 @@ internal static partial class Interop
                 int ret = Interop.Stc.Filter.Destroy(this.handle);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to release Filter handle, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to release Filter handle, Error - {(StcError)ret}");
                     return false;
                 }
                 return true;
@@ -143,7 +143,7 @@ internal static partial class Interop
                 int ret = Interop.Stc.Info.StatsDestroy(this.handle);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to release network statistics handle, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to release network statistics handle, Error - {(StcError)ret}");
                     return false;
                 }
                 return true;

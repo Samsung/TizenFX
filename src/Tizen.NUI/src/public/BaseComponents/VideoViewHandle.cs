@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Contains and encapsulates Native Player handle.
     /// </summary>
-    internal class SafeNativePlayerHandle : SafeHandle
+    internal sealed class SafeNativePlayerHandle : SafeHandle
     {
         /// <summary>
         /// Initializes a new instance of SafeNativePlayerHandle referencing the given videoView.

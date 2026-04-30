@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class StyleChangedSignal : Disposable
+    internal sealed class StyleChangedSignal : Disposable
     {
         internal StyleChangedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

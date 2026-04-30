@@ -27,7 +27,7 @@ namespace Tizen.Pims.Calendar
         internal ReminderAlertedEventArgs(string param)
         {
             Param = param;
-            Log.Debug(Globals.LogTag, "[TEST]" + param);
+            Log.Debug(Globals.LogTag, $"[TEST]{param}");
         }
 
         /// <summary>

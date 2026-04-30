@@ -73,7 +73,7 @@ namespace Tizen.Network.Bluetooth {
             {
                 int ret = BluetoothLeImplAdapter.Instance.StartAdvertising (advertiseData.GetHandle ());
                 if (ret != (int)BluetoothError.None) {
-                    Log.Error (Globals.LogTag, "Failed to start advertising- " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to start advertising- {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -99,7 +99,7 @@ namespace Tizen.Network.Bluetooth {
             {
                 int ret = BluetoothLeImplAdapter.Instance.StopAdvertising (advertiseData.GetHandle ());
                 if (ret != (int)BluetoothError.None) {
-                    Log.Error (Globals.LogTag, "Failed to stop advertising operation- " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to stop advertising operation- {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -138,22 +138,22 @@ namespace Tizen.Network.Bluetooth {
             _scanData = new BluetoothLeScanData ();
             _scanData = scanData;
 
-            Log.Info (Globals.LogTag, "Rssi" + _scanData.Rssi);
+            Log.Info (Globals.LogTag, $"Rssi{_scanData.Rssi}");
             _rssi = scanData.Rssi;
-            Log.Info (Globals.LogTag, "RemoteAddress" + _scanData.RemoteAddress);
+            Log.Info (Globals.LogTag, $"RemoteAddress{_scanData.RemoteAddress}");
             if (scanData.RemoteAddress != null)
                 _remoteAddress = scanData.RemoteAddress;
-            Log.Info (Globals.LogTag, "AddressType" + _scanData.AddressType);
+            Log.Info (Globals.LogTag, $"AddressType{_scanData.AddressType}");
             _addressType = scanData.AddressType;
 
-            Log.Info (Globals.LogTag, "AdvDataLength" + _scanData.AdvDataLength);
+            Log.Info (Globals.LogTag, $"AdvDataLength{_scanData.AdvDataLength}");
             if (_scanData.AdvDataLength > 0)
             {
                 _advDataValue = new byte[_scanData.AdvDataLength];
                 scanData.AdvData.CopyTo(_advDataValue, 0);
             }
 
-            Log.Info(Globals.LogTag, "ScanDataLength" + _scanData.ScanDataLength);
+            Log.Info(Globals.LogTag, $"ScanDataLength{_scanData.ScanDataLength}");
             //  Check length before copying
             if (_scanData.ScanDataLength > 0)
             {
@@ -505,7 +505,7 @@ namespace Tizen.Network.Bluetooth {
             {
                 int ret = BluetoothLeImplAdapter.Instance.GattConnect (_remoteAddress, autoConnect);
                 if (ret != (int)BluetoothError.None) {
-                    Log.Error (Globals.LogTag, "Failed to create GATT Connection with remote device- " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to create GATT Connection with remote device- {(BluetoothError)ret}");
                 }
                 else
                 {
@@ -536,7 +536,7 @@ namespace Tizen.Network.Bluetooth {
             {
                 int ret = BluetoothLeImplAdapter.Instance.GattDisconnect (_remoteAddress);
                 if (ret != (int)BluetoothError.None) {
-                    Log.Error (Globals.LogTag, "Failed to disconnect GATT connection with remote device- " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to disconnect GATT connection with remote device- {(BluetoothError)ret}");
                 }
             }
             else
@@ -575,7 +575,7 @@ namespace Tizen.Network.Bluetooth {
                 int ret = Interop.Bluetooth.CreateAdvertiser(out _handle);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to create advertiser object- " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to create advertiser object- {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -628,7 +628,7 @@ namespace Tizen.Network.Bluetooth {
                     _mode = value;
                     int ret = Interop.Bluetooth.SetAdvertisingMode (GetHandle (), _mode);
                     if (ret != (int)BluetoothError.None) {
-                        Log.Error (Globals.LogTag, "Failed to set advertising mode- " + (BluetoothError)ret);
+                        Log.Error (Globals.LogTag, $"Failed to set advertising mode- {(BluetoothError)ret}");
                         BluetoothErrorFactory.ThrowBluetoothException (ret);
                     }
                 }
@@ -658,7 +658,7 @@ namespace Tizen.Network.Bluetooth {
                     _advertisingConnectable = value;
                     int ret = Interop.Bluetooth.SetAdvertisingConnectable (GetHandle (), _advertisingConnectable);
                     if (ret != (int)BluetoothError.None) {
-                        Log.Error (Globals.LogTag, "Failed to set advertising connectable value- " + (BluetoothError)ret);
+                        Log.Error (Globals.LogTag, $"Failed to set advertising connectable value- {(BluetoothError)ret}");
                         BluetoothErrorFactory.ThrowBluetoothException (ret);
                     }
                 }
@@ -718,7 +718,7 @@ namespace Tizen.Network.Bluetooth {
                 if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize) {
                     int ret = Interop.Bluetooth.SetAdvertisingAppearance (GetHandle (), _packetType, _appearance);
                     if (ret != (int)BluetoothError.None) {
-                        Log.Error (Globals.LogTag, "Failed to add appearance value to advertising data- " + (BluetoothError)ret);
+                        Log.Error (Globals.LogTag, $"Failed to add appearance value to advertising data- {(BluetoothError)ret}");
                         BluetoothErrorFactory.ThrowBluetoothException(ret);
                     }
                 }
@@ -749,7 +749,7 @@ namespace Tizen.Network.Bluetooth {
                 {
                     int ret = Interop.Bluetooth.SetAdvertisingDeviceName(GetHandle(), _packetType, _includeDeviceName);
                     if (ret != (int)BluetoothError.None) {
-                        Log.Error (Globals.LogTag, "Failed to add device name to advertising data- " + (BluetoothError)ret);
+                        Log.Error (Globals.LogTag, $"Failed to add device name to advertising data- {(BluetoothError)ret}");
                         BluetoothErrorFactory.ThrowBluetoothException(ret);
                     }
                 }
@@ -782,7 +782,7 @@ namespace Tizen.Network.Bluetooth {
                     int ret = Interop.Bluetooth.SetAdvertisingTxPowerLevel(GetHandle(), _packetType, _includePowerLevel);
                     if (ret != (int)BluetoothError.None)
                     {
-                        Log.Error(Globals.LogTag, "Failed to add advertising service solicitation uuid- " + (BluetoothError)ret);
+                        Log.Error(Globals.LogTag, $"Failed to add advertising service solicitation uuid- {(BluetoothError)ret}");
                     }
                 }
             }
@@ -807,7 +807,7 @@ namespace Tizen.Network.Bluetooth {
             {
                 int ret = Interop.Bluetooth.AddAdvertisingServiceUuid (GetHandle (), packetType, serviceUuid);
                 if (ret != (int)BluetoothError.None) {
-                    Log.Error (Globals.LogTag, "Failed to add service uuid to advertising data- " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to add service uuid to advertising data- {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException (ret);
                 }
             }
@@ -839,7 +839,7 @@ namespace Tizen.Network.Bluetooth {
                 int ret = Interop.Bluetooth.AddAdvertisingServiceSolicitationUuid(GetHandle(), packetType,
                                                                 serviceSolicitationUuid);
                 if (ret != (int)BluetoothError.None) {
-                    Log.Error (Globals.LogTag, "Failed to add service solicitation uuid to advertising data- " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to add service solicitation uuid to advertising data- {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -872,12 +872,12 @@ namespace Tizen.Network.Bluetooth {
                 Marshal.Copy(data.Data, 0, serviceDataPtr, data.DataLength);
 
                 for (int i = 0; i < data.DataLength; i++)
-                    Log.Error (Globals.LogTag, " service data is  " + data.Data [i]);
+                    Log.Error (Globals.LogTag, $" service data is  {data.Data [i]}");
                 int ret = Interop.Bluetooth.AddAdvertisingServiceData(GetHandle(), packetType,
                     data.Uuid, serviceDataPtr, data.DataLength);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to add service data to advertising data- " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to add service data to advertising data- {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -913,7 +913,7 @@ namespace Tizen.Network.Bluetooth {
                     manufacturerData.Id, manufDataPtr, manufacturerData.DataLength);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to add service solicitation uuid to advertising data- " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to add service solicitation uuid to advertising data- {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -939,7 +939,7 @@ namespace Tizen.Network.Bluetooth {
             {
                 int ret = Interop.Bluetooth.ClearAdvertisingData (GetHandle (), packetType);
                 if (ret != (int)BluetoothError.None) {
-                    Log.Error (Globals.LogTag, "Failed to Clear Advertising Data- " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to Clear Advertising Data- {(BluetoothError)ret}");
                 }
             }
             else

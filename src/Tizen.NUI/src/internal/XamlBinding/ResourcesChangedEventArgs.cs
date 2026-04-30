@@ -22,7 +22,7 @@ using System.ComponentModel;
 namespace Tizen.NUI.Binding
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class ResourcesChangedEventArgs : EventArgs
+    internal sealed class ResourcesChangedEventArgs : EventArgs
     {
         public static readonly ResourcesChangedEventArgs StyleSheets = new ResourcesChangedEventArgs(null);
 

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -24,6 +25,7 @@ namespace Tizen.Applications.ComponentBased
     /// This is a convenience class to manage ComponentPort communication in a separate thread.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("This has been deprecated in API14")]
     public class ComponentTask
     {
         private Thread _thread;
@@ -35,6 +37,7 @@ namespace Tizen.Applications.ComponentBased
         /// </summary>
         /// <param name="port">The component port object</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public ComponentTask(ComponentPort port)
         {
             Port = port;
@@ -64,6 +67,7 @@ namespace Tizen.Applications.ComponentBased
         /// This method calls <see cref="ComponentPort.WaitForEvent"/> in the thread.
         /// </remarks>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public void Start()
         {
             lock (_threadLock)
@@ -84,6 +88,7 @@ namespace Tizen.Applications.ComponentBased
         /// This method calls <see cref="ComponentPort.Cancel"/> before stopping the thread.
         /// </remarks>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public void Stop()
         {
             lock (_threadLock)
@@ -102,6 +107,7 @@ namespace Tizen.Applications.ComponentBased
         /// </summary>
         /// <value>If the task is running, true; otherwise, false</value>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public bool IsRunning
         {
             get;
@@ -113,6 +119,7 @@ namespace Tizen.Applications.ComponentBased
         /// </summary>
         /// <value>The instance of the component port</value>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public ComponentPort Port
         {
             get;

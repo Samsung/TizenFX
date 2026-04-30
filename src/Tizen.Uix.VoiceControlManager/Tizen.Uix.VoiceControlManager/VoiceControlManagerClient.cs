@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -404,7 +404,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcMgrSetSelectedResults(resultList._handle);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "SetSelectedResults Failed with error " + error);
+                    Log.Error(LogTag, $"SetSelectedResults Failed with error {error}");
                 }
                 return false;
             }
@@ -453,7 +453,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrInitialize();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Initialize Failed with error " + error);
+                Log.Error(LogTag, $"Initialize Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -478,7 +478,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrDeinitialize();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Deinitialize Failed with error " + error);
+                Log.Error(LogTag, $"Deinitialize Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -506,7 +506,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrPrepare();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Prepare Failed with error " + error);
+                Log.Error(LogTag, $"Prepare Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -534,7 +534,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrUnprepare();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Unprepare Failed with error " + error);
+                Log.Error(LogTag, $"Unprepare Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -572,7 +572,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrForeachSupportedLanguages(supportedLanguagesDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetSupportedLanguages Failed with error " + error);
+                Log.Error(LogTag, $"GetSupportedLanguages Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -608,7 +608,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcMgrGetCurrentLanguage(out currentLanguage);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "CurrentLanaguge Failed with error " + error);
+                    Log.Error(LogTag, $"CurrentLanaguge Failed with error {error}");
                     return string.Empty;
                 }
 
@@ -641,7 +641,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcMgrGetState(out state);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "State Failed with error " + error);
+                    Log.Error(LogTag, $"State Failed with error {error}");
                     return State.Unavailable;
                 }
 
@@ -678,7 +678,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcMgrGetServiceState(out state);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "ServiceState Failed with error " + error);
+                    Log.Error(LogTag, $"ServiceState Failed with error {error}");
                     return ServiceState.Unavailable;
                 }
 
@@ -710,7 +710,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrIsCommandFormatSupported(format, out supported);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "IsSupportedCommandFormat Failed with error " + error);
+                Log.Error(LogTag, $"IsSupportedCommandFormat Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
             return supported;
@@ -741,7 +741,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrSetCommandList(commands._handle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetCommands Failed with error " + error);
+                Log.Error(LogTag, $"SetCommands Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -766,7 +766,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrUnsetCommandList();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "ClearCommands Failed with error " + error);
+                Log.Error(LogTag, $"ClearCommands Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -794,7 +794,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrSetCommandListFromFile(path, type);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetCommandsFromFile Failed with error " + error);
+                Log.Error(LogTag, $"SetCommandsFromFile Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -827,7 +827,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrGetCurrentCommands(out handle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetCurrentCommands Failed with error " + error);
+                Log.Error(LogTag, $"GetCurrentCommands Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -868,7 +868,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcMgrGetAudioType(out type);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetAudioType Failed with error " + error);
+                    Log.Error(LogTag, $"GetAudioType Failed with error {error}");
                     return string.Empty;
                 }
 
@@ -879,7 +879,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcMgrSetAudioType(value);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "SetAudioType Failed with error " + error);
+                    Log.Error(LogTag, $"SetAudioType Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
             }
@@ -910,7 +910,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcMgrGetRecognitionMode(out mode);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetRecognitionMode Failed with error " + error);
+                    Log.Error(LogTag, $"GetRecognitionMode Failed with error {error}");
                     return RecognitionModeType.Undefined;
                 }
 
@@ -921,7 +921,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcMgrSetRecognitionMode(value);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "SetRecognitionMode Failed with error " + error);
+                    Log.Error(LogTag, $"SetRecognitionMode Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
             }
@@ -954,7 +954,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrSetPrivateData(key, data);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetPrivateData Failed with error " + error);
+                Log.Error(LogTag, $"SetPrivateData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -983,7 +983,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrGetPrivateData(key, out data);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetPrivateData Failed with error " + error);
+                Log.Error(LogTag, $"GetPrivateData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
             return data;
@@ -1016,7 +1016,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrDoAction(type, sendEvent);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "DoAction Failed with error " + error);
+                Log.Error(LogTag, $"DoAction Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1046,7 +1046,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrSendSpecificEngineRequest(engineAppId, evt, request);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SendSpecificEngineRequest Failed with error " + error);
+                Log.Error(LogTag, $"SendSpecificEngineRequest Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1081,7 +1081,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrStart(exclusiveCommandOption);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Start Failed with error " + error);
+                Log.Error(LogTag, $"Start Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1117,7 +1117,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrStop();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Stop Failed with error " + error);
+                Log.Error(LogTag, $"Stop Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1153,7 +1153,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrCancel();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Cancel Failed with error " + error);
+                Log.Error(LogTag, $"Cancel Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1182,7 +1182,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcMgrGetRecordingVolume(out volume);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "RecordingVolume Failed with error " + error);
+                    Log.Error(LogTag, $"RecordingVolume Failed with error {error}");
                     return 0;
                 }
 
@@ -1213,7 +1213,7 @@ namespace Tizen.Uix.VoiceControlManager
                 error = VcMgrUnsetAllResultCb();
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Remove SetAllResult Failed with error " + error);
+                    Log.Error(LogTag, $"Remove SetAllResult Failed with error {error}");
                 }
                 return;
             }
@@ -1223,7 +1223,7 @@ namespace Tizen.Uix.VoiceControlManager
                 error = VcMgrSetAllResultCb(_recognizedCommandsSelectionCallback, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add SetRecognizedCommandsSelectionDelegate Failed with error " + error);
+                    Log.Error(LogTag, $"Add SetRecognizedCommandsSelectionDelegate Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
             }
@@ -1253,7 +1253,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetAllResultCb(_recognizedCommandsSelectionCallback, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add AllRecognitionResult Failed with error " + error);
+                        Log.Error(LogTag, $"Add AllRecognitionResult Failed with error {error}");
                     }
                 }
                 _allRecognitionResult += value;
@@ -1267,7 +1267,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetAllResultCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove SetAllResult Failed with error " + error);
+                        Log.Error(LogTag, $"Remove SetAllResult Failed with error {error}");
                     }
                 }
             }
@@ -1302,7 +1302,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetPreResultCb(_preResultDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add PreRecognitionResultUpdated Failed with error " + error);
+                        Log.Error(LogTag, $"Add PreRecognitionResultUpdated Failed with error {error}");
                     }
                 }
                 _preResult += value;
@@ -1316,7 +1316,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetPreResultCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove PreRecognitionResultUpdated Failed with error " + error);
+                        Log.Error(LogTag, $"Remove PreRecognitionResultUpdated Failed with error {error}");
                     }
                 }
             }
@@ -1353,7 +1353,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetSpecificEngineResultCb(_specificEngineResultDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add SpecificEngineResult Failed with error " + error);
+                        Log.Error(LogTag, $"Add SpecificEngineResult Failed with error {error}");
                     }
                 }
                 _specificEngineResult += value;
@@ -1367,7 +1367,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetSpecificEngineResultCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove SpecificEngineResult Failed with error " + error);
+                        Log.Error(LogTag, $"Remove SpecificEngineResult Failed with error {error}");
                     }
                 }
             }
@@ -1409,7 +1409,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetResultCb(s_resultDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add RecognitionResultUpdated Failed with error " + error);
+                        Log.Error(LogTag, $"Add RecognitionResultUpdated Failed with error {error}");
                     }
                 }
                 _recognitionResult += value;
@@ -1423,7 +1423,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetResultCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove RecognitionResultUpdated Failed with error " + error);
+                        Log.Error(LogTag, $"Remove RecognitionResultUpdated Failed with error {error}");
                     }
                 }
             }
@@ -1457,7 +1457,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetStateChangedCb(_stateDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                        Log.Error(LogTag, $"Add StateChanged Failed with error {error}");
                     }
                 }
                 _stateChanged += value;
@@ -1471,7 +1471,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetStateChangedCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                        Log.Error(LogTag, $"Remove StateChanged Failed with error {error}");
                     }
                 }
             }
@@ -1505,7 +1505,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetServiceStateChangedCb(_serviceStateDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add ServiceStateChanged Failed with error " + error);
+                        Log.Error(LogTag, $"Add ServiceStateChanged Failed with error {error}");
                     }
                 }
                 _serviceStateChanged += value;
@@ -1519,7 +1519,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetServiceStateChangedCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove ServiceStateChanged Failed with error " + error);
+                        Log.Error(LogTag, $"Remove ServiceStateChanged Failed with error {error}");
                     }
                 }
             }
@@ -1552,7 +1552,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetSpeechDetectedCb(_beginSpeechDetectedDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add SpeechDetected Failed with error " + error);
+                        Log.Error(LogTag, $"Add SpeechDetected Failed with error {error}");
                     }
                 }
                 _speechDetected += value;
@@ -1566,7 +1566,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetSpeechDetectedCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove SpeechDetected Failed with error " + error);
+                        Log.Error(LogTag, $"Remove SpeechDetected Failed with error {error}");
                     }
                 }
             }
@@ -1602,7 +1602,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetCurrentLanguageChangedCb(_languageDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add CurrentLanguageChanged Failed with error " + error);
+                        Log.Error(LogTag, $"Add CurrentLanguageChanged Failed with error {error}");
                     }
                 }
                 _currentLanguageChanged += value;
@@ -1616,7 +1616,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetCurrentLanguageChangedCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove CurrentLanguageChanged Failed with error " + error);
+                        Log.Error(LogTag, $"Remove CurrentLanguageChanged Failed with error {error}");
                     }
                 }
             }
@@ -1650,7 +1650,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetErrorCb(_errorDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
+                        Log.Error(LogTag, $"Add ErrorOccurred Failed with error {error}");
                     }
                 }
                 _errorOccurred += value;
@@ -1664,7 +1664,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetErrorCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
+                        Log.Error(LogTag, $"Remove ErrorOccurred Failed with error {error}");
                     }
                 }
             }
@@ -1699,7 +1699,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetDialogRequestCb(_conversationRequestDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add ConversationRequested Failed with error " + error);
+                        Log.Error(LogTag, $"Add ConversationRequested Failed with error {error}");
                     }
                 }
                 _conversationRequested += value;
@@ -1713,7 +1713,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetDialogRequestCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove ConversationRequested Failed with error " + error);
+                        Log.Error(LogTag, $"Remove ConversationRequested Failed with error {error}");
                     }
                 }
             }
@@ -1745,7 +1745,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrEnableCommandType(cmdType);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "EnableCommandType Failed with error " + error);
+                Log.Error(LogTag, $"EnableCommandType Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1777,7 +1777,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrDisableCommandType(cmdType);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "DisableCommandType Failed with error " + error);
+                Log.Error(LogTag, $"DisableCommandType Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1813,7 +1813,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetPrivateDataSetCb(_privateDataSetDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add PrivateDataUpdated Failed with error " + error);
+                        Log.Error(LogTag, $"Add PrivateDataUpdated Failed with error {error}");
                     }
                 }
                 _privateDataSet += value;
@@ -1827,7 +1827,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetPrivateDataSetCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove PrivateDataUpdated Failed with error " + error);
+                        Log.Error(LogTag, $"Remove PrivateDataUpdated Failed with error {error}");
                     }
                 }
             }
@@ -1864,7 +1864,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrSetPrivateDataRequestedCb(_privateDataRequestedDelegate);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Add SetPrivateDataProviderDelegate Failed with error " + error);
+                Log.Error(LogTag, $"Add SetPrivateDataProviderDelegate Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1897,7 +1897,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetFeedbackAudioFormatCb(_feedbackAudioFormatDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add FeedbackStreaming Failed with error " + error);
+                        Log.Error(LogTag, $"Add FeedbackStreaming Failed with error {error}");
                     }
                 }
                 _feedbackAudioFormat += value;
@@ -1911,7 +1911,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetFeedbackAudioFormatCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove FeedbackAudioFormat Failed with error " + error);
+                        Log.Error(LogTag, $"Remove FeedbackAudioFormat Failed with error {error}");
                     }
                 }
             }
@@ -1947,7 +1947,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetFeedbackStreamingCb(_feedbackStreamingDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add FeedbackStreaming Failed with error " + error);
+                        Log.Error(LogTag, $"Add FeedbackStreaming Failed with error {error}");
                     }
                 }
                 _feedbackStreaming += value;
@@ -1961,7 +1961,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetFeedbackStreamingCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove FeedbackStreaming Failed with error " + error);
+                        Log.Error(LogTag, $"Remove FeedbackStreaming Failed with error {error}");
                     }
                 }
             }
@@ -1987,7 +1987,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrStartFeedback();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "StartFeedback Failed with error " + error);
+                Log.Error(LogTag, $"StartFeedback Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -2012,7 +2012,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcMgrStopFeedback();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "StopFeedback Failed with error " + error);
+                Log.Error(LogTag, $"StopFeedback Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -2040,7 +2040,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrSetVcTtsStreamingCb(_vcTtsStreamingDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add VcTtsStreaming Failed with error " + error);
+                        Log.Error(LogTag, $"Add VcTtsStreaming Failed with error {error}");
                     }
                 }
                 _vcTtsStreaming += value;
@@ -2054,7 +2054,7 @@ namespace Tizen.Uix.VoiceControlManager
                     ErrorCode error = VcMgrUnsetVcTtsStreamingCb();
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Remove VcTtsStreaming Failed with error " + error);
+                        Log.Error(LogTag, $"Remove VcTtsStreaming Failed with error {error}");
                     }
                 }
             }

@@ -16,6 +16,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Content.Download
 {
@@ -23,6 +24,7 @@ namespace Tizen.Content.Download
     /// The CacheManager class provides the functions to manage cache properties.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
+    [ExcludeFromCodeCoverage]
     public static class CacheManager
     {
 
@@ -63,7 +65,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetDownloadCacheMaxSize(out maxCacheSize);
                 if (ret != (int)DownloadError.None)
                 {
-                    DownloadErrorFactory.ThrowException(ret, "Failed to get max size of cache");
+                    DownloadErrorFactory.ThrowException(ret, "Failed to get maximum size of cache");
                 }
                 return maxCacheSize;
             }

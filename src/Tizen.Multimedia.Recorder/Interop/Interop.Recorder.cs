@@ -56,7 +56,7 @@ internal static partial class Interop
         internal static extern RecorderErrorCode GetDeviceState(RecorderType type, out RecorderDeviceState state);
     }
 
-    internal class RecorderHandle : SafeHandle
+    internal sealed class RecorderHandle : SafeHandle
     {
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_destroy")]
         private static extern RecorderErrorCode Destroy(IntPtr handle);

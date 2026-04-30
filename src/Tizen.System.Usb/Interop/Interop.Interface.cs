@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -42,7 +42,7 @@ internal static partial class Interop
     internal static extern ErrorCode GetStr(this UsbInterfaceHandle /* usb_host_interface_h */ usbInterface, ref int length, byte[] data);
 
 
-    internal class UsbInterfaceHandle : SafeUsbHandle
+    internal sealed class UsbInterfaceHandle : SafeUsbHandle
     {
         public UsbInterfaceHandle(IntPtr handle) : base(handle) { }
         public override void Destroy() { }

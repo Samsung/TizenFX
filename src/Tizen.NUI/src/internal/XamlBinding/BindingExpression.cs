@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +26,7 @@ using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI.Binding
 {
-    internal class BindingExpression
+    internal sealed class BindingExpression
     {
         internal const string PropertyNotFoundErrorMessage = "'{0}' property not found on '{1}', target property: '{2}.{3}'";
 
@@ -497,7 +497,7 @@ namespace Tizen.NUI.Binding
             public object Source { get; private set; }
         }
 
-        internal class WeakPropertyChangedProxy
+        internal sealed class WeakPropertyChangedProxy
         {
             readonly WeakReference<INotifyPropertyChanged> _source = new WeakReference<INotifyPropertyChanged>(null);
             readonly WeakReference<PropertyChangedEventHandler> _listener = new WeakReference<PropertyChangedEventHandler>(null);
@@ -627,7 +627,7 @@ namespace Tizen.NUI.Binding
                     {
                         if (name.Contains("["))
                         {
-                            if (name != string.Format("{0}[{1}]", part.IndexerName, part.Content))
+                            if (name != $"{part.IndexerName}[{part.Content}]")
                                 return;
                         }
                         else if (name != part.IndexerName)

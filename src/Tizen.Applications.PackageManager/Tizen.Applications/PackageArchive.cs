@@ -116,42 +116,42 @@ namespace Tizen.Applications
             err = Interop.PackageArchive.PackageArchiveInfoGetPackage(handle, out packageArchive._id);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package id from " + archivePath);
+                Log.Warn(LogTag, $"Failed to get package id from {archivePath}");
             }
             err = Interop.PackageArchive.PackageArchiveInfoGetType(handle, out packageArchive._type);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package type from " + archivePath);
+                Log.Warn(LogTag, $"Failed to get package type from {archivePath}");
             }
             err = Interop.PackageArchive.PackageArchiveInfoGetVersion(handle, out packageArchive._version);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package version from " + archivePath);
+                Log.Warn(LogTag, $"Failed to get package version from {archivePath}");
             }
             err = Interop.PackageArchive.PackageArchiveInfoGetApiVersion(handle, out packageArchive._apiVersion);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package api version from " + archivePath);
+                Log.Warn(LogTag, $"Failed to get package api version from {archivePath}");
             }
             err = Interop.PackageArchive.PackageArchiveInfoGetDescription(handle, out packageArchive._description);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package description from " + archivePath);
+                Log.Warn(LogTag, $"Failed to get package description from {archivePath}");
             }
             err = Interop.PackageArchive.PackageArchiveInfoGetLabel(handle, out packageArchive._label);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package label from " + archivePath);
+                Log.Warn(LogTag, $"Failed to get package label from {archivePath}");
             }
             err = Interop.PackageArchive.PackageArchiveInfoGetAuthor(handle, out packageArchive._author);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package author from " + archivePath);
+                Log.Warn(LogTag, $"Failed to get package author from {archivePath}");
             }
             err = Interop.PackageArchive.PackageArchiveInfoGetIcon(handle, out packageArchive._icon, out packageArchive._iconSize);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package author from " + archivePath);
+                Log.Warn(LogTag, $"Failed to get package author from {archivePath}");
             }
             packageArchive._dependency_to = GetPackageArchiveDependencyInformation(handle);
 
@@ -164,7 +164,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.PackageArchive.PackageArchiveInfoCreate(archivePath, out packageArchiveInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                throw PackageManagerErrorFactory.GetException(err, string.Format("Failed to create native handle for package archive info of {0}", archivePath));
+                throw PackageManagerErrorFactory.GetException(err, $"Failed to create native handle for package archive info of {archivePath}");
             }
 
             PackageArchive packageArchive = CreatePackageArchive(packageArchiveInfoHandle, archivePath);
@@ -172,7 +172,7 @@ namespace Tizen.Applications
             err = Interop.PackageArchive.PackageArchiveInfoDestroy(packageArchiveInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to destroy native handle for package archive info of {0}. err = {1}", archivePath, err));
+                Log.Warn(LogTag, $"Failed to destroy native handle for package archive info of {archivePath}. err = {err}");
             }
             return packageArchive;
         }
@@ -189,7 +189,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.PackageArchive.PackageArchiveInfoForeachDirectDependency(handle, dependencyInfoCb, IntPtr.Zero);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to get dependency info. err = {err}");
             }
             return dependencies;
         }

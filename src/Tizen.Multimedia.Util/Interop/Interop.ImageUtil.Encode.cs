@@ -76,7 +76,7 @@ internal static partial class Interop
         }
     }
 
-    internal class ImageEncoderHandle : SafeHandle
+    internal sealed class ImageEncoderHandle : SafeHandle
     {
         protected ImageEncoderHandle() : base(IntPtr.Zero, true)
         {
@@ -98,7 +98,7 @@ internal static partial class Interop
         }
     }
 
-    internal class AgifImageEncoderHandle : SafeHandle
+    internal sealed class AgifImageEncoderHandle : SafeHandle
     {
         protected AgifImageEncoderHandle() : base(IntPtr.Zero, true)
         {

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +26,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// Represents a container view with vertical layout and common padding.
     /// Used as a parent for grouping other markdown-rendered views.
     /// </summary>
-    internal class UIContainer : View
+    internal sealed class UIContainer : View
     {
         private readonly CommonStyle common;
 

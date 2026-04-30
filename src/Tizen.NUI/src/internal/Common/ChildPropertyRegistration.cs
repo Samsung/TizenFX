@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class ChildPropertyRegistration : Disposable
+    internal sealed class ChildPropertyRegistration : Disposable
     {
         internal ChildPropertyRegistration(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

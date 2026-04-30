@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -40,7 +40,7 @@ internal static partial class Interop
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_device_open_with_vid_pid")]
     internal static extern ErrorCode OpenWithVidPid(this UsbContextHandle /* usb_host_context_h */ ctx, int vendorId, int productId, out HostDeviceHandle /* usb_host_device_h */ deviceHandle);
 
-    internal class UsbContextHandle : SafeUsbHandle
+    internal sealed class UsbContextHandle : SafeUsbHandle
     {
         private IntPtr nativeDevListPtr = IntPtr.Zero;
 
@@ -97,7 +97,7 @@ internal static partial class Interop
         }
     }
 
-    internal class HostHotplugHandle : SafeUsbHandle
+    internal sealed class HostHotplugHandle : SafeUsbHandle
     {
         [DllImport(Libraries.Usb, EntryPoint = "usb_host_unset_hotplug_cb")]
         internal static extern ErrorCode UnsetHotplugCb(IntPtr /* usb_host_hotplug_h */ handle);

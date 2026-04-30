@@ -47,7 +47,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.GetName(_configHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get name, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get name, Error - {(WiFiError)ret}");
                     return "";
                 }
                 return Marshal.PtrToStringAnsi(strPtr);
@@ -67,7 +67,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.GetSecurityType(_configHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get security type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get security type, Error - {(WiFiError)ret}");
                 }
                 return (WiFiSecurityType)type;
             }
@@ -90,7 +90,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.GetProxyAddress(_configHandle, out addressFamily, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get proxy address, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get proxy address, Error - {(WiFiError)ret}");
                     return "";
                 }
                 return Marshal.PtrToStringAnsi(strPtr);
@@ -104,7 +104,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.SetProxyAddress(_configHandle, (int)AddressFamily.IPv4, value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set proxy address, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set proxy address, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _configHandle);
                 }
             }
@@ -126,7 +126,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.GetHiddenAPProperty(_configHandle, out hidden);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get isHidden, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get isHidden, Error - {(WiFiError)ret}");
                 }
                 return hidden;
             }
@@ -139,7 +139,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.SetHiddenAPProperty(_configHandle, value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set IsHidden, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set IsHidden, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _configHandle);
                 }
             }
@@ -174,10 +174,10 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.GetSavedConfigFrequency(_configHandle, out freq);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Freq, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get Freq, Error - {(WiFiError)ret}");
                     return 0;
                 }
-                Log.Debug(Globals.LogTag, "Frequency is " + freq);
+                Log.Debug(Globals.LogTag, $"Frequency is {freq}");
                 return freq;
             }
         }
@@ -214,7 +214,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.Config.Create(WiFiManagerImpl.Instance.GetSafeHandle(), name, passPhrase, (int)type, out _configHandle);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to create config handle, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to create config handle, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle());
             }
 

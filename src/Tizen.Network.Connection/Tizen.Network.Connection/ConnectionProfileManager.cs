@@ -147,7 +147,7 @@ namespace Tizen.Network.Connection
         /// <exception cref="System.InvalidOperationException">Thrown when a connection or a profile instance is invalid or when a method fails due to invalid operation.</exception>
         public static void RemoveProfile(ConnectionProfile profile)
         {
-            Log.Debug(Globals.LogTag, "RemoveProfile. Id: " + profile.Id + ", Name: " + profile.Name + ", Type: " + profile.Type);
+            Log.Debug(Globals.LogTag, $"RemoveProfile. Id: {profile.Id}, Name: {profile.Name}, Type: {profile.Type}");
             ConnectionInternalManager.Instance.RemoveProfile(profile);
         }
 

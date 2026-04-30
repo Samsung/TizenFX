@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -39,7 +39,7 @@ namespace Tizen.Network.Nfc
         }
     }
 
-    internal partial class NfcManagerImpl
+    internal sealed partial class NfcManagerImpl
     {
         private event EventHandler<ActivationChangedEventArgs> _activationChanged;
         private event EventHandler<NdefMessageDiscoveredEventArgs> _ndefMessageDiscovered;
@@ -107,7 +107,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.SetActivationChangedCallback(_activationChangedCallback, IntPtr.Zero);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set activation changed callback, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set activation changed callback, Error - {(NfcError)ret}");
             }
         }
 
@@ -127,7 +127,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.SetNdefDiscoveredCallback(_ndefMessageDiscoveredCallback, IntPtr.Zero);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set ndef message discovered callback, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set ndef message discovered callback, Error - {(NfcError)ret}");
             }
         }
 

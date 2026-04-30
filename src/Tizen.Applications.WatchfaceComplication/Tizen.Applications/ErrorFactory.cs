@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -42,13 +42,13 @@ namespace Tizen.Applications.WatchfaceComplication
                     throw new InvalidOperationException(string.IsNullOrEmpty(errorMessage) ? "error code : " + errorCode.ToString() :
                         $"{errorMessage} - {errorCode}");
                 case ComplicationError.InvalidParam:
-                    Log.Error(LogTag, "Invalid parameter : " + errorMessage);
+                    Log.Error(LogTag, $"Invalid parameter : {errorMessage}");
                     throw new ArgumentException(string.IsNullOrEmpty(errorMessage) ? "Invalid parameter" : "Invalid parameter : " + errorMessage);
                 case ComplicationError.PermissionDeny:
-                    Log.Error(LogTag, "Permission denied : " + errorMessage);
+                    Log.Error(LogTag, $"Permission denied : {errorMessage}");
                     throw new UnauthorizedAccessException(string.IsNullOrEmpty(errorMessage) ? "Permission denied" : "Permission denied : " + errorMessage);
                 case ComplicationError.NotSupported:
-                    Log.Error(LogTag, "Not supported : " + errorMessage);
+                    Log.Error(LogTag, $"Not supported : {errorMessage}");
                     throw new NotSupportedException(string.IsNullOrEmpty(errorMessage) ? "Not supported" : "Not supported : " + errorMessage);
                 default:
                     Log.Error(LogTag, $"Unknown error : {errorMessage} - {errorCode}");

@@ -46,7 +46,7 @@ namespace Tizen.Pims.Calendar
             error = Interop.Filter.Create(viewUri, out _filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
@@ -54,7 +54,7 @@ namespace Tizen.Pims.Calendar
             if (CalendarError.None != (CalendarError)error)
             {
                 Interop.Filter.Destroy(_filterHandle);
-                Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -78,7 +78,7 @@ namespace Tizen.Pims.Calendar
             error = Interop.Filter.Create(viewUri, out _filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
@@ -86,7 +86,7 @@ namespace Tizen.Pims.Calendar
             if (CalendarError.None != (CalendarError)error)
             {
                 Interop.Filter.Destroy(_filterHandle);
-                Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -110,7 +110,7 @@ namespace Tizen.Pims.Calendar
             error = Interop.Filter.Create(viewUri, out _filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
@@ -118,7 +118,7 @@ namespace Tizen.Pims.Calendar
             if (CalendarError.None != (CalendarError)error)
             {
                 Interop.Filter.Destroy(_filterHandle);
-                Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -142,7 +142,7 @@ namespace Tizen.Pims.Calendar
             error = Interop.Filter.Create(viewUri, out _filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
@@ -150,7 +150,7 @@ namespace Tizen.Pims.Calendar
             if (CalendarError.None != (CalendarError)error)
             {
                 Interop.Filter.Destroy(_filterHandle);
-                Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -174,7 +174,7 @@ namespace Tizen.Pims.Calendar
             error = Interop.Filter.Create(viewUri, out _filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
@@ -183,7 +183,7 @@ namespace Tizen.Pims.Calendar
             if (CalendarError.None != (CalendarError)error)
             {
                 Interop.Filter.Destroy(_filterHandle);
-                Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -292,12 +292,12 @@ namespace Tizen.Pims.Calendar
         {
             if (!disposedValue)
             {
-                Log.Debug(Globals.LogTag, "Dispose :" + disposing);
+                Log.Debug(Globals.LogTag, $"Dispose :{disposing}");
 
                 int error = Interop.Filter.Destroy(_filterHandle);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, "Destroy Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Destroy Failed with error {error}");
                 }
                 disposedValue = true;
             }
@@ -331,14 +331,14 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
             error = Interop.Filter.AddString(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -359,14 +359,14 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
             error = Interop.Filter.AddInteger(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -387,14 +387,14 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
             error = Interop.Filter.AddLong(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -415,14 +415,14 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
             error = Interop.Filter.AddDouble(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -443,7 +443,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
@@ -451,7 +451,7 @@ namespace Tizen.Pims.Calendar
             error = Interop.Filter.AddCalendarTime(_filterHandle, propertyId, matchType, time);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -470,14 +470,14 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddCondition Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
             error = Interop.Filter.AddFilter(_filterHandle, filter._filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }

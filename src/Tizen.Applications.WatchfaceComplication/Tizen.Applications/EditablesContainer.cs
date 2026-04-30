@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -257,7 +257,7 @@ namespace Tizen.Applications.WatchfaceComplication
                 if (e.Highlight != null && e.Highlight.Raw != IntPtr.Zero)
                     hi = e.Highlight.Raw;
                 Interop.WatchfaceComplication.AddDesignElement(_container, e.EditableId, e.GetCurrentDataIndex(), candidates, hi, e.Name);
-                Log.Debug(_logTag, "Add design element done :" + e.Name);
+                Log.Debug(_logTag, $"Add design element done :{e.Name}");
             }
 
             ret = Interop.WatchfaceComplication.RequestEdit(_container, _editableUpdatedCallback, IntPtr.Zero);

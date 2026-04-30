@@ -208,7 +208,7 @@ namespace Tizen.Applications
                     Interop.AppControl.ErrorCode err = Interop.AppControl.GetOperation(_handle, out _operation);
                     if (err != Interop.AppControl.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, "Failed to get the operation from the appcontrol. Err = " + err);
+                        Log.Warn(LogTag, $"Failed to get the operation from the appcontrol. Err = {err}");
                     }
                 }
                 return _operation;
@@ -222,7 +222,7 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    Log.Warn(LogTag, "Failed to set the operation to the appcontrol. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to set the operation to the appcontrol. Err = {err}");
                 }
             }
         }
@@ -251,7 +251,7 @@ namespace Tizen.Applications
                     Interop.AppControl.ErrorCode err = Interop.AppControl.GetMime(_handle, out _mime);
                     if (err != Interop.AppControl.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, "Failed to get the mime from the appcontrol. Err = " + err);
+                        Log.Warn(LogTag, $"Failed to get the mime from the appcontrol. Err = {err}");
                     }
                 }
                 return _mime;
@@ -265,7 +265,7 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    Log.Warn(LogTag, "Failed to set the mime to the appcontrol. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to set the mime to the appcontrol. Err = {err}");
                 }
             }
         }
@@ -310,7 +310,7 @@ namespace Tizen.Applications
                     Interop.AppControl.ErrorCode err = Interop.AppControl.GetUri(_handle, out _uri);
                     if (err != Interop.AppControl.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, "Failed to get the uri from the appcontrol. Err = " + err);
+                        Log.Warn(LogTag, $"Failed to get the uri from the appcontrol. Err = {err}");
                     }
                 }
                 return _uri;
@@ -324,7 +324,7 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    Log.Warn(LogTag, "Failed to set the uri to the appcontrol. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to set the uri to the appcontrol. Err = {err}");
                 }
             }
         }
@@ -346,7 +346,7 @@ namespace Tizen.Applications
                     Interop.AppControl.ErrorCode err = Interop.AppControl.GetCategory(_handle, out _category);
                     if (err != Interop.AppControl.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, "Failed to get the category from the appcontrol. Err = " + err);
+                        Log.Warn(LogTag, $"Failed to get the category from the appcontrol. Err = {err}");
                     }
                 }
                 return _category;
@@ -360,7 +360,7 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    Log.Warn(LogTag, "Failed to set the category to the appcontrol. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to set the category to the appcontrol. Err = {err}");
                 }
             }
         }
@@ -389,7 +389,7 @@ namespace Tizen.Applications
                     Interop.AppControl.ErrorCode err = Interop.AppControl.GetAppId(_handle, out _applicationId);
                     if (err != Interop.AppControl.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, "Failed to get the application id from the AppControl. Err = " + err);
+                        Log.Warn(LogTag, $"Failed to get the application id from the AppControl. Err = {err}");
                     }
                 }
                 return _applicationId;
@@ -403,7 +403,7 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    Log.Warn(LogTag, "Failed to set the application id to the AppControl. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to set the application id to the AppControl. Err = {err}");
                 }
             }
         }
@@ -435,7 +435,7 @@ namespace Tizen.Applications
                 Interop.AppControl.ErrorCode err = Interop.AppControl.GetLaunchMode(_handle, out value);
                 if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the LaunchMode from the AppControl. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the LaunchMode from the AppControl. Err = {err}");
                 }
                 return (AppControlLaunchMode)value;
             }
@@ -444,7 +444,7 @@ namespace Tizen.Applications
                 Interop.AppControl.ErrorCode err = Interop.AppControl.SetLaunchMode(_handle, (int)value);
                 if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to set the LaunchMode to the AppControl. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to set the LaunchMode to the AppControl. Err = {err}");
                 }
             }
         }
@@ -500,7 +500,7 @@ namespace Tizen.Applications
                     Interop.AppControl.ErrorCode err = Interop.AppControl.GetComponentId(_handle, out _componentId);
                     if (err != Interop.AppControl.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, "Failed to get the component id from the AppControl. Err = " + err);
+                        Log.Warn(LogTag, $"Failed to get the component id from the AppControl. Err = {err}");
                     }
                 }
                 return _componentId;
@@ -514,7 +514,7 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    Log.Warn(LogTag, "Failed to set the component id to the AppControl. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to set the component id to the AppControl. Err = {err}");
                 }
             }
         }
@@ -544,7 +544,7 @@ namespace Tizen.Applications
                     Interop.AppControl.ErrorCode err = Interop.AppControl.GetScreenName(_handle, out _screenName);
                     if (err != Interop.AppControl.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, "Failed to get the screen name from the AppControl. Err = " + err);
+                        Log.Warn(LogTag, $"Failed to get the screen name from the AppControl. Err = {err}");
                     }
                 }
                 return _screenName;
@@ -558,7 +558,7 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    Log.Warn(LogTag, "Failed to set the screen name to the AppControl. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to set the screen name to the AppControl. Err = {err}");
                 }
             }
         }

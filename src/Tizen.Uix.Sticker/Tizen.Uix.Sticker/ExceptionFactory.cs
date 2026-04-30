@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2022 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -24,7 +24,7 @@ namespace Tizen.Uix.Sticker
     {
         internal static Exception CreateException(ErrorCode err)
         {
-            Log.Error(LogTag, "Error " + err);
+            Log.Error(LogTag, $"Error {err}");
             switch (err)
             {
                 case ErrorCode.NotSupported:

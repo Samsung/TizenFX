@@ -381,7 +381,7 @@ namespace Tizen.Applications.DataControl
                 ret = Interop.DataControl.RegisterSqlResponseCallback(handle, ref sqlCallbacks, IntPtr.Zero);
                 if (ret != ResultType.Success)
                 {
-                    Log.Error(LogTag, "Registering the sql callback function is failed : " + ret);
+                    Log.Error(LogTag, $"Registering the sql callback function is failed : {ret}");
                 }
                 else
                 {
@@ -393,7 +393,7 @@ namespace Tizen.Applications.DataControl
                 ret = Interop.DataControl.RegisterSqlBulkResponseCallback(handle, sqlBulkCallbacks, IntPtr.Zero);
                 if (ret != ResultType.Success)
                 {
-                    Log.Error(LogTag, "Registering the sql bulk callback function is failed : " + ret);
+                    Log.Error(LogTag, $"Registering the sql bulk callback function is failed : {ret}");
                 }
                 else
                 {
@@ -408,7 +408,7 @@ namespace Tizen.Applications.DataControl
 
                 if (ret != ResultType.Success)
                 {
-                    Log.Error(LogTag, "Registering the map callback function is failed : " + ret);
+                    Log.Error(LogTag, $"Registering the map callback function is failed : {ret}");
                 }
                 else
                 {
@@ -420,7 +420,7 @@ namespace Tizen.Applications.DataControl
                 ret = Interop.DataControl.RegisterMapBulkResponseCallback(handle, mapBulkCallbacks, IntPtr.Zero);
                 if (ret != ResultType.Success)
                 {
-                    Log.Error(LogTag, "Registering the map bulk callback function is failed : " + ret);
+                    Log.Error(LogTag, $"Registering the map bulk callback function is failed : {ret}");
                 }
                 else
                 {
@@ -441,7 +441,7 @@ namespace Tizen.Applications.DataControl
 
                 if (!_reqProviderList.ContainsKey(providerId))
                 {
-                    Log.Error(LogTag, "The provider id is not contained : " + providerId);
+                    Log.Error(LogTag, $"The provider id is not contained : {providerId}");
                     return;
                 }
 
@@ -539,7 +539,7 @@ namespace Tizen.Applications.DataControl
             {
                 ErrorFactory.ThrowException(ret, false, "Select");
             }
-            Log.Info(LogTag, "select end. " + reqId.ToString());
+            Log.Info(LogTag, $"select end. {reqId.ToString()}");
 
             CallbackManager.RegisterReqId(reqId, this);
         }

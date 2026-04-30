@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -246,7 +246,7 @@ namespace Tizen.Uix.VoiceControl
                 ErrorCode error = VcGetCurrentLanguage(out currentLanguage);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "CurrentLanguage Failed with error " + error);
+                    Log.Error(LogTag, $"CurrentLanguage Failed with error {error}");
                     return "";
                 }
 
@@ -275,7 +275,7 @@ namespace Tizen.Uix.VoiceControl
                 ErrorCode error = VcGetState(out state);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "State Failed with error " + error);
+                    Log.Error(LogTag, $"State Failed with error {error}");
                     return State.Unavailable;
                 }
 
@@ -305,7 +305,7 @@ namespace Tizen.Uix.VoiceControl
                 ErrorCode error = VcGetServiceState(out state);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "ServiceState Failed with error " + error);
+                    Log.Error(LogTag, $"ServiceState Failed with error {error}");
                     return ServiceState.Unavailable;
                 }
 
@@ -347,7 +347,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcSetInvocationName(name);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetInvocationName Failed with error " + error);
+                Log.Error(LogTag, $"SetInvocationName Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -378,7 +378,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcInitialize();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Initialize Failed with error " + error);
+                Log.Error(LogTag, $"Initialize Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -406,7 +406,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcDeinitialize();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Deinitialize Failed with error " + error);
+                Log.Error(LogTag, $"Deinitialize Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -440,7 +440,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcPrepare();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Prepare Failed with error " + error);
+                Log.Error(LogTag, $"Prepare Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -473,7 +473,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcUnprepare();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Unprepare Failed with error " + error);
+                Log.Error(LogTag, $"Unprepare Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -515,7 +515,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcForeachSupportedLanguages(s_supportedLanguagesCb, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetSupportedLanguages Failed with error " + error);
+                Log.Error(LogTag, $"GetSupportedLanguages Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -556,7 +556,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcGetSystemCommandList(out handle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetSystemCommandList Failed with error " + error);
+                Log.Error(LogTag, $"GetSystemCommandList Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -607,7 +607,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcRequestDialog(dispText, uttText, autoStart);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "RequestDialog Failed with error " + error);
+                Log.Error(LogTag, $"RequestDialog Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -646,7 +646,7 @@ namespace Tizen.Uix.VoiceControl
                 ErrorCode error = VcSetCommandList(list._handle, (VoiceCommandType)type);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "SetCommandList Failed with error " + error);
+                    Log.Error(LogTag, $"SetCommandList Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
             }
@@ -690,7 +690,7 @@ namespace Tizen.Uix.VoiceControl
                 ErrorCode error = VcUnsetCommandList(commandType);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "UnsetCommandList Failed with error " + error);
+                    Log.Error(LogTag, $"UnsetCommandList Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
             }
@@ -732,7 +732,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcGetResult(s_resultCb, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetResult Failed with error " + error);
+                Log.Error(LogTag, $"GetResult Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -771,7 +771,7 @@ namespace Tizen.Uix.VoiceControl
                         ErrorCode error = VcSetResultCb(s_resultDelegate, IntPtr.Zero);
                         if (error != ErrorCode.None)
                         {
-                            Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
+                            Log.Error(LogTag, $"Add RecognitionResult Failed with error {error}");
                         }
                     }
                     _recognitionResult += value;
@@ -788,7 +788,7 @@ namespace Tizen.Uix.VoiceControl
                         ErrorCode error = VcUnsetResultCb();
                         if (error != ErrorCode.None)
                         {
-                            Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
+                            Log.Error(LogTag, $"Remove RecognitionResult Failed with error {error}");
                         }
                     }
                 }
@@ -819,7 +819,7 @@ namespace Tizen.Uix.VoiceControl
                         ErrorCode error = VcSetServiceStateChangedCb(s_serviceStateDelegate, IntPtr.Zero);
                         if (error != ErrorCode.None)
                         {
-                            Log.Error(LogTag, "Add ServiceStateChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Add ServiceStateChanged Failed with error {error}");
                         }
                     }
                     _serviceStateChanged += value;
@@ -836,7 +836,7 @@ namespace Tizen.Uix.VoiceControl
                         ErrorCode error = VcUnsetServiceStateChangedCb();
                         if (error != ErrorCode.None)
                         {
-                            Log.Error(LogTag, "Remove ServiceStateChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Remove ServiceStateChanged Failed with error {error}");
                         }
                     }
                 }
@@ -867,7 +867,7 @@ namespace Tizen.Uix.VoiceControl
                         ErrorCode error = VcSetStateChangedCb(s_stateDelegate, IntPtr.Zero);
                         if (error != ErrorCode.None)
                         {
-                            Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Add StateChanged Failed with error {error}");
                         }
                     }
                     _stateChanged += value;
@@ -884,7 +884,7 @@ namespace Tizen.Uix.VoiceControl
                         ErrorCode error = VcUnsetStateChangedCb();
                         if (error != ErrorCode.None)
                         {
-                            Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Remove StateChanged Failed with error {error}");
                         }
                     }
                 }
@@ -915,7 +915,7 @@ namespace Tizen.Uix.VoiceControl
                         ErrorCode error = VcSetErrorCb(s_errorDelegate, IntPtr.Zero);
                         if (error != ErrorCode.None)
                         {
-                            Log.Error(LogTag, "Add ErrorOccured Failed with error " + error);
+                            Log.Error(LogTag, $"Add ErrorOccured Failed with error {error}");
                         }
                     }
                     _errorOccured += value;
@@ -932,7 +932,7 @@ namespace Tizen.Uix.VoiceControl
                         ErrorCode error = VcUnsetErrorCb();
                         if (error != ErrorCode.None)
                         {
-                            Log.Error(LogTag, "Remove ErrorOccured Failed with error " + error);
+                            Log.Error(LogTag, $"Remove ErrorOccured Failed with error {error}");
                         }
                     }
                 }
@@ -965,7 +965,7 @@ namespace Tizen.Uix.VoiceControl
                         ErrorCode error = VcSetCurrentLanguageChangedCb(s_languageDelegate, IntPtr.Zero);
                         if (error != ErrorCode.None)
                         {
-                            Log.Error(LogTag, "Add CurrentLanguageChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Add CurrentLanguageChanged Failed with error {error}");
                         }
                     }
                     _currentLanguageChanged += value;
@@ -982,7 +982,7 @@ namespace Tizen.Uix.VoiceControl
                         ErrorCode error = VcUnsetCurrentLanguageChangedCb();
                         if (error != ErrorCode.None)
                         {
-                            Log.Error(LogTag, "Remove CurrentLanguageChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Remove CurrentLanguageChanged Failed with error {error}");
                         }
                     }
                 }

@@ -195,7 +195,7 @@ namespace Tizen.NUI.BaseComponents
         private ViewAccessibilityData _accessibilityData;
         private ViewAccessibilityRareData _accessibilityRareData;
 
-        internal class ControlHandle : SafeHandle
+        internal sealed class ControlHandle : SafeHandle
         {
             public ControlHandle() : base(IntPtr.Zero, true) { }
 

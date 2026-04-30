@@ -115,7 +115,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.P2p.Send(_p2pTargetHandle, ndefMessage.GetHandle(), callback, IntPtr.Zero);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to write ndef message, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to write ndef message, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
 
@@ -133,7 +133,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.P2p.SetDataReceivedCallback(_p2pTargetHandle, _p2pDataReceivedCallback, IntPtr.Zero);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set p2p target discovered callback, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set p2p target discovered callback, Error - {(NfcError)ret}");
             }
         }
 

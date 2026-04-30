@@ -385,7 +385,7 @@ namespace Tizen.Applications.DataControl
 
                 if (threadID < 0)
                 {
-                    Log.Error(LogTag, "threadID is " + threadID.ToString());
+                    Log.Error(LogTag, $"threadID is {threadID.ToString()}");
                     return null;
                 }
 
@@ -445,7 +445,7 @@ namespace Tizen.Applications.DataControl
             _cursorPath = FileManager.OpenFileStream(Thread.CurrentThread.ManagedThreadId);
             if (_cursorPath == null)
             {
-                Log.Error(LogTag, "Unable to create a cursor file : " + _cursorPath);
+                Log.Error(LogTag, $"Unable to create a cursor file : {_cursorPath}");
                 ErrorFactory.ThrowException(ResultType.IoError, true);
             }
 
@@ -595,8 +595,8 @@ namespace Tizen.Applications.DataControl
                 ms.WriteTo(_fs);/* row data */
                 _fs.Flush();
 
-                Log.Debug(LogTag, "_fs pos = " + _fs.Position.ToString());
-                Log.Debug(LogTag, "_fs len = " + _fs.Length.ToString());
+                Log.Debug(LogTag, $"_fs pos = {_fs.Position.ToString()}");
+                Log.Debug(LogTag, $"_fs len = {_fs.Length.ToString()}");
             }
         }
 

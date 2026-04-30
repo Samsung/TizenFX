@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,7 @@ using System.Linq;
 
 namespace Tizen.AIAvatar
 {
-    internal class VowelClassifier
+    internal sealed class VowelClassifier
     {
         private readonly int vowelForecastRange = 6;
         private readonly string[] vowelName = { "A", "E", "I", "O", "U", "HM", "ER" };

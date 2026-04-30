@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -56,7 +56,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcCmdListCreate(out handle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Create Failed with error " + error);
+                Log.Error(LogTag, $"Create Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
             _handle = handle;
@@ -80,7 +80,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcCmdListForeachCommands(_handle, _callback, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetAllCommands Failed with error " + error);
+                Log.Error(LogTag, $"GetAllCommands Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -107,7 +107,7 @@ namespace Tizen.Uix.VoiceControl
                 ErrorCode error = VcCmdListGetCount(_handle, out count);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Count Failed with error " + error);
+                    Log.Error(LogTag, $"Count Failed with error {error}");
                     return -1;
                 }
 
@@ -137,7 +137,7 @@ namespace Tizen.Uix.VoiceControl
                 ErrorCode error = VcCmdListGetCurrent(_handle, out current);
                 if (ErrorCode.None != error)
                 {
-                    Log.Error(LogTag, "Current Failed with error " + error);
+                    Log.Error(LogTag, $"Current Failed with error {error}");
                     return null;
                 }
 
@@ -172,7 +172,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcCmdListAdd(_handle, command._handle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Add Failed with error " + error);
+                Log.Error(LogTag, $"Add Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -205,7 +205,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcCmdListRemove(_handle, command._handle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Remove Failed with error " + error);
+                Log.Error(LogTag, $"Remove Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -241,7 +241,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcCmdListForeachCommands(_handle, _callback, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetAllCommands Failed with error " + error);
+                Log.Error(LogTag, $"GetAllCommands Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -270,7 +270,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcCmdListFirst(_handle);
             if (ErrorCode.None != error)
             {
-                Log.Error(LogTag, "First Failed with error " + error);
+                Log.Error(LogTag, $"First Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
             _index = 0;
@@ -298,7 +298,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcCmdListLast(_handle);
             if (ErrorCode.None != error)
             {
-                Log.Error(LogTag, "Last Failed with error " + error);
+                Log.Error(LogTag, $"Last Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
             _index = Count - 1;
@@ -330,7 +330,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcCmdListNext(_handle);
             if (ErrorCode.None != error)
             {
-                Log.Error(LogTag, "Next Failed with error " + error);
+                Log.Error(LogTag, $"Next Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
            _index++;
@@ -362,7 +362,7 @@ namespace Tizen.Uix.VoiceControl
             ErrorCode error = VcCmdListPrev(_handle);
             if (ErrorCode.None != error)
             {
-                Log.Error(LogTag, "Previous Failed with error " + error);
+                Log.Error(LogTag, $"Previous Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
             _index--;

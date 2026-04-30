@@ -999,7 +999,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int LayoutColumns = Interop.TableView.LayoutColumnsGet();
         }
 
-        internal class ChildProperty
+        internal sealed class ChildProperty
         {
             internal static readonly int CellIndex = Interop.TableView.ChildPropertyCellIndexGet();
             internal static readonly int RowSpan = Interop.TableView.ChildPropertyRowSpanGet();

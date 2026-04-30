@@ -389,7 +389,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetBondCreatedCallback(_bondCreatedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set bond created callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set bond created callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -398,7 +398,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetBondCreatedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset bond created callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset bond created callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -415,7 +415,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetBondDestroyedCallback(_bondDestroyedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set bond destroyed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set bond destroyed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -424,7 +424,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetBondDestroyedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset bond destroyed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset bond destroyed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -442,7 +442,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetServiceSearchedCallback(_serviceSearchedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set service searched callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set service searched callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -451,7 +451,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetServiceSearchedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset service searched callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset service searched callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -469,7 +469,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetAuthorizationChangedCallback(_authorizationChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set authroization changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set authroization changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -478,7 +478,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetAuthorizationChangedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset authroization changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset authroization changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -496,7 +496,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(_connectionChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set connection state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set connection state changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -505,7 +505,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetConnectionStateChangedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset connection state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset connection state changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -526,7 +526,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.CreateBond(RemoteDeviceAddress);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to create bond, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to create bond, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -546,7 +546,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.CancelBonding();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to cancel bonding process, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to cancel bonding process, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -568,7 +568,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.DestroyBond(RemoteDeviceAddress);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to destroy bond, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to destroy bond, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -591,7 +591,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.SetAlias(RemoteDeviceAddress, aliasName);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set alias name, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set alias name, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -615,7 +615,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.SetAuthorization(RemoteDeviceAddress, (int)authorizationState);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set authroization state, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set authroization state, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -636,7 +636,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.GetMaskFromUuid(uuids, uuids.Length, out serviceMask);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get service mask, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get service mask, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
             return serviceMask;
@@ -660,7 +660,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.StartServiceSearch(RemoteDeviceAddress);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to start service search, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to start service search, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -692,7 +692,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.GetConnectedProfiles(RemoteDeviceAddress, _connectedProfileCallback, IntPtr.Zero);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get connected profiles, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get connected profiles, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
                 return profileList;
@@ -722,7 +722,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.IsProfileConnected(RemoteDeviceAddress, BluetoothUtils.ConvertProfileTypeToBtProfile(profileType), out isConnected);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get profile connected state, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get profile connected state, Error - {(BluetoothError)ret}");
                 }
                 return isConnected;
             }

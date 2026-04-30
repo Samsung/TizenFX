@@ -477,7 +477,7 @@ namespace Tizen.System
             if (ex == null)
             {
                 Log.Error(SessionErrorFactory.LogTag,
-                    "Unexpected exception type for SessionError: " + Enum.GetName(typeof(SessionError), ret));
+                    $"Unexpected exception type for SessionError: {Enum.GetName(typeof(SessionError), ret)}");
                 throw new InvalidOperationException("Unrecognized error");
             }
             throw ex;

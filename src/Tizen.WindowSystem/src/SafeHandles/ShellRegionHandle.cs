@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell.SafeHandles
 {
-    internal class ShellRegionHandle : SafeHandle
+    internal sealed class ShellRegionHandle : SafeHandle
     {
         public ShellRegionHandle() : base(IntPtr.Zero, true)
         {

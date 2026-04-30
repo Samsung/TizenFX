@@ -150,7 +150,7 @@ namespace Tizen.Multimedia
             _playbackErrorCallback = (code, _) =>
             {
                 //TODO handle service disconnected error.
-                Log.Warn(PlayerLog.Tag, "error code : " + code);
+                Log.Warn(PlayerLog.Tag, $"error code : {code}");
                 ErrorOccurred?.Invoke(this, new PlayerErrorOccurredEventArgs((PlayerError)code));
             };
 
@@ -232,7 +232,7 @@ namespace Tizen.Multimedia
             _mediaStreamAudioBufferStatusChangedCallback = (status, _) =>
             {
                 Debug.Assert(Enum.IsDefined(typeof(MediaStreamBufferStatus), status));
-                Log.Debug(PlayerLog.Tag, "audio buffer status : " + status);
+                Log.Debug(PlayerLog.Tag, $"audio buffer status : {status}");
 
                 MediaStreamAudioBufferStatusChanged?.Invoke(this,
                     new MediaStreamBufferStatusChangedEventArgs(status));
@@ -240,7 +240,7 @@ namespace Tizen.Multimedia
             _mediaStreamVideoBufferStatusChangedCallback = (status, _) =>
             {
                 Debug.Assert(Enum.IsDefined(typeof(MediaStreamBufferStatus), status));
-                Log.Debug(PlayerLog.Tag, "video buffer status : " + status);
+                Log.Debug(PlayerLog.Tag, $"video buffer status : {status}");
 
                 MediaStreamVideoBufferStatusChanged?.Invoke(this,
                     new MediaStreamBufferStatusChangedEventArgs(status));
@@ -261,12 +261,12 @@ namespace Tizen.Multimedia
         {
             _mediaStreamAudioSeekCallback = (offset, _) =>
             {
-                Log.Debug(PlayerLog.Tag, "audio seeking offset : " + offset);
+                Log.Debug(PlayerLog.Tag, $"audio seeking offset : {offset}");
                 MediaStreamAudioSeekingOccurred?.Invoke(this, new MediaStreamSeekingOccurredEventArgs(offset));
             };
             _mediaStreamVideoSeekCallback = (offset, _) =>
             {
-                Log.Debug(PlayerLog.Tag, "video seeking offset : " + offset);
+                Log.Debug(PlayerLog.Tag, $"video seeking offset : {offset}");
                 MediaStreamVideoSeekingOccurred?.Invoke(this, new MediaStreamSeekingOccurredEventArgs(offset));
             };
 

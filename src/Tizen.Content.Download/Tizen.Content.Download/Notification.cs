@@ -47,12 +47,11 @@ namespace Tizen.Content.Download
         {
             get
             {
-                string title;
+                string title = String.Empty;
                 int ret = Interop.Download.GetNotificationTitle(_downloadId, out title);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Notification Title, " + (DownloadError)ret);
-                    return String.Empty;
+                    Log.Error(Globals.LogTag, $"Failed to get Notification Title, {(DownloadError)ret}");
                 }
                 return title;
             }
@@ -81,12 +80,11 @@ namespace Tizen.Content.Download
         {
             get
             {
-                string description;
+                string description = String.Empty;
                 int ret = Interop.Download.GetNotificationDescription(_downloadId, out description);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Notification Description, " + (DownloadError)ret);
-                    return String.Empty;
+                    Log.Error(Globals.LogTag, $"Failed to get Notification Description, {(DownloadError)ret}");
                 }
                 return description;
             }
@@ -115,12 +113,11 @@ namespace Tizen.Content.Download
         {
             get
             {
-                int type;
+                int type = 0;
                 int ret = Interop.Download.GetNotificationType(_downloadId, out type);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get NotificationType, " + (DownloadError)ret);
-                    return 0;
+                    Log.Error(Globals.LogTag, $"Failed to get NotificationType, {(DownloadError)ret}");
                 }
                 return (NotificationType)type;
             }
@@ -156,7 +153,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetNotificationAppControl(_downloadId, (int)NotificationAppControlType.Downloading, out handle);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Ongoing type NotificationAppControl, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get Ongoing type NotificationAppControl, {(DownloadError)ret}");
                     return null;
                 }
                 return new AppControl(handle);
@@ -193,7 +190,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetNotificationAppControl(_downloadId, (int)NotificationAppControlType.Completed, out handle);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Complete type NotificationAppControl, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get Complete type NotificationAppControl, {(DownloadError)ret}");
                     return null;
                 }
                 return new AppControl(handle);
@@ -230,7 +227,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetNotificationAppControl(_downloadId, (int)NotificationAppControlType.Failed, out handle);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Fail type NotificationAppControl, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get Fail type NotificationAppControl, {(DownloadError)ret}");
                     return null;
                 }
                 return new AppControl(handle);

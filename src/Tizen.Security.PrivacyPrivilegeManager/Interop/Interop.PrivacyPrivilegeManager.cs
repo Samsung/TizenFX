@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
@@ -59,21 +60,24 @@ internal static partial class Interop
                                                                [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] string[] privileges,
                                                                uint privilegesCount, IntPtr userData);
 
-        [DllImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_check_permission")]
-        internal static extern ErrorCode CheckPermission(string privilege, out CheckResult result);
+        [LibraryImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_check_permission", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CheckPermission(string privilege, out CheckResult result);
 
-        [DllImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_check_permissions")]
-        internal static extern ErrorCode CheckPermissions([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)]string[] privileges,
+        [LibraryImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_check_permissions", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CheckPermissions([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)]string[] privileges,
                                                           uint privilegesCount,
                                                           [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] CheckResult[] results);
 
 
-        [DllImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_request_permission")]
-        internal static extern ErrorCode RequestPermission(string privilege, RequestResponseCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_request_permission", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode RequestPermission(string privilege, RequestResponseCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_request_permissions")]
-        internal static extern ErrorCode RequestPermissions([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] string[] privileges,
+        [LibraryImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_request_permissions", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode RequestPermissions([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] string[] privileges,
                                                             uint privilegesCount, RequestMultipleResponseCallback callback, IntPtr userData);
 
     }
 }
+
+
+

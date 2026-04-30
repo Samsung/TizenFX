@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
-    internal class AudioDuckingHandle : SafeHandle
+    internal sealed class AudioDuckingHandle : SafeHandle
     {
         protected AudioDuckingHandle() : base(IntPtr.Zero, true)
         {

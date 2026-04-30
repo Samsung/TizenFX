@@ -24,7 +24,7 @@ namespace Tizen.Multimedia.Remoting
     /// <see cref="MediaControlServer.CommandCompleted"/>event.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    internal class CommandCompletedEventArgs : EventArgs
+    internal sealed class CommandCompletedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandCompletedEventArgs"/> class.

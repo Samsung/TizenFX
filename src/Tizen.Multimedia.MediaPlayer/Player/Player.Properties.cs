@@ -457,7 +457,7 @@ namespace Tizen.Multimedia
                 NativePlayer.IsMuted(Handle, out var value).
                     ThrowIfFailed(this, "Failed to get the mute state of the player");
 
-                Log.Info(PlayerLog.Tag, "get mute : " + value);
+                Log.Info(PlayerLog.Tag, $"get mute : {value}");
 
                 return value;
             }

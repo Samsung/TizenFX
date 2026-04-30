@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -113,7 +113,7 @@ namespace Tizen.NUI.Xaml
         }
     }
 
-    internal class XamlValueTargetProvider : IProvideParentValues, IProvideValueTarget
+    internal sealed class XamlValueTargetProvider : IProvideParentValues, IProvideValueTarget
     {
         public XamlValueTargetProvider(object targetObject, INode node, HydrationContext context, object targetProperty)
         {
@@ -284,7 +284,7 @@ namespace Tizen.NUI.Xaml
             var namespaceuri = namespaceResolver.LookupNamespace(prefix);
             if (namespaceuri == null)
             {
-                exception = new XamlParseException(string.Format("No xmlns declaration for prefix \"{0}\"", prefix), xmlLineInfo);
+                exception = new XamlParseException($"No xmlns declaration for prefix \"{prefix}\"", xmlLineInfo);
                 return null;
             }
 
@@ -295,7 +295,7 @@ namespace Tizen.NUI.Xaml
             XmlType xmlType, IXmlLineInfo xmlInfo, Assembly currentAssembly, out XamlParseException exception);
     }
 
-    internal class XamlRootObjectProvider : IRootObjectProvider
+    internal sealed class XamlRootObjectProvider : IRootObjectProvider
     {
         public XamlRootObjectProvider(object rootObject)
         {

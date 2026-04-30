@@ -19,7 +19,7 @@ using System.Threading;
 
 namespace Tizen.Network.Nsd
 {
-    internal class SsdpInitializer
+    internal sealed class SsdpInitializer
     {
         internal SsdpInitializer()
         {
@@ -31,7 +31,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Ssdp.Deinitialize();
             if (ret != (int)SsdpError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deinitialize Ssdp, Error - " + (SsdpError)ret);
+                Log.Error(Globals.LogTag, $"Failed to deinitialize Ssdp, Error - {(SsdpError)ret}");
             }
         }
     }
@@ -70,11 +70,11 @@ namespace Tizen.Network.Nsd
         internal void SsdpInitializeCreateService()
         {
             SsdpInitializer ssdpInit = Globals.s_threadSsd.Value;
-            Log.Info(Globals.LogTag, "Initialize ThreadLocal<SsdpInitializer> instance = " + ssdpInit);
+            Log.Info(Globals.LogTag, $"Initialize ThreadLocal<SsdpInitializer> instance = {ssdpInit}");
             int ret = Interop.Nsd.Ssdp.CreateService(_target, out _serviceHandle);
             if (ret != (int)SsdpError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to create a local Ssdp service handle, Error - " + (SsdpError)ret);
+                Log.Error(Globals.LogTag, $"Failed to create a local Ssdp service handle, Error - {(SsdpError)ret}");
                 NsdErrorFactory.ThrowSsdpException(ret);
             }
         }
@@ -100,7 +100,7 @@ namespace Tizen.Network.Nsd
                 int ret = Interop.Nsd.Ssdp.GetUsn(_serviceHandle, out usn);
                 if (ret != (int)SsdpError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get usn of service, Error: " + (SsdpError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get usn of service, Error: {(SsdpError)ret}");
                     return null;
                 }
 
@@ -117,7 +117,7 @@ namespace Tizen.Network.Nsd
                 int ret = Interop.Nsd.Ssdp.SetUsn(_serviceHandle, value);
                 if (ret != (int)SsdpError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set usn of service, Error: " + (SsdpError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set usn of service, Error: {(SsdpError)ret}");
                     NsdErrorFactory.ThrowSsdpException(ret);
                 }
             }
@@ -140,7 +140,7 @@ namespace Tizen.Network.Nsd
                 int ret = Interop.Nsd.Ssdp.GetTarget(_serviceHandle, out target);
                 if (ret != (int)SsdpError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get target of service, Error: " + (SsdpError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get target of service, Error: {(SsdpError)ret}");
                     return null;
                 }
 
@@ -169,7 +169,7 @@ namespace Tizen.Network.Nsd
                 int ret = Interop.Nsd.Ssdp.GetUrl(_serviceHandle, out url);
                 if (ret != (int)SsdpError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get url of Ssdp service, Error: " + (SsdpError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get url of Ssdp service, Error: {(SsdpError)ret}");
                     return null;
                 }
 
@@ -186,7 +186,7 @@ namespace Tizen.Network.Nsd
                 int ret = Interop.Nsd.Ssdp.SetUrl(_serviceHandle, value);
                 if (ret != (int)SsdpError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set url of Ssdp service, Error: " + (SsdpError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set url of Ssdp service, Error: {(SsdpError)ret}");
                     NsdErrorFactory.ThrowSsdpException(ret);
                 }
             }
@@ -220,7 +220,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Ssdp.RegisterService(_serviceHandle, _serviceRegisteredCallback, IntPtr.Zero);
             if (ret != (int)SsdpError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to register the Ssdp local service, Error: " + (SsdpError)ret);
+                Log.Error(Globals.LogTag, $"Failed to register the Ssdp local service, Error: {(SsdpError)ret}");
                 NsdErrorFactory.ThrowSsdpException(ret);
             }
         }
@@ -241,7 +241,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Ssdp.DeregisterService(_serviceHandle);
             if (ret != (int)SsdpError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deregister the Ssdp local service, Error: " + (SsdpError)ret);
+                Log.Error(Globals.LogTag, $"Failed to deregister the Ssdp local service, Error: {(SsdpError)ret}");
                 NsdErrorFactory.ThrowSsdpException(ret);
             }
         }
@@ -260,7 +260,7 @@ namespace Tizen.Network.Nsd
                         int ret = Interop.Nsd.Ssdp.DestroyService(_serviceHandle);
                         if (ret != (int)SsdpError.None)
                         {
-                            Log.Error(Globals.LogTag, "Failed to destroy the local Ssdp service handle, Error - " + (SsdpError)ret);
+                            Log.Error(Globals.LogTag, $"Failed to destroy the local Ssdp service handle, Error - {(SsdpError)ret}");
                         }
                     }
                 }

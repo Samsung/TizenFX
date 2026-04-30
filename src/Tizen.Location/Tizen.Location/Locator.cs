@@ -79,7 +79,7 @@ namespace Tizen.Location
             int ret = Interop.Locator.Create((int)locationType, out _handle);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error creating Location Manager," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error creating Location Manager,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
             _location = new Location();
@@ -294,7 +294,7 @@ namespace Tizen.Location
             int ret = Interop.Locator.IsEnabledMock(out status);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error Get Enable Mock Status," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error Get Enable Mock Status,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return status;
@@ -305,7 +305,7 @@ namespace Tizen.Location
             int ret = Interop.Locator.EnableMock(_isEnableMock);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error Set Enable Mock Status," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error Set Enable Mock Status,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -328,7 +328,7 @@ namespace Tizen.Location
                 int ret = Interop.Locator.StartBatch(_handle);
                 if (((LocationError)ret != LocationError.None))
                 {
-                    Log.Error(Globals.LogTag, "Error Starting Location Batch mode," + (LocationError)ret);
+                    Log.Error(Globals.LogTag, $"Error Starting Location Batch mode,{(LocationError)ret}");
                     throw LocationErrorFactory.ThrowLocationException(ret);
                 }
             }
@@ -337,7 +337,7 @@ namespace Tizen.Location
                 int ret = Interop.Locator.Start(_handle);
                    if (((LocationError)ret != LocationError.None))
                 {
-                    Log.Error(Globals.LogTag, "Error Starting Location Manager," + (LocationError)ret);
+                    Log.Error(Globals.LogTag, $"Error Starting Location Manager,{(LocationError)ret}");
                     throw LocationErrorFactory.ThrowLocationException(ret);
                 }
             }
@@ -359,7 +359,7 @@ namespace Tizen.Location
                 int ret = Interop.Locator.StopBatch(_handle);
                 if (((LocationError)ret != LocationError.None))
                 {
-                    Log.Error(Globals.LogTag, "Error Stopping Location Batch mode," + (LocationError)ret);
+                    Log.Error(Globals.LogTag, $"Error Stopping Location Batch mode,{(LocationError)ret}");
                     throw LocationErrorFactory.ThrowLocationException(ret);
                 }
             }
@@ -368,7 +368,7 @@ namespace Tizen.Location
                 int ret = Interop.Locator.Stop(_handle);
                 if (((LocationError)ret != LocationError.None))
                 {
-                    Log.Error(Globals.LogTag, "Error stopping Location Manager," + (LocationError)ret);
+                    Log.Error(Globals.LogTag, $"Error stopping Location Manager,{(LocationError)ret}");
                     throw LocationErrorFactory.ThrowLocationException(ret);
                 }
             } 
@@ -399,7 +399,7 @@ namespace Tizen.Location
             }
             else
             {
-                Log.Error(Globals.LogTag, "Error in setting up location mocking," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in setting up location mocking,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -419,7 +419,7 @@ namespace Tizen.Location
             int ret = Interop.Locator.ClearMock(_handle);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in clear up location mocking," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in clear up location mocking,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -446,7 +446,7 @@ namespace Tizen.Location
                 {
                     if (error != LocationError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error in getting up location information," + (LocationError)error);
+                        Log.Error(Globals.LogTag, $"Error in getting up location information,{(LocationError)error}");
                     }
                     else
                     {
@@ -464,7 +464,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.GetSingleLocation(_handle, timeout, _callback_map[id], id);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in setting up location mocking," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in setting up location mocking,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return task.Task;
@@ -504,7 +504,7 @@ namespace Tizen.Location
                     ret = Interop.Locator.GetLastLocation(_handle, out altitude, out latitude, out longitude, out climb, out direction, out speed, out level, out accuracy, out vertical, out timestamp);
                     if (((LocationError)ret != LocationError.None))
                     {
-                        Log.Error(Globals.LogTag, "Error in get last location information," + (LocationError)ret);
+                        Log.Error(Globals.LogTag, $"Error in get last location information,{(LocationError)ret}");
                         throw LocationErrorFactory.ThrowLocationException(ret);
                     }
                     else
@@ -518,7 +518,7 @@ namespace Tizen.Location
                 }
                 else
                 {
-                    Log.Error(Globals.LogTag, "Error in get current location information," + (LocationError)ret);
+                    Log.Error(Globals.LogTag, $"Error in get current location information,{(LocationError)ret}");
                     throw LocationErrorFactory.ThrowLocationException(ret);
                 }
             }
@@ -545,7 +545,7 @@ namespace Tizen.Location
             int ret = Interop.Locator.AddBoundary(_handle, locationBoundary.GetHandle());
             if ((LocationBoundError)ret != LocationBoundError.None)
             {
-                Log.Error(Globals.LogTag, "Error Adding Boundary," + (LocationBoundError)ret);
+                Log.Error(Globals.LogTag, $"Error Adding Boundary,{(LocationBoundError)ret}");
                 throw LocationErrorFactory.ThrowLocationBoundaryException(ret);
             }
         }
@@ -564,7 +564,7 @@ namespace Tizen.Location
             int ret = Interop.Locator.RemoveBoundary(_handle, locationBoundary.GetHandle());
             if ((LocationBoundError)ret != LocationBoundError.None)
             {
-                Log.Error(Globals.LogTag, "Error Removing Boundary," + (LocationBoundError)ret);
+                Log.Error(Globals.LogTag, $"Error Removing Boundary,{(LocationBoundError)ret}");
                 throw LocationErrorFactory.ThrowLocationBoundaryException(ret);
             }
         }
@@ -600,7 +600,7 @@ namespace Tizen.Location
             int ret = Interop.Locator.Destroy(_handle);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in Destroy handle, " + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in Destroy handle, {(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -651,7 +651,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.SetServiceStateChangedCallback(_handle, _serviceStateChangedCallback, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in Setting Service State Changed Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in Setting Service State Changed Callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -662,7 +662,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.UnSetServiceStateChangedCallback(_handle);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in UnSetting Service State Changed Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in UnSetting Service State Changed Callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -719,7 +719,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.SetZoneChangedCallback(_handle, _zoneChangedCallback, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in Setting Zone Changed Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in Setting Zone Changed Callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -730,7 +730,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.UnSetZoneChangedCallback(_handle);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in UnSetting Zone Changed Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in UnSetting Zone Changed Callback,{(LocationError)ret}");
             }
         }
 
@@ -781,7 +781,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.SetSettingChangedCallback((int)_locationType, _settingChangedCallback, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in Setting Changed Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in Setting Changed Callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -792,7 +792,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.UnSetSettingChangedCallback((int)_locationType);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in Unsetting Setting's Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in Unsetting Setting's Callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -846,7 +846,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.SetDistanceBasedLocationChangedCallback(_handle, _distanceBasedLocationChangedCallback, _stayInterval, _distance, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in Setting Distance based location changed Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in Setting Distance based location changed Callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -857,7 +857,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.UnSetDistanceBasedLocationChangedCallback(_handle);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in UnSetting Distance based location changed Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in UnSetting Distance based location changed Callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
             _distanceBasedLocationChanged = null;
@@ -925,7 +925,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.SetLocationChangedCallback(_handle, _locationChangedCallback, _interval, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in Setting location changed Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in Setting location changed Callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -936,7 +936,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.UnSetLocationChangedCallback(_handle);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in UnSetting location changed Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in UnSetting location changed Callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -948,7 +948,7 @@ namespace Tizen.Location
             if (_locationBatchCallback == null) {
                 _locationBatchCallback = (batch_size, userData) =>
                 {
-                    Log.Info(Globals.LogTag, "LocationBatchCallback has been called, size : " + batch_size);
+                    Log.Info(Globals.LogTag, $"LocationBatchCallback has been called, size : {batch_size}");
 
                     _locationBatchGetCallback = (latitude, longitude, altitude, speed, direction, horizontal, vertical, timestamp, batchUserData) =>
                     {
@@ -961,7 +961,7 @@ namespace Tizen.Location
                     ret = Interop.LocatorEvent.GetLocationBatch(_handle, _locationBatchGetCallback, IntPtr.Zero);
                     if (((LocationError)ret != LocationError.None))
                     {
-                        Log.Error(Globals.LogTag, "Error in Setting location batch Callback," + (LocationError)ret);
+                        Log.Error(Globals.LogTag, $"Error in Setting location batch Callback,{(LocationError)ret}");
                         throw LocationErrorFactory.ThrowLocationException(ret);
                     }
                 };
@@ -970,7 +970,7 @@ namespace Tizen.Location
             ret = Interop.LocatorEvent.SetLocationBatchCallback(_handle, _locationBatchCallback, _batchInterval, _batchPeriod, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in Setting location batch Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in Setting location batch Callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -981,7 +981,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorEvent.UnSetLocationBatchCallback(_handle);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in UnSetting location batch Callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in UnSetting location batch Callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }

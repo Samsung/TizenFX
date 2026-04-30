@@ -77,7 +77,7 @@ namespace Tizen.Applications
             _processing = false;
         }
 
-        internal class LifecycleEvent
+        internal sealed class LifecycleEvent
         {
             internal LifecycleEvent(IUIGadget gadget, Action action)
             {

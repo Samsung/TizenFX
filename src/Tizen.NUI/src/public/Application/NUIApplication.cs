@@ -103,8 +103,7 @@ namespace Tizen.NUI
 
         static NUIApplication()
         {
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            PropertyBridge.RegisterStringGetter();
+            NUIApplicationInitializer.StaticInitialize();
         }
 
         /// <summary>
@@ -841,8 +840,8 @@ namespace Tizen.NUI
         {
             if (e != null && e.ReceivedAppControl != null)
             {
-                Log.Info("NUI", "OnAppControlReceived() is called! ApplicationId=" + e.ReceivedAppControl.ApplicationId);
-                Log.Info("NUI", "CallerApplicationId=" + e.ReceivedAppControl.CallerApplicationId + "   IsReplyRequest=" + e.ReceivedAppControl.IsReplyRequest);
+                Log.Info("NUI", $"OnAppControlReceived() is called! ApplicationId={e.ReceivedAppControl.ApplicationId}");
+                Log.Info("NUI", $"CallerApplicationId={e.ReceivedAppControl.CallerApplicationId}   IsReplyRequest={e.ReceivedAppControl.IsReplyRequest}");
             }
             base.OnAppControlReceived(e);
         }
@@ -879,6 +878,7 @@ namespace Tizen.NUI
                 Log.Error("NUI", "[NUI] Preload() Should be called before application created. Ignore\n");
                 return;
             }
+
             Interop.Application.PreInitialize();
             SupportPreInitializedCreation = Interop.Application.IsSupportPreInitializedCreation();
 

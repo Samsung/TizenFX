@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI.MarkdownRenderer
 {
-    internal class Test
+    internal sealed class Test
     {
         public void CreateTest()
         {

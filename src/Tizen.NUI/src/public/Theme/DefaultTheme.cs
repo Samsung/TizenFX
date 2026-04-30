@@ -18,7 +18,7 @@
 
 namespace Tizen.NUI
 {
-    internal partial class DefaultThemeCreator : IThemeCreator
+    internal sealed partial class DefaultThemeCreator : IThemeCreator
     {
         private DefaultThemeCreator() { }
 

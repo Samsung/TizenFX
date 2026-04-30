@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.NUI.BaseComponents
 {
-    internal class ViewAccessibilityRareData
+    internal sealed class ViewAccessibilityRareData
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VoidHandlerType();

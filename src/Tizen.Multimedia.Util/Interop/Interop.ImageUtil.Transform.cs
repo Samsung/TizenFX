@@ -62,7 +62,7 @@ internal static partial class Interop
         }
     }
 
-    internal class TransformHandle : SafeHandle
+    internal sealed class TransformHandle : SafeHandle
     {
         protected TransformHandle() : base(IntPtr.Zero, true)
         {

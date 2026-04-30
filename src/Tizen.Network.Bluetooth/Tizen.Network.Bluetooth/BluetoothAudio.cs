@@ -68,7 +68,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = BluetoothAudioImpl.Instance.Connect(RemoteAddress, profileType);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Connect - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Connect - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -98,7 +98,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = BluetoothAudioImpl.Instance.Disconnect(RemoteAddress, type);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Disconnect - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Disconnect - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }

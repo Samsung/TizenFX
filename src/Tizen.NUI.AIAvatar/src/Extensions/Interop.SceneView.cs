@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +17,7 @@
 
 namespace Tizen.AIAvatar
 {
-    internal class Interop
+    internal sealed class Interop
     {
         internal static partial class Libraries
         {

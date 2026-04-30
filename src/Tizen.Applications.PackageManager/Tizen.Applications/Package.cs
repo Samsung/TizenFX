@@ -227,20 +227,20 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoCreate(Id, out packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to create native handle for package info of {0}. err = {1}", Id, err));
+                Log.Warn(LogTag, $"Failed to create native handle for package info of {Id}. err = {err}");
             }
 
             err = Interop.Package.PackageInfoForeachAppInfo(packageInfoHandle, (Interop.Package.AppType)type, cb, IntPtr.Zero);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to application info of {0}. err = {1}", Id, err));
+                Log.Warn(LogTag, $"Failed to application info of {Id}. err = {err}");
             }
             GC.KeepAlive(cb);
 
             err = Interop.Package.PackageInfoDestroy(packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to destroy native handle for package info of {0}. err = {1}", Id, err));
+                Log.Warn(LogTag, $"Failed to destroy native handle for package info of {Id}. err = {err}");
             }
             return appInfoList;
         }
@@ -347,71 +347,71 @@ namespace Tizen.Applications
             err = Interop.Package.PackageInfoGetMainAppId(handle, out package._mainAppId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package main app id of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package main app id of {pkgId}");
             }
             err = Interop.Package.PackageInfoGetLabel(handle, out package._label);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package label of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package label of {pkgId}");
             }
             err = Interop.Package.PackageInfoGetIconPath(handle, out package._iconPath);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package icon path of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package icon path of {pkgId}");
             }
             err = Interop.Package.PackageInfoGetVersion(handle, out package._version);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package version of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package version of {pkgId}");
             }
 
             string type;
             Interop.Package.PackageInfoGetType(handle, out type);
             if (Enum.TryParse(type, true, out package._type) == false)
             {
-                Log.Warn(LogTag, "Failed to get package type of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package type of {pkgId}");
             }
             err = Interop.Package.PackageInfoGetRootPath(handle, out package._rootPath);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package root directory of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package root directory of {pkgId}");
             }
             err = Interop.Package.PackageInfoGetInstalledStorage(handle, out package._installedStorageType);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get installed storage type of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get installed storage type of {pkgId}");
             }
             err = Interop.Package.PackageInfoIsSystemPackage(handle, out package._isSystemPackage);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is system package or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId} is system package or not");
             }
             err = Interop.Package.PackageInfoIsRemovablePackage(handle, out package._isRemovable);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is removable or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId} is removable or not");
             }
             err = Interop.Package.PackageInfoIsPreloadPackage(handle, out package._isPreloaded);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is preloaded or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId} is preloaded or not");
             }
             err = Interop.Package.PackageInfoIsUpdatePackage(handle, out package._isUpdated);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is updated or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId} is updated or not");
             }
             err = Interop.Package.PackageInfoIsAccessible(handle, out package._isAccessible);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is accessible or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId} is accessible or not");
             }
             try
             {
                 err = Interop.Package.PackageInfoGetFirstInstalledTime(handle, out package._firstInstalledTime);
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get first installed time of " + pkgId);
+                    Log.Warn(LogTag, $"Failed to get first installed time of {pkgId}");
                 }
             }
             catch (TypeLoadException)
@@ -423,7 +423,7 @@ namespace Tizen.Applications
                 err = Interop.Package.PackageInfoGetInstalledTime(handle, out package._installedTime);
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get installed time of " + pkgId);
+                    Log.Warn(LogTag, $"Failed to get installed time of {pkgId}");
                 }
             }
             catch (TypeLoadException)
@@ -446,7 +446,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoCreate(packageId, out packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                throw PackageManagerErrorFactory.GetException(err, string.Format("Failed to create native handle for package info of {0}", packageId));
+                throw PackageManagerErrorFactory.GetException(err, $"Failed to create native handle for package info of {packageId}");
             }
 
             Package package = CreatePackage(packageInfoHandle, packageId);
@@ -454,7 +454,7 @@ namespace Tizen.Applications
             err = Interop.Package.PackageInfoDestroy(packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to destroy native handle for package info of {0}. err = {1}", packageId, err));
+                Log.Warn(LogTag, $"Failed to destroy native handle for package info of {packageId}. err = {err}");
             }
             return package;
         }
@@ -482,7 +482,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoForeachPrivilegeInfo(packageInfoHandle, privilegeInfoCb, IntPtr.Zero);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get privilage info. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to get privilage info. err = {err}");
             }
             return privileges;
         }
@@ -514,7 +514,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoForeachDependencyInfo(packageInfoHandle, dependencyInfoCb, IntPtr.Zero);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to get dependency info. err = {err}");
             }
             GC.KeepAlive(dependencyInfoCb);
             return dependencies;
@@ -531,7 +531,7 @@ namespace Tizen.Applications
             int err = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoForeachDependsOnByPkgId(packageId, dependencyInfoCb, IntPtr.Zero, Interop.PackageManagerInfoInternal.GetUID());
             if (err != 0)
             {
-                Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to get dependency info. err = {err}");
             }
             GC.KeepAlive(dependencyInfoCb);
             return dependencies;
@@ -552,7 +552,7 @@ namespace Tizen.Applications
                 err = Interop.Package.PackageInfoForeachRequiredPrivilege(requiredPrivileges, requiredPrivCallback, IntPtr.Zero);
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, string.Format("Failed to get required privileges of allowed packages info. err = {0}", err));
+                    Log.Warn(LogTag, $"Failed to get required privileges of allowed packages info. err = {err}");
                 }
                 else
                 {
@@ -565,7 +565,7 @@ namespace Tizen.Applications
             err = Interop.Package.PackageInfoForeachResAllowedPackage(packageInfoHandle, allowedPackageCallback, IntPtr.Zero);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get allowed packages info. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to get allowed packages info. err = {err}");
             }
             GC.KeepAlive(allowedPackageCallback);
             return allowedPackagesAndPrivileges;
@@ -577,7 +577,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoCreate(packageId, out packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Error(LogTag, string.Format("Failed to create native handle for package info of {0}", packageId));
+                Log.Error(LogTag, $"Failed to create native handle for package info of {packageId}");
                 return null;
             }
 
@@ -591,7 +591,7 @@ namespace Tizen.Applications
             err = Interop.Package.PackageInfoDestroy(packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to destroy native handle for package info of {0}. err = {1}", packageId, err));
+                Log.Warn(LogTag, $"Failed to destroy native handle for package info of {packageId}. err = {err}");
             }
 
             return expansionPackageName;

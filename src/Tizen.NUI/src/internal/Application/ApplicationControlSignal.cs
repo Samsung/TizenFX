@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class ApplicationControlSignal : Disposable
+    internal sealed class ApplicationControlSignal : Disposable
     {
         internal ApplicationControlSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

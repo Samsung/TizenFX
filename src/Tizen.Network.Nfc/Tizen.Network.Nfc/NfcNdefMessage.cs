@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -42,7 +42,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.NdefMessage.GetRecordCount(_messageHandle, out recordCount);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get record count, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get record count, Error - {(NfcError)ret}");
                 }
                 return recordCount;
             }
@@ -60,7 +60,7 @@ namespace Tizen.Network.Nfc
 
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to create Ndef message, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to create Ndef message, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -100,7 +100,7 @@ namespace Tizen.Network.Nfc
 
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to destroy ndef message, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to destroy ndef message, Error - {(NfcError)ret}");
                 }
             }
             //Free unmanaged objects
@@ -120,7 +120,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.NdefMessage.AppendRecord(_messageHandle, record.GetHandle());
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to append record, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to append record, Error - {(NfcError)ret}");
                 isSuccess = false;
             }
             else
@@ -145,7 +145,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.NdefMessage.InsertRecord(_messageHandle, index, record.GetHandle());
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to insert record, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to insert record, Error - {(NfcError)ret}");
                 isSuccess = false;
             }
             else
@@ -169,7 +169,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.NdefMessage.RemoveRecord(_messageHandle, index);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to remove record, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to remove record, Error - {(NfcError)ret}");
                 isSuccess = false;
             }
 
@@ -190,7 +190,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.NdefMessage.GetRecord(_messageHandle, index, out recordHandle);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to remove record, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to remove record, Error - {(NfcError)ret}");
             }
 
             foreach (NfcNdefRecord recordElement in _recordList)

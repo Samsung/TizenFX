@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen;
 using Tizen.Multimedia.Util;
 
@@ -26,21 +27,23 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool SupportedColorspaceCallback(ImageColorSpace colorspace, IntPtr userData);
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_foreach_supported_colorspace")]
-        internal static extern ImageUtilError ForeachSupportedColorspace(ImageFormat type, SupportedColorspaceCallback callback,
+        [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_foreach_supported_colorspace")]
+        internal static partial ImageUtilError ForeachSupportedColorspace(ImageFormat type, SupportedColorspaceCallback callback,
             IntPtr userData = default(IntPtr));
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_extract_color_from_memory")]
-        internal static extern ImageUtilError ExtractColorFromMemory(byte[] buffer, int width, int height, out byte rgbR, out byte rgbG, out byte rgbB);
+        [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_extract_color_from_memory")]
+        internal static partial ImageUtilError ExtractColorFromMemory(byte[] buffer, int width, int height, out byte rgbR, out byte rgbG, out byte rgbB);
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_get_image")]
-        internal static extern ImageUtilError GetImage(IntPtr handle, out int width, out int height,
+        [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_get_image")]
+        internal static partial ImageUtilError GetImage(IntPtr handle, out int width, out int height,
             out ImageColorSpace colorspace, out IntPtr data, out int size);
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_destroy_image")]
-        internal static extern ImageUtilError Destroy(IntPtr handle);
+        [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_destroy_image")]
+        internal static partial ImageUtilError Destroy(IntPtr handle);
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_create_image")]
-        internal static extern ImageUtilError Create(uint width, uint height, ImageColorSpace colorSpace, byte[] srcBuffer, int size, out IntPtr handle);
+        [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_create_image")]
+        internal static partial ImageUtilError Create(uint width, uint height, ImageColorSpace colorSpace, byte[] srcBuffer, int size, out IntPtr handle);
     }
 }
+
+

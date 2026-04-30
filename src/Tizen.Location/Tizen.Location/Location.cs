@@ -216,7 +216,7 @@ namespace Tizen.Location
             int ret = Interop.Location.GetDistanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, out result);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error getting single distance information ," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error getting single distance information ,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return result;
@@ -237,7 +237,7 @@ namespace Tizen.Location
             int ret = Interop.Location.GetDistanceBetween(this.Latitude, this.Longitude, location.Latitude, location.Longitude, out result);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error getting distance information to the specifed location," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error getting distance information to the specifed location,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return result;
