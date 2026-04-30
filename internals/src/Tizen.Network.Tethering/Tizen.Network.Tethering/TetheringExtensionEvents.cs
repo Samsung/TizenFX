@@ -7,10 +7,12 @@ namespace Tizen.Network.Tethering
         private event EventHandler<TetheringExtensionEnabledEventArgs> _tetheringExtEnabled;
         private event EventHandler<TetheringExtensionDisabledEventArgs> _tetheringExtDisabled;
         private event EventHandler<ConnectionStateChangedEventArgs> _connectionStateChanged;
+        private event EventHandler<TetheringExtensionModeChangedEventArgs> _modeChanged;
 
         private Interop.TetheringExtension.EnabledCallback _enabledCallback;
         private Interop.TetheringExtension.DisabledCallback _disabledCallback;
         private Interop.TetheringExtension.ConnectionStateChangedCallback _connectionStateChangedCallback;
+        private Interop.TetheringExtension.ModeChangedCallback _modeChangedCallback;
 
         internal event EventHandler<TetheringExtensionEnabledEventArgs> TetheringExtensionEnabled
         {
@@ -117,6 +119,41 @@ namespace Tizen.Network.Tethering
             }
         }
 
+        internal event EventHandler<TetheringExtensionModeChangedEventArgs> ModeChanged
+        {
+            add
+            {
+                if (_modeChanged == null)
+                {
+                    try
+                    {
+                        RegisterModeChangedEvent();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, "Exception on adding ModeChanged\n" + e);
+                        return;
+                    }
+                }
+                _modeChanged += value;
+            }
+            remove
+            {
+                _modeChanged -= value;
+                if (_modeChanged == null)
+                {
+                    try
+                    {
+                        UnregisterModeChangedEvent();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, "Exception on removing ModeChanged\n" + e);
+                    }
+                }
+            }
+        }
+
 
         private void RegisterEnabledEvent()
         {
@@ -194,6 +231,34 @@ namespace Tizen.Network.Tethering
             {
                 Log.Error(Globals.LogTag, "Failed to unset connection state changed callback, Error - " + (TetheringError)ret);
             }
+        }
+
+        private void RegisterModeChangedEvent()
+        {
+            Log.Info(Globals.LogTag, "RegisterModeChangedEvent");
+            _modeChangedCallback = (int mode, IntPtr userData) =>
+            {
+                TetheringExtensionMode tetheringMode = (TetheringExtensionMode)mode;
+                TetheringExtensionModeChangedEventArgs e = new TetheringExtensionModeChangedEventArgs(tetheringMode);
+                _modeChanged?.Invoke(this, e);
+            };
+
+            int ret = Interop.TetheringExtension.SetModeChangedCallback(GetHandle(), _modeChangedCallback, IntPtr.Zero);
+            if (ret != (int)TetheringError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set mode changed callback, Error - " + (TetheringError)ret);
+            }
+        }
+
+        private void UnregisterModeChangedEvent()
+        {
+            Log.Info(Globals.LogTag, "UnregisterModeChangedEvent");
+            int ret = Interop.TetheringExtension.UnsetModeChangedCallback(GetHandle());
+            if (ret != (int)TetheringError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to unset mode changed callback, Error - " + (TetheringError)ret);
+            }
+            _modeChangedCallback = null;
         }
 
     }
