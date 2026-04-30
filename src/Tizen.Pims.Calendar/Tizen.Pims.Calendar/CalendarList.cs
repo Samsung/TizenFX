@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Calendar
 {
@@ -28,6 +29,7 @@ namespace Tizen.Pims.Calendar
         internal int _count = -1;
         internal IntPtr _listHandle;
 
+        [ExcludeFromCodeCoverage]
         internal CalendarList(IntPtr handle)
         {
             _listHandle = handle;
