@@ -17,6 +17,7 @@
 
 using System;
 using static Interop.InputMethodManager;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Uix.InputMethodManager
 {
@@ -24,41 +25,36 @@ namespace Tizen.Uix.InputMethodManager
     {
         internal static Exception CreateException(ErrorCode err)
         {
-            Tizen.Log.Error(LogTag, $"Error {err}");
-            Exception exp;
-            switch (err)
+            return err switch
             {
+                ErrorCode.InvalidParameter => CreateArgumentException(),
+                ErrorCode.PermissionDenied => CreatePermissionDeniedException(),
+                ErrorCode.OperationFailed => CreateOperationFailedException(),
+                _ => CreateDefaultException()
+            };
+        }
 
-                case ErrorCode.InvalidParameter:
-                {
-                    exp = new ArgumentException("Invalid Parameters Provided");
-                    break;
-                }
+        private static Exception CreateArgumentException()
+        {
+            return new ArgumentException("Invalid Parameters Provided");
+        }
 
+        [ExcludeFromCodeCoverage]
+        private static Exception CreatePermissionDeniedException()
+        {
+            return new InvalidOperationException("Permission Denied");
+        }
 
-                case ErrorCode.PermissionDenied:
-                {
-                    exp = new InvalidOperationException("Permission Denied");
-                    break;
-                }
+        [ExcludeFromCodeCoverage]
+        private static Exception CreateOperationFailedException()
+        {
+            return new InvalidOperationException("Operation Failed");
+        }
 
-
-                case ErrorCode.OperationFailed:
-                {
-                    exp = new InvalidOperationException("Operation Failed");
-                    break;
-                }
-
-                default:
-                {
-                    exp = new Exception("");
-                    break;
-                }
-
-            }
-
-            return exp;
-
+        [ExcludeFromCodeCoverage]
+        private static Exception CreateDefaultException()
+        {
+            return new InvalidOperationException("An unknown error occurred in InputMethodManager");
         }
     }
 }
