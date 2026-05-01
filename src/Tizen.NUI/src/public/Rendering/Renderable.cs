@@ -64,6 +64,108 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or Sets the Color of this Renderable. This is an RGBA value.
+        /// Each RGBA components match as <see cref="ColorRed"/>, <see cref="ColorGreen"/>, <see cref="ColorBlue"/>, and <see cref="Opacity"/>.
+        /// This property is mutually exclusive with <see cref="ColorRed"/>, <see cref="ColorGreen"/>, <see cref="ColorBlue"/>, and <see cref="Opacity"/>.
+        /// When setting this property, the individual component properties will be updated accordingly.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// The property cascade chaining set is not recommended.
+        /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
+        /// <code>
+        /// var renderable = new Renderable();
+        /// renderable.Color = new Color(0.5f, 0.2f, 0.1f, 0.5f);
+        /// </code>
+        /// This way to set the property is prohibited
+        /// <code>
+        /// renderable.Color.A = 0.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color Color
+        {
+            get
+            {
+                Color color = new Color();
+                Object.InternalRetrievingPropertyVector4(SwigCPtr, RendererProperty.MixColor, color.SwigCPtr);
+                return color;
+            }
+            set
+            {
+                Object.InternalSetPropertyVector4(SwigCPtr, RendererProperty.MixColor, Color.getCPtr(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets or Sets the Red component of <see cref="Color"/>.
+        /// This property is mutually exclusive with <see cref="Color"/>. Setting this property will update only the red component.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ColorRed
+        {
+            get => Object.InternalGetPropertyFloat(SwigCPtr, RendererProperty.MixColorRed);
+            set => Object.InternalSetPropertyFloat(SwigCPtr, RendererProperty.MixColorRed, value);
+        }
+
+        /// <summary>
+        /// Gets or Sets the Green component of <see cref="Color"/>.
+        /// This property is mutually exclusive with <see cref="Color"/>. Setting this property will update only the green component.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ColorGreen
+        {
+            get => Object.InternalGetPropertyFloat(SwigCPtr, RendererProperty.MixColorGreen);
+            set => Object.InternalSetPropertyFloat(SwigCPtr, RendererProperty.MixColorGreen, value);
+        }
+
+        /// <summary>
+        /// Gets or Sets the Blue component of <see cref="Color"/>.
+        /// This property is mutually exclusive with <see cref="Color"/>. Setting this property will update only the blue component.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ColorBlue
+        {
+            get => Object.InternalGetPropertyFloat(SwigCPtr, RendererProperty.MixColorBlue);
+            set => Object.InternalSetPropertyFloat(SwigCPtr, RendererProperty.MixColorBlue, value);
+        }
+
+        /// <summary>
+        /// Gets or Sets the Opacity (Alpha) component of <see cref="Color"/>.
+        /// This property is mutually exclusive with <see cref="Color"/>. Setting this property will update only the opacity component.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Opacity
+        {
+            get => Object.InternalGetPropertyFloat(SwigCPtr, RendererProperty.MixColorOpacity);
+            set => Object.InternalSetPropertyFloat(SwigCPtr, RendererProperty.MixColorOpacity, value);
+        }
+
+        /// <summary>
         /// Gets and Sets FaceCullingMode to define which face is culled or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

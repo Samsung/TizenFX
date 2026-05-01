@@ -29,6 +29,7 @@ namespace Tizen.Applications.ComponentBased
     /// The component port API provides functions to send and receive requests between components of component-based-application.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("This has been deprecated in API14")]
     public class ComponentPort : IDisposable
     {
         private static string LogTag = "ComponentPort";
@@ -48,6 +49,7 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
         /// <param name="portName">The name of the port to connect to.</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public ComponentPort(string portName)
         {
             var ret = Interop.ComponentPort.Create(portName, out _port);
@@ -65,6 +67,7 @@ namespace Tizen.Applications.ComponentBased
         /// Gets the port name.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public string PortName
         {
             get;
@@ -77,6 +80,7 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <param name="privilege">Privilege data specifying the access rights to be granted.</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public void AddPrivilege(string privilege)
         {
             if (string.IsNullOrEmpty(privilege))
@@ -145,6 +149,7 @@ namespace Tizen.Applications.ComponentBased
         /// </summary>
         /// <param name="endpoint">The name of the port</param>
         /// <returns>A task.</returns>
+        [Obsolete("This has been deprecated in API14")]
         public static Task WaitForPort(string endpoint)
         {
             return WaitForPortCore(endpoint);
@@ -165,6 +170,7 @@ namespace Tizen.Applications.ComponentBased
         /// </code>
         /// </example>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public void WaitForEvent()
         {
             Interop.ComponentPort.WaitForEvent(_port);
@@ -174,6 +180,7 @@ namespace Tizen.Applications.ComponentBased
         /// Cancels waiting for events.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public void Cancel()
         {
             Interop.ComponentPort.Cancel(_port);
@@ -194,6 +201,7 @@ namespace Tizen.Applications.ComponentBased
         /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout.</param>
         /// <param name="request">The serializable data to send.</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public void Send(string endpoint, int timeout, object request)
         {
             if (request == null)
@@ -229,6 +237,7 @@ namespace Tizen.Applications.ComponentBased
         /// <param name="request">The serializable data to send.</param>
         /// <returns>The received serializable data.</returns>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public object SendAndReceive(string endpoint, int timeout, object request)
         {
             if (request == null)
@@ -271,6 +280,7 @@ namespace Tizen.Applications.ComponentBased
         /// <param name="request">The serializable data to send.</param>
         /// <returns>The received serializable data.</returns>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public Task<object> SendAndReceiveAsync(string endpoint, int timeout, object request)
         {
             try
@@ -290,6 +300,7 @@ namespace Tizen.Applications.ComponentBased
         /// The event handler receives a RequestEventArgs argument that contains information about the request. If the reply is requested, RequestEventArgs.Request should be set.
         /// </remarks>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public event EventHandler<RequestEventArgs> RequestReceived;
 
         private void OnRequestEvent(string sender, IntPtr request, IntPtr data)
@@ -478,6 +489,7 @@ namespace Tizen.Applications.ComponentBased
         /// Releases all the resources used by the class ComponentPort.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public void Dispose()
         {
             Dispose(disposing: true);

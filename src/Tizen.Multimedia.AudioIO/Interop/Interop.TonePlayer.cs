@@ -15,18 +15,20 @@
  */
 
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia;
 
 internal static partial class Interop
 {
     internal static partial class TonePlayer
     {
-        [DllImport(Libraries.TonePlayer, EntryPoint = "tone_player_start_new")]
-        internal static extern TonePlayerError Start(ToneType tone, AudioStreamPolicyHandle streamInfoHandle,
+        [LibraryImport(Libraries.TonePlayer, EntryPoint = "tone_player_start_new")]
+        internal static partial TonePlayerError Start(ToneType tone, AudioStreamPolicyHandle streamInfoHandle,
             int durationMs, out int id);
 
-        [DllImport(Libraries.TonePlayer, EntryPoint = "tone_player_stop")]
-        internal static extern TonePlayerError Stop(int id);
+        [LibraryImport(Libraries.TonePlayer, EntryPoint = "tone_player_stop")]
+        internal static partial TonePlayerError Stop(int id);
     }
 }
+
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 
 internal static partial class Interop
@@ -61,61 +62,64 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate int WidgetListCallback(string widgetId, int isPrime, IntPtr userData);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_icon")]
-        internal static extern string GetIcon(string pkgId, string lang);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_icon", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string GetIcon(string pkgId, string lang);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_name")]
-        internal static extern string GetName(string widgetId, string lang);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_name", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string GetName(string widgetId, string lang);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_nodisplay")]
-        internal static extern int GetNoDisplay(string widgetId);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_nodisplay", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetNoDisplay(string widgetId);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_widget_instance_list")]
-        internal static extern ErrorCode GetInstances(string widgetId, InstanceCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_widget_instance_list", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetInstances(string widgetId, InstanceCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_set_lifecycle_event_cb")]
-        internal static extern ErrorCode SetLifecycleEvent(string widgetId, LifecycleCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_set_lifecycle_event_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SetLifecycleEvent(string widgetId, LifecycleCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_unset_lifecycle_event_cb")]
-        internal static extern ErrorCode UnsetLifecycleEvent(string widgetId, IntPtr userData);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_unset_lifecycle_event_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode UnsetLifecycleEvent(string widgetId, IntPtr userData);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_trigger_update")]
-        internal static extern ErrorCode UpdateContent(string widgetId, string instanceId, SafeBundleHandle bundle, int force);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_trigger_update", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode UpdateContent(string widgetId, string instanceId, SafeBundleHandle bundle, int force);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_change_period")]
-        internal static extern ErrorCode ChangePeriod(string widgetId, string instanceId, double period);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_change_period", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode ChangePeriod(string widgetId, string instanceId, double period);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_content_of_widget_instance")]
-        internal static extern ErrorCode GetContent(string widgetId, string instanceId, out IntPtr bundle);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_content_of_widget_instance", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetContent(string widgetId, string instanceId, out IntPtr bundle);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_package_id")]
-        internal static extern string GetPkgId(string widgetId);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_package_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string GetPkgId(string widgetId);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_supported_sizes")]
-        internal static extern ErrorCode GetSupportedSizes(string widgetId, ref int cnt, out IntPtr w, out IntPtr h);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_supported_sizes", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetSupportedSizes(string widgetId, ref int cnt, out IntPtr w, out IntPtr h);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_supported_size_types")]
-        internal static extern ErrorCode GetSupportedSizeTypes(string widgetId, ref int cnt, out IntPtr types);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_supported_size_types", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetSupportedSizeTypes(string widgetId, ref int cnt, out IntPtr types);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_preview_image_path")]
-        internal static extern string GetPreviewImagePath(string widgetId, int sizeType);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_preview_image_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string GetPreviewImagePath(string widgetId, int sizeType);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_widget_list_by_pkgid")]
-        internal static extern ErrorCode GetWidgetListByPkgId(string pkgId, WidgetListCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_widget_list_by_pkgid", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetWidgetListByPkgId(string pkgId, WidgetListCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_main_app_id")]
-        internal static extern string GetWidgetMainAppId(string widgetId);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_main_app_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string GetWidgetMainAppId(string widgetId);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_package_id")]
-        internal static extern string GetWidgetPackageId(string widgetId);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_package_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string GetWidgetPackageId(string widgetId);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_widget_max_count")]
-        internal static extern int GetWidgetMaxCount(string widgetId);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_widget_max_count", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetWidgetMaxCount(string widgetId);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_instance_count")]
-        internal static extern int GetWidgetInstanceCount(string widgetId, string cluster, string category);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_instance_count", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetWidgetInstanceCount(string widgetId, string cluster, string category);
 
-        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_app_id_of_setup_app")]
-        internal static extern string GetSetupAppId(string widgetId);
+        [LibraryImport(Libraries.WidgetService, EntryPoint = "widget_service_get_app_id_of_setup_app", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string GetSetupAppId(string widgetId);
     }
 }
+
+
+

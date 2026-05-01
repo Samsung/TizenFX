@@ -47,12 +47,11 @@ namespace Tizen.Content.Download
         {
             get
             {
-                string title;
+                string title = String.Empty;
                 int ret = Interop.Download.GetNotificationTitle(_downloadId, out title);
                 if (ret != (int)DownloadError.None)
                 {
                     Log.Error(Globals.LogTag, $"Failed to get Notification Title, {(DownloadError)ret}");
-                    return String.Empty;
                 }
                 return title;
             }
@@ -81,12 +80,11 @@ namespace Tizen.Content.Download
         {
             get
             {
-                string description;
+                string description = String.Empty;
                 int ret = Interop.Download.GetNotificationDescription(_downloadId, out description);
                 if (ret != (int)DownloadError.None)
                 {
                     Log.Error(Globals.LogTag, $"Failed to get Notification Description, {(DownloadError)ret}");
-                    return String.Empty;
                 }
                 return description;
             }
@@ -115,12 +113,11 @@ namespace Tizen.Content.Download
         {
             get
             {
-                int type;
+                int type = 0;
                 int ret = Interop.Download.GetNotificationType(_downloadId, out type);
                 if (ret != (int)DownloadError.None)
                 {
                     Log.Error(Globals.LogTag, $"Failed to get NotificationType, {(DownloadError)ret}");
-                    return 0;
                 }
                 return (NotificationType)type;
             }

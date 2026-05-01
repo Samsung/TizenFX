@@ -36,11 +36,11 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_New_4")]
             public static extern IntPtr New4(int argc, string[] argv, int type);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetContext")]
-            public static extern IntPtr GetWebContext();
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetContextWithIncognito")]
+            public static extern IntPtr GetWebContext(bool isIncognito);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetCookieManager")]
-            public static extern IntPtr GetWebCookieManager();
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetCookieManagerWithIncognito")]
+            public static extern IntPtr GetWebCookieManager(bool isIncognito);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WebView__SWIG_1")]
             public static extern IntPtr NewWebView(HandleRef jarg1);
@@ -153,6 +153,10 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_ResumeNetworkLoading")]
             public static extern void ResumeNetworkLoading(HandleRef jarg1);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_IsIncognito")]
+            [return: MarshalAs(UnmanagedType.U1)]
+            public static extern bool IsIncognito(HandleRef jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_ChangeOrientation")]
             public static extern void ChangeOrientation(HandleRef jarg1, int orientation);
