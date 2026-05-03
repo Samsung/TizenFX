@@ -51,43 +51,31 @@ namespace Tizen.Network.Connection
             }
         }
 
-        internal static void ThrowConnectionException(int errno , string message = "")
+        internal static void ThrowConnectionException(int errno, string message = "")
         {
-            ConnectionError _error = (ConnectionError)errno;
-            Log.Debug(Globals.LogTag, $"ThrowConnectionException {_error}");
-            switch (_error)
+            ConnectionError error = (ConnectionError)errno;
+            Log.Debug(Globals.LogTag, $"ThrowConnectionException {error}");
+
+            throw error switch
             {
-                case ConnectionError.AddressFamilyNotSupported:
-                    throw new InvalidOperationException("Address Family Not Supported");
-                case ConnectionError.AlreadyExists:
-                    throw new InvalidOperationException("Already Exists");
-                case ConnectionError.DhcpFailed:
-                    throw new InvalidOperationException("DHCP Failed");
-                case ConnectionError.EndOfIteration:
-                    throw new InvalidOperationException("End Of Iteration");
-                case ConnectionError.InvalidKey:
-                    throw new InvalidOperationException("Invalid Key");
-                case ConnectionError.InvalidOperation:
-                    throw new InvalidOperationException("Invalid Operation " + message);
-                case ConnectionError.InvalidParameter:
-                    throw new ArgumentException("Invalid Parameter");
-                case ConnectionError.NoConnection:
-                    throw new InvalidOperationException("No Connection");
-                case ConnectionError.NoReply:
-                    throw new InvalidOperationException("No Reply");
-                case ConnectionError.NotSupported:
-                    throw new NotSupportedException("Unsupported feature " + message);
-                case ConnectionError.NowInProgress:
-                    throw new InvalidOperationException("Now In Progress");
-                case ConnectionError.OperationAborted:
-                    throw new InvalidOperationException("Operation Aborted");
-                case ConnectionError.OperationFailed:
-                    throw new InvalidOperationException("Operation Failed");
-                case ConnectionError.OutOfMemoryError:
-                    throw new OutOfMemoryException("Out Of Memory Error");
-                case ConnectionError.PermissionDenied:
-                    throw new UnauthorizedAccessException("Permission Denied " + message);
-            }
+                ConnectionError.AddressFamilyNotSupported => new InvalidOperationException("Address Family Not Supported"),
+                ConnectionError.AlreadyExists             => new InvalidOperationException("Already Exists"),
+                ConnectionError.DhcpFailed                => new InvalidOperationException("DHCP Failed"),
+                ConnectionError.EndOfIteration            => new InvalidOperationException("End Of Iteration"),
+                ConnectionError.InvalidKey                => new InvalidOperationException("Invalid Key"),
+                ConnectionError.InvalidOperation          => new InvalidOperationException("Invalid Operation " + message),
+                ConnectionError.InvalidParameter          => new ArgumentException("Invalid Parameter"),
+                ConnectionError.NoConnection              => new InvalidOperationException("No Connection"),
+                ConnectionError.NoReply                   => new InvalidOperationException("No Reply"),
+                ConnectionError.NotSupported              => new NotSupportedException("Unsupported feature " + message),
+                ConnectionError.NowInProgress             => new InvalidOperationException("Now In Progress"),
+                ConnectionError.OperationAborted          => new InvalidOperationException("Operation Aborted"),
+                ConnectionError.OperationFailed           => new InvalidOperationException("Operation Failed"),
+                ConnectionError.OutOfMemoryError          => new OutOfMemoryException("Out Of Memory Error"),
+                ConnectionError.PermissionDenied          => new UnauthorizedAccessException("Permission Denied " + message),
+                _                                         => new InvalidOperationException(
+                                                                 $"Unknown ConnectionError({errno}) {message}".TrimEnd())
+            };
         }
     }
 }
