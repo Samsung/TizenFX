@@ -135,10 +135,7 @@ namespace Tizen.Core
         /// <since_tizen> 12 </since_tizen>
         public void Emit(EventObject eventObject)
         {
-            if (eventObject == null)
-            {
-                throw new ArgumentNullException(nameof(eventObject));
-            }
+            ArgumentNullException.ThrowIfNull(eventObject);
 
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreEvent.Emit(_handle, eventObject.Handle);
             if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
