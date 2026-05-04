@@ -109,6 +109,28 @@ namespace Tizen.Applications
         {
             defaultWindow = window;
             SetDefaultWindowId(window.GetNativeId());
+
+            // Register window with appid to TeamManager
+            var err = Interop.TeamManager.TeamAppGetAppId(MemberHandle, out string appid);
+            if (err == Interop.TeamManager.TeamAppErrorCode.None && !string.IsNullOrEmpty(appid))
+            {
+                TeamManager.RegisterDefaultWindow(window, appid);
+            }
+            else
+            {
+                Log.Warn(LogTag, $"Failed to get AppId for RegisterDefaultWindow. err = {err}");
+            }
+        }
+
+        internal void UnsetDefaultWindow()
+        {
+            if (defaultWindow != null)
+            {
+                TeamManager.UnregisterDefaultWindow(defaultWindow);
+            }
+            defaultWindow?.Hide();
+            DefaultWindowId = -1;
+            defaultWindow = null;
         }
         public override void Exit()
         {
@@ -266,9 +288,7 @@ namespace Tizen.Applications
                     Log.Error(LogTag, $"Error in Terminated handler: {ex.Message}");
                 }
 
-                defaultWindow?.Hide();
-                DefaultWindowId = -1;
-                defaultWindow = null;
+                UnsetDefaultWindow();
             }
         }
 
