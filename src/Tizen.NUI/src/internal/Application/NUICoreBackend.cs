@@ -24,7 +24,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    class NUICoreBackend : ICoreTaskBackend
+    class NUICoreBackend : ICoreTaskBackend, IUICoreBackend
     {
         /// <summary>
         /// The Application instance to connect event.
