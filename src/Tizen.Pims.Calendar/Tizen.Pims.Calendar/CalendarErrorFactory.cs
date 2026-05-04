@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Calendar
 {
@@ -42,6 +43,7 @@ namespace Tizen.Pims.Calendar
         internal const int ErrorCalendar = -0x02000000;
     }
 
+    [ExcludeFromCodeCoverage]
     internal static class CalendarErrorFactory
     {
         internal static void ThrowException(int e)
