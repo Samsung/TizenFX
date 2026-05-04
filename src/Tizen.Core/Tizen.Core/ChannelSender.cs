@@ -65,10 +65,7 @@ namespace Tizen.Core
         /// <since_tizen> 12 </since_tizen>
         public void Send(ChannelObject channelObject)
         {
-            if (channelObject == null)
-            {
-                throw new ArgumentNullException(nameof(channelObject));
-            }
+            ArgumentNullException.ThrowIfNull(channelObject);
 
             if (channelObject.Handle == IntPtr.Zero)
             {
