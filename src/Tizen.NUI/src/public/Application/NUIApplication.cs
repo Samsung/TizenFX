@@ -564,6 +564,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Run(string[] args)
         {
+            IUIApplication.Current = this;
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
             Backend.AddEventHandler(EventType.Resumed, ResumeHandler);
             Backend.AddEventHandler(EventType.Paused, PauseHandler);
