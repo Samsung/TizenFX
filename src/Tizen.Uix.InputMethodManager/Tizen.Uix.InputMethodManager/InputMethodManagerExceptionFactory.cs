@@ -23,38 +23,16 @@ namespace Tizen.Uix.InputMethodManager
 {
     internal static class InputMethodManagerExceptionFactory
     {
+        [ExcludeFromCodeCoverage]
         internal static Exception CreateException(ErrorCode err)
         {
-            return err switch
+            switch (err)
             {
-                ErrorCode.InvalidParameter => CreateArgumentException(),
-                ErrorCode.PermissionDenied => CreatePermissionDeniedException(),
-                ErrorCode.OperationFailed => CreateOperationFailedException(),
-                _ => CreateDefaultException()
-            };
-        }
-
-        private static Exception CreateArgumentException()
-        {
-            return new ArgumentException("Invalid Parameters Provided");
-        }
-
-        [ExcludeFromCodeCoverage]
-        private static Exception CreatePermissionDeniedException()
-        {
-            return new InvalidOperationException("Permission Denied");
-        }
-
-        [ExcludeFromCodeCoverage]
-        private static Exception CreateOperationFailedException()
-        {
-            return new InvalidOperationException("Operation Failed");
-        }
-
-        [ExcludeFromCodeCoverage]
-        private static Exception CreateDefaultException()
-        {
-            return new InvalidOperationException("An unknown error occurred in InputMethodManager");
+                case ErrorCode.InvalidParameter: throw new ArgumentException("Invalid Parameters Provided");
+                case ErrorCode.PermissionDenied: throw new InvalidOperationException("Permission Denied");
+                case ErrorCode.OperationFailed: throw new InvalidOperationException("Operation Failed");
+                default: throw new InvalidOperationException("An unknown error occurred in InputMethodManager");
+            }
         }
     }
 }
