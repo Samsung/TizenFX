@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Calendar
 {
@@ -24,6 +25,7 @@ namespace Tizen.Pims.Calendar
     /// <since_tizen> 4 </since_tizen>
     public class ReminderAlertedEventArgs : EventArgs
     {
+        [ExcludeFromCodeCoverage]
         internal ReminderAlertedEventArgs(string param)
         {
             Param = param;

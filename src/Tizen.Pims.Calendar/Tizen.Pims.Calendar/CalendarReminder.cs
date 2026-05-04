@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Calendar
 {
@@ -30,6 +31,7 @@ namespace Tizen.Pims.Calendar
 #region IDisposable Support
         private bool disposedValue = false;
 
+        [ExcludeFromCodeCoverage]
         internal CalendarReminder()
         {
         }
