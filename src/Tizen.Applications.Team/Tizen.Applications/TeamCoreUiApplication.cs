@@ -30,12 +30,24 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TeamCoreUiApplication : TeamCoreApplication
     {
+        public enum WindowMode
+        {
+            /// <summary>
+            /// Opaque
+            /// </summary>
+            Opaque = 0,
+            /// <summary>
+            /// Transparent
+            /// </summary>
+            Transparent = 1
+        }
+
         /// <summary>
         /// Initializes the <see cref="TeamCoreUiApplication"/> class.
         /// </summary>
         /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TeamCoreUiApplication() : base(new TeamUICoreBackend())
+        public TeamCoreUiApplication(TeamCoreBackend backend) : base(backend)
         {
         }
 
@@ -49,6 +61,13 @@ namespace Tizen.Applications
         {
             return ((TeamUICoreBackend)Backend).GetDefaultWindow();
         }
+
+        /// <summary>
+        /// Occurs before the application is created.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler PreCreated;
 
         /// <summary>
         /// Occurs whenever the application is resumed.
@@ -65,6 +84,28 @@ namespace Tizen.Applications
         public event EventHandler Paused;
 
         /// <summary>
+        /// Adds a delegate to be called when the main loop is idle.
+        /// </summary>
+        /// <param name="func">The delegate to call.</param>
+        /// <returns><c>true</c> if the delegate was added successfully; otherwise, <c>false</c>.</returns>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool AddIdle(Delegate func)
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Removes a previously added idle delegate.
+        /// </summary>
+        /// <param name="func">The delegate to remove.</param>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveIdle(Delegate func)
+        {
+        }
+
+        /// <summary>
         /// Runs the Team UI application's main loop.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
@@ -74,8 +115,19 @@ namespace Tizen.Applications
         {
             Backend.AddEventHandler(EventType.Resumed, OnResume);
             Backend.AddEventHandler(EventType.Paused, OnPause);
+            Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
 
             base.Run(args);
+        }
+
+        /// <summary>
+        /// Invoked before the application is created. Raises the <see cref="PreCreated"/> event.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnPreCreate()
+        {
+            PreCreated?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
