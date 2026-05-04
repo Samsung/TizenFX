@@ -63,16 +63,16 @@ namespace Tizen.Network.Connection
                 ConnectionError.DhcpFailed                => new InvalidOperationException("DHCP Failed"),
                 ConnectionError.EndOfIteration            => new InvalidOperationException("End Of Iteration"),
                 ConnectionError.InvalidKey                => new InvalidOperationException("Invalid Key"),
-                ConnectionError.InvalidOperation          => new InvalidOperationException("Invalid Operation " + message),
-                ConnectionError.InvalidParameter          => new ArgumentException("Invalid Parameter"),
+                ConnectionError.InvalidOperation          => new InvalidOperationException($"Invalid Operation {message}".TrimEnd()),
+                ConnectionError.InvalidParameter          => new ArgumentException($"Invalid Parameter {message}".TrimEnd()),
                 ConnectionError.NoConnection              => new InvalidOperationException("No Connection"),
                 ConnectionError.NoReply                   => new InvalidOperationException("No Reply"),
-                ConnectionError.NotSupported              => new NotSupportedException("Unsupported feature " + message),
+                ConnectionError.NotSupported              => new NotSupportedException($"Unsupported feature {message}".TrimEnd()),
                 ConnectionError.NowInProgress             => new InvalidOperationException("Now In Progress"),
                 ConnectionError.OperationAborted          => new InvalidOperationException("Operation Aborted"),
                 ConnectionError.OperationFailed           => new InvalidOperationException("Operation Failed"),
                 ConnectionError.OutOfMemoryError          => new OutOfMemoryException("Out Of Memory Error"),
-                ConnectionError.PermissionDenied          => new UnauthorizedAccessException("Permission Denied " + message),
+                ConnectionError.PermissionDenied          => new UnauthorizedAccessException($"Permission Denied {message}".TrimEnd()),
                 _                                         => new InvalidOperationException(
                                                                  $"Unknown ConnectionError({errno}) {message}".TrimEnd())
             };
