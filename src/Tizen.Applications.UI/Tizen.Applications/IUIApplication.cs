@@ -32,6 +32,19 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IUIApplication
     {
+        private static IUIApplication s_current = null;
+
+        /// <summary>
+        /// Gets or sets the current application instance.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static IUIApplication Current
+        {
+            get => s_current;
+            set => s_current = value;
+        }
+
         /// <summary>
         /// Gets the backend associated with this application.
         /// </summary>
