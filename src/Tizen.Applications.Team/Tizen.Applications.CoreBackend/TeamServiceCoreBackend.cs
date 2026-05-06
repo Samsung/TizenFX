@@ -139,6 +139,7 @@ namespace Tizen.Applications
                     catch (Exception ex)
                     {
                         Log.Error(LogTag, $"Error in Created handler: {ex.Message}");
+                        Log.Error(LogTag, $"{ex.StackTrace}");
                         return false;
                     }
                 }
@@ -160,6 +161,7 @@ namespace Tizen.Applications
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in Terminated handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -178,6 +180,7 @@ namespace Tizen.Applications
                     catch (Exception ex)
                     {
                         Log.Error(LogTag, $"Error in AppControlReceived handler: {ex.Message}");
+                        Log.Error(LogTag, $"{ex.StackTrace}");
                     }
                 }
             }
@@ -196,6 +199,7 @@ namespace Tizen.Applications
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LowMemory handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -213,6 +217,7 @@ namespace Tizen.Applications
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LowBattery handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -229,6 +234,7 @@ namespace Tizen.Applications
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LocaleChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -246,6 +252,7 @@ namespace Tizen.Applications
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in DeviceOrientationChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -262,6 +269,7 @@ namespace Tizen.Applications
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in RegionFormatChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -279,6 +287,7 @@ namespace Tizen.Applications
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in SuspendedStateChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -295,6 +304,7 @@ namespace Tizen.Applications
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in TimeZoneChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
