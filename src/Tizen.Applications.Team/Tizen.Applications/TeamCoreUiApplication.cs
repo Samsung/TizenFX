@@ -114,8 +114,8 @@ namespace Tizen.Applications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Run(string[] args)
         {
-            Backend.AddEventHandler(EventType.Resumed, OnResume);
-            Backend.AddEventHandler(EventType.Paused, OnPause);
+            Backend.AddEventHandler(EventType.Resumed, ResumeHandler);
+            Backend.AddEventHandler(EventType.Paused, PauseHandler);
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
 
             base.Run(args);
@@ -132,25 +132,24 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Invoked when the application is created.
-        /// </summary>
-        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnCreate()
-        {
-            base.OnCreate();
-        }
-
-        /// <summary>
-        /// Invoked when the application is resumed. Raises the <see cref="Resumed"/> event.
-        /// </summary>
+        /// Invoked when the application is resumed.
         /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnResume()
         {
-            Resumed?.Invoke(this, EventArgs.Empty);
+
         }
 
+        /// <summary>
+        /// Invoked when the application is resumed. Raises the <see cref="Resumed"/> event after OnResume()
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void ResumeHandler()
+        {
+            OnResume();
+            Resumed?.Invoke(this, EventArgs.Empty);
+        }
         /// <summary>
         /// Invoked when the application is paused. Raises the <see cref="Paused"/> event.
         /// </summary>
@@ -158,6 +157,16 @@ namespace Tizen.Applications
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnPause()
         {
+        }
+
+        /// <summary>
+        /// Invoked when the application is resumed. Raises the <see cref="Paused"/> event after OnResume()
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void PauseHandler()
+        {
+            OnPause();
             Paused?.Invoke(this, EventArgs.Empty);
         }
 
