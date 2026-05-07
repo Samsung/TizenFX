@@ -37,7 +37,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"VisualFactoryConstructor START");
 
-            var testingTarget = new VisualFactory();
+            var testingTarget = VisualFactory.Instance;
             Assert.IsInstanceOf<VisualFactory>(testingTarget, "CreateVisual Should return VisualFactory instance.");
 
             testingTarget?.Dispose();

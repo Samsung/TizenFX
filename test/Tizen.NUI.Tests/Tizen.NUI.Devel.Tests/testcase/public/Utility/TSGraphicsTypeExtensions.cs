@@ -50,7 +50,7 @@ namespace Tizen.NUI.Devel.Tests
 
 			try
 			{
-			    float temp1 = GraphicsTypeExtensions.SdpToPx(20.0f);
+			    Size temp1 = GraphicsTypeExtensions.SdpToPx(new Size(20.0f, 20.0f));
                 tlog.Debug(tag, "SdpToPx : " + temp1);
 			}
 			catch (Exception e)
@@ -94,7 +94,7 @@ namespace Tizen.NUI.Devel.Tests
 
 			try
 			{
-			    int temp5 = GraphicsTypeExtensions.SdpToPx(30);
+                Rectangle temp5 = GraphicsTypeExtensions.SdpToPx(new Rectangle(30, 30, 100, 200));
                 tlog.Debug(tag, "SdpToPx : " + temp5);
 			}
 			catch (Exception e)
@@ -381,7 +381,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            sdp.Disdpose();
+            //sdp.Disdpose();
             tlog.Debug(tag, $"GraphicsTypeExtensionsPxToPtwithPosition2D END (OK)");
         }
 
@@ -439,7 +439,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            sdp.Disdpose();
+            //sdp.Disdpose();
             tlog.Debug(tag, $"GraphicsTypeExtensionsPxToPtwithPosition END (OK)");
         }
 
@@ -498,7 +498,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            dp.Disdpose();
+            //dp.Disdpose();
             tlog.Debug(tag, $"GraphicsTypeExtensionsPxToPtwithSize2D END (OK)");
         }
 
@@ -557,7 +557,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            sdp.Disdpose();
+            //sdp.Disdpose();
             tlog.Debug(tag, $"GraphicsTypeExtensionsPxToPtwithSize END (OK)");
         }
 	}

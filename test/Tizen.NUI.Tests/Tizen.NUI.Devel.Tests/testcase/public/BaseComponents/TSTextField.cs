@@ -171,7 +171,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (MyTextField textField = new MyTextField(true))
             {
-                var testingTarget = new TextField(textField, false);
+                var testingTarget = new TextField((nint)textField.SwigCPtr, false);
                 Assert.IsNotNull(testingTarget, "Can't create success object TextField");
                 Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 

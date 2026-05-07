@@ -114,7 +114,7 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = new NativeImageSource(100, 50, NativeImageSource.ColorDepth.Bits16);
             Assert.IsNotNull(testingTarget, "Can't create success object NativeImageSource");
             Assert.IsInstanceOf<NativeImageSource>(testingTarget, "Should be an instance of NativeImageSource type.");
-
+            int width = 0, height = 0, stride = 0;
             testingTarget.AcquireBuffer(ref width, ref height, ref stride); ///< Must call before ReleaseBuffer
             try
             {
