@@ -16,35 +16,38 @@
 
 using System;
 using System.ComponentModel;
-using Tizen.NUI;
+using Tizen.Applications.CoreBackend;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.CoreBackend
 {
     /// <summary>
-    /// Represents a Team application that provides a default NUI window.
+    /// Defines the common contract for NUI-based application backends.
     /// </summary>
+    /// <remarks>
+    /// This interface abstracts the shared functionality between <c>NUICoreBackend</c>
+    /// and <c>TeamUICoreBackend</c>, enabling polymorphic access to event handler registration.
+    /// </remarks>
     /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TeamUiApplication : TeamCoreUiApplication
+    public interface IUICoreBackend : IDisposable
     {
         /// <summary>
-        /// Initializes the <see cref="TeamUiApplication"/> class.
+        /// Adds an event handler for the specified event type.
         /// </summary>
+        /// <param name="evType">The type of event.</param>
+        /// <param name="handler">The handler method without arguments.</param>
         /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TeamUiApplication()
-        {
-        }
+        void AddEventHandler(EventType evType, Action handler);
 
         /// <summary>
-        /// Runs the Team UI application's main loop.
+        /// Adds an event handler for the specified event type with typed event arguments.
         /// </summary>
-        /// <param name="args">Arguments from commandline.</param>
+        /// <typeparam name="TEventArgs">The <see cref="EventArgs"/> type used in the handler method.</typeparam>
+        /// <param name="evType">The type of event.</param>
+        /// <param name="handler">The handler method with a <typeparamref name="TEventArgs"/> type argument.</param>
         /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void Run(string[] args)
-        {
-            base.Run(args);
-        }
+        void AddEventHandler<TEventArgs>(EventType evType, Action<TEventArgs> handler) where TEventArgs : EventArgs;
     }
 }

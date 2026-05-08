@@ -64,10 +64,7 @@ namespace Tizen.Applications
             _isRunning = true;
             _systemArgs = args;
 
-            Log.Info("NUI", "[NUI] NUIApplicationInitializer: StaticInitialize");
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            PropertyBridge.RegisterStringGetter();
-            Log.Info("NUI", "[NUI] NUIApplicationInitializer: StaticInitialize done");
+            NUIApplicationInitializer.StaticInitialize();
 
             var err = Interop.TeamLoop.Main(args.Length, args, _ops);
             if (err != 0)
@@ -176,7 +173,7 @@ namespace Tizen.Applications
             try
             {
                 var mainMethod = assemblyInfo.Assembly.EntryPoint;
-                Log.Info(LogTag, $"Main method {mainMethod.Name}");
+                Log.Info(LogTag, $"Main method {mainMethod?.Name}");
 
                 if (mainMethod == null)
                 {
@@ -220,17 +217,7 @@ namespace Tizen.Applications
         internal static void DoOnLoopCreate()
         {
             Log.Info(LogTag, "DoOnLoopCreate() called");
-
-            Log.Info("NUI", "[NUI] NUIApplicationInitializer: ProcessorController Initialize");
-            Tracer.Begin("[NUI] NUIApplicationInitializer: ProcessorController Initialize");
-            ProcessorController.Instance.Initialize();
-            Tracer.End();
-
-            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
-            Log.Info("NUI", "[NUI] NUIApplicationInitializer: DisposeQueue Initialize");
-            Tracer.Begin("[NUI] NUIApplicationInitializer: DisposeQueue Initialize");
-            DisposeQueue.Instance.Initialize();
-            Tracer.End();
+            NUIApplicationInitializer.Initialize();
 
             // Empty implementation for C# launcher
         }

@@ -32,7 +32,7 @@ namespace Tizen.NUI
     /// Represents an application that have a UI screen. The NUIApplication class has a default stage.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class NUIApplication : CoreApplication
+    public class NUIApplication : CoreApplication, IUIApplication
     {
         private static bool _isUsingXaml = true;
 
@@ -346,6 +346,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Occurs before the application is created.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler PreCreated;
+
+        /// <summary>
         /// The Resumed event handler.
         /// This event is triggered when the application resumes from being paused or stopped.
         /// It can be used to perform actions that need to be executed when the application becomes active again.
@@ -557,6 +564,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Run(string[] args)
         {
+            IUIApplication.Current = this;
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
             Backend.AddEventHandler(EventType.Resumed, ResumeHandler);
             Backend.AddEventHandler(EventType.Paused, PauseHandler);
@@ -828,6 +836,7 @@ namespace Tizen.NUI
             {
                 GetDefaultWindow().EnableBorder(borderInterface, new Window.BorderCloseDelegate(Exit));
             }
+            PreCreated?.Invoke(this, EventArgs.Empty);
             Tizen.Tracer.End();
         }
 
@@ -952,6 +961,119 @@ namespace Tizen.NUI
             OnPause();
             Paused?.Invoke(this, EventArgs.Empty);
         }
+
+        #region IUIApplication Interface
+
+        /// <summary>
+        /// Gets the backend associated with this application as <see cref="IUICoreBackend"/>.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        IUICoreBackend IUIApplication.Backend => (NUICoreBackend)base.Backend;
+
+        /// <summary>
+        /// Gets the application information as <see cref="IApplicationInfo"/>.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        IApplicationInfo IUIApplication.ApplicationInfo => ApplicationInfo;
+
+        /// <summary>
+        /// Gets the directory information as <see cref="IDirectoryInfo"/>.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        IDirectoryInfo IUIApplication.DirectoryInfo => DirectoryInfo;
+
+        /// <summary>
+        /// Gets the default window as <see cref="IUIApplication"/> interface.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TWindow IUIApplication.GetDefaultWindow<TWindow>() => (TWindow)(object)GetDefaultWindow();
+
+        /// <summary>
+        /// Adds a delegate to be called when the main loop is idle.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        bool IUIApplication.AddIdle(Delegate func) => AddIdle(func);
+
+        /// <summary>
+        /// Removes a previously added idle delegate.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.RemoveIdle(Delegate func) => RemoveIdle(func);
+
+        // Methods - explicit interface implementation
+        /// <summary>
+        /// Invoked before the application is created.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnPreCreate() => OnPreCreate();
+
+        /// <summary>
+        /// Invoked when the application is created.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnCreate() => OnCreate();
+
+        /// <summary>
+        /// Invoked when the application is terminated.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnTerminate() => OnTerminate();
+
+        /// <summary>
+        /// Invoked when the application is paused.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnPause() => OnPause();
+
+        /// <summary>
+        /// Invoked when the application is resumed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnResume() => OnResume();
+
+        /// <summary>
+        /// Invoked when the application receives an app control request.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnAppControlReceived(AppControlReceivedEventArgs e) => OnAppControlReceived(e);
+
+        /// <summary>
+        /// Invoked when a low memory event is reported by the system.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnLowMemory(LowMemoryEventArgs e) => OnLowMemory(e);
+
+        /// <summary>
+        /// Invoked when a low battery event is reported by the system.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnLowBattery(LowBatteryEventArgs e) => OnLowBattery(e);
+
+        /// <summary>
+        /// Invoked when the system language is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnLocaleChanged(LocaleChangedEventArgs e) => OnLocaleChanged(e);
+
+        /// <summary>
+        /// Invoked when the region format is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnRegionFormatChanged(RegionFormatChangedEventArgs e) => OnRegionFormatChanged(e);
+
+        /// <summary>
+        /// Invoked when the device orientation is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnDeviceOrientationChanged(DeviceOrientationEventArgs e) => OnDeviceOrientationChanged(e);
+
+        /// <summary>
+        /// Invoked when the system time zone is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnTimeZoneChanged(TimeZoneChangedEventArgs e) => OnTimeZoneChanged(e);
+
+        #endregion
 
         /// <summary>
         /// Enum of Application status
