@@ -31,18 +31,6 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TeamCoreUiApplication : TeamCoreApplication, IUIApplication
     {
-        public enum WindowMode
-        {
-            /// <summary>
-            /// Opaque
-            /// </summary>
-            Opaque = 0,
-            /// <summary>
-            /// Transparent
-            /// </summary>
-            Transparent = 1
-        }
-
         /// <summary>
         /// Initializes the <see cref="TeamCoreUiApplication"/> class.
         /// </summary>

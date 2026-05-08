@@ -173,7 +173,7 @@ namespace Tizen.Applications
             try
             {
                 var mainMethod = assemblyInfo.Assembly.EntryPoint;
-                Log.Info(LogTag, $"Main method {mainMethod.Name}");
+                Log.Info(LogTag, $"Main method {mainMethod?.Name}");
 
                 if (mainMethod == null)
                 {
