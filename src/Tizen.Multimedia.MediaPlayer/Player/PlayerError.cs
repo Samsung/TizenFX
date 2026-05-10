@@ -63,15 +63,15 @@ namespace Tizen.Multimedia
 
             var ex = errorCode.GetException(message);
 
-            if (ex == null)
+            if (ex != null)
             {
-                // Notify only when it can't be handled.
-                player?.NotifyError((int)errorCode, message);
-
-                throw new InvalidOperationException($"{message} : Unknown error({errorCode.ToString()}).");
+                throw ex;
             }
 
-            throw ex;
+            // Notify only when it can't be handled.
+            player?.NotifyError((int)errorCode, message);
+
+            throw new InvalidOperationException($"{message} : Unknown error({errorCode}).");
         }
 
         internal static Exception GetException(this PlayerErrorCode errorCode, string message)
@@ -81,65 +81,35 @@ namespace Tizen.Multimedia
                 return null;
             }
 
-            string msg = $"{ (message ?? "Operation failed") } : { errorCode.ToString() }.";
+            string msg = $"{message ?? "Operation failed"} : {errorCode}.";
 
-            switch (errorCode)
+            return errorCode switch
             {
-                case PlayerErrorCode.InvalidArgument:
-                case PlayerErrorCode.InvalidUri:
-                    throw new ArgumentException(msg);
-
-                case PlayerErrorCode.NoSuchFile:
-                    throw new FileNotFoundException(msg);
-
-                case PlayerErrorCode.OutOfMemory:
-                    throw new OutOfMemoryException(msg);
-
-                case PlayerErrorCode.NoSpaceOnDevice:
-                    throw new IOException(msg);
-
-                case PlayerErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException(msg);
-
-                case PlayerErrorCode.NotSupportedFile:
-                    throw new FileFormatException(msg);
-
-                case PlayerErrorCode.FeatureNotSupported:
-                    throw new NotSupportedException(msg);
-
-                case PlayerErrorCode.DrmExpired:
-                case PlayerErrorCode.DrmNoLicense:
-                case PlayerErrorCode.DrmFutureUse:
-                case PlayerErrorCode.DrmNotPermitted:
-                // TODO consider another exception.
-                case PlayerErrorCode.InvalidOperation:
-                case PlayerErrorCode.InvalidState:
-                case PlayerErrorCode.SeekFailed:
-                case PlayerErrorCode.ConnectionFailed:
-                case PlayerErrorCode.VideoCaptureFailed:
-                    throw new InvalidOperationException(msg);
-
-                case PlayerErrorCode.NoBufferSpace:
-                    throw new NoBufferSpaceException(msg);
-
-                case PlayerErrorCode.ResourceLimit:
-                    throw new ResourceLimitException(msg);
-
-                case PlayerErrorCode.NotSupportedAudioCodec:
-                    throw new CodecNotSupportedException(CodecKind.Audio);
-
-                case PlayerErrorCode.NotSupportedVideoCodec:
-                    throw new CodecNotSupportedException(CodecKind.Video);
-
-                case PlayerErrorCode.NotAvailable:
-                    throw new NotAvailableException(msg);
-
-                default:
-                    Log.Info(PlayerLog.Tag, $"Unknow error: {errorCode}");
-                    break;
-            }
-
-            return null;
+                PlayerErrorCode.InvalidArgument
+                    or PlayerErrorCode.InvalidUri               => new ArgumentException(msg),
+                PlayerErrorCode.NoSuchFile                      => new FileNotFoundException(msg),
+                PlayerErrorCode.OutOfMemory                     => new OutOfMemoryException(msg),
+                PlayerErrorCode.NoSpaceOnDevice                 => new IOException(msg),
+                PlayerErrorCode.PermissionDenied                => new UnauthorizedAccessException(msg),
+                PlayerErrorCode.NotSupportedFile                => new FileFormatException(msg),
+                PlayerErrorCode.FeatureNotSupported             => new NotSupportedException(msg),
+                // TODO consider another exception for the DRM-related codes below.
+                PlayerErrorCode.DrmExpired
+                    or PlayerErrorCode.DrmNoLicense
+                    or PlayerErrorCode.DrmFutureUse
+                    or PlayerErrorCode.DrmNotPermitted
+                    or PlayerErrorCode.InvalidOperation
+                    or PlayerErrorCode.InvalidState
+                    or PlayerErrorCode.SeekFailed
+                    or PlayerErrorCode.ConnectionFailed
+                    or PlayerErrorCode.VideoCaptureFailed       => new InvalidOperationException(msg),
+                PlayerErrorCode.NoBufferSpace                   => new NoBufferSpaceException(msg),
+                PlayerErrorCode.ResourceLimit                   => new ResourceLimitException(msg),
+                PlayerErrorCode.NotSupportedAudioCodec          => new CodecNotSupportedException(CodecKind.Audio),
+                PlayerErrorCode.NotSupportedVideoCodec          => new CodecNotSupportedException(CodecKind.Video),
+                PlayerErrorCode.NotAvailable                    => new NotAvailableException(msg),
+                _                                               => null,
+            };
         }
     }
 
