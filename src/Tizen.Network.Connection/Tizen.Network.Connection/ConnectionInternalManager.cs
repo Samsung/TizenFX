@@ -290,6 +290,7 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, $"It failed to register callback for changing IP address, {(ConnectionError)ret}");
+                ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
 
@@ -300,6 +301,7 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, $"It failed to unregister callback for changing IP address, {(ConnectionError)ret}");
+                ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
 
@@ -350,6 +352,7 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, $"It failed to register callback for changing proxy address, {(ConnectionError)ret}");
+                ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
 
@@ -360,6 +363,7 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, $"It failed to unregister callback for changing proxy address, {(ConnectionError)ret}");
+                ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
 
