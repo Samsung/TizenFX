@@ -13,7 +13,8 @@ TizenFX API, which allows you to access platform-specific features not covered b
 
 | Branch | API Level | Target Framework | API Reference | Platform          | Github Packages | nuget.org  |
 |--------|:---------:|------------------|---------------|-------------------|-----------|------------|
-|main    | 14        | net8.0-tizen11.0 | [Link](https://samsung.github.io/TizenFX/main/)  | Tizen 11.0 | [![api14_pkg](https://img.shields.io/github/v/tag/Samsung/TizenFX?include_prereleases&filter=v14.*&label=API14&logo=github)](https://github.com/Samsung/TizenFX/pkgs/nuget/Tizen.NET.API14) |  |
+|main    | 15        | net8.0-tizen11.0 | [Link](https://samsung.github.io/TizenFX/main/)  | Tizen 11.0 | [![api15_pkg](https://img.shields.io/github/v/tag/Samsung/TizenFX?include_prereleases&filter=v15.*&label=API15&logo=github)](https://github.com/Samsung/TizenFX/pkgs/nuget/Tizen.NET.API15) |  |
+|API14   | 14        | net8.0-tizen10.1 | [Link](https://samsung.github.io/TizenFX/API14/) | Tizen 10.1 | [![api14_pkg](https://img.shields.io/github/v/tag/Samsung/TizenFX?include_prereleases&filter=v14.*&label=API14&logo=github)](https://github.com/Samsung/TizenFX/pkgs/nuget/Tizen.NET.API14) | [![api14_nuget](https://img.shields.io/nuget/v/Tizen.NET.API14.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 |API13   | 13        | net8.0-tizen10.0 | [Link](https://samsung.github.io/TizenFX/API13/) | Tizen 10.0 | [![api13_pkg](https://img.shields.io/github/v/tag/Samsung/TizenFX?include_prereleases&filter=v13.0.*&label=API13&logo=github)](https://github.com/Samsung/TizenFX/pkgs/nuget/Tizen.NET.API13) | [![api13_nuget](https://img.shields.io/nuget/v/Tizen.NET.API13.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 |API12   | 12        | net6.0-tizen9.0  | [Link](https://samsung.github.io/TizenFX/API12/) | Tizen 9.0  | [![api12_pkg](https://img.shields.io/github/v/tag/Samsung/TizenFX?include_prereleases&filter=v12.*&label=API12&logo=github)](https://github.com/Samsung/TizenFX/pkgs/nuget/Tizen.NET.API12) | [![api12_nuget](https://img.shields.io/nuget/v/Tizen.NET.API12.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 |API11   | 11        | net6.0-tizen8.0 | [Link](https://samsung.github.io/TizenFX/API11/) | Tizen 8.0 | [![api11_pkg](https://img.shields.io/github/v/tag/Samsung/TizenFX?include_prereleases&filter=v11.*&label=API11&logo=github)](https://github.com/Samsung/TizenFX/pkgs/nuget/Tizen.NET.API11) | [![api11_nuget](https://img.shields.io/nuget/v/Tizen.NET.API11.svg)](https://www.nuget.org/packages/Tizen.NET/) |
@@ -26,16 +27,16 @@ TizenFX API, which allows you to access platform-specific features not covered b
 |API4    | 4         | tizen40   | [Link](https://samsung.github.io/TizenFX/API4/) | Tizen 4.0    |  | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.API4.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 
 ### main
-The __main__ branch is the main development branch for the Tizen .NET __API Level 14__.
+The __main__ branch is the main development branch for the Tizen .NET __API Level 15__.
 
 The following NuGet packages will be published to [Github Packages Registry](https://github.com/orgs/Samsung/packages?tab=packages&q=Tizen.NET) every day if there are any changes. (Nightly Build)
 
 > - GitHub Packages Feed : ```https://nuget.pkg.github.com/Samsung/index.json```
 >   - GitHub Packages only supports authentication using a personal access token (classic). For more information, see [Working with the NuGet registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-nuget-registry) and [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
-* Tizen.NET 14.0.0.#####
-* Tizen.NET.API14 14.0.0.#####
-* Tizen.NET.Internals 14.0.0.#####
+* Tizen.NET 15.0.0.#####
+* Tizen.NET.API15 15.0.0.#####
+* Tizen.NET.Internals 15.0.0.#####
 
 And, This branch is pushed to the [tizen branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen) in the tizen gerrit and submitted for the next Tizen platform.
 
@@ -43,7 +44,7 @@ And, This branch is pushed to the [tizen branch](https://git.tizen.org/cgit/plat
 The `MyGet` feed is no longer available. Please use the `Github packages` feed.
 
 
-### API4 ~ API13 branches
+### API4 ~ API14 branches
 The __API#__ branches are the release branch for Tizen .NET __API Level #__.
 
 These release branches were __FROZEN__. No new public APIs can be added to these branches, only bug fixes and internal APIs can be added.
@@ -65,7 +66,8 @@ For more information, please see [Using Tizen.NET.Sdk as SDK-style](https://deve
 ### Minimum required versions of Tizen.NET.Sdk and Visual Studio
 | API Level | Target Framework | Tizen.NET.Sdk | Visual Studio     |
 |:---------:|------------------|---------------|-------------------|
-| API14     | net8.0-tizen11.0  | [Tizen .NET Workloads](https://github.com/samsung/Tizen.NET) | 2022       |
+| API15     | net8.0-tizen11.0  | [Tizen .NET Workloads](https://github.com/samsung/Tizen.NET) | 2022       |
+| API14     | net8.0-tizen10.1  | [Tizen .NET Workloads](https://github.com/samsung/Tizen.NET) | 2022       |
 | API13     | net6.0-tizen10.0  | [Tizen .NET Workloads](https://github.com/samsung/Tizen.NET) | 2022       |
 | API12     | net6.0-tizen9.0  | [Tizen .NET Workloads](https://github.com/samsung/Tizen.NET) | 2022       |
 | API11     | net6.0-tizen8.0  | [Tizen .NET Workloads](https://github.com/samsung/Tizen.NET) | 2022       |
