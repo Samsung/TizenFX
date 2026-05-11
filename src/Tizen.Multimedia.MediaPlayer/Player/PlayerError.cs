@@ -71,7 +71,9 @@ namespace Tizen.Multimedia
             // Notify only when it can't be handled.
             player?.NotifyError((int)errorCode, message);
 
-            throw new InvalidOperationException($"{message} : Unknown error({errorCode}).");
+            Log.Info(PlayerLog.Tag, $"Unknown error: {errorCode}");
+
+            throw new InvalidOperationException($"{message ?? "Operation failed"} : Unknown error({errorCode}).");
         }
 
         internal static Exception GetException(this PlayerErrorCode errorCode, string message)
@@ -105,8 +107,8 @@ namespace Tizen.Multimedia
                     or PlayerErrorCode.VideoCaptureFailed       => new InvalidOperationException(msg),
                 PlayerErrorCode.NoBufferSpace                   => new NoBufferSpaceException(msg),
                 PlayerErrorCode.ResourceLimit                   => new ResourceLimitException(msg),
-                PlayerErrorCode.NotSupportedAudioCodec          => new CodecNotSupportedException(CodecKind.Audio),
-                PlayerErrorCode.NotSupportedVideoCodec          => new CodecNotSupportedException(CodecKind.Video),
+                PlayerErrorCode.NotSupportedAudioCodec          => new CodecNotSupportedException(CodecKind.Audio, msg),
+                PlayerErrorCode.NotSupportedVideoCodec          => new CodecNotSupportedException(CodecKind.Video, msg),
                 PlayerErrorCode.NotAvailable                    => new NotAvailableException(msg),
                 _                                               => null,
             };
