@@ -22,6 +22,7 @@
 
 using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Tizen.Applications.Team, " + Tizen.NUI.PublicKey.TizenFX)]
 [assembly: InternalsVisibleTo("Tizen.Multimedia, " + Tizen.NUI.PublicKey.TizenFX)]
 [assembly: InternalsVisibleTo("Tizen.NUI.Wearable, " + Tizen.NUI.PublicKey.TizenFX)]
 [assembly: InternalsVisibleTo("Tizen.NUI.Components, " + Tizen.NUI.PublicKey.TizenFX)]

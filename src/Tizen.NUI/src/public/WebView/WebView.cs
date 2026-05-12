@@ -1466,7 +1466,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                webContext ??= new WebContext(Interop.WebView.GetWebContext(), false);
+                bool isIncognito = Interop.WebView.IsIncognito(SwigCPtr);
+                webContext ??= new WebContext(Interop.WebView.GetWebContext(isIncognito), false);
                 return webContext;
             }
         }
@@ -1479,7 +1480,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                webCookieManager ??= new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
+                bool isIncognito = Interop.WebView.IsIncognito(SwigCPtr);
+                webCookieManager ??= new WebCookieManager(Interop.WebView.GetWebCookieManager(isIncognito), false);
                 return webCookieManager;
             }
         }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.Multimedia
 {
@@ -26,21 +27,21 @@ namespace Tizen.Multimedia
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void DuckingStateChangedCallback(IntPtr ducking, bool isDucked, IntPtr userData);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_create_stream_ducking")]
-            internal static extern AudioManagerError Create(AudioStreamType targetType,
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_create_stream_ducking", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern AudioManagerError Create(AudioStreamType targetType,
                 DuckingStateChangedCallback callback, IntPtr userData, out AudioDuckingHandle ducking);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_destroy_stream_ducking")]
-            internal static extern AudioManagerError Destroy(IntPtr ducking);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_destroy_stream_ducking")]
+            internal static partial AudioManagerError Destroy(IntPtr ducking);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_ducked")]
-            internal static extern AudioManagerError IsDucked(AudioDuckingHandle ducking, out bool isDucked);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_ducked")]
+            internal static partial AudioManagerError IsDucked(AudioDuckingHandle ducking, [MarshalAs(UnmanagedType.U1)] out bool isDucked);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_activate_ducking")]
-            internal static extern AudioManagerError Activate(AudioDuckingHandle ducking, uint duration, double ratio);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_activate_ducking")]
+            internal static partial AudioManagerError Activate(AudioDuckingHandle ducking, uint duration, double ratio);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_deactivate_ducking")]
-            internal static extern AudioManagerError Deactivate(AudioDuckingHandle ducking);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_deactivate_ducking")]
+            internal static partial AudioManagerError Deactivate(AudioDuckingHandle ducking);
         }
     }
 }

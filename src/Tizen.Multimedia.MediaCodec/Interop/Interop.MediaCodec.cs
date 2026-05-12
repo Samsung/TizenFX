@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,11 +16,12 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia.MediaCodec;
 
 internal static partial class Interop
 {
-    internal static class MediaCodec
+    internal static partial class MediaCodec
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InputBufferUsedCallback(IntPtr mediaPacket, IntPtr arg);
@@ -40,84 +41,85 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool SupportedCodecCallback(int codecType, IntPtr arg);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_create")]
-        internal static extern MediaCodecErrorCode Create(out IntPtr handle);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_create")]
+        internal static partial MediaCodecErrorCode Create(out IntPtr handle);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_destroy")]
-        internal static extern MediaCodecErrorCode Destroy(IntPtr handle);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_destroy")]
+        internal static partial MediaCodecErrorCode Destroy(IntPtr handle);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_codec")]
-        internal static extern MediaCodecErrorCode Configure(IntPtr handle, int codecType, int flags);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_codec")]
+        internal static partial MediaCodecErrorCode Configure(IntPtr handle, int codecType, int flags);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_vdec_info")]
-        internal static extern MediaCodecErrorCode SetVideoDecoderInfo(IntPtr handle, int width, int height);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_vdec_info")]
+        internal static partial MediaCodecErrorCode SetVideoDecoderInfo(IntPtr handle, int width, int height);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_venc_info")]
-        internal static extern MediaCodecErrorCode SetVideoEncoderInfo(IntPtr handle, int width, int height,
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_venc_info")]
+        internal static partial MediaCodecErrorCode SetVideoEncoderInfo(IntPtr handle, int width, int height,
             int fps, int targetBits);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_adec_info")]
-        internal static extern MediaCodecErrorCode SetAudioDecoderInfo(IntPtr handle, int sampleRate, int channel,
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_adec_info")]
+        internal static partial MediaCodecErrorCode SetAudioDecoderInfo(IntPtr handle, int sampleRate, int channel,
             int bit);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_aenc_info")]
-        internal static extern MediaCodecErrorCode SetAudioEncoderInfo(IntPtr handle, int sampleRate, int channel,
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_aenc_info")]
+        internal static partial MediaCodecErrorCode SetAudioEncoderInfo(IntPtr handle, int sampleRate, int channel,
             int bit, int bitRate);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_prepare")]
-        internal static extern MediaCodecErrorCode Prepare(IntPtr handle);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_prepare")]
+        internal static partial MediaCodecErrorCode Prepare(IntPtr handle);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unprepare")]
-        internal static extern MediaCodecErrorCode Unprepare(IntPtr handle);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unprepare")]
+        internal static partial MediaCodecErrorCode Unprepare(IntPtr handle);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_process_input")]
-        internal static extern MediaCodecErrorCode Process(IntPtr handle, IntPtr mediaPacket, ulong timeoutInUs);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_process_input")]
+        internal static partial MediaCodecErrorCode Process(IntPtr handle, IntPtr mediaPacket, ulong timeoutInUs);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_get_output")]
-        internal static extern MediaCodecErrorCode GetOutput(IntPtr handle, out IntPtr packet, ulong timeoutInUs);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_get_output")]
+        internal static partial MediaCodecErrorCode GetOutput(IntPtr handle, out IntPtr packet, ulong timeoutInUs);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_flush_buffers")]
-        internal static extern MediaCodecErrorCode FlushBuffers(IntPtr handle);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_flush_buffers")]
+        internal static partial MediaCodecErrorCode FlushBuffers(IntPtr handle);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_input_buffer_used_cb")]
-        internal static extern MediaCodecErrorCode SetInputBufferUsedCb(IntPtr handle,
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_input_buffer_used_cb")]
+        internal static partial MediaCodecErrorCode SetInputBufferUsedCb(IntPtr handle,
             InputBufferUsedCallback cb, IntPtr arg = default(IntPtr));
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_input_buffer_used_cb")]
-        internal static extern MediaCodecErrorCode UnsetInputBufferUsedCb(IntPtr handle);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_input_buffer_used_cb")]
+        internal static partial MediaCodecErrorCode UnsetInputBufferUsedCb(IntPtr handle);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_output_buffer_available_cb")]
-        internal static extern MediaCodecErrorCode SetOutputBufferAvailableCb(IntPtr handle,
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_output_buffer_available_cb")]
+        internal static partial MediaCodecErrorCode SetOutputBufferAvailableCb(IntPtr handle,
             OutputBufferAvailableCallback cb, IntPtr arg = default(IntPtr));
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_output_buffer_available_cb")]
-        internal static extern MediaCodecErrorCode UnsetOutputBufferAvailableCb(IntPtr handle);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_output_buffer_available_cb")]
+        internal static partial MediaCodecErrorCode UnsetOutputBufferAvailableCb(IntPtr handle);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_error_cb")]
-        internal static extern MediaCodecErrorCode SetErrorCb(IntPtr handle, ErrorCallback cb, IntPtr arg = default(IntPtr));
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_error_cb")]
+        internal static partial MediaCodecErrorCode SetErrorCb(IntPtr handle, ErrorCallback cb, IntPtr arg = default(IntPtr));
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_error_cb")]
-        internal static extern MediaCodecErrorCode UnsetErrorCb(IntPtr handle);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_error_cb")]
+        internal static partial MediaCodecErrorCode UnsetErrorCb(IntPtr handle);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_eos_cb")]
-        internal static extern MediaCodecErrorCode SetEosCb(IntPtr handle, EosCallback cb, IntPtr arg = default(IntPtr));
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_eos_cb")]
+        internal static partial MediaCodecErrorCode SetEosCb(IntPtr handle, EosCallback cb, IntPtr arg = default(IntPtr));
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_eos_cb")]
-        internal static extern MediaCodecErrorCode UnsetEosCb(IntPtr handle);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_eos_cb")]
+        internal static partial MediaCodecErrorCode UnsetEosCb(IntPtr handle);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_buffer_status_cb")]
-        internal static extern MediaCodecErrorCode SetBufferStatusCb(IntPtr handle, BufferStatusCallback cb,
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_buffer_status_cb")]
+        internal static partial MediaCodecErrorCode SetBufferStatusCb(IntPtr handle, BufferStatusCallback cb,
             IntPtr arg = default(IntPtr));
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_buffer_status_cb")]
-        internal static extern MediaCodecErrorCode UnsetBufferStatusCb(IntPtr handle);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_buffer_status_cb")]
+        internal static partial MediaCodecErrorCode UnsetBufferStatusCb(IntPtr handle);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_get_supported_type")]
-        internal static extern MediaCodecErrorCode GetSupportedType(IntPtr handle, int codecType, bool isEncoder,
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_get_supported_type")]
+        internal static partial MediaCodecErrorCode GetSupportedType(IntPtr handle, int codecType, [MarshalAs(UnmanagedType.U1)] bool isEncoder,
             out int value);
 
-        [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_foreach_supported_codec_static")]
-        internal static extern MediaCodecErrorCode ForeachSupportedCodec(SupportedCodecCallback cb, IntPtr arg);
+        [LibraryImport(Libraries.MediaCodec, EntryPoint = "mediacodec_foreach_supported_codec_static")]
+        internal static partial MediaCodecErrorCode ForeachSupportedCodec(SupportedCodecCallback cb, IntPtr arg);
     }
 }
+
 

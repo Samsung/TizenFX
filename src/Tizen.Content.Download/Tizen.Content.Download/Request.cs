@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Content.Download
 {
@@ -25,6 +26,7 @@ namespace Tizen.Content.Download
     /// The Request class provides the functions to create and manage a single download request.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [ExcludeFromCodeCoverage]
     public class Request : IDisposable
     {
         private int _downloadId;

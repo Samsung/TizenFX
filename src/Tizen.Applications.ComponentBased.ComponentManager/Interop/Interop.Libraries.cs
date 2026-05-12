@@ -21,3 +21,5 @@ internal static partial class Interop
         public const string ComponentManager = "libcapi-appfw-component-manager.so.1";
     }
 }
+
+

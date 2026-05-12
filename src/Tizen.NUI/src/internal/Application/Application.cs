@@ -731,18 +731,7 @@ namespace Tizen.NUI
         // Callback for Application InitSignal
         private void OnApplicationInit(IntPtr data)
         {
-            Log.Info("NUI", $"[NUI] Preload : {NUIApplication.IsPreload} Support preload time view creation : {NUIApplication.SupportPreInitializedCreation}\n");
-
-            Log.Info("NUI", "[NUI] OnApplicationInit: ProcessorController Initialize");
-            Tizen.Tracer.Begin("[NUI] OnApplicationInit: ProcessorController Initialize");
-            ProcessorController.Instance.Initialize();
-            Tizen.Tracer.End();
-
-            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
-            Log.Info("NUI", "[NUI] OnApplicationInit: DisposeQueue Initialize");
-            Tizen.Tracer.Begin("[NUI] OnApplicationInit: DisposeQueue Initialize");
-            DisposeQueue.Instance.Initialize();
-            Tizen.Tracer.End();
+            NUIApplicationInitializer.Initialize();
 
             // Note : Preload window might not be changed after application created. GetWindow again.
             Log.Info("NUI", "[NUI] OnApplicationInit: GetWindow");

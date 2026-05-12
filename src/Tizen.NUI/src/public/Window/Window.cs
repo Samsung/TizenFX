@@ -2547,6 +2547,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Requests forced rendering for this window.
+        /// </summary>
+        /// <param name="frameCount">The number of frames to render forcibly.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetForceRendering(uint frameCount)
+        {
+            Interop.WindowInternal.SetForceRendering(SwigCPtr, frameCount);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Search through this Window for a Layer with the given unique ID.
         /// </summary>
         /// <param name="id">The ID of the Layer to find.</param>

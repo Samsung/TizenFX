@@ -16,13 +16,17 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 
 internal static partial class Interop
 {
     internal static partial class AppControl
     {
-        [DllImport(Libraries.AppControl, EntryPoint = "app_control_set_caller_instance_id")]
-        internal static extern int SetCallerInstanceId(SafeAppControlHandle appControl, string instanceId);
+        [LibraryImport(Libraries.AppControl, EntryPoint = "app_control_set_caller_instance_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetCallerInstanceId(SafeAppControlHandle appControl, string instanceId);
     }
 }
+
+
+

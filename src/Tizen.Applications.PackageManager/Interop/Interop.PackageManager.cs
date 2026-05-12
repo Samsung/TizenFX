@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 
 internal static partial class Interop
@@ -104,149 +105,153 @@ internal static partial class Interop
             External = 1
         }
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_create")]
-        internal static extern ErrorCode PackageManagerCreate(out SafePackageManagerHandle managerHandle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_create")]
+        internal static partial ErrorCode PackageManagerCreate(out SafePackageManagerHandle managerHandle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_destroy")]
-        internal static extern ErrorCode PackageManagerDestroy(IntPtr managerHandle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_destroy")]
+        internal static partial ErrorCode PackageManagerDestroy(IntPtr managerHandle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_set_event_status")]
-        internal static extern ErrorCode PackageManagerSetEventStatus(SafePackageManagerHandle managerHandle, EventStatus eventStatus);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_set_event_status")]
+        internal static partial ErrorCode PackageManagerSetEventStatus(SafePackageManagerHandle managerHandle, EventStatus eventStatus);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_set_event_cb")]
-        internal static extern ErrorCode PackageManagerSetEvent(SafePackageManagerHandle managerHandle, PackageManagerEventCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_set_event_cb")]
+        internal static partial ErrorCode PackageManagerSetEvent(SafePackageManagerHandle managerHandle, PackageManagerEventCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_unset_event_cb")]
-        internal static extern ErrorCode PackageManagerUnsetEvent(SafePackageManagerHandle managerHandle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_unset_event_cb")]
+        internal static partial ErrorCode PackageManagerUnsetEvent(SafePackageManagerHandle managerHandle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_foreach_package_info")]
-        internal static extern ErrorCode PackageManagerForeachPackageInfo(PackageManagerPackageInfoCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_foreach_package_info")]
+        internal static partial ErrorCode PackageManagerForeachPackageInfo(PackageManagerPackageInfoCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_get_package_size_info")]
-        internal static extern ErrorCode PackageManagerGetSizeInfo(string packageId, PackageManagerSizeInfoCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_get_package_size_info", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerGetSizeInfo(string packageId, PackageManagerSizeInfoCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_get_total_package_size_info")]
-        internal static extern ErrorCode PackageManagerGetTotalSizeInfo(PackageManagerTotalSizeInfoCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_get_total_package_size_info")]
+        internal static partial ErrorCode PackageManagerGetTotalSizeInfo(PackageManagerTotalSizeInfoCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_get_package_id_by_app_id")]
-        internal static extern ErrorCode PackageManagerGetPackageIdByAppId(string app_id, out string package_id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_get_package_id_by_app_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerGetPackageIdByAppId(string app_id, out string package_id);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_get_package_info")]
-        internal static extern ErrorCode PackageManagerGetPackageInfo(string packageId, out IntPtr packageInfoHandle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_get_package_info", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerGetPackageInfo(string packageId, out IntPtr packageInfoHandle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_clear_cache_dir")]
-        internal static extern ErrorCode PackageManagerClearCacheDir(string packageId);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_clear_cache_dir", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerClearCacheDir(string packageId);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_clear_all_cache_dir")]
-        internal static extern ErrorCode PackageManagerClearAllCacheDir();
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_clear_all_cache_dir")]
+        internal static partial ErrorCode PackageManagerClearAllCacheDir();
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_clear_data_dir")]
-        internal static extern ErrorCode PackageManagerClearDataDir(string packageId);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_clear_data_dir", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerClearDataDir(string packageId);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_clear_user_data_with_path")]
-        internal static extern ErrorCode PackageManagerClearUserDataWithPath(string packageId, String filePath);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_clear_user_data_with_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerClearUserDataWithPath(string packageId, String filePath);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_create")]
-        internal static extern ErrorCode PackageManagerFilterCreate(out IntPtr handle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_create")]
+        internal static partial ErrorCode PackageManagerFilterCreate(out IntPtr handle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_destroy")]
-        internal static extern ErrorCode PackageManagerFilterDestroy(IntPtr handle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_destroy")]
+        internal static partial ErrorCode PackageManagerFilterDestroy(IntPtr handle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_add_bool")]
-        internal static extern ErrorCode PackageManagerFilterAdd(IntPtr handle, string property, bool value);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_add_bool", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerFilterAdd(IntPtr handle, string property, [MarshalAs(UnmanagedType.U1)] bool value);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_add_string")]
-        internal static extern ErrorCode PackageManagerFilterAdd(IntPtr handle, string property, string value);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_add_string", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerFilterAdd(IntPtr handle, string property, string value);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_foreach_package_info")]
-        internal static extern ErrorCode PackageManagerFilterForeachPackageInfo(IntPtr handle, PackageManagerPackageInfoCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_foreach_package_info")]
+        internal static partial ErrorCode PackageManagerFilterForeachPackageInfo(IntPtr handle, PackageManagerPackageInfoCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_data_size")]
-        internal static extern ErrorCode PackageSizeInfoGetDataSize(IntPtr handle, out long dataSize);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_data_size")]
+        internal static partial ErrorCode PackageSizeInfoGetDataSize(IntPtr handle, out long dataSize);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_cache_size")]
-        internal static extern ErrorCode PackageSizeInfoGetCacheSize(IntPtr handle, out long cacheSize);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_cache_size")]
+        internal static partial ErrorCode PackageSizeInfoGetCacheSize(IntPtr handle, out long cacheSize);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_app_size")]
-        internal static extern ErrorCode PackageSizeInfoGetAppSize(IntPtr handle, out long appSize);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_app_size")]
+        internal static partial ErrorCode PackageSizeInfoGetAppSize(IntPtr handle, out long appSize);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_external_data_size")]
-        internal static extern ErrorCode PackageSizeInfoGetExtDataSize(IntPtr handle, out long extDataSize);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_external_data_size")]
+        internal static partial ErrorCode PackageSizeInfoGetExtDataSize(IntPtr handle, out long extDataSize);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_external_cache_size")]
-        internal static extern ErrorCode PackageSizeInfoGetExtCacheSize(IntPtr handle, out long extCacheSize);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_external_cache_size")]
+        internal static partial ErrorCode PackageSizeInfoGetExtCacheSize(IntPtr handle, out long extCacheSize);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_external_app_size")]
-        internal static extern ErrorCode PackageSizeInfoGetExtAppSize(IntPtr handle, out long extAppSize);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_size_info_get_external_app_size")]
+        internal static partial ErrorCode PackageSizeInfoGetExtAppSize(IntPtr handle, out long extAppSize);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_create")]
-        internal static extern ErrorCode PackageManagerRequestCreate(out SafePackageManagerRequestHandle requestHandle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_create")]
+        internal static partial ErrorCode PackageManagerRequestCreate(out SafePackageManagerRequestHandle requestHandle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_destroy")]
-        internal static extern ErrorCode PackageManagerRequestDestroy(IntPtr requestHandle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_destroy")]
+        internal static partial ErrorCode PackageManagerRequestDestroy(IntPtr requestHandle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_set_type")]
-        internal static extern ErrorCode PackageManagerRequestSetType(SafePackageManagerRequestHandle requestHandle, string type);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_set_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestSetType(SafePackageManagerRequestHandle requestHandle, string type);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_set_tep")]
-        internal static extern ErrorCode PackageManagerRequestSetTepPath(SafePackageManagerRequestHandle requestHandle, string tepPath);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_set_tep", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestSetTepPath(SafePackageManagerRequestHandle requestHandle, string tepPath);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install")]
-        internal static extern ErrorCode PackageManagerRequestInstall(SafePackageManagerRequestHandle requestHandle, string path, out int id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestInstall(SafePackageManagerRequestHandle requestHandle, string path, out int id);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install")]
-        internal static extern ErrorCode PackageManagerRequestMountInstall(SafePackageManagerRequestHandle requestHandle, string path, out int id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestMountInstall(SafePackageManagerRequestHandle requestHandle, string path, out int id);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_uninstall")]
-        internal static extern ErrorCode PackageManagerRequestUninstall(SafePackageManagerRequestHandle requestHandle, string name, out int id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_uninstall", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestUninstall(SafePackageManagerRequestHandle requestHandle, string name, out int id);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_move")]
-        internal static extern ErrorCode PackageManagerRequestMove(SafePackageManagerRequestHandle requestHandle, string name, StorageType moveToStorageType);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_move", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestMove(SafePackageManagerRequestHandle requestHandle, string name, StorageType moveToStorageType);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_compare_package_cert_info")]
-        internal static extern ErrorCode PackageManagerCompareCertInfo(string lhsPackageId, string rhsPackageId, out CertCompareResultType CompareResult);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_compare_package_cert_info", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerCompareCertInfo(string lhsPackageId, string rhsPackageId, out CertCompareResultType CompareResult);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_compare_app_cert_info")]
-        internal static extern ErrorCode PackageManagerCompareCertInfoByApplicationId(string lhsPackageId, string rhsPackageId, out CertCompareResultType CompareResult);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_compare_app_cert_info", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerCompareCertInfoByApplicationId(string lhsPackageId, string rhsPackageId, out CertCompareResultType CompareResult);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_is_preload_package_by_app_id")]
-        internal static extern ErrorCode PackageManagerIsPreloadPackageByApplicationId(string ApplicationId, out bool IsPreload);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_is_preload_package_by_app_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerIsPreloadPackageByApplicationId(string ApplicationId, [MarshalAs(UnmanagedType.U1)] out bool IsPreload);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_get_permission_type")]
-        internal static extern ErrorCode PackageManagerGetPermissionType(string ApplicationId, out PackageManagerPermissionType PermissionType);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_get_permission_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerGetPermissionType(string ApplicationId, out PackageManagerPermissionType PermissionType);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_drm_generate_license_request")]
-        internal static extern ErrorCode PackageManagerDrmGenerateLicenseRequest(string responseData, out string requestData, out string licenseUrl);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_drm_generate_license_request", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerDrmGenerateLicenseRequest(string responseData, out string requestData, out string licenseUrl);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_drm_register_license")]
-        internal static extern ErrorCode PackageManagerDrmRegisterLicense(string responseData);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_drm_register_license", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerDrmRegisterLicense(string responseData);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_drm_decrypt_package")]
-        internal static extern ErrorCode PackageManagerDrmDecryptPackage(string drmFilePath, string decryptedFilePath);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_drm_decrypt_package", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerDrmDecryptPackage(string drmFilePath, string decryptedFilePath);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install_with_cb")]
-        internal static extern ErrorCode PackageManagerRequestInstallWithCB(SafePackageManagerRequestHandle requestHandle, string path, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install_with_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestInstallWithCB(SafePackageManagerRequestHandle requestHandle, string path, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install_with_cb")]
-        internal static extern ErrorCode PackageManagerRequestMountInstallWithCB(SafePackageManagerRequestHandle requestHandle, string path, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install_with_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestMountInstallWithCB(SafePackageManagerRequestHandle requestHandle, string path, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_uninstall_with_cb")]
-        internal static extern ErrorCode PackageManagerRequestUninstallWithCB(SafePackageManagerRequestHandle requestHandle, string name, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_uninstall_with_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestUninstallWithCB(SafePackageManagerRequestHandle requestHandle, string name, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_move_with_cb")]
-        internal static extern ErrorCode PackageManagerRequestMoveWithCB(SafePackageManagerRequestHandle requestHandle, string name, StorageType moveToStorageType, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_move_with_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestMoveWithCB(SafePackageManagerRequestHandle requestHandle, string name, StorageType moveToStorageType, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install_packages")]
-        internal static extern ErrorCode PackageManagerRequestInstallPackages(SafePackageManagerRequestHandle requestHandle, string[] paths, int paths_count, out int id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install_packages", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestInstallPackages(SafePackageManagerRequestHandle requestHandle, string[] paths, int paths_count, out int id);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install_packages_with_cb")]
-        internal static extern ErrorCode PackageManagerRequestInstallPackagesWithCb(SafePackageManagerRequestHandle requestHandle, string[] paths, int paths_count, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install_packages_with_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestInstallPackagesWithCb(SafePackageManagerRequestHandle requestHandle, string[] paths, int paths_count, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install_packages")]
-        internal static extern ErrorCode PackageManagerRequestMountInstallPackages(SafePackageManagerRequestHandle requestHandle, string[] paths, int pathsCount, out int id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install_packages", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestMountInstallPackages(SafePackageManagerRequestHandle requestHandle, string[] paths, int pathsCount, out int id);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install_packages_with_cb")]
-        internal static extern ErrorCode PackageManagerRequestMountInstallPackagesWithCb(SafePackageManagerRequestHandle requestHandle, string[] paths, int pathsCount, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install_packages_with_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageManagerRequestMountInstallPackagesWithCb(SafePackageManagerRequestHandle requestHandle, string[] paths, int pathsCount, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
 
     }
 }
+
+
+
+

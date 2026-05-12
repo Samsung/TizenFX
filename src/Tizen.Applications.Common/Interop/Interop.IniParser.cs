@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2022 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,18 +16,21 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
     internal static partial class LibIniParser
     {
-        [DllImport(Libraries.IniParser, EntryPoint = "iniparser_getstring", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern IntPtr GetString(IntPtr d, string key, IntPtr def);
+        [LibraryImport(Libraries.IniParser, EntryPoint = "iniparser_getstring", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial IntPtr GetString(IntPtr d, string key, IntPtr def);
 
-        [DllImport(Libraries.IniParser, EntryPoint = "iniparser_load", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern IntPtr Load(string iniName);
+        [LibraryImport(Libraries.IniParser, EntryPoint = "iniparser_load", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial IntPtr Load(string iniName);
 
-        [DllImport(Libraries.IniParser, EntryPoint = "iniparser_freedict", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void FreeDict(IntPtr d);
+        [LibraryImport(Libraries.IniParser, EntryPoint = "iniparser_freedict")]
+        internal static partial void FreeDict(IntPtr d);
     }
 }
+
+

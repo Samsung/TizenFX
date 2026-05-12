@@ -16,12 +16,16 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
     internal static partial class Libc
     {
-        [DllImport(Libraries.Libc, EntryPoint = "getenv")]
-        internal static extern IntPtr GetEnvironmentVariable(string name);
+        [LibraryImport(Libraries.Libc, EntryPoint = "getenv", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial IntPtr GetEnvironmentVariable(string name);
     }
 }
+
+
+

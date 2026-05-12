@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
@@ -24,7 +25,11 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool GSourceFunc(IntPtr userData);
 
-        [DllImport(Libraries.Glib, EntryPoint = "g_idle_add", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern uint IdleAdd(GSourceFunc d, IntPtr data);
+        [LibraryImport(Libraries.Glib, EntryPoint = "g_idle_add")]
+        internal static partial uint IdleAdd(GSourceFunc d, IntPtr data);
     }
 }
+
+
+
+

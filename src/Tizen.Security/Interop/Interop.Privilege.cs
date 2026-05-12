@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  Copyright (c) 2016-2020 Samsung Electronics Co., Ltd All Rights Reserved
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using Tizen.Security;
 
@@ -25,20 +26,20 @@ internal static partial class Interop
     {
         internal static string LogTag = "Tizen.Security.Privilege";
 
-        [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_display_name")]
-            internal static extern int GetDisplayName(string apiVersion, string privilege, out string displayName);
+        [LibraryImport(Libraries.Privilege, EntryPoint = "privilege_info_get_display_name", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int GetDisplayName(string apiVersion, string privilege, out string displayName);
 
-        [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_description")]
-            internal static extern int GetDescription(string apiVersion, string privilege, out string description);
+        [LibraryImport(Libraries.Privilege, EntryPoint = "privilege_info_get_description", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int GetDescription(string apiVersion, string privilege, out string description);
 
-        [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_display_name_by_pkgtype")]
-            internal static extern int GetDisplayNameByPkgtype(string packageType, string apiVersion, string privilege, out string displayName);
+        [LibraryImport(Libraries.Privilege, EntryPoint = "privilege_info_get_display_name_by_pkgtype", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int GetDisplayNameByPkgtype(string packageType, string apiVersion, string privilege, out string displayName);
 
-        [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_description_by_pkgtype")]
-            internal static extern int GetDescriptionByPkgtype(string packageType, string apiVersion, string privilege, out string description);
+        [LibraryImport(Libraries.Privilege, EntryPoint = "privilege_info_get_description_by_pkgtype", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int GetDescriptionByPkgtype(string packageType, string apiVersion, string privilege, out string description);
 
-        [DllImport(Libraries.Privilege, EntryPoint = "privilege_info_get_privacy_display_name")]
-            internal static extern int GetPrivacyDisplayName(string privilege, out string displayName);
+        [LibraryImport(Libraries.Privilege, EntryPoint = "privilege_info_get_privacy_display_name", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int GetPrivacyDisplayName(string privilege, out string displayName);
 
         internal enum ErrorCode
         {
@@ -46,3 +47,6 @@ internal static partial class Interop
         }
     }
 }
+
+
+

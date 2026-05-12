@@ -17,48 +17,22 @@
 
 using System;
 using static Interop.InputMethodManager;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Uix.InputMethodManager
 {
     internal static class InputMethodManagerExceptionFactory
     {
+        [ExcludeFromCodeCoverage]
         internal static Exception CreateException(ErrorCode err)
         {
-            Tizen.Log.Error(LogTag, $"Error {err}");
-            Exception exp;
             switch (err)
             {
-
-                case ErrorCode.InvalidParameter:
-                {
-                    exp = new ArgumentException("Invalid Parameters Provided");
-                    break;
-                }
-
-
-                case ErrorCode.PermissionDenied:
-                {
-                    exp = new InvalidOperationException("Permission Denied");
-                    break;
-                }
-
-
-                case ErrorCode.OperationFailed:
-                {
-                    exp = new InvalidOperationException("Operation Failed");
-                    break;
-                }
-
-                default:
-                {
-                    exp = new Exception("");
-                    break;
-                }
-
+                case ErrorCode.InvalidParameter: throw new ArgumentException("Invalid Parameters Provided");
+                case ErrorCode.PermissionDenied: throw new InvalidOperationException("Permission Denied");
+                case ErrorCode.OperationFailed: throw new InvalidOperationException("Operation Failed");
+                default: throw new InvalidOperationException("An unknown error occurred in InputMethodManager");
             }
-
-            return exp;
-
         }
     }
 }

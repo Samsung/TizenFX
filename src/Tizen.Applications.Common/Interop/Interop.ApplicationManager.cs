@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using Tizen.Internals;
 
@@ -82,7 +83,7 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppManagerLifecycleStateChangedCallback(string appId, int pid, AppLifecycleState state, bool hasFocus, IntPtr userData);
-        //void (*app_manager_lifecycle_state_changed_cb)(const char *app_id, pid_t pid, app_manager_lifecycle_state_e state, bool has_focus, void *user_data)
+        //void (*app_manager_lifecycle_state_changed_cb)(const char *app_id, pid_t pid, app_manager_lifecycle_state_e state, [MarshalAs(UnmanagedType.U1)] bool has_focus, void *user_data)
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppManagerEventCallback(string appType, string appId, AppManagerEventType eventType, AppManagerEventState eventState, IntPtr eventHandle, IntPtr userData);
@@ -116,290 +117,290 @@ internal static partial class Interop
         internal delegate bool AppInfoResControlCallback(string resType, string minResVersion, string maxResVersion, string autoClose, IntPtr userUdata);
         //bool (*app_info_res_control_cb) (const char *res_type, const char *min_res_version, const char *max_res_version, const char *auto_close, void *user_data);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_set_app_context_event_cb")]
-        internal static extern ErrorCode AppManagerSetAppContextEvent(AppManagerAppContextEventCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_set_app_context_event_cb")]
+        internal static partial ErrorCode AppManagerSetAppContextEvent(AppManagerAppContextEventCallback callback, IntPtr userData);
         //int app_manager_set_app_context_event_cb( app_manager_app_context_event_cb callback, void * user_data)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_unset_app_context_event_cb")]
-        internal static extern void AppManagerUnSetAppContextEvent();
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_unset_app_context_event_cb")]
+        internal static partial void AppManagerUnSetAppContextEvent();
         //void app_manager_unset_app_context_event_cb (void);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_set_lifecycle_state_changed_cb")]
-        internal static extern ErrorCode AppManagerSetLifecycleStateChangedCb(AppManagerLifecycleStateChangedCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_set_lifecycle_state_changed_cb")]
+        internal static partial ErrorCode AppManagerSetLifecycleStateChangedCb(AppManagerLifecycleStateChangedCallback callback, IntPtr userData);
         //int app_manager_set_lifecycle_state_changed_cb(app_manager_lifecycle_state_changed_cb callback, void *user_data)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_unset_lifecycle_state_changed_cb")]
-        internal static extern void AppManagerUnsetLifecycleStateChangedCb();
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_unset_lifecycle_state_changed_cb")]
+        internal static partial void AppManagerUnsetLifecycleStateChangedCb();
         //void app_manager_unset_lifecycle_state_changed_cb(void)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_add_lifecycle_state_changed_cb")]
-        internal static extern ErrorCode AppManagerAddLifecycleStateChangedCb(
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_add_lifecycle_state_changed_cb")]
+        internal static partial ErrorCode AppManagerAddLifecycleStateChangedCb(
             AppManagerLifecycleStateChangedCallback callback, IntPtr userData, out IntPtr handle);
         // int app_manager_add_lifecycle_state_changed_cb(app_manager_lifecycle_state_changed_cb callback,
         // void *user_data, app_manager_lifecycle_noti_h *handle)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_remove_lifecycle_state_changed_cb")]
-        internal static extern ErrorCode AppManagerRemoveLifecycleStateChangedCb(IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_remove_lifecycle_state_changed_cb")]
+        internal static partial ErrorCode AppManagerRemoveLifecycleStateChangedCb(IntPtr handle);
         // int app_manager_remove_lifecycle_state_changed_cb(app_manager_lifecycle_noti_h handle)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_foreach_running_app_context")]
-        internal static extern ErrorCode AppManagerForeachRunningAppContext(AppManagerAppContextCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_foreach_running_app_context")]
+        internal static partial ErrorCode AppManagerForeachRunningAppContext(AppManagerAppContextCallback callback, IntPtr userData);
         //int app_manager_foreach_running_app_context(app_manager_app_context_cb callback, void *user_data)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_foreach_app_context")]
-        internal static extern ErrorCode AppManagerForeachAppContext(AppManagerAppContextCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_foreach_app_context")]
+        internal static partial ErrorCode AppManagerForeachAppContext(AppManagerAppContextCallback callback, IntPtr userData);
         //int app_manager_foreach_app_context(app_manager_app_context_cb callback, void *user_data)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_app_context")]
-        internal static extern ErrorCode AppManagerGetAppContext(string applicationId, out IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_get_app_context", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerGetAppContext(string applicationId, out IntPtr handle);
         //int app_manager_get_app_context(const char* app_id, app_context_h *app_context);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_app_id")]
-        internal static extern ErrorCode AppManagerGetAppId(int processId, out string applicationId);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_get_app_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerGetAppId(int processId, out string applicationId);
         //int app_manager_get_app_id (pid_t pid, char **appid);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_is_running")]
-        internal static extern ErrorCode AppManagerIsRunning(string applicationId, out bool running);
-        //int app_manager_is_running (const char *appid, bool *running);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_is_running", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerIsRunning(string applicationId, [MarshalAs(UnmanagedType.U1)] out bool running);
+        //int app_manager_is_running (const char *appid, [MarshalAs(UnmanagedType.U1)] bool *running);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_resume_app")]
-        internal static extern ErrorCode AppManagerResumeApp(IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_resume_app")]
+        internal static partial ErrorCode AppManagerResumeApp(IntPtr handle);
         //int app_manager_resume_app (app_context_h handle);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_request_terminate_bg_app")]
-        internal static extern ErrorCode AppManagerRequestTerminateBgApp(IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_request_terminate_bg_app")]
+        internal static partial ErrorCode AppManagerRequestTerminateBgApp(IntPtr handle);
         //int app_manager_request_terminate_bg_app (app_context_h handle);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_foreach_app_info")]
-        internal static extern ErrorCode AppManagerForeachAppInfo(AppManagerAppInfoCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_foreach_app_info")]
+        internal static partial ErrorCode AppManagerForeachAppInfo(AppManagerAppInfoCallback callback, IntPtr userData);
         //int app_manager_foreach_app_info(app_manager_app_info_cb callback, void *user_data)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_app_info")]
-        internal static extern ErrorCode AppManagerGetAppInfo(string applicationId, out IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_get_app_info", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerGetAppInfo(string applicationId, out IntPtr handle);
         //int app_manager_get_app_info(const char * app_id, app_info_h * app_info)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_shared_data_path")]
-        internal static extern ErrorCode AppManagerGetSharedDataPath(string applicationId, out string path);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_get_shared_data_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerGetSharedDataPath(string applicationId, out string path);
         //int app_manager_get_shared_data_path (const char *appid, char **path);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_shared_resource_path")]
-        internal static extern ErrorCode AppManagerGetSharedResourcePath(string applicationId, out string path);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_get_shared_resource_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerGetSharedResourcePath(string applicationId, out string path);
         //int app_manager_get_shared_resource_path (const char *appid, char **path);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_shared_trusted_path")]
-        internal static extern ErrorCode AppManagerGetSharedTrustedPath(string applicationId, out string path);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_get_shared_trusted_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerGetSharedTrustedPath(string applicationId, out string path);
         //int app_manager_get_shared_trusted_path (const char *appid, char **path);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_common_shared_data_path")]
-        internal static extern ErrorCode AppManagerGetCommonSharedDataPath(string applicationId, out string path);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_get_common_shared_data_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerGetCommonSharedDataPath(string applicationId, out string path);
         //int app_manager_get_common_shared_data_path (const char *appid, char **path);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_common_shared_trusted_path")]
-        internal static extern ErrorCode AppManagerGetCommonSharedTrustedPath(string applicationId, out string path);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_get_common_shared_trusted_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerGetCommonSharedTrustedPath(string applicationId, out string path);
         //int app_manager_get_common_shared_trusted_path (const char *appid, char **path);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_external_shared_data_path")]
-        internal static extern ErrorCode AppManagerGetExternalSharedDataPath(string applicationId, out string path);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_get_external_shared_data_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerGetExternalSharedDataPath(string applicationId, out string path);
         //int app_manager_get_external_shared_data_path (const char *appid, char **path);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_event_create")]
-        internal static extern ErrorCode AppManagerEventCreate(out IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_event_create")]
+        internal static partial ErrorCode AppManagerEventCreate(out IntPtr handle);
         //int app_manager_event_create (app_manager_event_h *handle);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_event_set_status")]
-        internal static extern ErrorCode AppManagerEventSetStatus(IntPtr handle, AppManagerEventStatusType statusType);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_event_set_status")]
+        internal static partial ErrorCode AppManagerEventSetStatus(IntPtr handle, AppManagerEventStatusType statusType);
         //int app_manager_event_set_status (app_manager_event_h handle, int status_type);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_set_event_cb")]
-        internal static extern ErrorCode AppManagerSetEventCallback(IntPtr handle, AppManagerEventCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_set_event_cb")]
+        internal static partial ErrorCode AppManagerSetEventCallback(IntPtr handle, AppManagerEventCallback callback, IntPtr userData);
         //int app_manager_set_event_cb (app_manager_event_h handle, app_manager_event_cb callback, void *user_data);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_unset_event_cb")]
-        internal static extern ErrorCode AppManagerUnSetEventCallback(IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_unset_event_cb")]
+        internal static partial ErrorCode AppManagerUnSetEventCallback(IntPtr handle);
         //int app_manager_unset_event_cb (app_manager_event_h handle);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_event_destroy")]
-        internal static extern ErrorCode AppManagerEventDestroy(IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_event_destroy")]
+        internal static partial ErrorCode AppManagerEventDestroy(IntPtr handle);
         //int app_manager_event_destroy (app_manager_event_h handle);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_terminate_app")]
-        internal static extern ErrorCode AppManagerTerminateApp(IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_terminate_app")]
+        internal static partial ErrorCode AppManagerTerminateApp(IntPtr handle);
         //int app_manager_terminate_app (app_context_h app_context);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_terminate_app_without_restarting")]
-        internal static extern ErrorCode AppManagerTerminateAppWithoutRestarting(IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_terminate_app_without_restarting")]
+        internal static partial ErrorCode AppManagerTerminateAppWithoutRestarting(IntPtr handle);
         //int app_manager_terminate_app_without_restarting (app_context_h app_context);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_app_context_by_instance_id")]
-        internal static extern ErrorCode AppManagerGetAppContextByInstanceId(string applicationId, string instanceId, out IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_get_app_context_by_instance_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerGetAppContextByInstanceId(string applicationId, string instanceId, out IntPtr handle);
         //int app_manager_get_app_context_by_instance_id (const char *app_id, const char *instance_id, app_context_h *app_context);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_attach_window")]
-        internal static extern ErrorCode AppManagerAttachWindow(string parentAppId, string childAppId);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_attach_window", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerAttachWindow(string parentAppId, string childAppId);
         //int app_manager_attach_window(const char *parent_app_id, const char *child_app_id);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_detach_window")]
-        internal static extern ErrorCode AppManagerDetachWindow(string applicationId);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_detach_window", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerDetachWindow(string applicationId);
         //int app_manager_detach_window(const char *app_id);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_attach_window_below")]
-        internal static extern ErrorCode AppManagerAttachWindowBelow(string parentAppId, string childAppId);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_attach_window_below", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerAttachWindowBelow(string parentAppId, string childAppId);
         //int app_manager_attach_window_below(const char *parent_app_id, const char *child_app_id);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_request_remount_subsession")]
-        internal static extern ErrorCode AppManagerRequestRemountSubsession(string subsessionId);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_request_remount_subsession", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppManagerRequestRemountSubsession(string subsessionId);
         //int app_manager_request_remount_subsession(const char *subsession_id);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_context_destroy")]
-        internal static extern ErrorCode AppContextDestroy(IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_context_destroy")]
+        internal static partial ErrorCode AppContextDestroy(IntPtr handle);
         //int app_context_destroy(app_context_h app_context)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_context_get_app_id")]
-        internal static extern ErrorCode AppContextGetAppId(IntPtr handle, out string applicationId);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_context_get_app_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppContextGetAppId(IntPtr handle, out string applicationId);
         //int app_context_get_app_id(app_context_h app_context, char **app_id)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_context_get_package_id")]
-        internal static extern ErrorCode AppContextGetPackageId(IntPtr handle, out string packageId);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_context_get_package_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppContextGetPackageId(IntPtr handle, out string packageId);
         //int app_context_get_package_id(app_context_h app_context, char **package_id)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_context_get_pid")]
-        internal static extern ErrorCode AppContextGetPid(IntPtr handle, out int processId);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_context_get_pid")]
+        internal static partial ErrorCode AppContextGetPid(IntPtr handle, out int processId);
         //int app_context_get_pid (app_context_h app_context, pid_t *pid)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_context_get_app_state")]
-        internal static extern ErrorCode AppContextGetAppState(IntPtr handle, out int state);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_context_get_app_state")]
+        internal static partial ErrorCode AppContextGetAppState(IntPtr handle, out int state);
         //int app_context_get_app_state (app_context_h app_context, app_state_e *state)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_context_is_terminated")]
-        internal static extern ErrorCode AppContextIsTerminated(IntPtr handle, out bool terminated);
-        //int app_context_is_terminated (app_context_h app_context, bool *terminated);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_context_is_terminated")]
+        internal static partial ErrorCode AppContextIsTerminated(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool terminated);
+        //int app_context_is_terminated (app_context_h app_context, [MarshalAs(UnmanagedType.U1)] bool *terminated);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_context_is_equal")]
-        internal static extern ErrorCode AppContextIsEqual(IntPtr first, IntPtr second, out bool equal);
-        //int app_context_is_equal (app_context_h lhs, app_context_h rhs, bool *equal);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_context_is_equal")]
+        internal static partial ErrorCode AppContextIsEqual(IntPtr first, IntPtr second, [MarshalAs(UnmanagedType.U1)] out bool equal);
+        //int app_context_is_equal (app_context_h lhs, app_context_h rhs, [MarshalAs(UnmanagedType.U1)] bool *equal);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_context_is_sub_app")]
-        internal static extern ErrorCode AppContextIsSubApp(IntPtr handle, out bool is_sub_app);
-        //int app_context_is_sub_app (app_context_h app_context, bool *is_sub_app);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_context_is_sub_app")]
+        internal static partial ErrorCode AppContextIsSubApp(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool is_sub_app);
+        //int app_context_is_sub_app (app_context_h app_context, [MarshalAs(UnmanagedType.U1)] bool *is_sub_app);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_context_clone")]
-        internal static extern ErrorCode AppContextClone(out IntPtr destination, IntPtr source);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_context_clone")]
+        internal static partial ErrorCode AppContextClone(out IntPtr destination, IntPtr source);
         //int app_context_clone (app_context_h *clone, app_context_h app_context);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_create")]
-        internal static extern ErrorCode AppInfoCreate(string applicationId, out IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_create", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppInfoCreate(string applicationId, out IntPtr handle);
         //int app_info_create (const char *app_id, app_info_h *app_info);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_destroy")]
-        internal static extern ErrorCode AppInfoDestroy(IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_destroy")]
+        internal static partial ErrorCode AppInfoDestroy(IntPtr handle);
         //int app_info_destroy (app_info_h app_info);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_app_id")]
-        internal static extern ErrorCode AppInfoGetAppId(IntPtr handle, out string applicationId);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_get_app_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppInfoGetAppId(IntPtr handle, out string applicationId);
         //int app_info_get_app_id (app_info_h app_info, char **app_id);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_exec")]
-        internal static extern ErrorCode AppInfoGetExec(IntPtr handle, out string exec);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_get_exec", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppInfoGetExec(IntPtr handle, out string exec);
         //int app_info_get_exec (app_info_h app_info, char **exec);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_label")]
-        internal static extern ErrorCode AppInfoGetLabel(IntPtr handle, out string label);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_get_label", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppInfoGetLabel(IntPtr handle, out string label);
         //int app_info_get_label (app_info_h app_info, char **label);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_localed_label")]
-        internal static extern ErrorCode AppInfoGetLocaledLabel(string applicationId, string locale, out string label);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_get_localed_label", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppInfoGetLocaledLabel(string applicationId, string locale, out string label);
         //int app_info_get_localed_label (const char *app_id, const char *locale, char **label);
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_icon")]
-        internal static extern ErrorCode AppInfoGetIcon(IntPtr handle, out string path);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_get_icon", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppInfoGetIcon(IntPtr handle, out string path);
         //int app_info_get_icon (app_info_h app_info, char **path)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_package")]
-        internal static extern ErrorCode AppInfoGetPackage(IntPtr handle, out string package);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_get_package", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppInfoGetPackage(IntPtr handle, out string package);
         //int app_info_get_package (app_info_h app_info, char **package)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_type")]
-        internal static extern ErrorCode AppInfoGetType(IntPtr handle, out string type);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_get_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppInfoGetType(IntPtr handle, out string type);
         //int app_info_get_type (app_info_h app_info, char **type)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_app_component_type")]
-        internal static extern ErrorCode AppInfoGetAppComponentType(IntPtr handle, out AppInfoAppComponentType type);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_get_app_component_type")]
+        internal static partial ErrorCode AppInfoGetAppComponentType(IntPtr handle, out AppInfoAppComponentType type);
         //int app_info_get_app_component_type(app_info_h app_info, app_info_app_component_type_e *type)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_foreach_metadata")]
-        internal static extern ErrorCode AppInfoForeachMetadata(IntPtr handle, AppInfoMetadataCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_foreach_metadata")]
+        internal static partial ErrorCode AppInfoForeachMetadata(IntPtr handle, AppInfoMetadataCallback callback, IntPtr userData);
         //int app_info_foreach_metadata(app_info_h app_info, app_info_metadata_cb callback, void *user_data)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_is_nodisplay")]
-        internal static extern ErrorCode AppInfoIsNodisplay(IntPtr handle, out bool noDisplay);
-        //int app_info_is_nodisplay (app_info_h app_info, bool *nodisplay)
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_is_nodisplay")]
+        internal static partial ErrorCode AppInfoIsNodisplay(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool noDisplay);
+        //int app_info_is_nodisplay (app_info_h app_info, [MarshalAs(UnmanagedType.U1)] bool *nodisplay)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_is_equal")]
-        internal static extern ErrorCode AppInfoIsEqual(IntPtr first, IntPtr second, out bool equal);
-        //int app_info_is_equal (app_info_h lhs, app_info_h rhs, bool *equal)
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_is_equal")]
+        internal static partial ErrorCode AppInfoIsEqual(IntPtr first, IntPtr second, [MarshalAs(UnmanagedType.U1)] out bool equal);
+        //int app_info_is_equal (app_info_h lhs, app_info_h rhs, [MarshalAs(UnmanagedType.U1)] bool *equal)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_is_enabled")]
-        internal static extern ErrorCode AppInfoIsEnabled(IntPtr handle, out bool enabled);
-        //int app_info_is_enabled (app_info_h app_info, bool *enabled)
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_is_enabled")]
+        internal static partial ErrorCode AppInfoIsEnabled(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool enabled);
+        //int app_info_is_enabled (app_info_h app_info, [MarshalAs(UnmanagedType.U1)] bool *enabled)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_is_onboot")]
-        internal static extern ErrorCode AppInfoIsOnBoot(IntPtr handle, out bool onBoot);
-        //int app_info_is_onboot (app_info_h app_info, bool *onboot)
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_is_onboot")]
+        internal static partial ErrorCode AppInfoIsOnBoot(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool onBoot);
+        //int app_info_is_onboot (app_info_h app_info, [MarshalAs(UnmanagedType.U1)] bool *onboot)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_is_preload")]
-        internal static extern ErrorCode AppInfoIsPreLoad(IntPtr handle, out bool preLoaded);
-        //int app_info_is_preload (app_info_h app_info, bool *preload)
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_is_preload")]
+        internal static partial ErrorCode AppInfoIsPreLoad(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool preLoaded);
+        //int app_info_is_preload (app_info_h app_info, [MarshalAs(UnmanagedType.U1)] bool *preload)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_clone")]
-        internal static extern ErrorCode AppInfoClone(out IntPtr destination, IntPtr source);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_clone")]
+        internal static partial ErrorCode AppInfoClone(out IntPtr destination, IntPtr source);
         //int app_info_clone(app_info_h * clone, app_info_h app_info)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_foreach_category")]
-        internal static extern ErrorCode AppInfoForeachCategory(IntPtr handle, AppInfoCategoryCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_foreach_category")]
+        internal static partial ErrorCode AppInfoForeachCategory(IntPtr handle, AppInfoCategoryCallback callback, IntPtr userData);
         //int app_info_foreach_category(app_info_h app_info, app_info_category_cb callback, void *user_data)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_filter_create")]
-        internal static extern ErrorCode AppInfoFilterCreate(out IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_filter_create")]
+        internal static partial ErrorCode AppInfoFilterCreate(out IntPtr handle);
         //int app_info_filter_create(app_info_filter_h * handle)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_filter_destroy")]
-        internal static extern ErrorCode AppInfoFilterDestroy(IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_filter_destroy")]
+        internal static partial ErrorCode AppInfoFilterDestroy(IntPtr handle);
         //int app_info_filter_destroy(app_info_filter_h handle)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_filter_add_bool")]
-        internal static extern ErrorCode AppInfoFilterAddBool(IntPtr handle, string property, bool value);
-        //int app_info_filter_add_bool(app_info_filter_h handle, const char *property, const bool value)
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_filter_add_bool", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppInfoFilterAddBool(IntPtr handle, string property, [MarshalAs(UnmanagedType.U1)] bool value);
+        //int app_info_filter_add_bool(app_info_filter_h handle, const char *property, const [MarshalAs(UnmanagedType.U1)] bool value)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_filter_add_string")]
-        internal static extern ErrorCode AppInfoFilterAddString(IntPtr handle, string property, string value);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_filter_add_string", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppInfoFilterAddString(IntPtr handle, string property, string value);
         //int app_info_filter_add_string(app_info_filter_h handle, const char *property, const char *value)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_filter_count_appinfo")]
-        internal static extern ErrorCode AppInfoFilterCountAppinfo(IntPtr handle, out int count);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_filter_count_appinfo")]
+        internal static partial ErrorCode AppInfoFilterCountAppinfo(IntPtr handle, out int count);
         //int app_info_filter_count_appinfo(app_info_filter_h handle, int *count)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_filter_foreach_appinfo")]
-        internal static extern ErrorCode AppInfoFilterForeachAppinfo(IntPtr handle, AppInfoFilterCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_filter_foreach_appinfo")]
+        internal static partial ErrorCode AppInfoFilterForeachAppinfo(IntPtr handle, AppInfoFilterCallback callback, IntPtr userData);
         //int app_info_filter_foreach_appinfo(app_info_filter_h handle, app_info_filter_cb callback, void * user_data)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_metadata_filter_create")]
-        internal static extern ErrorCode AppInfoMetadataFilterCreate(out IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_metadata_filter_create")]
+        internal static partial ErrorCode AppInfoMetadataFilterCreate(out IntPtr handle);
         //int app_info_metadata_filter_create (app_info_metadata_filter_h *handle)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_metadata_filter_destroy")]
-        internal static extern ErrorCode AppInfoMetadataFilterDestroy(IntPtr handle);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_metadata_filter_destroy")]
+        internal static partial ErrorCode AppInfoMetadataFilterDestroy(IntPtr handle);
         //int app_info_metadata_filter_destroy (app_info_metadata_filter_h handle)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_metadata_filter_add")]
-        internal static extern ErrorCode AppInfoMetadataFilterAdd(IntPtr handle, string key, string value);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_metadata_filter_add", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppInfoMetadataFilterAdd(IntPtr handle, string key, string value);
         //int app_info_metadata_filter_add (app_info_metadata_filter_h handle, const char *key, const char *value)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_metadata_filter_foreach")]
-        internal static extern ErrorCode AppInfoMetadataFilterForeach(IntPtr handle, AppInfoFilterCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_metadata_filter_foreach")]
+        internal static partial ErrorCode AppInfoMetadataFilterForeach(IntPtr handle, AppInfoFilterCallback callback, IntPtr userData);
         //int app_info_metadata_filter_foreach (app_info_metadata_filter_h handle, app_info_filter_cb callback, void *user_data)
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_info_foreach_res_control")]
-        internal static extern ErrorCode AppInfoForeachResControl(IntPtr handle, AppInfoResControlCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_info_foreach_res_control")]
+        internal static partial ErrorCode AppInfoForeachResControl(IntPtr handle, AppInfoResControlCallback callback, IntPtr userData);
 
         [NativeStruct("struct rua_rec", Include = "rua.h", PkgConfig = "rua")]
         [StructLayout(LayoutKind.Sequential)]
@@ -422,36 +423,36 @@ internal static partial class Interop
         internal delegate void RuaHistoryUpdateCallback(IntPtr table, int nRows, int nCols, IntPtr userData);
         //void (*rua_history_update_cb) (char **table, int nrows, int ncols, void *user_data);
 
-        [DllImport(Libraries.Rua, EntryPoint = "rua_history_get_rec")]
-        internal static extern ErrorCode RuaHistoryGetRecord(out RuaRec record, IntPtr table, int nRows, int nCols, int row);
+        [LibraryImport(Libraries.Rua, EntryPoint = "rua_history_get_rec")]
+        internal static partial ErrorCode RuaHistoryGetRecord(out RuaRec record, IntPtr table, int nRows, int nCols, int row);
         //int rua_history_get_rec(struct rua_rec *rec, char** table, int nrows, int ncols, int row);
 
-        [DllImport(Libraries.Rua, EntryPoint = "rua_history_load_db")]
-        internal static extern ErrorCode RuaHistoryLoadDb(out IntPtr table, out int nRows, out int nCols);
+        [LibraryImport(Libraries.Rua, EntryPoint = "rua_history_load_db")]
+        internal static partial ErrorCode RuaHistoryLoadDb(out IntPtr table, out int nRows, out int nCols);
         //int rua_history_load_db(char*** table, int *nrows, int *ncols);
 
-        [DllImport(Libraries.Rua, EntryPoint = "rua_history_unload_db")]
-        internal static extern ErrorCode RuaHistoryUnLoadDb(ref IntPtr table);
+        [LibraryImport(Libraries.Rua, EntryPoint = "rua_history_unload_db")]
+        internal static partial ErrorCode RuaHistoryUnLoadDb(ref IntPtr table);
         //int rua_history_unload_db(char*** table);
 
-        [DllImport(Libraries.Rua, EntryPoint = "rua_delete_history_with_pkgname")]
-        internal static extern ErrorCode RuaDeleteHistoryWithPkgname(string pkgName);
+        [LibraryImport(Libraries.Rua, EntryPoint = "rua_delete_history_with_pkgname", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode RuaDeleteHistoryWithPkgname(string pkgName);
         //int rua_delete_history_with_pkgname(char* pkg_name);
 
-        [DllImport(Libraries.Rua, EntryPoint = "rua_delete_history_with_apppath")]
-        internal static extern ErrorCode RuaDeleteHistoryWithApppath(string appPath);
+        [LibraryImport(Libraries.Rua, EntryPoint = "rua_delete_history_with_apppath", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode RuaDeleteHistoryWithApppath(string appPath);
         //int rua_delete_history_with_apppath(char* app_path);
 
-        [DllImport(Libraries.Rua, EntryPoint = "rua_clear_history")]
-        internal static extern ErrorCode RuaClearHistory();
+        [LibraryImport(Libraries.Rua, EntryPoint = "rua_clear_history")]
+        internal static partial ErrorCode RuaClearHistory();
         //int rua_clear_history(void);
 
-        [DllImport(Libraries.Rua, EntryPoint = "rua_register_update_cb")]
-        internal static extern ErrorCode RuaSetUpdateCallback(RuaHistoryUpdateCallback callback, IntPtr userData, out int id);
+        [LibraryImport(Libraries.Rua, EntryPoint = "rua_register_update_cb")]
+        internal static partial ErrorCode RuaSetUpdateCallback(RuaHistoryUpdateCallback callback, IntPtr userData, out int id);
         //int rua_register_update_cb(rua_history_update_cb callback, void *user_data, int *callback_id);
 
-        [DllImport(Libraries.Rua, EntryPoint = "rua_unregister_update_cb")]
-        internal static extern ErrorCode RuaUnSetUpdateCallback(int id);
+        [LibraryImport(Libraries.Rua, EntryPoint = "rua_unregister_update_cb")]
+        internal static partial ErrorCode RuaUnSetUpdateCallback(int id);
         //int rua_unregister_update_cb(int callback_id);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -459,10 +460,14 @@ internal static partial class Interop
                                                      IntPtr userData);
         // int (*rua_stat_tag_iter_fn)(const char *rua_stat_tag, void *data)
 
-        [DllImport(Libraries.Rua, EntryPoint = "rua_stat_get_stat_tags")]
-        internal static extern ErrorCode RuaStatGetStatTags(string caller, RuaStatTagIterCallback callback,
+        [LibraryImport(Libraries.Rua, EntryPoint = "rua_stat_get_stat_tags", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode RuaStatGetStatTags(string caller, RuaStatTagIterCallback callback,
                                                             IntPtr userData);
         // int rua_stat_get_stat_tags(char *caller, int (*rua_stat_tag_iter_fn)(const char *rua_stat_tag, void *data),
         // void *data);
     }
 }
+
+
+
+

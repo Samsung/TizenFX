@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using ErrorCode = Interop.PackageManager.ErrorCode;
 
@@ -24,37 +25,40 @@ internal static partial class Interop
     internal static partial class PackageArchive
     {
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_create")]
-        internal static extern ErrorCode PackageArchiveInfoCreate(string path, out IntPtr handle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_archive_info_create", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageArchiveInfoCreate(string path, out IntPtr handle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_destroy")]
-        internal static extern ErrorCode PackageArchiveInfoDestroy(IntPtr handle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_archive_info_destroy")]
+        internal static partial ErrorCode PackageArchiveInfoDestroy(IntPtr handle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_package")]
-        internal static extern ErrorCode PackageArchiveInfoGetPackage(IntPtr handle, out string package);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_package", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageArchiveInfoGetPackage(IntPtr handle, out string package);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_type")]
-        internal static extern ErrorCode PackageArchiveInfoGetType(IntPtr handle, out string type);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageArchiveInfoGetType(IntPtr handle, out string type);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_version")]
-        internal static extern ErrorCode PackageArchiveInfoGetVersion(IntPtr handle, out string version);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_version", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageArchiveInfoGetVersion(IntPtr handle, out string version);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_api_version")]
-        internal static extern ErrorCode PackageArchiveInfoGetApiVersion(IntPtr handle, out string apiVersion);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_api_version", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageArchiveInfoGetApiVersion(IntPtr handle, out string apiVersion);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_description")]
-        internal static extern ErrorCode PackageArchiveInfoGetDescription(IntPtr handle, out string description);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_description", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageArchiveInfoGetDescription(IntPtr handle, out string description);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_label")]
-        internal static extern ErrorCode PackageArchiveInfoGetLabel(IntPtr handle, out string label);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_label", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageArchiveInfoGetLabel(IntPtr handle, out string label);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_author")]
-        internal static extern ErrorCode PackageArchiveInfoGetAuthor(IntPtr handle, out string author);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_author", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageArchiveInfoGetAuthor(IntPtr handle, out string author);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_icon")]
-        internal static extern ErrorCode PackageArchiveInfoGetIcon(IntPtr handle, out IntPtr icon, out int iconSize);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_icon")]
+        internal static partial ErrorCode PackageArchiveInfoGetIcon(IntPtr handle, out IntPtr icon, out int iconSize);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_foreach_direct_dependency")]
-        internal static extern ErrorCode PackageArchiveInfoForeachDirectDependency(IntPtr handle, Package.PackageInfoDependencyInfoCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "package_archive_info_foreach_direct_dependency")]
+        internal static partial ErrorCode PackageArchiveInfoForeachDirectDependency(IntPtr handle, Package.PackageInfoDependencyInfoCallback callback, IntPtr userData);
     }
 }
+
+
+

@@ -28,10 +28,13 @@ namespace Tizen.NUI
             public static extern IntPtr WindowGetNativeHandle(HandleRef jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddFrameRenderedCallback")]
-            public static extern void AddFrameRenderedCallback(HandleRef nuiWindow, HandleRef nuiCallbakc, int nuiFrameId);
+            public static extern void AddFrameRenderedCallback(HandleRef nuiWindow, HandleRef nuiCallback, int nuiFrameId);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddFramePresentedCallback")]
-            public static extern void AddFramePresentedCallback(HandleRef nuiWindow, HandleRef nuiCallbakc, int nuiFrameId);
+            public static extern void AddFramePresentedCallback(HandleRef nuiWindow, HandleRef nuiCallback, int nuiFrameId);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetForceRendering")]
+            public static extern void SetForceRendering(HandleRef nuiWindow, uint frameCount);
         }
     }
 }

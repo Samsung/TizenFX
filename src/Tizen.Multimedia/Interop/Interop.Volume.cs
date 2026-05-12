@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.Multimedia
 {
@@ -26,24 +27,25 @@ namespace Tizen.Multimedia
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void VolumeChangedCallback(AudioVolumeType type, uint volume, IntPtr userData);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_max_volume")]
-            internal static extern AudioManagerError GetMaxVolume(AudioVolumeType type, out int max);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_max_volume")]
+            internal static partial AudioManagerError GetMaxVolume(AudioVolumeType type, out int max);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_volume")]
-            internal static extern AudioManagerError SetVolume(AudioVolumeType type, int volume);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_volume")]
+            internal static partial AudioManagerError SetVolume(AudioVolumeType type, int volume);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_volume")]
-            internal static extern AudioManagerError GetVolume(AudioVolumeType type, out int volume);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_volume")]
+            internal static partial AudioManagerError GetVolume(AudioVolumeType type, out int volume);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_current_sound_type")]
-            internal static extern AudioManagerError GetCurrentSoundType(out AudioVolumeType type);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_current_sound_type")]
+            internal static partial AudioManagerError GetCurrentSoundType(out AudioVolumeType type);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_volume_changed_cb")]
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_volume_changed_cb", CallingConvention = CallingConvention.Cdecl)]
             internal static extern AudioManagerError AddVolumeChangedCallback(VolumeChangedCallback callback,
                 IntPtr userData, out int id);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_volume_changed_cb")]
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_volume_changed_cb", CallingConvention = CallingConvention.Cdecl)]
             internal static extern AudioManagerError RemoveVolumeChangedCallback(int id);
         }
     }
 }
+

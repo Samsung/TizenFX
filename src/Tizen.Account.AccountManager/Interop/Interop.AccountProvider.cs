@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Account.AccountManager;
 
 /// <summary>
@@ -31,51 +32,51 @@ internal static partial class Interop
     internal static partial class AccountProvider
     {
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_create", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int Create(out IntPtr handle);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_create")]
+        internal static partial int Create(out IntPtr handle);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_destroy", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int Destroy(IntPtr handle);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_destroy")]
+        internal static partial int Destroy(IntPtr handle);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_get_app_id", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAppId(IntPtr handle, out string appId);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_get_app_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAppId(IntPtr handle, out string appId);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_query_supported_feature", CallingConvention = CallingConvention.Cdecl)]
-	[return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool IsFeatureSupported(string appId, string capability);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_query_supported_feature", StringMarshalling = StringMarshalling.Utf8)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static partial bool IsFeatureSupported(string appId, string capability);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_get_service_provider_id", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetServiceProviderId(IntPtr handle, out string providerId);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_get_service_provider_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetServiceProviderId(IntPtr handle, out string providerId);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_get_icon_path", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountProviderIconPath(IntPtr handle, out string iconPath);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_get_icon_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAccountProviderIconPath(IntPtr handle, out string iconPath);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_get_small_icon_path", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountProviderSmallIconPath(IntPtr handle, out string iconPath);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_get_small_icon_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAccountProviderSmallIconPath(IntPtr handle, out string iconPath);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_get_multiple_account_support", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetMultipleAccountSupport(IntPtr handle, out int suppport);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_get_multiple_account_support")]
+        internal static partial int GetMultipleAccountSupport(IntPtr handle, out int suppport);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_get_label_by_locale", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetlabelbyLocale(IntPtr handle, string locale, out string label);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_get_label_by_locale", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetlabelbyLocale(IntPtr handle, string locale, out string label);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_query_app_id_exist", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAppIdExists(string appId);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_query_app_id_exist", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAppIdExists(string appId);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_foreach_account_type_from_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAllAccountProviders(AccountProviderCallback callback, IntPtr data);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_foreach_account_type_from_db")]
+        internal static partial int GetAllAccountProviders(AccountProviderCallback callback, IntPtr data);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_query_provider_feature_by_app_id")]
-        internal static extern int GetAccountProviderFeaturesByAppId(AccountProviderFeatureCallback callback, string appId, IntPtr userData);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_query_provider_feature_by_app_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAccountProviderFeaturesByAppId(AccountProviderFeatureCallback callback, string appId, IntPtr userData);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_get_provider_feature_all")]
-        internal static extern int GetAccountProviderFeatures(IntPtr handle, AccountProviderFeatureCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_get_provider_feature_all")]
+        internal static partial int GetAccountProviderFeatures(IntPtr handle, AccountProviderFeatureCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_get_label")]
-        internal static extern int GetAccountProviderLabels(IntPtr handle, LabelCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_get_label")]
+        internal static partial int GetAccountProviderLabels(IntPtr handle, LabelCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.AccountSvc, EntryPoint = "account_type_query_label_by_app_id")]
-        internal static extern int GetLablesByAppId(LabelCallback callback, string appId, IntPtr userData);
+        [LibraryImport(Libraries.AccountSvc, EntryPoint = "account_type_query_label_by_app_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetLablesByAppId(LabelCallback callback, string appId, IntPtr userData);
 
 
         //Callbacks
@@ -90,3 +91,4 @@ internal static partial class Interop
 
     }
 }
+

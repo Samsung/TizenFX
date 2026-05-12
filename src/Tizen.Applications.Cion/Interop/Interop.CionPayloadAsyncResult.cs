@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications.Cion;
 
 using ErrorCode = Interop.Cion.ErrorCode;
@@ -24,13 +25,16 @@ internal static partial class Interop
 {
     internal static partial class CionPayloadAsyncResult
     {
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_result")]
-        internal static extern ErrorCode CionPayloadAsyncResultGetResult(IntPtr result, out int code);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_result")]
+        internal static partial ErrorCode CionPayloadAsyncResultGetResult(IntPtr result, out int code);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_peer_info")]
-        internal static extern ErrorCode CionPayloadAsyncResultGetPeerInfo(IntPtr result, out IntPtr peerInfo);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_peer_info")]
+        internal static partial ErrorCode CionPayloadAsyncResultGetPeerInfo(IntPtr result, out IntPtr peerInfo);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_payload_id")]
-        internal static extern ErrorCode CionPayloadAsyncResultGetPayloadID(IntPtr result, out string payloadID);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_async_result_get_payload_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPayloadAsyncResultGetPayloadID(IntPtr result, out string payloadID);
     }
 }
+
+
+

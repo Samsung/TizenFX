@@ -45,4 +45,3 @@ internal static partial class Interop
         internal static extern int Print(LogPriority prio, string tag, string fmt, string file, string func, int line, string msg);
     }
 }
-

@@ -41,7 +41,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIComponentApplication(IDictionary<Type, string> typeInfo) : base(new NUIComponentCoreBackend())
         {
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             if (typeInfo != null)
             {
                 foreach (var component in typeInfo)
@@ -82,6 +81,11 @@ namespace Tizen.NUI
             {
                 throw new ArgumentException("compType must be sub type of FrameComponent or ServiceComponent", nameof(compType));
             }
+        }
+
+        static NUIComponentApplication()
+        {
+            NUIApplicationInitializer.StaticInitialize();
         }
 
         /// <summary>

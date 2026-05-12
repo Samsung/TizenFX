@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2026 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
@@ -89,7 +90,10 @@ internal static partial class Interop
             ENoMem = -16
         }
 
-        [DllImport(Libraries.Aul, EntryPoint = "aul_package_get_install_status")]
-        internal static extern AulErrorCode AulPackageGetInstallStatus(string pkgid, out int status);
+        [LibraryImport(Libraries.Aul, EntryPoint = "aul_package_get_install_status", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AulErrorCode AulPackageGetInstallStatus(string pkgid, out int status);
     }
 }
+
+
+

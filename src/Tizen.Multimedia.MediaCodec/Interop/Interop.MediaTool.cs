@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,12 +16,14 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
-    internal static class MediaPacket
+    internal static partial class MediaPacket
     {
-        [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_destroy")]
-        internal static extern int Destroy(IntPtr handle);
+        [LibraryImport(Libraries.MediaTool, EntryPoint = "media_packet_destroy")]
+        internal static partial int Destroy(IntPtr handle);
     }
 }
+

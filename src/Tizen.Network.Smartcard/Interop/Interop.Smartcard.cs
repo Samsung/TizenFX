@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
@@ -23,61 +24,65 @@ internal static partial class Interop
     {
         //capi-network-smartcard-0.0.6-2.1.armv7l.rpm
         //Smartcard Manager
-        [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_initialize")]
-        internal static extern int Initialize();
-        [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_deinitialize")]
-        internal static extern int Deinitialize();
-        [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_get_readers")]
-        internal static extern int GetReaders(out IntPtr readers, out int len);
+        [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_initialize")]
+        internal static partial int Initialize();
+        [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_deinitialize")]
+        internal static partial int Deinitialize();
+        [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_get_readers")]
+        internal static partial int GetReaders(out IntPtr readers, out int len);
 
-        internal static class Reader
+        internal static partial class Reader
         {
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_reader_get_name")]
-            internal static extern int ReaderGetName(int reader, out IntPtr readerName);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_reader_is_secure_element_present")]
-            internal static extern int ReaderIsSecureElementPresent(int reader, out bool present);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_reader_open_session")]
-            internal static extern int ReaderOpenSession(int reader, out int session);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_reader_close_sessions")]
-            internal static extern int ReaderCloseSessions(int reader);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_reader_get_name")]
+            internal static partial int ReaderGetName(int reader, out IntPtr readerName);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_reader_is_secure_element_present")]
+            internal static partial int ReaderIsSecureElementPresent(int reader, [MarshalAs(UnmanagedType.U1)] out bool present);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_reader_open_session")]
+            internal static partial int ReaderOpenSession(int reader, out int session);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_reader_close_sessions")]
+            internal static partial int ReaderCloseSessions(int reader);
         }
 
-        internal static class Session
+        internal static partial class Session
         {
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_session_get_reader")]
-            internal static extern int SessionGetReader(int session, out int reader);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_session_get_atr")]
-            internal static extern int SessionGetAtr(int session, out IntPtr atr, out int len);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_session_close")]
-            internal static extern int SessionClose(int session);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_session_is_closed")]
-            internal static extern int SessionIsClosed(int session, out bool closed);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_session_close_channels")]
-            internal static extern int SessionCloseChannels(int session);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_session_open_basic_channel")]
-            internal static extern int SessionOpenBasicChannel(int session, byte[] aid, int aidLen, byte p2, out int channel);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_session_open_logical_channel")]
-            internal static extern int SessionOpenLogicalChannel(int session, byte[] aid, int aidLen, byte p2, out int channel);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_session_get_reader")]
+            internal static partial int SessionGetReader(int session, out int reader);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_session_get_atr")]
+            internal static partial int SessionGetAtr(int session, out IntPtr atr, out int len);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_session_close")]
+            internal static partial int SessionClose(int session);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_session_is_closed")]
+            internal static partial int SessionIsClosed(int session, [MarshalAs(UnmanagedType.U1)] out bool closed);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_session_close_channels")]
+            internal static partial int SessionCloseChannels(int session);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_session_open_basic_channel")]
+            internal static partial int SessionOpenBasicChannel(int session, byte[] aid, int aidLen, byte p2, out int channel);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_session_open_logical_channel")]
+            internal static partial int SessionOpenLogicalChannel(int session, byte[] aid, int aidLen, byte p2, out int channel);
         }
 
-        internal static class Channel
+        internal static partial class Channel
         {
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_close")]
-            internal static extern int ChannelClose(int channel);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_is_basic_channel")]
-            internal static extern int ChannelIsBasicChannel(int channel, out bool basicChannel);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_is_closed")]
-            internal static extern int ChannelIsClosed(int channel, out bool closed);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_get_select_response")]
-            internal static extern int ChannelGetSelectResponse(int channel, out IntPtr selectResp, out int len);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_get_session")]
-            internal static extern int ChannelGetSession(int channel, out int session);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_transmit")]
-            internal static extern int ChannelTransmit(int channel, byte[] cmd, int cmdLen, out IntPtr resp, out int len);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_transmit_retrieve_response")]
-            internal static extern int ChannelTransmitRetrieveResponse(int channel, out IntPtr name, out int len);
-            [DllImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_select_next")]
-            internal static extern int ChannelSelectNext(int channel, out bool success);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_close")]
+            internal static partial int ChannelClose(int channel);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_is_basic_channel")]
+            internal static partial int ChannelIsBasicChannel(int channel, [MarshalAs(UnmanagedType.U1)] out bool basicChannel);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_is_closed")]
+            internal static partial int ChannelIsClosed(int channel, [MarshalAs(UnmanagedType.U1)] out bool closed);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_get_select_response")]
+            internal static partial int ChannelGetSelectResponse(int channel, out IntPtr selectResp, out int len);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_get_session")]
+            internal static partial int ChannelGetSession(int channel, out int session);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_transmit")]
+            internal static partial int ChannelTransmit(int channel, byte[] cmd, int cmdLen, out IntPtr resp, out int len);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_transmit_retrieve_response")]
+            internal static partial int ChannelTransmitRetrieveResponse(int channel, out IntPtr name, out int len);
+            [LibraryImport(Libraries.Smartcard, EntryPoint = "smartcard_channel_select_next")]
+            internal static partial int ChannelSelectNext(int channel, [MarshalAs(UnmanagedType.U1)] out bool success);
         }
     }
 }
+
+
+
+

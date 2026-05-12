@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications.Cion;
 
 using ErrorCode = Interop.Cion.ErrorCode;
@@ -33,37 +34,40 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CionGroupLeftCb(string topicName, IntPtr peerInfo, IntPtr userData);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_group_create")]
-        internal static extern ErrorCode CionGroupCreate(out GroupSafeHandle group, string topicName, IntPtr security);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_group_create", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionGroupCreate(out GroupSafeHandle group, string topicName, IntPtr security);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_group_destroy")]
-        internal static extern ErrorCode CionGroupDestroy(IntPtr group);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_group_destroy")]
+        internal static partial ErrorCode CionGroupDestroy(IntPtr group);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_group_subscribe")]
-        internal static extern ErrorCode CionGroupSubscribe(GroupSafeHandle group);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_group_subscribe")]
+        internal static partial ErrorCode CionGroupSubscribe(GroupSafeHandle group);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_group_unsubscribe")]
-        internal static extern ErrorCode CionGroupUnsubscribe(GroupSafeHandle group);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_group_unsubscribe")]
+        internal static partial ErrorCode CionGroupUnsubscribe(GroupSafeHandle group);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_group_publish")]
-        internal static extern ErrorCode CionGroupPublish(GroupSafeHandle group, PayloadSafeHandle data);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_group_publish")]
+        internal static partial ErrorCode CionGroupPublish(GroupSafeHandle group, PayloadSafeHandle data);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_group_add_payload_received_cb")]
-        internal static extern ErrorCode CionGroupAddPayloadReceivedCb(GroupSafeHandle group, CionGroupPayloadReceivedCb cb, IntPtr userData);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_group_add_payload_received_cb")]
+        internal static partial ErrorCode CionGroupAddPayloadReceivedCb(GroupSafeHandle group, CionGroupPayloadReceivedCb cb, IntPtr userData);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_group_remove_payload_received_cb")]
-        internal static extern ErrorCode CionGroupRemovePayloadReceivedCb(GroupSafeHandle group, CionGroupPayloadReceivedCb cb);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_group_remove_payload_received_cb")]
+        internal static partial ErrorCode CionGroupRemovePayloadReceivedCb(GroupSafeHandle group, CionGroupPayloadReceivedCb cb);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_group_add_joined_cb")]
-        internal static extern ErrorCode CionGroupAddJoinedCb(GroupSafeHandle group, CionGroupJoinedCb cb, IntPtr userData);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_group_add_joined_cb")]
+        internal static partial ErrorCode CionGroupAddJoinedCb(GroupSafeHandle group, CionGroupJoinedCb cb, IntPtr userData);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_group_remove_joined_cb")]
-        internal static extern ErrorCode CionGroupRemoveJoinedCb(GroupSafeHandle group, CionGroupJoinedCb cb);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_group_remove_joined_cb")]
+        internal static partial ErrorCode CionGroupRemoveJoinedCb(GroupSafeHandle group, CionGroupJoinedCb cb);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_group_add_left_cb")]
-        internal static extern ErrorCode CionGroupAddLeftCb(GroupSafeHandle group, CionGroupLeftCb cb, IntPtr userData);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_group_add_left_cb")]
+        internal static partial ErrorCode CionGroupAddLeftCb(GroupSafeHandle group, CionGroupLeftCb cb, IntPtr userData);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_group_remove_left_cb")]
-        internal static extern ErrorCode CionGroupRemoveLeftCb(GroupSafeHandle group, CionGroupLeftCb cb);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_group_remove_left_cb")]
+        internal static partial ErrorCode CionGroupRemoveLeftCb(GroupSafeHandle group, CionGroupLeftCb cb);
     }
 }
+
+
+

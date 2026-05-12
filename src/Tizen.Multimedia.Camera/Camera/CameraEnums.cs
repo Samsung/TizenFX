@@ -554,7 +554,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// 5 fps.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 14 </since_tizen>
         Fps5 = 5,
         /// <summary>
         /// 7 fps.
@@ -567,7 +567,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// 10 fps.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 14 </since_tizen>
         Fps10 = 10,
         /// <summary>
         /// 15 fps.

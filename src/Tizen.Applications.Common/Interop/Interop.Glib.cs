@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
@@ -24,25 +25,31 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool GSourceFunc(IntPtr userData);
 
-        [DllImport(Libraries.Glib, EntryPoint = "g_idle_add", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern uint IdleAdd(GSourceFunc d, IntPtr data);
+        [LibraryImport(Libraries.Glib, EntryPoint = "g_idle_add")]
+        internal static partial uint IdleAdd(GSourceFunc d, IntPtr data);
 
-        [DllImport(Libraries.Glib, EntryPoint = "g_source_remove", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern bool RemoveSource(uint source);
+        [LibraryImport(Libraries.Glib, EntryPoint = "g_source_remove")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static partial bool RemoveSource(uint source);
 
-        [DllImport(Libraries.Glib, EntryPoint = "g_idle_source_new", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern IntPtr IdleSourceNew();
+        [LibraryImport(Libraries.Glib, EntryPoint = "g_idle_source_new")]
+        internal static partial IntPtr IdleSourceNew();
 
-        [DllImport(Libraries.Glib, EntryPoint = "g_source_set_callback", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void SourceSetCallback(IntPtr source, GSourceFunc func, IntPtr data, IntPtr notify);
+        [LibraryImport(Libraries.Glib, EntryPoint = "g_source_set_callback")]
+        internal static partial void SourceSetCallback(IntPtr source, GSourceFunc func, IntPtr data, IntPtr notify);
 
-        [DllImport(Libraries.Glib, EntryPoint = "g_source_attach", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern uint SourceAttach(IntPtr source, IntPtr context);
+        [LibraryImport(Libraries.Glib, EntryPoint = "g_source_attach")]
+        internal static partial uint SourceAttach(IntPtr source, IntPtr context);
 
-        [DllImport(Libraries.Glib, EntryPoint = "g_source_unref", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void SourceUnref(IntPtr source);
+        [LibraryImport(Libraries.Glib, EntryPoint = "g_source_unref")]
+        internal static partial void SourceUnref(IntPtr source);
 
-        [DllImport(Libraries.Glib, EntryPoint = "g_main_context_get_thread_default", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern IntPtr MainContextGetThreadDefault();
+        [LibraryImport(Libraries.Glib, EntryPoint = "g_main_context_get_thread_default")]
+        internal static partial IntPtr MainContextGetThreadDefault();
     }
 }
+
+
+
+
+

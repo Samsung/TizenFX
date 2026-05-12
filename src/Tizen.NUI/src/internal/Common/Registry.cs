@@ -215,7 +215,11 @@ namespace Tizen.NUI
 
         private static void RegistryCurrentThreadCheck()
         {
-
+            if (!NUIApplicationInitializer.IsStaticInitialized || !NUIApplicationInitializer.IsInitialized)
+            {
+                Tizen.Log.Fatal("NUI", $"Error! NUIApplicationInitializer.Initialize() not called! You cannot use NUI framework\n");
+                return;
+            }
             if (savedApplicationThread == null)
             {
                 Tizen.Log.Fatal("NUI", $"Error! maybe main thread is created by other process\n");

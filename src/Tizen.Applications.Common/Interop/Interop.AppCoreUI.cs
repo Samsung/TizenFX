@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2022 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,12 +16,16 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
     internal static partial class AppCoreUI
     {
-        [DllImport(Libraries.AppCoreUI, EntryPoint = "app_core_ui_base_get_tizen_glib_context", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern IntPtr GetTizenGlibContext();
+        [LibraryImport(Libraries.AppCoreUI, EntryPoint = "app_core_ui_base_get_tizen_glib_context")]
+        internal static partial IntPtr GetTizenGlibContext();
     }
 }
+
+
+

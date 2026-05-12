@@ -40,6 +40,7 @@ namespace Tizen.Pims.Calendar
         private Int64 _memoryPressure = CalendarViews.Record.AverageSize;
         internal IntPtr _recordHandle;
 
+        [ExcludeFromCodeCoverage]
         internal CalendarRecord(IntPtr handle)
         {
             _recordHandle = handle;
@@ -55,6 +56,7 @@ namespace Tizen.Pims.Calendar
             GC.AddMemoryPressure(_memoryPressure);
         }
 
+        [ExcludeFromCodeCoverage]
         internal CalendarRecord(IntPtr handle, bool disposedValue)
         {
             _recordHandle = handle;
@@ -72,6 +74,7 @@ namespace Tizen.Pims.Calendar
                 GC.AddMemoryPressure(_memoryPressure);
         }
 
+        [ExcludeFromCodeCoverage]
         internal CalendarRecord(IntPtr handle, int id)
         {
             _recordHandle = handle;

@@ -16,6 +16,7 @@
 
 using System;
 using Tizen.Internals.Errors;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Content.Download
 {
@@ -51,6 +52,7 @@ namespace Tizen.Content.Download
         IoError = ErrorCode.IoError
     }
 
+    [ExcludeFromCodeCoverage]
     internal static class DownloadErrorFactory
     {
         internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
