@@ -28,10 +28,12 @@ namespace Tizen.NUI
     internal class UIContext : BaseHandle
     {
         private static UIContext instance;
-        private Dictionary<System.Delegate, bool> idleCallbackMap;
-        private delegate void RootIdleCallbackType();
-        private static RootIdleCallbackType rootIdleCallback;
-        private static bool rootIdleAdded = false;
+        private Dictionary<System.Delegate, bool> idleCallbackMap = new Dictionary<System.Delegate, bool>();
+        private delegate bool RootIdleCallbackType();
+        private RootIdleCallbackType rootIdleCallback;
+
+        private bool insideRootIdleCallback;
+        private bool idleAddedDuringRootIdleCallback;
 
         internal UIContext(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -155,28 +157,62 @@ namespace Tizen.NUI
             return WindowList;
         }
 
-        private void RootIdleCallback()
+        private bool RootIdleCallback()
         {
-            if (idleCallbackMap == null)
+            if (idleCallbackMap == null || idleCallbackMap.Count == 0)
             {
-                return;
+                rootIdleCallback = null;
+                return false;
             }
 
             Tizen.Log.Debug("NUI", $"UIContext RootIdleCallback comes\n");
-
-            foreach (var kvp in idleCallbackMap)
+            insideRootIdleCallback = true;
+            try
             {
-                if (kvp.Value)
+                idleAddedDuringRootIdleCallback = false; // Reset the flag at the beginning of the root idle callback.
+
+                // Copy key list of idle callback map
+                // (Since idle callback could change the dictionary itself during iteration, we need to make a copy of keys first)
+                List<System.Delegate> delegateList = new List<System.Delegate>(idleCallbackMap.Keys);
+
+                bool hasValidCallback = false;
+
+                foreach (var func in delegateList)
                 {
-                    bool result = (bool)kvp.Key.DynamicInvoke(null);
-                    if (!result)
+                    bool keepAlive = false;
+                    if (idleCallbackMap.TryGetValue(func, out bool isValid) && isValid)
                     {
-                        idleCallbackMap[kvp.Key] = false;
+                        var returnValue = func.DynamicInvoke();
+                        if (returnValue is bool b)
+                        {
+                            keepAlive = b;
+                        }
+
+                        hasValidCallback |= keepAlive;
+                    }
+                    if (!keepAlive)
+                    {
+                        idleCallbackMap.Remove(func);
                     }
                 }
-            }
+                insideRootIdleCallback = false;
 
-            Tizen.Log.Debug("NUI", $"UIContext RootIdleCallback finished\n");
+                bool keepRootIdleCallback = hasValidCallback || idleAddedDuringRootIdleCallback;
+
+                if (!keepRootIdleCallback)
+                {
+                    // Remove root idle callback.
+                    // Note that if we return false, the native side callback will be removed automatically.
+                    rootIdleCallback = null;
+                }
+
+                Tizen.Log.Debug("NUI", $"UIContext RootIdleCallback finished. Count {idleCallbackMap.Count} AliveIdleCallbacks? {hasValidCallback} IdleAddedDuringRootIdleCallback? {idleAddedDuringRootIdleCallback}\n");
+                return keepRootIdleCallback;
+            }
+            finally
+            {
+                insideRootIdleCallback = false;
+            }
         }
 
         /// <summary>
@@ -196,24 +232,33 @@ namespace Tizen.NUI
                 return false;
             }
 
-            // Register root idle callback for UIContext
-            if (!rootIdleAdded)
+            // Special handling for idle callback added during root idle callback.
+            // Since check new added idle callback run or not in this root idle callback is expensive,
+            // we just set a flag to make sure it will be called at least once in next root idle callback.
+            if (insideRootIdleCallback)
             {
-                rootIdleCallback = RootIdleCallback;
-                global::System.IntPtr ip = Marshal.GetFunctionPointerForDelegate<RootIdleCallbackType>(rootIdleCallback);
-                global::System.IntPtr ip2 = Interop.Application.MakeCallback(new HandleRef(this, ip));
-
-                bool ret = Interop.UiContext.AddIdle(SwigCPtr, new HandleRef(this, ip2));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                if (!ret)
+                idleAddedDuringRootIdleCallback = true;
+            }
+            else
+            {
+                // Register root idle callback for UIContext
+                if (rootIdleCallback == null)
                 {
-                    // Free the native callback pointer created by MakeCallback to prevent memory leak
-                    Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, ip2));
-                    rootIdleCallback = null;
-                    Tizen.Log.Error("NUI", $"[Error] failed to add idle {func}\n");
-                    return false;
+                    rootIdleCallback = RootIdleCallback;
+                    global::System.IntPtr ip = Marshal.GetFunctionPointerForDelegate<RootIdleCallbackType>(rootIdleCallback);
+                    global::System.IntPtr ip2 = Interop.Application.MakeCallback(new HandleRef(this, ip));
+
+                    bool ret = Interop.UiContext.AddIdle(SwigCPtr, new HandleRef(this, ip2));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (!ret)
+                    {
+                        // Free the native callback pointer created by MakeCallback to prevent memory leak
+                        Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, ip2));
+                        rootIdleCallback = null;
+                        Tizen.Log.Error("NUI", $"[Error] failed to add idle {func}\n");
+                        return false;
+                    }
                 }
-                rootIdleAdded = true;
             }
 
             if (idleCallbackMap.TryGetValue(func, out bool isValid))
