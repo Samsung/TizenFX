@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <!-- <ItemGroup>
@@ -12,6 +12,7 @@
     <ProjectReference Include="..\Tizen\Tizen.csproj" />
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
     <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.UI\Tizen.Applications.UI.csproj" />
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
   </ItemGroup>
 

@@ -18,8 +18,9 @@ using System;
 using Tizen.Internals;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
+using Tizen.Applications.CoreBackend;
 
-namespace Tizen.Applications.CoreBackend
+namespace Tizen.Applications
 {
     /// <summary>
     /// Backend implementation for Team view applications that render into a shared host-provided <see cref="View"/>.
@@ -169,6 +170,7 @@ namespace Tizen.Applications.CoreBackend
                         catch (Exception ex)
                         {
                           Log.Error(LogTag, $"Error in User Created handler: {ex.Message}");
+                          Log.Error(LogTag, $"{ex.StackTrace}");
                         }
 
                         IntPtr view_h = Interop.TeamManager.CreateViewByViewId(GetDefaultViewId());
@@ -187,6 +189,7 @@ namespace Tizen.Applications.CoreBackend
                     catch (Exception ex)
                     {
                         Log.Error(LogTag, $"Error in Internal Created handler: {ex.Message}");
+                        Log.Error(LogTag, $"{ex.StackTrace}");
                         return IntPtr.Zero;
                     }
                 }
@@ -213,6 +216,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in Terminated handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
 
@@ -234,6 +238,7 @@ namespace Tizen.Applications.CoreBackend
                     catch (Exception ex)
                     {
                         Log.Error(LogTag, $"Error in AppControlReceived handler: {ex.Message}");
+                        Log.Error(LogTag, $"{ex.StackTrace}");
                     }
                 }
             }
@@ -251,6 +256,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in Resumed handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -267,6 +273,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in Paused handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -284,6 +291,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LowMemory handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -301,6 +309,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LowBattery handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -317,6 +326,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LocaleChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -334,6 +344,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in DeviceOrientationChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -350,6 +361,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in RegionFormatChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -367,6 +379,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in SuspendedStateChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -383,6 +396,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in TimeZoneChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }

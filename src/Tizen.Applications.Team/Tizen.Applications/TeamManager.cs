@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.Loader;
+using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.Applications
@@ -69,6 +70,8 @@ namespace Tizen.Applications
         private static readonly Dictionary<int, ViewInfo> _viewInfos = new Dictionary<int, ViewInfo>();
         private static readonly Dictionary<string, int> _viewByAppId = new Dictionary<string, int>();
         private static int _viewIdCounter = 1;
+
+        private static readonly Dictionary<Window, string> _windowToAppId = new Dictionary<Window, string>();
 
         internal static IntPtr RegisterAssemblyInfo(AssemblyInfo info)
         {
@@ -316,6 +319,98 @@ namespace Tizen.Applications
                     Log.Warn(LogTag, $"View not found for disown - AppId: {appid}");
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the TeamApplication instance by application id.
+        /// </summary>
+        /// <param name="appid">The application id to search for.</param>
+        /// <returns>The matching <see cref="TeamApplication"/>, or <c>null</c> if not found.</returns>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TeamApplication GetApplication(string appid)
+        {
+            if (string.IsNullOrEmpty(appid))
+                return null;
+
+            lock (_lock)
+            {
+                foreach (var app in _runningApps)
+                {
+                    if (app.ApplicationInfo?.ApplicationId == appid)
+                    {
+                        return app;
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Registers a default window with its associated application id.
+        /// </summary>
+        /// <param name="window">The window to register.</param>
+        /// <param name="appid">The application id associated with the window.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="window"/> is null or <paramref name="appid"/> is null or empty.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RegisterDefaultWindow(Window window, string appid)
+        {
+            if (window == null)
+                throw new ArgumentNullException(nameof(window));
+            if (string.IsNullOrEmpty(appid))
+                throw new ArgumentNullException(nameof(appid));
+
+            lock (_lock)
+            {
+                _windowToAppId[window] = appid;
+                Log.Info(LogTag, $"DefaultWindow registered - AppId: {appid}");
+            }
+        }
+
+        /// <summary>
+        /// Unregisters a default window.
+        /// </summary>
+        /// <param name="window">The window to unregister.</param>
+        /// <returns><c>true</c> if the window was unregistered; <c>false</c> if the window was not found.</returns>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool UnregisterDefaultWindow(Window window)
+        {
+            if (window == null)
+                return false;
+
+            lock (_lock)
+            {
+                if (_windowToAppId.Remove(window, out var appid))
+                {
+                    Log.Info(LogTag, $"DefaultWindow unregistered - AppId: {appid}");
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Gets the TeamApplication instance by window.
+        /// </summary>
+        /// <param name="window">The window to search for.</param>
+        /// <returns>The matching <see cref="TeamApplication"/>, or <c>null</c> if not found.</returns>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TeamApplication GetApplication(Window window)
+        {
+            if (window == null)
+                return null;
+
+            lock (_lock)
+            {
+                if (_windowToAppId.TryGetValue(window, out var appid))
+                {
+                    return GetApplication(appid);
+                }
+            }
+            return null;
         }
 
     }

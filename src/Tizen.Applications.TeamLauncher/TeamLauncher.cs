@@ -34,7 +34,7 @@ namespace Tizen.Applications
         {
             args.CopyTo(argsClone, 1);
         }
-        argsClone[0] = "Tizen.Applications.TeamLauncher.dll";
+        argsClone[0] = "Tizen.ApplicationsLauncher.dll";
         TeamManager.Init(argsClone);
       }
       else

@@ -18,41 +18,43 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen.Internals;
 
-internal static partial class Interop
-{
-    internal static partial class TeamLoop
+namespace Tizen.Applications {
+    internal static partial class Interop
     {
-        internal delegate IntPtr TeamLoopOpsLoad([MarshalAs(UnmanagedType.LPStr)] string path);
-
-        internal delegate void TeamLoopOpsUnload(IntPtr loadObj);
-
-        internal delegate IntPtr TeamLoopOpsCreateArgs(IntPtr loadObj);
-
-        internal delegate void TeamLoopOpsOnLoopCreate();
-
-        internal delegate void TeamLoopOpsOnLoopTerminate();
-
-        [DllImport(Libraries.TeamLib, EntryPoint = "team_app_main")]
-        internal static extern int Main(int argc, string[] argv, TeamLoopOperations ops);
-
-        [NativeStruct("team_launcher_operation_s", Include="team_common.h", PkgConfig="team-application")]
-        [StructLayout(LayoutKind.Sequential)]
-        internal struct TeamLoopOperations
+        internal static partial class TeamLoop
         {
-            [MarshalAs(UnmanagedType.FunctionPtr)]
-            public TeamLoopOpsLoad Load;
+            internal delegate IntPtr TeamLoopOpsLoad([MarshalAs(UnmanagedType.LPStr)] string path);
 
-            [MarshalAs(UnmanagedType.FunctionPtr)]
-            public TeamLoopOpsUnload Unload;
+            internal delegate void TeamLoopOpsUnload(IntPtr loadObj);
 
-            [MarshalAs(UnmanagedType.FunctionPtr)]
-            public TeamLoopOpsCreateArgs CreateArgs;
+            internal delegate IntPtr TeamLoopOpsCreateArgs(IntPtr loadObj);
 
-            [MarshalAs(UnmanagedType.FunctionPtr)]
-            public TeamLoopOpsOnLoopCreate OnLoopCreate;
+            internal delegate void TeamLoopOpsOnLoopCreate();
 
-            [MarshalAs(UnmanagedType.FunctionPtr)]
-            public TeamLoopOpsOnLoopTerminate OnLoopTerminate;
+            internal delegate void TeamLoopOpsOnLoopTerminate();
+
+            [DllImport(Libraries.TeamLib, EntryPoint = "team_app_main")]
+            internal static extern int Main(int argc, string[] argv, TeamLoopOperations ops);
+
+            [NativeStruct("team_launcher_operation_s", Include="team_common.h", PkgConfig="team-application")]
+            [StructLayout(LayoutKind.Sequential)]
+            internal struct TeamLoopOperations
+            {
+                [MarshalAs(UnmanagedType.FunctionPtr)]
+                public TeamLoopOpsLoad Load;
+
+                [MarshalAs(UnmanagedType.FunctionPtr)]
+                public TeamLoopOpsUnload Unload;
+
+                [MarshalAs(UnmanagedType.FunctionPtr)]
+                public TeamLoopOpsCreateArgs CreateArgs;
+
+                [MarshalAs(UnmanagedType.FunctionPtr)]
+                public TeamLoopOpsOnLoopCreate OnLoopCreate;
+
+                [MarshalAs(UnmanagedType.FunctionPtr)]
+                public TeamLoopOpsOnLoopTerminate OnLoopTerminate;
+            }
         }
     }
 }
