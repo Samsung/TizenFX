@@ -81,7 +81,7 @@ namespace Tizen.Applications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AddIdle(Delegate func)
         {
-            return false;
+            return UIContext.Instance?.AddIdle(func) ?? false;
         }
 
         /// <summary>
@@ -92,6 +92,7 @@ namespace Tizen.Applications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveIdle(Delegate func)
         {
+            UIContext.Instance?.RemoveIdle(func);
         }
 
         /// <summary>
