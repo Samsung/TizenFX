@@ -413,5 +413,18 @@ namespace Tizen.Applications
             return null;
         }
 
+        /// <summary>
+        /// Gets All the NUI Window in this process via UiContext API
+        /// </summary>
+        /// <returns>The Window List, or <c>null</c> if not found.</returns>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<Window> GetWindowList()
+        {
+            return UIContext.Instance?.GetWindowList();
+        }
+
+
     }
 }
