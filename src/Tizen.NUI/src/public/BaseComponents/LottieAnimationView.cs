@@ -98,6 +98,7 @@ namespace Tizen.NUI.BaseComponents
             currentStates.enableFrameCache = false;
             currentStates.notifyAfterRasterization = false;
             currentStates.renderScale = 1.0f;
+            currentStates.enableAspectFit = true;
 
             // Notify to base ImageView cache that default synchronousLoading for lottie file is true.
             base.SynchronousLoading = currentStates.synchronousLoading;
@@ -242,7 +243,8 @@ namespace Tizen.NUI.BaseComponents
                     .Add(ImageVisualProperty.EnableFrameCache, currentStates.enableFrameCache)
                     .Add(ImageVisualProperty.NotifyAfterRasterization, currentStates.notifyAfterRasterization)
                     .Add(ImageVisualProperty.FrameSpeedFactor, currentStates.frameSpeedFactor)
-                    .Add(ImageVisualProperty.RenderScale, currentStates.renderScale);
+                    .Add(ImageVisualProperty.RenderScale, currentStates.renderScale)
+                    .Add(ImageVisualProperty.EnableAspectFit, currentStates.enableAspectFit);
 
                 if (currentStates.desiredWidth > 0)
                 {
@@ -768,6 +770,52 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Whether to enable aspect fit scaling for the Lottie animation.
+        /// </summary>
+        /// <remarks>
+        /// When enabled (default), the animation is scaled to fit within the target size
+        /// while preserving its aspect ratio. When disabled, the animation stretches to
+        /// fill the entire target size.
+        ///
+        /// Inhouse API.
+        /// The default is true.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableAspectFit
+        {
+            get
+            {
+                return InternalEnableAspectFit;
+            }
+            set
+            {
+                InternalEnableAspectFit = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalEnableAspectFit
+        {
+            set
+            {
+                if (currentStates.enableAspectFit != value)
+                {
+                    currentStates.changed = true;
+                    currentStates.enableAspectFit = value;
+
+                    NUILog.Debug($"<[{GetId()}]SET currentStates.EnableAspectFit={currentStates.enableAspectFit}>");
+
+                    _ = Interop.View.InternalUpdateVisualPropertyBool(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.EnableAspectFit, currentStates.enableAspectFit);
+                }
+            }
+            get
+            {
+                NUILog.Debug($"EnableAspectFit get! {currentStates.enableAspectFit}");
+                return currentStates.enableAspectFit;
+            }
+        }
+
+        /// <summary>
         /// Whether notify AnimatedVectorImageVisual to render thread after every rasterization or not.
         /// </summary>
         /// <remarks>
@@ -915,6 +963,7 @@ namespace Tizen.NUI.BaseComponents
                 return currentStates.renderScale;
             }
         }
+
         #endregion Property
 
 
@@ -1278,6 +1327,8 @@ namespace Tizen.NUI.BaseComponents
                     UpdateImage(ImageVisualProperty.FrameSpeedFactor, pv, false);
                 using (var pv = new PropertyValue(currentStates.renderScale))
                     UpdateImage(ImageVisualProperty.RenderScale, pv, false);
+                using (var pv = new PropertyValue(currentStates.enableAspectFit))
+                    UpdateImage(ImageVisualProperty.EnableAspectFit, pv, false);
 
                 // Do not cache PlayRange and TotalFrameNumber into cachedImagePropertyMap.
                 // (To keep legacy implements behaviour)
@@ -1695,6 +1746,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.NotifyAfterRasterization,
             ImageVisualProperty.FrameSpeedFactor,
             ImageVisualProperty.RenderScale,
+            ImageVisualProperty.EnableAspectFit,
         };
 
         private struct LottieStates
@@ -1718,6 +1770,7 @@ namespace Tizen.NUI.BaseComponents
             internal bool synchronousLoading;
             internal bool enableFrameCache;
             internal bool notifyAfterRasterization;
+            internal bool enableAspectFit;
             internal bool changed;
         };
         private LottieStates currentStates;

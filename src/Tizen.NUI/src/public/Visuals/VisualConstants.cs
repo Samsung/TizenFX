@@ -1100,6 +1100,17 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int RenderScale = NDalic.ImageVisualOrientationCorrection + 21;
+
+        /// <summary>
+        /// @brief Whether to enable aspect fit scaling for the Lottie animation.
+        /// @details Name "enableAspectFit", type Property::BOOLEAN.
+        /// When enabled (default), the animation is scaled to fit within the target size
+        /// while preserving its aspect ratio. When disabled, the animation stretches to
+        /// fill the entire target size.
+        /// @note It is used in the AnimatedVectorImageVisual. The default is true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int EnableAspectFit = NDalic.ImageVisualOrientationCorrection + 22;
     }
 
     /// <summary>
