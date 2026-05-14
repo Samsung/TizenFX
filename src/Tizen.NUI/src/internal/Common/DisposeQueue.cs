@@ -117,6 +117,14 @@ namespace Tizen.NUI
 
                 // 2023-12-18 Block this logic since some APP call some thread-dependency objects before application start.
                 // ProcessDisposables();
+
+                int disposablesCount = 0;
+                lock (listLock)
+                {
+                    disposablesCount = (int)disposables.Count;
+                }
+                Tizen.Log.Error("NUI", $" Type [{disposable?.GetType()?.FullName ?? "Unknown"}] disposed before NUI initialized! / Total disposed items : {disposablesCount}");
+                Tizen.Log.Error("NUI", "Must call NUIApplicationInitializer.Initialize() at least once if you want to use NUI framework");
             }
         }
 

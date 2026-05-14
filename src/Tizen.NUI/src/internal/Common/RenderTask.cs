@@ -340,6 +340,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal void SetBuiltinCamera(BuiltinCameraType builtinCameraType, float screenSizeWidth, float screenSizeHeight, bool invertY, PropertyMap cameraPropertyMap = null)
+        {
+            Interop.RenderTask.SetBuiltinCameraActor(SwigCPtr, (uint)builtinCameraType, screenSizeWidth, screenSizeHeight, invertY, PropertyMap.getCPtr(cameraPropertyMap));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         public bool WorldToViewport(Vector3 position, out float viewportX, out float viewportY)
         {
             bool ret = Interop.RenderTask.WorldToViewport(SwigCPtr, Vector3.getCPtr(position), out viewportX, out viewportY);
@@ -360,6 +366,13 @@ namespace Tizen.NUI
         {
             REFRESH_ONCE = 0,
             REFRESH_ALWAYS = 1
+        }
+
+        internal enum BuiltinCameraType
+        {
+            AttachedToWindow = 0,
+            AttachedToSourceView = 1,
+            AttachedToStopperView = 2,
         }
 
         public Vector2 ViewportPosition
