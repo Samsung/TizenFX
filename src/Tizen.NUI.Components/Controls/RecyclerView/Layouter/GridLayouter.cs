@@ -416,16 +416,16 @@ namespace Tizen.NUI.Components
             //Console.WriteLine("[NUI] {0} :visibleArea before [{1},{2}] after [{3},{4}]", scrollPosition, prevFirstVisible, prevLastVisible, FirstVisible, LastVisible);
 
             // 2. Unrealize invisible items.
-            VisibleItems.RemoveAll(item =>
+            for (int i = VisibleItems.Count - 1; i >= 0; i--)
             {
+                RecyclerViewItem item = VisibleItems[i];
                 if (item.Index < FirstVisible || item.Index > LastVisible)
                 {
                     //Console.WriteLine("[NUI] Unrealize{0}!", item.Index);
                     collectionView.UnrealizeItem(item);
-                    return true;
+                    VisibleItems.RemoveAt(i);
                 }
-                return false;
-            });
+            }
 
             //Console.WriteLine("Realize Begin [{0} to {1}]", FirstVisible, LastVisible);
             // 3. Realize and placing visible items.
@@ -1028,20 +1028,20 @@ namespace Tizen.NUI.Components
             else collectionView.ContentContainer.SizeHeight = ScrollContentSize;
 
             // 3. Update Visible Items.
-            VisibleItems.RemoveAll(item =>
+            for (int i = VisibleItems.Count - 1; i >= 0; i--)
             {
+                RecyclerViewItem item = VisibleItems[i];
                 if ((item.Index >= startIndex)
                     && (item.Index < startIndex + count))
                 {
                     collectionView.UnrealizeItem(item);
-                    return true;
+                    VisibleItems.RemoveAt(i);
                 }
-                if (item.Index >= startIndex + count)
+                else if (item.Index >= startIndex + count)
                 {
                     item.Index -= count;
                 }
-                return false;
-            });
+            }
 
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
