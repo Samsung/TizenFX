@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
 {
     internal static class AudioIOUtil
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal static void ValidateState(AudioIOState curState, AudioIOState desired)
         {
             if (curState == desired)
@@ -31,6 +32,7 @@ namespace Tizen.Multimedia
             ThrowInvalidState(curState, desired);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal static void ValidateState(AudioIOState curState, AudioIOState desired1, AudioIOState desired2)
         {
             if (curState == desired1 || curState == desired2)
