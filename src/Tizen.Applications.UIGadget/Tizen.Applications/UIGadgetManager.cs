@@ -39,53 +39,43 @@ namespace Tizen.Applications
 
         static UIGadgetManager()
         {
-            try
+            var ptr = Interop.Libc.GetEnvironmentVariable("GADGET_PKGIDS");
+            if (ptr != IntPtr.Zero)
             {
-                var ptr = Interop.Libc.GetEnvironmentVariable("GADGET_PKGIDS");
-                if (ptr != IntPtr.Zero)
+                var packages = Marshal.PtrToStringAnsi(ptr);
+                if (!string.IsNullOrWhiteSpace(packages))
                 {
-                    var packages = Marshal.PtrToStringAnsi(ptr);
-                    if (!string.IsNullOrWhiteSpace(packages))
+                    foreach (var pkg in packages.Split(':'))
                     {
-                        foreach (var pkg in packages.Split(':'))
+                        try
                         {
                             var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
                             if (info != null)
                             {
-                                try
-                                {
-                                    _gadgetInfos.TryAdd(info.ResourceType, info);
-                                }
-                                catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
-                                {
-                                    Log.Error("Exception occurs while adding gadget info. packageId: " + pkg + ", " + e.Message);
-                                }
+                                _gadgetInfos.TryAdd(info.ResourceType, info);
                             }
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error("Exception occurs while creating gadget info. packageId: " + pkg + ", " + e);
                         }
                     }
                 }
-                else
-                {
-                    Log.Warn("Failed to get environment variable");
-                }
-
-                var app = CoreApplication.Current as CoreApplication;
-                if (app != null)
-                {
-                    app.AppControlReceived += (s, e) => HandleAppControl(e);
-                    app.LowMemory += (s, e) => HandleLowMemoryEvent(e);
-                    app.LowBattery += (s, e) => HandleLowBatteryEvent(e);
-                    app.LocaleChanged += (s, e) => HandleLocaleChangedEvent(e);
-                    app.RegionFormatChanged += (s, e) => HandleRegionFormatChangedEvent(e);
-                    app.DeviceOrientationChanged += (s, e) => HandleDeviceOrientationChangedEvent(e);
-                }
-
-                UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
             }
-            catch (Exception e)
+            else
             {
-                Log.Error("Exception occurs in UIGadgetManager static constructor. " + e);
+                Log.Warn("Failed to get environment variable");
             }
+
+            var app = (CoreApplication)CoreApplication.Current;
+            app.AppControlReceived += (s, e) => HandleAppControl(e);
+            app.LowMemory += (s, e) => HandleLowMemoryEvent(e);
+            app.LowBattery += (s, e) => HandleLowBatteryEvent(e);
+            app.LocaleChanged += (s, e) => HandleLocaleChangedEvent(e);
+            app.RegionFormatChanged += (s, e) => HandleRegionFormatChangedEvent(e);
+            app.DeviceOrientationChanged += (s, e) => HandleDeviceOrientationChangedEvent(e);
+
+            UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
         }
 
         /// <summary>
@@ -658,17 +648,17 @@ namespace Tizen.Applications
             {
                 foreach (var pkg in pkgList.Split(':'))
                 {
-                    var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
-                    if (info != null)
+                    try
                     {
-                        try
+                        var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
+                        if (info != null)
                         {
                             _gadgetInfos.TryAdd(info.ResourceType, info);
                         }
-                        catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
-                        {
-                            Log.Error("Exception occurs while adding gadget info. packageId: " + pkg + ", " + e.Message);
-                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Exception occurs while creating gadget info. packageId: " + pkg + ", " + e);
                     }
                 }
             }

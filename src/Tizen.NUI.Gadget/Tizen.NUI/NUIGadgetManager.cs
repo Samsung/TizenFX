@@ -36,37 +36,23 @@ namespace Tizen.NUI
 
         static NUIGadgetManager()
         {
-            try
-            {
-                LoadGadgetInfos();
-                UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
-            }
-            catch (Exception e)
-            {
-                Log.Error("Exception occurs in NUIGadgetManager static constructor. " + e);
-            }
+            LoadGadgetInfos();
+            UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
         }
 
         private static void LoadGadgetInfos()
         {
-            try
+            foreach (var info in UIGadgetManager.GetUIGadgetInfos())
             {
-                foreach (var info in UIGadgetManager.GetUIGadgetInfos())
+                try
                 {
-                    try
-                    {
-                        var gadgetInfo = new NUIGadgetInfo(info);
-                        _gadgetInfos.TryAdd(gadgetInfo.ResourceType, gadgetInfo);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error("Exception occurs while creating NUIGadgetInfo. packageId: " + info.PackageId + ", " + e);
-                    }
+                    var gadgetInfo = new NUIGadgetInfo(info);
+                    _gadgetInfos.TryAdd(gadgetInfo.ResourceType, gadgetInfo);
                 }
-            }
-            catch (Exception e)
-            {
-                Log.Error("Exception occurs in LoadGadgetInfos. " + e);
+                catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
+                {
+                    Log.Error("Exception occurs. " + e.Message);
+                }
             }
         }
 
@@ -572,17 +558,10 @@ namespace Tizen.NUI
         /// <since_tizen> 13 </since_tizen>
         public static void Refresh()
         {
-            try
-            {
-                UIGadgetManager.Refresh();
-                _gadgetInfos.Clear();
-                LoadGadgetInfos();
-                Log.Info("# of Gadget after refresh (" + _gadgetInfos.Count + ")");
-            }
-            catch (Exception e)
-            {
-                Log.Error("Exception occurs in NUIGadgetManager.Refresh. " + e);
-            }
+            UIGadgetManager.Refresh();
+            _gadgetInfos.Clear();
+            LoadGadgetInfos();
+            Log.Info("# of Gadget after refresh (" + _gadgetInfos.Count + ")");
         }
     }
 }

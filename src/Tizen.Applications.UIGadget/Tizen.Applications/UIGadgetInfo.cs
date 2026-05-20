@@ -245,11 +245,6 @@ namespace Tizen.Applications
                 SetUIGadgetResourcePath(info);
                 return info;
             }
-            catch (Exception e)
-            {
-                Log.Error("Exception occurred while creating UIGadgetInfo. packageId: " + packageId + ", exception: " + e);
-                return null;
-            }
             finally
             {
                 if (handle != IntPtr.Zero)
