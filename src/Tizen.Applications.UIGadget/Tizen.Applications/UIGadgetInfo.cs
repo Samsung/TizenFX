@@ -222,9 +222,10 @@ namespace Tizen.Applications
 
         internal static UIGadgetInfo CreateUIGadgetInfo(string packageId)
         {
+            IntPtr handle = IntPtr.Zero;
             try
             {
-                Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGet(packageId, out IntPtr handle);
+                Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGet(packageId, out handle);
                 if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
                 {
                     Log.Error("Failed to get package info. packageId: " + packageId + ", error = " + errorCode);
@@ -232,21 +233,10 @@ namespace Tizen.Applications
                 }
 
                 UIGadgetInfo info = new UIGadgetInfo(packageId);
-                if (info == null)
-                {
-                    Log.Error("Failed to create UIGadgetInfo. packageId: " + packageId);
-                    return null;
-                }
 
                 SetResourceType(info, handle);
                 SetResourceVersion(info, handle);
                 SetMetadata(info, handle);
-
-                errorCode = Interop.PackageManagerInfo.PackageInfoDestroy(handle);
-                if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
-                {
-                    Log.Warn("Failed to destroy package info. error = " + errorCode);
-                }
 
                 SetExecutableFile(info);
                 SetResourceFile(info);
@@ -259,6 +249,17 @@ namespace Tizen.Applications
             {
                 Log.Error("Exception occurred while creating UIGadgetInfo. packageId: " + packageId + ", exception: " + e);
                 return null;
+            }
+            finally
+            {
+                if (handle != IntPtr.Zero)
+                {
+                    Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoDestroy(handle);
+                    if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
+                    {
+                        Log.Warn("Failed to destroy package info. error = " + errorCode);
+                    }
+                }
             }
         }
     }

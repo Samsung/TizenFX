@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -49,24 +49,17 @@ namespace Tizen.Applications
                     {
                         foreach (var pkg in packages.Split(':'))
                         {
-                            try
+                            var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
+                            if (info != null)
                             {
-                                var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
-                                if (info != null)
+                                try
                                 {
-                                    try
-                                    {
-                                        _gadgetInfos.TryAdd(info.ResourceType, info);
-                                    }
-                                    catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
-                                    {
-                                        Log.Error("Exception occurs while adding gadget info. packageId: " + pkg + ", " + e.Message);
-                                    }
+                                    _gadgetInfos.TryAdd(info.ResourceType, info);
                                 }
-                            }
-                            catch (Exception e)
-                            {
-                                Log.Error("Exception occurs while creating gadget info. packageId: " + pkg + ", " + e);
+                                catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
+                                {
+                                    Log.Error("Exception occurs while adding gadget info. packageId: " + pkg + ", " + e.Message);
+                                }
                             }
                         }
                     }
@@ -76,13 +69,16 @@ namespace Tizen.Applications
                     Log.Warn("Failed to get environment variable");
                 }
 
-                var app = (CoreApplication)CoreApplication.Current;
-                app.AppControlReceived += (s, e) => HandleAppControl(e);
-                app.LowMemory += (s, e) => HandleLowMemoryEvent(e);
-                app.LowBattery += (s, e) => HandleLowBatteryEvent(e);
-                app.LocaleChanged += (s, e) => HandleLocaleChangedEvent(e);
-                app.RegionFormatChanged += (s, e) => HandleRegionFormatChangedEvent(e);
-                app.DeviceOrientationChanged += (s, e) => HandleDeviceOrientationChangedEvent(e);
+                var app = CoreApplication.Current as CoreApplication;
+                if (app != null)
+                {
+                    app.AppControlReceived += (s, e) => HandleAppControl(e);
+                    app.LowMemory += (s, e) => HandleLowMemoryEvent(e);
+                    app.LowBattery += (s, e) => HandleLowBatteryEvent(e);
+                    app.LocaleChanged += (s, e) => HandleLocaleChangedEvent(e);
+                    app.RegionFormatChanged += (s, e) => HandleRegionFormatChangedEvent(e);
+                    app.DeviceOrientationChanged += (s, e) => HandleDeviceOrientationChangedEvent(e);
+                }
 
                 UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
             }
@@ -662,24 +658,17 @@ namespace Tizen.Applications
             {
                 foreach (var pkg in pkgList.Split(':'))
                 {
-                    try
+                    var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
+                    if (info != null)
                     {
-                        var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
-                        if (info != null)
+                        try
                         {
-                            try
-                            {
-                                _gadgetInfos.TryAdd(info.ResourceType, info);
-                            }
-                            catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
-                            {
-                                Log.Error("Exception occurs while adding gadget info. packageId: " + pkg + ", " + e.Message);
-                            }
+                            _gadgetInfos.TryAdd(info.ResourceType, info);
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error("Exception occurs while creating gadget info. packageId: " + pkg + ", " + e);
+                        catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
+                        {
+                            Log.Error("Exception occurs while adding gadget info. packageId: " + pkg + ", " + e.Message);
+                        }
                     }
                 }
             }
