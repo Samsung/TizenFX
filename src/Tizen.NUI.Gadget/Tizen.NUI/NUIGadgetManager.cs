@@ -56,10 +56,7 @@ namespace Tizen.NUI
                     try
                     {
                         var gadgetInfo = new NUIGadgetInfo(info);
-                        if (gadgetInfo != null)
-                        {
-                            _gadgetInfos.TryAdd(gadgetInfo.ResourceType, gadgetInfo);
-                        }
+                        _gadgetInfos.TryAdd(gadgetInfo.ResourceType, gadgetInfo);
                     }
                     catch (Exception e)
                     {
