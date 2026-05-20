@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -36,26 +36,40 @@ namespace Tizen.NUI
 
         static NUIGadgetManager()
         {
-            LoadGadgetInfos();
-            UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
+            try
+            {
+                LoadGadgetInfos();
+                UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
+            }
+            catch (Exception e)
+            {
+                Log.Error("Exception occurs in NUIGadgetManager static constructor. " + e);
+            }
         }
 
         private static void LoadGadgetInfos()
         {
-            foreach (var info in UIGadgetManager.GetUIGadgetInfos())
+            try
             {
-                try
+                foreach (var info in UIGadgetManager.GetUIGadgetInfos())
                 {
-                    var gadgetInfo = new NUIGadgetInfo(info);
-                    if (gadgetInfo != null)
+                    try
                     {
-                        _gadgetInfos.TryAdd(gadgetInfo.ResourceType, gadgetInfo);
+                        var gadgetInfo = new NUIGadgetInfo(info);
+                        if (gadgetInfo != null)
+                        {
+                            _gadgetInfos.TryAdd(gadgetInfo.ResourceType, gadgetInfo);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Exception occurs while creating NUIGadgetInfo. packageId: " + info.PackageId + ", " + e);
                     }
                 }
-                catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
-                {
-                    Log.Error("Exception occurs. " + e.Message);
-                }
+            }
+            catch (Exception e)
+            {
+                Log.Error("Exception occurs in LoadGadgetInfos. " + e);
             }
         }
 
@@ -561,10 +575,17 @@ namespace Tizen.NUI
         /// <since_tizen> 13 </since_tizen>
         public static void Refresh()
         {
-            UIGadgetManager.Refresh();
-            _gadgetInfos.Clear();
-            LoadGadgetInfos();
-            Log.Info("# of Gadget after refresh (" + _gadgetInfos.Count + ")");
+            try
+            {
+                UIGadgetManager.Refresh();
+                _gadgetInfos.Clear();
+                LoadGadgetInfos();
+                Log.Info("# of Gadget after refresh (" + _gadgetInfos.Count + ")");
+            }
+            catch (Exception e)
+            {
+                Log.Error("Exception occurs in NUIGadgetManager.Refresh. " + e);
+            }
         }
     }
 }
