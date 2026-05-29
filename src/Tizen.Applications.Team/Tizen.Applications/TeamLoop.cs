@@ -218,6 +218,9 @@ namespace Tizen.Applications
         {
             Log.Info(LogTag, "DoOnLoopCreate() called");
             NUIApplicationInitializer.Initialize();
+            UIContext.Instance?.GetDefaultWindow()?.SetPositionSize(new Rectangle(0, 0, 1, 1));
+            UIContext.Instance?.GetDefaultWindow()?.SetTransparency(true);
+            UIContext.Instance?.GetDefaultWindow()?.Hide();
 
             // Empty implementation for C# launcher
         }
