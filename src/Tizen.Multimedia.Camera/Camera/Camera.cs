@@ -215,19 +215,31 @@ namespace Tizen.Multimedia
         }
         #endregion Dispose support
 
-        internal void ValidateState(params CameraState[] required)
+        internal void ValidateState(CameraState required)
         {
             ValidateNotDisposed();
 
-            Debug.Assert(required.Length > 0);
-
             var curState = _state;
-            if (!required.Contains(curState))
+            if (curState != required)
             {
-                throw new InvalidOperationException($"The camera is not in a valid state. " +
-                    $"Current State : { curState }, Valid State : { string.Join(", ", required) }.");
+                ThrowInvalidState(curState, required);
             }
         }
+
+        internal void ValidateState(CameraState required1, CameraState required2)
+        {
+            ValidateNotDisposed();
+
+            var curState = _state;
+            if (curState != required1 && curState != required2)
+            {
+                ThrowInvalidState(curState, required1, required2);
+            }
+        }
+
+        private static void ThrowInvalidState(CameraState curState, params CameraState[] required) =>
+            throw new InvalidOperationException($"The camera is not in a valid state. " +
+                $"Current State : { curState }, Valid State : { string.Join(", ", required) }.");
 
         internal void SetState(CameraState state)
         {
