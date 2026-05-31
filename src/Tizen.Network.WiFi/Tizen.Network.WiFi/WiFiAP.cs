@@ -228,7 +228,7 @@ namespace Tizen.Network.WiFi
             {
                 throw new ObjectDisposedException("Invalid AP instance (Object may have been disposed or released)");
             }
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (_callback_map)
             {
@@ -309,7 +309,7 @@ namespace Tizen.Network.WiFi
                 throw new ObjectDisposedException("Invalid AP instance (Object may have been disposed or released)");
             }
 
-            TaskCompletionSource<bool> wpsTask = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> wpsTask = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             _wpsTaskMap[_apHandle] = wpsTask;
 
             IntPtr id;
@@ -407,7 +407,7 @@ namespace Tizen.Network.WiFi
         public static Task<WiFiAP> ConnectWpsWithoutSsidAsync(WpsInfo info)
         {
             Log.Info(Globals.LogTag, "ConnectWpsWithoutSsidAsync");
-            wpsWithoutSsidTask = new TaskCompletionSource<WiFiAP>();
+            wpsWithoutSsidTask = new TaskCompletionSource<WiFiAP>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (s_callbackMap)
             {
@@ -536,7 +536,7 @@ namespace Tizen.Network.WiFi
             {
                 throw new ObjectDisposedException("Invalid AP instance (Object may have been disposed or released)");
             }
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (_callback_map)
             {
@@ -638,7 +638,7 @@ namespace Tizen.Network.WiFi
             {
                 throw new ObjectDisposedException("Invalid AP instance (Object may have been disposed or released)");
             }
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (_callback_map)
             {
