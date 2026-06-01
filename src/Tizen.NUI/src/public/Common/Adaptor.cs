@@ -36,9 +36,10 @@ namespace Tizen.NUI
     /// need to wait for an initialize signal as per the Tizen.NUI.Application class).
     ///
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    [Obsolete("This has been deprecated in API8 and will be removed in API10. This is not used anymore, do not use.")]
-    public class Adaptor : Disposable
+    /// <remarks>
+    /// Deprecated at API8, Become internal at API14.
+    /// </remarks>
+    internal class Adaptor : Disposable
     {
         private static readonly Adaptor instance = Adaptor.Get();
 
@@ -50,9 +51,7 @@ namespace Tizen.NUI
         /// Returns a reference to the instance of the adaptor used by the current thread.
         /// </summary>
         /// <remarks>The adaptor has been initialized. This is only valid in the main thread.</remarks>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("This has been deprecated in API8 and will be removed in API10. This is not used anymore, do not use.")]
-        public static Adaptor Instance
+        internal static Adaptor Instance
         {
             get
             {
@@ -64,9 +63,7 @@ namespace Tizen.NUI
         /// Feeds a wheel event to the adaptor.
         /// </summary>
         /// <param name="wheelEvent">The wheel event.</param>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("This has been deprecated in API8 and will be removed in API10. This is not used anymore, do not use.")]
-        public void FeedWheelEvent(Wheel wheelEvent)
+        internal void FeedWheelEvent(Wheel wheelEvent)
         {
             Interop.Adaptor.FeedWheelEvent(SwigCPtr, Wheel.getCPtr(wheelEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -76,9 +73,7 @@ namespace Tizen.NUI
         /// Feeds a key event to the adaptor.
         /// </summary>
         /// <param name="keyEvent">The key event holding the key information.</param>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("This has been deprecated in API8 and will be removed in API10. This is not used anymore, do not use.")]
-        public void FeedKeyEvent(Key keyEvent)
+        internal void FeedKeyEvent(Key keyEvent)
         {
             Interop.Adaptor.FeedKeyEvent(SwigCPtr, Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -126,7 +121,6 @@ namespace Tizen.NUI
         /// ReleaseSwigCPtr
         /// </summary>
         /// <param name="swigCPtr"></param>
-        [Obsolete("This has been deprecated in API8 and will be removed in API10. This is not used anymore, do not use.")]
         // This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
