@@ -292,9 +292,8 @@ namespace Tizen.Applications
                     Log.Error(LogTag, $"Error in Terminated handler: {ex.Message}");
                     Log.Error(LogTag, $"{ex.StackTrace}");
                 }
-
-                UnsetDefaultWindow();
             }
+            UnsetDefaultWindow();
         }
 
         private void OnAppControlNative(IntPtr context, IntPtr appControl, IntPtr userdata)

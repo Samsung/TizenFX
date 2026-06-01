@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-using System.Runtime.Loader;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.Applications
@@ -30,11 +29,11 @@ namespace Tizen.Applications
       {
         Log.Info("TeamLauncher", $"Loop Start");
         string[] argsClone = new string[args == null ? 1 : args.Length + 1];
-        if (args != null && args.Length > 1)
+        if (args != null && args.Length > 0)
         {
             args.CopyTo(argsClone, 1);
         }
-        argsClone[0] = "Tizen.ApplicationsLauncher.dll";
+        argsClone[0] = "Tizen.Applications.TeamLauncher.dll";
         TeamManager.Init(argsClone);
       }
       else
