@@ -237,6 +237,7 @@ namespace Tizen.Multimedia
             }
         }
 
+        [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
         private static void ThrowInvalidState(CameraState curState, params CameraState[] required) =>
             throw new InvalidOperationException($"The camera is not in a valid state. " +
                 $"Current State : { curState }, Valid State : { string.Join(", ", required) }.");
