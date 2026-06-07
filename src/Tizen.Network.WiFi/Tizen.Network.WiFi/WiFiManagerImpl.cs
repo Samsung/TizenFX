@@ -181,97 +181,67 @@ namespace Tizen.Network.WiFi
         }
 
 
-        internal IEnumerable<WiFiAP> GetFoundAPs()
+        // Shared "native foreach -> List<T>" collector for the GetFound*/
+        // GetWiFiConfigurations methods. Each call site supplies only what
+        // differs: the operation name and privilege (for CheckReturnValue),
+        // the native foreach function, and how to wrap a native item handle
+        // into its managed type.
+        private List<T> EnumerateForeach<T>(string opName, string privilege,
+            Func<SafeWiFiManagerHandle, Interop.WiFi.HandleCallback, IntPtr, int> nativeForeach,
+            Func<IntPtr, T> wrap)
         {
-            Log.Info(Globals.LogTag, "GetFoundAPs");
-            List<WiFiAP> apList = new List<WiFiAP>();
-            Interop.WiFi.HandleCallback callback = (IntPtr apHandle, IntPtr userData) =>
+            Log.Info(Globals.LogTag, opName);
+            List<T> list = new List<T>();
+            Interop.WiFi.HandleCallback callback = (IntPtr handle, IntPtr userData) =>
             {
-                if (apHandle != IntPtr.Zero)
+                if (handle != IntPtr.Zero)
                 {
-                    IntPtr clonedHandle;
-                    Interop.WiFi.AP.Clone(out clonedHandle, apHandle);
-                    WiFiAP apItem = new WiFiAP(clonedHandle);
-                    apList.Add(apItem);
+                    list.Add(wrap(handle));
                     return true;
                 }
                 return false;
             };
 
-            int ret = Interop.WiFi.GetForeachFoundAPs(GetSafeHandle(), callback, IntPtr.Zero);
-            CheckReturnValue(ret, "GetForeachFoundAPs", PrivilegeNetworkGet);
-
-            return apList;
+            int ret = nativeForeach(GetSafeHandle(), callback, IntPtr.Zero);
+            CheckReturnValue(ret, opName, privilege);
+            return list;
         }
 
-        internal IEnumerable<WiFiAP> GetFoundSpecificAPs()
-        {
-            Log.Info(Globals.LogTag, "GetFoundSpecificAPs");
-            List<WiFiAP> apList = new List<WiFiAP>();
-            Interop.WiFi.HandleCallback callback = (IntPtr apHandle, IntPtr userData) =>
-            {
-                if (apHandle != IntPtr.Zero)
+        internal IEnumerable<WiFiAP> GetFoundAPs() =>
+            EnumerateForeach("GetForeachFoundAPs", PrivilegeNetworkGet,
+                (wifi, cb, ud) => Interop.WiFi.GetForeachFoundAPs(wifi, cb, ud),
+                apHandle =>
                 {
-                    IntPtr clonedHandle;
-                    Interop.WiFi.AP.Clone(out clonedHandle, apHandle);
-                    WiFiAP apItem = new WiFiAP(clonedHandle);
-                    apList.Add(apItem);
-                    return true;
-                }
-                return false;
+                    Interop.WiFi.AP.Clone(out IntPtr clonedHandle, apHandle);
+                    return new WiFiAP(clonedHandle);
+                });
 
-            };
-
-            int ret = Interop.WiFi.GetForeachFoundSpecificAPs(GetSafeHandle(), callback, IntPtr.Zero);
-            CheckReturnValue(ret, "GetForeachFoundSpecificAPs", PrivilegeNetworkGet);
-
-            return apList;
-        }
-
-        internal IEnumerable<WiFiAP> GetFoundBssids()
-        {
-            Log.Info(Globals.LogTag, "GetFoundBssids");
-            List<WiFiAP> apList = new List<WiFiAP>();
-            Interop.WiFi.HandleCallback callback = (IntPtr apHandle, IntPtr userData) =>
-            {
-                if (apHandle != IntPtr.Zero)
+        internal IEnumerable<WiFiAP> GetFoundSpecificAPs() =>
+            EnumerateForeach("GetForeachFoundSpecificAPs", PrivilegeNetworkGet,
+                (wifi, cb, ud) => Interop.WiFi.GetForeachFoundSpecificAPs(wifi, cb, ud),
+                apHandle =>
                 {
-                    IntPtr clonedHandle;
-                    Interop.WiFi.AP.Clone(out clonedHandle, apHandle);
-                    WiFiAP apItem = new WiFiAP(clonedHandle);
-                    apList.Add(apItem);
-                    return true;
-                }
-                return false;
-            };
+                    Interop.WiFi.AP.Clone(out IntPtr clonedHandle, apHandle);
+                    return new WiFiAP(clonedHandle);
+                });
 
-            int ret = Interop.WiFi.GetForeachFoundBssids(GetSafeHandle(), callback, IntPtr.Zero);
-            CheckReturnValue(ret, "GetForeachFoundBssids", PrivilegeNetworkGet);
-
-            return apList;
-        }
-
-        internal IEnumerable<WiFiConfiguration> GetWiFiConfigurations()
-        {
-            Log.Debug(Globals.LogTag, "GetWiFiConfigurations");
-            List<WiFiConfiguration> configList = new List<WiFiConfiguration>();
-            Interop.WiFi.HandleCallback callback = (IntPtr configHandle, IntPtr userData) =>
-            {
-                if (configHandle != IntPtr.Zero)
+        internal IEnumerable<WiFiAP> GetFoundBssids() =>
+            EnumerateForeach("GetForeachFoundBssids", PrivilegeNetworkGet,
+                (wifi, cb, ud) => Interop.WiFi.GetForeachFoundBssids(wifi, cb, ud),
+                apHandle =>
                 {
-                    IntPtr clonedConfig;
-                    Interop.WiFi.Config.Clone(configHandle, out clonedConfig);
-                    WiFiConfiguration configItem = new WiFiConfiguration(clonedConfig);
-                    configList.Add(configItem);
-                    return true;
-                }
-                return false;
-            };
+                    Interop.WiFi.AP.Clone(out IntPtr clonedHandle, apHandle);
+                    return new WiFiAP(clonedHandle);
+                });
 
-            int ret = Interop.WiFi.Config.GetForeachConfiguration(GetSafeHandle(), callback, IntPtr.Zero);
-            CheckReturnValue(ret, "GetForeachConfiguration", PrivilegeNetworkProfile);
-            return configList;
-        }
+        internal IEnumerable<WiFiConfiguration> GetWiFiConfigurations() =>
+            EnumerateForeach("GetForeachConfiguration", PrivilegeNetworkProfile,
+                (wifi, cb, ud) => Interop.WiFi.Config.GetForeachConfiguration(wifi, cb, ud),
+                configHandle =>
+                {
+                    Interop.WiFi.Config.Clone(configHandle, out IntPtr clonedConfig);
+                    return new WiFiConfiguration(clonedConfig);
+                });
 
         internal void SaveWiFiNetworkConfiguration(WiFiConfiguration config)
         {
