@@ -357,6 +357,10 @@ namespace Tizen.Network.WiFi
             catch (Exception e)
             {
                 Log.Error(Globals.LogTag, $"Exception on {opName}\n{e}");
+                lock (_callback_map)
+                {
+                    _callback_map.Remove(id);
+                }
                 task.SetException(e);
             }
 
