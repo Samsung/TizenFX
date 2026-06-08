@@ -192,17 +192,33 @@ namespace Tizen.Network.WiFi
         {
             Log.Info(Globals.LogTag, opName);
             List<T> list = new List<T>();
+            Exception capturedException = null;
             Interop.WiFi.HandleCallback callback = (IntPtr handle, IntPtr userData) =>
             {
                 if (handle != IntPtr.Zero)
                 {
-                    list.Add(wrap(handle));
+                    try
+                    {
+                        list.Add(wrap(handle));
+                    }
+                    catch (Exception ex)
+                    {
+                        // Never let a managed exception unwind through the native
+                        // P/Invoke boundary. Capture it, stop the iteration, and
+                        // rethrow once the native foreach has returned.
+                        capturedException = ex;
+                        return false;
+                    }
                     return true;
                 }
                 return false;
             };
 
             int ret = nativeForeach(GetSafeHandle(), callback, IntPtr.Zero);
+            if (capturedException != null)
+            {
+                throw capturedException;
+            }
             CheckReturnValue(ret, opName, privilege);
             return list;
         }
@@ -212,7 +228,11 @@ namespace Tizen.Network.WiFi
                 (wifi, cb, ud) => Interop.WiFi.GetForeachFoundAPs(wifi, cb, ud),
                 apHandle =>
                 {
-                    Interop.WiFi.AP.Clone(out IntPtr clonedHandle, apHandle);
+                    int ret = Interop.WiFi.AP.Clone(out IntPtr clonedHandle, apHandle);
+                    if (ret != (int)WiFiError.None)
+                    {
+                        WiFiErrorFactory.ThrowWiFiException(ret, "Failed to clone AP handle");
+                    }
                     return new WiFiAP(clonedHandle);
                 });
 
@@ -221,7 +241,11 @@ namespace Tizen.Network.WiFi
                 (wifi, cb, ud) => Interop.WiFi.GetForeachFoundSpecificAPs(wifi, cb, ud),
                 apHandle =>
                 {
-                    Interop.WiFi.AP.Clone(out IntPtr clonedHandle, apHandle);
+                    int ret = Interop.WiFi.AP.Clone(out IntPtr clonedHandle, apHandle);
+                    if (ret != (int)WiFiError.None)
+                    {
+                        WiFiErrorFactory.ThrowWiFiException(ret, "Failed to clone AP handle");
+                    }
                     return new WiFiAP(clonedHandle);
                 });
 
@@ -230,7 +254,11 @@ namespace Tizen.Network.WiFi
                 (wifi, cb, ud) => Interop.WiFi.GetForeachFoundBssids(wifi, cb, ud),
                 apHandle =>
                 {
-                    Interop.WiFi.AP.Clone(out IntPtr clonedHandle, apHandle);
+                    int ret = Interop.WiFi.AP.Clone(out IntPtr clonedHandle, apHandle);
+                    if (ret != (int)WiFiError.None)
+                    {
+                        WiFiErrorFactory.ThrowWiFiException(ret, "Failed to clone AP handle");
+                    }
                     return new WiFiAP(clonedHandle);
                 });
 
@@ -239,7 +267,11 @@ namespace Tizen.Network.WiFi
                 (wifi, cb, ud) => Interop.WiFi.Config.GetForeachConfiguration(wifi, cb, ud),
                 configHandle =>
                 {
-                    Interop.WiFi.Config.Clone(configHandle, out IntPtr clonedConfig);
+                    int ret = Interop.WiFi.Config.Clone(configHandle, out IntPtr clonedConfig);
+                    if (ret != (int)WiFiError.None)
+                    {
+                        WiFiErrorFactory.ThrowWiFiException(ret, "Failed to clone WiFi configuration");
+                    }
                     return new WiFiConfiguration(clonedConfig);
                 });
 
