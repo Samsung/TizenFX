@@ -53,6 +53,8 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Tizen.NUI.FLUX.Components, " + Tizen.NUI.PublicKey.TizenFLUX)]
 [assembly: InternalsVisibleTo("Tizen.DA.FLUX.Components, " + Tizen.NUI.PublicKey.TizenFLUX)]
 
+[assembly: InternalsVisibleTo("Tizen.Multimedia.OnePlayer, " + Tizen.NUI.PublicKey.MMOnePlayer)]
+
 namespace Tizen.NUI
 {
     internal static class PublicKey
@@ -93,6 +95,12 @@ namespace Tizen.NUI
             "99e5766f42eef33d89d1f67225db051f011abcfce47a4788875c39750a2e5695f1ec117f41d96610419811762" +
             "669f98131db30a6e64c6bb8fde3731f373f6cda4c0087d121f5108559f216dc015807dc46ec5a4d1b63f5deff" +
             "64c01754a0db0dc849bc300672572cbd2697432ab6c193ebf9fade6bf0f2aad";
+
+        internal const string MMOnePlayer =
+            "PublicKey=0024000004800000940000000602000000240000525341310004000001000100bb08212a706531a" +
+            "8c2c6e40574b8a73c998b42873e91bbae7c6274fc597a1c415689062bc137bdacd37fa2b949e7cf2e1bcd49fb" +
+            "b140cefb83d05d72128fa38c7e8ee289d572603bd70d57b80896a1929813316b7569b63cc5260652d7c595102" +
+            "2be7b0a47364ae0cd7c87692655a255e19d38734b7b2039f782fe4a02652fb4";
 
     }
 }
