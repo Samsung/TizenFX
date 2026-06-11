@@ -21,7 +21,7 @@ namespace Tizen.WindowSystem.SafeHandles
 
         protected override bool ReleaseHandle()
         {
-            Tizen.WindowSystem.Interop.InputGesture.Deinitialize(handle);
+            Tizen.WindowSystem.Interop.InputGesture.Destroy(handle);
             return true;
         }
     }

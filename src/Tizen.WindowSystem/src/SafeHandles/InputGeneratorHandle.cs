@@ -21,7 +21,7 @@ namespace Tizen.WindowSystem.SafeHandles
 
         protected override bool ReleaseHandle()
         {
-            Tizen.WindowSystem.Interop.InputGenerator.Deinit(handle);
+            Tizen.WindowSystem.Interop.InputGenerator.Destroy(handle);
             return true;
         }
     }

@@ -36,6 +36,7 @@ namespace Tizen.WindowSystem
     public class InputGesture : IDisposable
     {
         SafeHandles.InputGestureHandle _handler;
+        TizenCoreWlDisplay _display;
         bool disposed = false;
 
         // Native handles keyed by gesture parameters
@@ -59,18 +60,24 @@ namespace Tizen.WindowSystem
         /// <summary>
         /// Creates a new InputGesture.
         /// </summary>
-        /// <remarks>This module operates in a NUI application and requires instantiation and disposal on the main thread.</remarks>
+        /// <param name="display">The TizenCoreWlDisplay instance.</param>
         /// <exception cref="Tizen.Applications.Exceptions.OutOfMemoryException">Thrown when the memory is not enough to allocate.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <exception cref="Tizen.Applications.Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
-        public InputGesture()
+        public InputGesture(TizenCoreWlDisplay display)
         {
-            _handler = Interop.InputGesture.Initialize();
-            if (_handler.IsInvalid)
+            if (display == null)
             {
-                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                ErrorUtils.ThrowIfError(err, "Failed to initialize InputGesture");
+                throw new ArgumentNullException("display is null.");
             }
+
+            _display = display;
+            int ret = Interop.InputGesture.Create(display.GetNativeHandle(), out IntPtr handle);
+            if (ret != (int)Interop.InputGesture.ErrorCode.None)
+            {
+                ErrorUtils.ThrowIfError(ret, "Failed to create InputGesture");
+            }
+            _handler = new SafeHandles.InputGestureHandle(handle, true);
 
             SetupNativeCallbacks();
             Log.Debug(LogTag, "InputGesture Created");
@@ -88,8 +95,8 @@ namespace Tizen.WindowSystem
                 Log.Debug(LogTag, "EdgeSwipe Event received. mode: " + mode + ", fingers: " + fingers);
                 _edgeSwipeDetected?.Invoke(this, args);
             };
-            Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetEdgeSwipeCb(_handler, _edgeSwipeDelegate, IntPtr.Zero);
-            ErrorUtils.ThrowIfError((int)res, "Failed to set edge swipe callback");
+            int res = Interop.InputGesture.SetEdgeSwipeCb(_handler, _edgeSwipeDelegate, IntPtr.Zero);
+            ErrorUtils.ThrowIfError(res, "Failed to set edge swipe callback");
 
             _edgeDragDelegate = (IntPtr userData, GestureState mode, int fingers, int cx, int cy, GestureEdge edge) =>
             {
@@ -98,7 +105,7 @@ namespace Tizen.WindowSystem
                 _edgeDragDetected?.Invoke(this, args);
             };
             res = Interop.InputGesture.SetEdgeDragCb(_handler, _edgeDragDelegate, IntPtr.Zero);
-            ErrorUtils.ThrowIfError((int)res, "Failed to set edge drag callback");
+            ErrorUtils.ThrowIfError(res, "Failed to set edge drag callback");
 
             _tapDelegate = (IntPtr userData, GestureState mode, int fingers, int repeats) =>
             {
@@ -107,7 +114,7 @@ namespace Tizen.WindowSystem
                 _tapDetected?.Invoke(this, args);
             };
             res = Interop.InputGesture.SetTapCb(_handler, _tapDelegate, IntPtr.Zero);
-            ErrorUtils.ThrowIfError((int)res, "Failed to set tap callback");
+            ErrorUtils.ThrowIfError(res, "Failed to set tap callback");
 
             _palmCoverDelegate = (IntPtr userData, GestureState mode, int duration, int cx, int cy, int size, double pressure) =>
             {
@@ -116,7 +123,7 @@ namespace Tizen.WindowSystem
                 _palmCoverDetected?.Invoke(this, args);
             };
             res = Interop.InputGesture.SetPalmCoverCb(_handler, _palmCoverDelegate, IntPtr.Zero);
-            ErrorUtils.ThrowIfError((int)res, "Failed to set palm cover callback");
+            ErrorUtils.ThrowIfError(res, "Failed to set palm cover callback");
         }
 
         /// <summary>
@@ -221,38 +228,37 @@ namespace Tizen.WindowSystem
             if (_edgeSwipeHandles.ContainsKey(key))
                 throw new ArgumentException("Edge swipe gesture already registered for this (fingers, edge) combination.");
 
-            IntPtr handle = Interop.InputGesture.EdgeSwipeNew(_handler, fingers, edge);
-            if (handle == IntPtr.Zero)
+            int ret = Interop.InputGesture.EdgeSwipeNew(_handler, (uint)fingers, edge, out IntPtr handle);
+            if (ret != (int)Interop.InputGesture.ErrorCode.None)
             {
-                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                ErrorUtils.ThrowIfError(err, "Failed to create edge swipe gesture");
+                ErrorUtils.ThrowIfError(ret, "Failed to create edge swipe gesture");
             }
 
             if (edgeSize.HasValue)
             {
-                var res = Interop.InputGesture.EdgeSwipeSizeSet(handle, edgeSize.Value, startPoint, endPoint);
-                if (res != Interop.InputGesture.ErrorCode.None)
+                var res = Interop.InputGesture.EdgeSwipeSizeSet(handle, edgeSize.Value, (uint)startPoint, (uint)endPoint);
+                if (res != (int)Interop.InputGesture.ErrorCode.None)
                 {
                     Interop.InputGesture.EdgeSwipeFree(_handler, handle);
-                    ErrorUtils.ThrowIfError((int)res, "Failed to set edge swipe size");
+                    ErrorUtils.ThrowIfError(res, "Failed to set edge swipe size");
                 }
             }
 
             if (grabMode.HasValue)
             {
                 var res = Interop.InputGesture.SetGestureGrabMode(_handler, handle, grabMode.Value);
-                if (res != Interop.InputGesture.ErrorCode.None)
+                if (res != (int)Interop.InputGesture.ErrorCode.None)
                 {
                     Interop.InputGesture.EdgeSwipeFree(_handler, handle);
-                    ErrorUtils.ThrowIfError((int)res, "Failed to set grab mode");
+                    ErrorUtils.ThrowIfError(res, "Failed to set grab mode");
                 }
             }
 
             var grabRes = Interop.InputGesture.GestureGrab(_handler, handle);
-            if (grabRes != Interop.InputGesture.ErrorCode.None)
+            if (grabRes != (int)Interop.InputGesture.ErrorCode.None)
             {
                 Interop.InputGesture.EdgeSwipeFree(_handler, handle);
-                ErrorUtils.ThrowIfError((int)grabRes, "Failed to grab edge swipe gesture");
+                ErrorUtils.ThrowIfError(grabRes, "Failed to grab edge swipe gesture");
             }
 
             _edgeSwipeHandles[key] = handle;
@@ -292,38 +298,37 @@ namespace Tizen.WindowSystem
             if (_edgeDragHandles.ContainsKey(key))
                 throw new ArgumentException("Edge drag gesture already registered for this (fingers, edge) combination.");
 
-            IntPtr handle = Interop.InputGesture.EdgeDragNew(_handler, fingers, edge);
-            if (handle == IntPtr.Zero)
+            int ret = Interop.InputGesture.EdgeDragNew(_handler, (uint)fingers, edge, out IntPtr handle);
+            if (ret != (int)Interop.InputGesture.ErrorCode.None)
             {
-                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                ErrorUtils.ThrowIfError(err, "Failed to create edge drag gesture");
+                ErrorUtils.ThrowIfError(ret, "Failed to create edge drag gesture");
             }
 
             if (edgeSize.HasValue)
             {
-                var res = Interop.InputGesture.EdgeDragSizeSet(handle, edgeSize.Value, startPoint, endPoint);
-                if (res != Interop.InputGesture.ErrorCode.None)
+                var res = Interop.InputGesture.EdgeDragSizeSet(handle, edgeSize.Value, (uint)startPoint, (uint)endPoint);
+                if (res != (int)Interop.InputGesture.ErrorCode.None)
                 {
                     Interop.InputGesture.EdgeDragFree(_handler, handle);
-                    ErrorUtils.ThrowIfError((int)res, "Failed to set edge drag size");
+                    ErrorUtils.ThrowIfError(res, "Failed to set edge drag size");
                 }
             }
 
             if (grabMode.HasValue)
             {
                 var res = Interop.InputGesture.SetGestureGrabMode(_handler, handle, grabMode.Value);
-                if (res != Interop.InputGesture.ErrorCode.None)
+                if (res != (int)Interop.InputGesture.ErrorCode.None)
                 {
                     Interop.InputGesture.EdgeDragFree(_handler, handle);
-                    ErrorUtils.ThrowIfError((int)res, "Failed to set grab mode");
+                    ErrorUtils.ThrowIfError(res, "Failed to set grab mode");
                 }
             }
 
             var grabRes = Interop.InputGesture.GestureGrab(_handler, handle);
-            if (grabRes != Interop.InputGesture.ErrorCode.None)
+            if (grabRes != (int)Interop.InputGesture.ErrorCode.None)
             {
                 Interop.InputGesture.EdgeDragFree(_handler, handle);
-                ErrorUtils.ThrowIfError((int)grabRes, "Failed to grab edge drag gesture");
+                ErrorUtils.ThrowIfError(grabRes, "Failed to grab edge drag gesture");
             }
 
             _edgeDragHandles[key] = handle;
@@ -360,28 +365,27 @@ namespace Tizen.WindowSystem
             if (_tapHandles.ContainsKey(key))
                 throw new ArgumentException("Tap gesture already registered for this (fingers, repeats) combination.");
 
-            IntPtr handle = Interop.InputGesture.TapNew(_handler, fingers, repeats);
-            if (handle == IntPtr.Zero)
+            int ret = Interop.InputGesture.TapNew(_handler, (uint)fingers, (uint)repeats, out IntPtr handle);
+            if (ret != (int)Interop.InputGesture.ErrorCode.None)
             {
-                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                ErrorUtils.ThrowIfError(err, "Failed to create tap gesture");
+                ErrorUtils.ThrowIfError(ret, "Failed to create tap gesture");
             }
 
             if (grabMode.HasValue)
             {
                 var res = Interop.InputGesture.SetGestureGrabMode(_handler, handle, grabMode.Value);
-                if (res != Interop.InputGesture.ErrorCode.None)
+                if (res != (int)Interop.InputGesture.ErrorCode.None)
                 {
                     Interop.InputGesture.TapFree(_handler, handle);
-                    ErrorUtils.ThrowIfError((int)res, "Failed to set grab mode");
+                    ErrorUtils.ThrowIfError(res, "Failed to set grab mode");
                 }
             }
 
             var grabRes = Interop.InputGesture.GestureGrab(_handler, handle);
-            if (grabRes != Interop.InputGesture.ErrorCode.None)
+            if (grabRes != (int)Interop.InputGesture.ErrorCode.None)
             {
                 Interop.InputGesture.TapFree(_handler, handle);
-                ErrorUtils.ThrowIfError((int)grabRes, "Failed to grab tap gesture");
+                ErrorUtils.ThrowIfError(grabRes, "Failed to grab tap gesture");
             }
 
             _tapHandles[key] = handle;
@@ -415,28 +419,27 @@ namespace Tizen.WindowSystem
             if (_palmCoverHandle != IntPtr.Zero)
                 throw new ArgumentException("Palm cover gesture already registered.");
 
-            IntPtr handle = Interop.InputGesture.PalmCoverNew(_handler);
-            if (handle == IntPtr.Zero)
+            int ret = Interop.InputGesture.PalmCoverNew(_handler, out IntPtr handle);
+            if (ret != (int)Interop.InputGesture.ErrorCode.None)
             {
-                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                ErrorUtils.ThrowIfError(err, "Failed to create palm cover gesture");
+                ErrorUtils.ThrowIfError(ret, "Failed to create palm cover gesture");
             }
 
             if (grabMode.HasValue)
             {
                 var res = Interop.InputGesture.SetGestureGrabMode(_handler, handle, grabMode.Value);
-                if (res != Interop.InputGesture.ErrorCode.None)
+                if (res != (int)Interop.InputGesture.ErrorCode.None)
                 {
                     Interop.InputGesture.PalmCoverFree(_handler, handle);
-                    ErrorUtils.ThrowIfError((int)res, "Failed to set grab mode");
+                    ErrorUtils.ThrowIfError(res, "Failed to set grab mode");
                 }
             }
 
             var grabRes = Interop.InputGesture.GestureGrab(_handler, handle);
-            if (grabRes != Interop.InputGesture.ErrorCode.None)
+            if (grabRes != (int)Interop.InputGesture.ErrorCode.None)
             {
                 Interop.InputGesture.PalmCoverFree(_handler, handle);
-                ErrorUtils.ThrowIfError((int)grabRes, "Failed to grab palm cover gesture");
+                ErrorUtils.ThrowIfError(grabRes, "Failed to grab palm cover gesture");
             }
 
             _palmCoverHandle = handle;

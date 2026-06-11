@@ -22,8 +22,7 @@ namespace Tizen.WindowSystem
 {
     internal static class ErrorUtils
     {
-        private const int ErrorTzsh = -0x02860000;
-        private const int NoServiceError = ErrorTzsh | 0x01;
+        private const int NotConnectedError = 0xA000 | 0x01;
 
         internal static void ThrowIfError(int error, string message = null)
         {
@@ -50,13 +49,9 @@ namespace Tizen.WindowSystem
             {
                 throw new NotSupportedException("Not Supported");
             }
-            else if (error == (int)Tizen.Internals.Errors.ErrorCode.InvalidOperation)
+            else if (error == NotConnectedError)
             {
-                throw new InvalidOperationException("Invalid Operation");
-            }
-            else if (error == NoServiceError)
-            {
-                throw new InvalidOperationException("No Service");
+                throw new InvalidOperationException("Not Connected");
             }
             else
             {
