@@ -35,7 +35,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public partial class Window : BaseHandle, IWindowProvider
     {
-        private HandleRef stageCPtr;
         private Layer rootLayer;
         private Layer overlayLayer;
         private Layer borderLayer;
@@ -67,8 +66,6 @@ namespace Tizen.NUI
         {
             if (Interop.Stage.IsInstalled())
             {
-                stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, Interop.Stage.GetCurrent());
-
                 localController = new LayoutController(this);
                 NUILog.Debug("layoutController id:" + localController.GetId());
             }
@@ -472,7 +469,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The stage instance property (read-only).<br />
+        /// The window instance property (read-only).<br />
         /// Gets the current window.<br />
         /// </summary>
         [Obsolete("This has been deprecated in API12, please use Default instead")]
@@ -1036,7 +1033,7 @@ namespace Tizen.NUI
         public Layer GetOverlayLayer()
         {
             // Window.IsInstalled() is actually true only when called from event thread and
-            // Core has been initialized, not when Stage is ready.
+            // Core has been initialized, not when Window is ready.
             if (overlayLayer == null && Window.IsInstalled())
             {
                 overlayLayer = new Layer(Interop.Window.GetOverlayLayer(SwigCPtr), true);
@@ -1260,7 +1257,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Adds a layer to the stage.
+        /// Adds a layer to the window.
         /// </summary>
         /// <param name="layer">Layer to add.</param>
         /// <exception cref="ArgumentNullException"> Thrown when layer is null. </exception>
@@ -1271,7 +1268,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Removes a layer from the stage.
+        /// Removes a layer from the window.
         /// </summary>
         /// <param name="layer">Layer to remove.</param>
         /// <exception cref="ArgumentNullException"> Thrown when layer is null. </exception>
@@ -1664,7 +1661,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderTaskList GetRenderTaskList()
         {
-            global::System.IntPtr cPtr = Interop.Stage.GetRenderTaskList(stageCPtr);
+            global::System.IntPtr cPtr = Interop.Window.GetRenderTaskList(SwigCPtr);
 
             RenderTaskList ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as RenderTaskList;
             if (ret != null)
@@ -1708,7 +1705,7 @@ namespace Tizen.NUI
             else
             {
                 // Window.IsInstalled() is actually true only when called from event thread and
-                // Core has been initialized, not when Stage is ready.
+                // Core has been initialized, not when window is ready.
                 if (rootLayer == null && Window.IsInstalled())
                 {
                     rootLayer = new Layer(Interop.Window.GetRootLayer(SwigCPtr), true);
@@ -1735,20 +1732,23 @@ namespace Tizen.NUI
 
         internal Vector2 GetDpi()
         {
-            Vector2 ret = new Vector2(Interop.Stage.GetDpi(stageCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            using (var val = new Uint16Pair(Interop.Window.GetDpi(SwigCPtr), true))
+            {
+                Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
         }
 
         internal void SetRenderingBehavior(RenderingBehaviorType renderingBehavior)
         {
-            Interop.Stage.SetRenderingBehavior(stageCPtr, (int)renderingBehavior);
+            Interop.Stage.SetRenderingBehavior(new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero), (int)renderingBehavior);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal RenderingBehaviorType GetRenderingBehavior()
         {
-            RenderingBehaviorType ret = (RenderingBehaviorType)Interop.Stage.GetRenderingBehavior(stageCPtr);
+            RenderingBehaviorType ret = (RenderingBehaviorType)Interop.Stage.GetRenderingBehavior(new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -2354,7 +2354,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback)
         {
-            frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
+            frameUpdateCallback?.AddFrameUpdateCallback(new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero), new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
         }
 
         /// <summary>
@@ -2367,7 +2367,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback, View rootView)
         {
-            frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, View.getCPtr(rootView));
+            frameUpdateCallback?.AddFrameUpdateCallback(new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero), View.getCPtr(rootView));
         }
 
         /// <summary>
@@ -2376,7 +2376,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback)
         {
-            frameUpdateCallback?.RemoveFrameUpdateCallback(stageCPtr);
+            frameUpdateCallback?.RemoveFrameUpdateCallback(new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
         }
 
         /// <summary>
