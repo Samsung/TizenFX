@@ -34,7 +34,9 @@ namespace Tizen.WindowSystem.InputGestureTest
         void Initialize()
         {
             Window win = Window.Default;
-            inputGesture = new InputGesture();
+            display = new TizenCoreWlDisplay();
+            display.Connect();
+            inputGesture = new InputGesture(display);
 
             win.WindowSize = new Size2D(500, 500);
             win.KeyEvent += OnKeyEvent;
@@ -191,6 +193,7 @@ namespace Tizen.WindowSystem.InputGestureTest
             app.Run(args);
         }
 
+        private TizenCoreWlDisplay display;
         private InputGesture inputGesture;
         private TextLabel centerLabel;
 
