@@ -34,7 +34,9 @@ namespace Tizen.WindowSystem.InputGeneratorTest
         void Initialize()
         {
             Window win = Window.Default;
-            inputGen = new InputGenerator();
+            display = new TizenCoreWlDisplay();
+            display.Connect();
+            inputGen = new InputGenerator(display, InputGeneratorDevices.All);
 
             win.WindowSize = new Size2D(500, 500);
             win.KeyEvent += OnKeyEvent;
@@ -133,6 +135,7 @@ namespace Tizen.WindowSystem.InputGeneratorTest
             app.Run(args);
         }
 
+        private TizenCoreWlDisplay display;
         private InputGenerator inputGen;
         private TextLabel centerLabel;
         int touchCounter = 0;
