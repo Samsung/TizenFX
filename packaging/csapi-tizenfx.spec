@@ -22,7 +22,7 @@ Summary:    Assemblies of Tizen .NET
 Version:    %{TIZEN_NET_RPM_VERSION}
 Release:    1
 Group:      Development/Libraries
-License:    Apache-2.0 and MIT
+License:    Apache-2.0 and MIT and BSD-2-Clause
 URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
@@ -226,6 +226,7 @@ echo "db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS}" >> %{D
 %files
 %license LICENSE
 %license LICENSE.MIT
+%license LICENSE.BSD-2-Clause
 %attr(0755,root,root) %{UPGRADE_SCRIPT_PATH}/500.tizenfx_upgrade.sh
 
 %files nuget
