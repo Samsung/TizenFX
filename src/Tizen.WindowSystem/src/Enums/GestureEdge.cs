@@ -12,7 +12,7 @@ namespace Tizen.WindowSystem
         /// <summary>
         /// edge top.
         /// </summary>
-        Top,
+        Top = 1,
 
         /// <summary>
         /// edge right.
