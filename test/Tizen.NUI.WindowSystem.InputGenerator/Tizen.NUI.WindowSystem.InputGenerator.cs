@@ -34,8 +34,30 @@ namespace Tizen.NUI.WindowSystem
 
         void Initialize()
         {
+            Log.Debug("GeneratorSample", "Initialize() started");
+
             Window win = Window.Instance;
-            inputGen = new InputGenerator(InputGenerator.DeviceType.All, null);
+            Log.Debug("GeneratorSample", "Window.Instance obtained");
+
+            try
+            {
+                Log.Debug("GeneratorSample", "Creating TizenCoreWlDisplay...");
+                display = new TizenCoreWlDisplay();
+                Log.Debug("GeneratorSample", "TizenCoreWlDisplay created");
+
+                Log.Debug("GeneratorSample", "Connecting TizenCoreWlDisplay...");
+                display.Connect();
+                Log.Debug("GeneratorSample", "TizenCoreWlDisplay connected");
+
+                Log.Debug("GeneratorSample", "Creating InputGenerator with DeviceType.All...");
+                inputGen = new InputGenerator(display, InputGenerator.DeviceType.All, null);
+                Log.Debug("GeneratorSample", "InputGenerator created");
+            }
+            catch (Exception e)
+            {
+                Log.Error("GeneratorSample", $"Failed to initialize TizenCoreWl/InputGenerator: {e.GetType().Name}: {e.Message}");
+                Log.Error("GeneratorSample", $"StackTrace: {e.StackTrace}");
+            }
 
             win.WindowSize = new Size2D(500, 500);
             win.KeyEvent += OnKeyEvent;
@@ -57,6 +79,7 @@ namespace Tizen.NUI.WindowSystem
             windowView.Add(centerLabel);
 
             repeatCounter = 0;
+            Log.Debug("GeneratorSample", "Initialize() completed");
         }
 
         private void OnKeyEvent(object sender, Window.KeyEventArgs e)
@@ -76,8 +99,8 @@ namespace Tizen.NUI.WindowSystem
         {
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
-                inputGen.GenerateKey("Return", 1);
-                inputGen.GenerateKey("Return", 0);
+                inputGen.GenerateKey("Return", true);
+                inputGen.GenerateKey("Return", false);
 
                 return true;
             }
@@ -91,6 +114,7 @@ namespace Tizen.NUI.WindowSystem
             app.Run(args);
         }
 
+        private TizenCoreWlDisplay display;
         private InputGenerator inputGen;
         private TextLabel centerLabel;
         int repeatCounter = 0;

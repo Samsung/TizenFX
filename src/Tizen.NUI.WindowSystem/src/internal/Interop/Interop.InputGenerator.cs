@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI.WindowSystem
 {
@@ -8,34 +7,34 @@ namespace Tizen.NUI.WindowSystem
     {
         internal static partial class InputGenerator
         {
-            const string lib = "libcapi-ui-efl-util.so.0";
+            const string lib = "libtizen-core-wl.so.0";
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_initialize_generator")]
-            internal static extern IntPtr Init(int devType);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_input_generator_create")]
+            internal static extern int Create(IntPtr display, int devType, out IntPtr generator);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_initialize_generator_with_name")]
-            internal static extern IntPtr InitWithName(int devType, string devName);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_input_generator_create_with_name")]
+            internal static extern int CreateWithName(IntPtr display, int devType, string devName, out IntPtr generator);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_initialize_generator_with_sync")]
-            internal static extern IntPtr SyncInit(int devType, string devName);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_input_generator_create_with_sync")]
+            internal static extern int CreateWithSync(IntPtr display, int devType, string devName, out IntPtr generator);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_deinitialize_generator")]
-            internal static extern ErrorCode Deinit(IntPtr inputGenHandler);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_input_generator_destroy")]
+            internal static extern int Destroy(IntPtr generator);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_key")]
-            internal static extern ErrorCode GenerateKey(IntPtr inputGenHandler, string keyName, int pressed);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_input_generator_generate_key")]
+            internal static extern int GenerateKey(IntPtr generator, string keyName, [MarshalAs(UnmanagedType.I1)] bool pressed);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_pointer")]
-            internal static extern ErrorCode GeneratePointer(IntPtr inputGenHandler, int buttons, int pointerType, int x, int y);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_input_generator_generate_pointer")]
+            internal static extern int GeneratePointer(IntPtr generator, int buttons, int pointerType, int x, int y);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_wheel")]
-            internal static extern ErrorCode GenerateWheel(IntPtr inputGenHandler, int wheelType, int value);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_input_generator_generate_wheel")]
+            internal static extern int GenerateWheel(IntPtr generator, int wheelType, int value);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_touch")]
-            internal static extern ErrorCode GenerateTouch(IntPtr inputGenHandler, int idx, int touchType, int x, int y);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_input_generator_generate_touch")]
+            internal static extern int GenerateTouch(IntPtr generator, int idx, int touchType, int x, int y);
 
-            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_touch_axis")]
-            internal static extern ErrorCode GenerateTouchAxis(IntPtr inputGenHandler, int idx, int touchType, int x, int y, double radius_x, double radius_y, double pressure, double angle, double palm);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_input_generator_generate_touch_with_axis")]
+            internal static extern int GenerateTouchAxis(IntPtr generator, int idx, int touchType, int x, int y, double radius_x, double radius_y, double pressure, double angle, double palm);
 
             // Enumeration of input device types.
             // The device type may be used overlapped.
@@ -51,7 +50,6 @@ namespace Tizen.NUI.WindowSystem
             // Enumeration of touch event types
             internal enum TouchType
             {
-                None,
                 Begin,
                 Update,
                 End,
@@ -72,17 +70,14 @@ namespace Tizen.NUI.WindowSystem
                 Horizontal,
             }
 
-            private const int ErrorTzsh = -0x02860000;
-
             internal enum ErrorCode
             {
                 None = Tizen.Internals.Errors.ErrorCode.None,                            // Successful
                 OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,              // Out of memory
                 InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,    // Invalid parameter
-                InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,    // Invalid operation
-                PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,    // Permission denied
                 NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,            // NOT supported
-                NoService = ErrorTzsh | 0x01,                                            // Service does not exist
+                PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,    // Permission denied
+                NotConnected = 0xA000 | 0x01,                                            // No connection to display server
             }
         }
     }

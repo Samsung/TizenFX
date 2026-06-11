@@ -17,7 +17,6 @@
 
 using System;
 using System.ComponentModel;
-using static Tizen.NUI.WindowSystem.Interop.InputGesture;
 
 namespace Tizen.NUI.WindowSystem
 {
@@ -144,20 +143,21 @@ namespace Tizen.NUI.WindowSystem
     public class InputGesture : IDisposable
     {
         private IntPtr _handler;
+        private TizenCoreWlDisplay _display;
         private bool disposed = false;
         private bool isDisposeQueued = false;
 
         private event EventHandler<EdgeSwipeEventArgs> _edgeSwipeEventHandler;
-        private EdgeSwipeCb _edgeSwipeDelegate;
+        private Interop.InputGesture.EdgeSwipeCb _edgeSwipeDelegate;
 
         private event EventHandler<EdgeDragEventArgs> _edgeDragEventHandler;
-        private EdgeDragCb _edgeDragDelegate;
+        private Interop.InputGesture.EdgeDragCb _edgeDragDelegate;
 
         private event EventHandler<TapEventArgs> _tapEventHandler;
-        private TapCb _tapDelegate;
+        private Interop.InputGesture.TapCb _tapDelegate;
 
         private event EventHandler<PalmCoverEventArgs> _palmCoverEventHandler;
-        private PalmCoverCb _palmCoverDelegate;
+        private Interop.InputGesture.PalmCoverCb _palmCoverDelegate;
 
         internal void ErrorCodeThrow(Interop.InputGesture.ErrorCode error)
         {
@@ -173,6 +173,8 @@ namespace Tizen.NUI.WindowSystem
                     throw new Tizen.Applications.Exceptions.PermissionDeniedException("Permission denied");
                 case Interop.InputGesture.ErrorCode.NotSupported :
                     throw new NotSupportedException("Not Supported");
+                case Interop.InputGesture.ErrorCode.NotConnected :
+                    throw new InvalidOperationException("Not Connected");
                 default :
                     throw new InvalidOperationException("Unknown Error");
             }
@@ -181,19 +183,25 @@ namespace Tizen.NUI.WindowSystem
         /// <summary>
         /// Creates a new InputGesture.
         /// </summary>
+        /// <param name="display">The TizenCoreWlDisplay instance.</param>
         /// <remarks> This module operates in a NUI application and requires instantiation and disposal on the main thread.</remarks>
         /// <exception cref="Tizen.Applications.Exceptions.OutOfMemoryException">Thrown when the memory is not enough to allocate.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <exception cref="Tizen.Applications.Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
-        public InputGesture()
+        public InputGesture(TizenCoreWlDisplay display)
         {
-            _handler = Interop.InputGesture.Initialize();
-            if (_handler == IntPtr.Zero)
+            if (display == null)
             {
-                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                ErrorCodeThrow((Interop.InputGesture.ErrorCode)err);
+                throw new ArgumentNullException("display is null.");
             }
-            Log.Debug(LogTag, "InputGesture Created");
+
+            _display = display;
+            int ret = Interop.InputGesture.Create(display.GetNativeHandle(), out _handler);
+            if (ret != (int)Interop.InputGesture.ErrorCode.None)
+            {
+                ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
+            }
+            Log.Debug(Interop.InputGesture.LogTag, "InputGesture Created");
         }
 
         /// <summary>
@@ -244,8 +252,8 @@ namespace Tizen.NUI.WindowSystem
             //because the execution order of Finalizes is non-deterministic.
             if (_handler != global::System.IntPtr.Zero)
             {
-                Interop.InputGesture.ErrorCode res = Interop.InputGesture.Deinitialize(_handler);
-                ErrorCodeThrow(res);
+                int res = Interop.InputGesture.Destroy(_handler);
+                ErrorCodeThrow((Interop.InputGesture.ErrorCode)res);
                 _handler = IntPtr.Zero;
             }
 
@@ -263,13 +271,12 @@ namespace Tizen.NUI.WindowSystem
         public IntPtr CreateEdgeSwipeData(int fingers, GestureEdge edge)
         {
             IntPtr edgeSwipeG = IntPtr.Zero;
-            edgeSwipeG = Interop.InputGesture.EdgeSwipeNew(_handler, fingers, (int)edge);
-            if (edgeSwipeG == IntPtr.Zero)
+            int ret = Interop.InputGesture.EdgeSwipeNew(_handler, (uint)fingers, (int)edge, out edgeSwipeG);
+            if (ret != (int)Interop.InputGesture.ErrorCode.None)
             {
-                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                ErrorCodeThrow((Interop.InputGesture.ErrorCode)err);
+                ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
             }
-            Log.Debug(LogTag, $"CreateEdgeSwipeDatafingers: {fingers}", "edge: " + (int)edge);
+            Log.Debug(Interop.InputGesture.LogTag, $"CreateEdgeSwipeDatafingers: {fingers}", "edge: " + (int)edge);
             return edgeSwipeG;
         }
 
@@ -284,9 +291,9 @@ namespace Tizen.NUI.WindowSystem
             {
                 throw new ArgumentException("EdgeSwipeData is not valid.");
             }
-            Interop.InputGesture.ErrorCode res = Interop.InputGesture.EdgeSwipeFree(_handler, data);
-            ErrorCodeThrow(res);
-            Log.Debug(LogTag, "ReleaseEdgeSwipeData");
+            int ret = Interop.InputGesture.EdgeSwipeFree(_handler, data);
+            ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
+            Log.Debug(Interop.InputGesture.LogTag, "ReleaseEdgeSwipeData");
         }
 
         /// <summary>
@@ -303,9 +310,9 @@ namespace Tizen.NUI.WindowSystem
             {
                 throw new ArgumentException("EdgeSwipeData is not valid.");
             }
-            Interop.InputGesture.ErrorCode res = Interop.InputGesture.EdgeSwipeSizeSet(data, (int)edgeSize, startPoint, endPoint);
-            ErrorCodeThrow(res);
-            Log.Debug(LogTag, $"SetEdgeSwipeSizesize: {(int)edgeSize }startPoint: {startPoint}endPoint: {endPoint}");
+            int ret = Interop.InputGesture.EdgeSwipeSizeSet(data, (int)edgeSize, (uint)startPoint, (uint)endPoint);
+            ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
+            Log.Debug(Interop.InputGesture.LogTag, $"SetEdgeSwipeSizesize: {(int)edgeSize }startPoint: {startPoint}endPoint: {endPoint}");
         }
 
         /// <summary>
@@ -319,13 +326,12 @@ namespace Tizen.NUI.WindowSystem
         public IntPtr CreateEdgeDragData(int fingers, GestureEdge edge)
         {
             IntPtr edgeDragG = IntPtr.Zero;
-            edgeDragG = Interop.InputGesture.EdgeDragNew(_handler, fingers, (int)edge);
-            if (edgeDragG == IntPtr.Zero)
+            int ret = Interop.InputGesture.EdgeDragNew(_handler, (uint)fingers, (int)edge, out edgeDragG);
+            if (ret != (int)Interop.InputGesture.ErrorCode.None)
             {
-                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                ErrorCodeThrow((Interop.InputGesture.ErrorCode)err);
+                ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
             }
-            Log.Debug(LogTag, $"CreateEdgeDragDatafingers: {fingers}", "edge: " + (int)edge);
+            Log.Debug(Interop.InputGesture.LogTag, $"CreateEdgeDragDatafingers: {fingers}", "edge: " + (int)edge);
             return edgeDragG;
         }
 
@@ -340,9 +346,9 @@ namespace Tizen.NUI.WindowSystem
             {
                 throw new ArgumentException("EdgeDragData is not valid.");
             }
-            Interop.InputGesture.ErrorCode res = Interop.InputGesture.EdgeDragFree(_handler, data);
-            ErrorCodeThrow(res);
-            Log.Debug(LogTag, "ReleaseEdgeDrageData");
+            int ret = Interop.InputGesture.EdgeDragFree(_handler, data);
+            ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
+            Log.Debug(Interop.InputGesture.LogTag, "ReleaseEdgeDrageData");
         }
 
         /// <summary>
@@ -359,9 +365,9 @@ namespace Tizen.NUI.WindowSystem
             {
                 throw new ArgumentException("EdgeDragData is not valid.");
             }
-            Interop.InputGesture.ErrorCode res = Interop.InputGesture.EdgeDragSizeSet(data, (int)edgeSize, startPoint, endPoint);
-            ErrorCodeThrow(res);
-            Log.Debug(LogTag, $"SetEdgeDragSizesize: {(int)edgeSize }startPoint: {startPoint}endPoint: {endPoint}");
+            int ret = Interop.InputGesture.EdgeDragSizeSet(data, (int)edgeSize, (uint)startPoint, (uint)endPoint);
+            ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
+            Log.Debug(Interop.InputGesture.LogTag, $"SetEdgeDragSizesize: {(int)edgeSize }startPoint: {startPoint}endPoint: {endPoint}");
         }
 
         /// <summary>
@@ -375,13 +381,12 @@ namespace Tizen.NUI.WindowSystem
         public IntPtr CreateTapData(int fingers, int repeats)
         {
             IntPtr tapG = IntPtr.Zero;
-            tapG = Interop.InputGesture.TapNew(_handler, fingers, repeats);
-            if (tapG == IntPtr.Zero)
+            int ret = Interop.InputGesture.TapNew(_handler, (uint)fingers, (uint)repeats, out tapG);
+            if (ret != (int)Interop.InputGesture.ErrorCode.None)
             {
-                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                ErrorCodeThrow((Interop.InputGesture.ErrorCode)err);
+                ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
             }
-            Log.Debug(LogTag, $"CreateTapDatafingers: {fingers}", "repeats: " + repeats);
+            Log.Debug(Interop.InputGesture.LogTag, $"CreateTapDatafingers: {fingers}", "repeats: " + repeats);
             return tapG;
         }
 
@@ -396,9 +401,9 @@ namespace Tizen.NUI.WindowSystem
             {
                 throw new ArgumentException("tapData is not valid.");
             }
-            Interop.InputGesture.ErrorCode res = Interop.InputGesture.TapFree(_handler, data);
-            ErrorCodeThrow(res);
-            Log.Debug(LogTag, "ReleaseTapData");
+            int ret = Interop.InputGesture.TapFree(_handler, data);
+            ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
+            Log.Debug(Interop.InputGesture.LogTag, "ReleaseTapData");
         }
 
         /// <summary>
@@ -410,13 +415,12 @@ namespace Tizen.NUI.WindowSystem
         public IntPtr CreatePalmCoverData()
         {
             IntPtr palmCoverG = IntPtr.Zero;
-            palmCoverG = Interop.InputGesture.PalmCoverNew(_handler);
-            if (palmCoverG == IntPtr.Zero)
+            int ret = Interop.InputGesture.PalmCoverNew(_handler, out palmCoverG);
+            if (ret != (int)Interop.InputGesture.ErrorCode.None)
             {
-                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                ErrorCodeThrow((Interop.InputGesture.ErrorCode)err);
+                ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
             }
-            Log.Debug(LogTag, "CreatePalmCoverData");
+            Log.Debug(Interop.InputGesture.LogTag, "CreatePalmCoverData");
             return palmCoverG;
         }
 
@@ -431,9 +435,9 @@ namespace Tizen.NUI.WindowSystem
             {
                 throw new ArgumentException("palmCoverData is not valid.");
             }
-            Interop.InputGesture.ErrorCode res = Interop.InputGesture.PalmCoverFree(_handler, data);
-            ErrorCodeThrow(res);
-            Log.Debug(LogTag, "ReleasePalmCoverData");
+            int ret = Interop.InputGesture.PalmCoverFree(_handler, data);
+            ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
+            Log.Debug(Interop.InputGesture.LogTag, "ReleasePalmCoverData");
         }
 
         /// <summary>
@@ -447,9 +451,9 @@ namespace Tizen.NUI.WindowSystem
             {
                 throw new ArgumentException("gesture data is not valid.");
             }
-            Interop.InputGesture.ErrorCode res = Interop.InputGesture.GestureGrab(_handler, data);
-            ErrorCodeThrow(res);
-            Log.Debug(LogTag, "GrabGesture");
+            int ret = Interop.InputGesture.GestureGrab(_handler, data);
+            ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
+            Log.Debug(Interop.InputGesture.LogTag, "GrabGesture");
         }
 
         /// <summary>
@@ -464,9 +468,9 @@ namespace Tizen.NUI.WindowSystem
             {
                 throw new ArgumentException("gesture data is not valid.");
             }
-            Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetGestureGrabMode(_handler, data, (int)mode);
-            ErrorCodeThrow(res);
-            Log.Debug(LogTag, "SetGestureGrabMode");
+            int ret = Interop.InputGesture.SetGestureGrabMode(_handler, data, (int)mode);
+            ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
+            Log.Debug(Interop.InputGesture.LogTag, "SetGestureGrabMode");
         }
 
         /// <summary>
@@ -480,9 +484,9 @@ namespace Tizen.NUI.WindowSystem
             {
                 throw new ArgumentException("gesture data is not valid.");
             }
-            Interop.InputGesture.ErrorCode res = Interop.InputGesture.GestureUngrab(_handler, data);
-            ErrorCodeThrow(res);
-            Log.Debug(LogTag, "UngrabGesture");
+            int ret = Interop.InputGesture.GestureUngrab(_handler, data);
+            ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
+            Log.Debug(Interop.InputGesture.LogTag, "UngrabGesture");
         }
 
         /// <summary>
@@ -498,11 +502,11 @@ namespace Tizen.NUI.WindowSystem
                     _edgeSwipeDelegate = (IntPtr userData, int mode,  int fingers, int sx, int sy, int edge) =>
                     {
                         EdgeSwipeEventArgs args = new EdgeSwipeEventArgs(mode, fingers, sx, sy, edge);
-                        Log.Debug(LogTag, $"EdgeSwipe Event received. mode: {mode}, fingers: {fingers}");
+                        Log.Debug(Interop.InputGesture.LogTag, $"EdgeSwipe Event received. mode: {mode}, fingers: {fingers}");
                         _edgeSwipeEventHandler?.Invoke(null, args);
                     };
-                    Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetEdgeSwipeCb(_handler, _edgeSwipeDelegate, IntPtr.Zero);
-                    ErrorCodeThrow(res);
+                    int ret = Interop.InputGesture.SetEdgeSwipeCb(_handler, _edgeSwipeDelegate, IntPtr.Zero);
+                    ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
                 }
 
                 _edgeSwipeEventHandler += value;
@@ -512,8 +516,8 @@ namespace Tizen.NUI.WindowSystem
                 _edgeSwipeEventHandler -= value;
                 if (_edgeSwipeEventHandler == null)
                 {
-                    Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetEdgeSwipeCb(_handler, null, IntPtr.Zero);
-                    ErrorCodeThrow(res);
+                    int ret = Interop.InputGesture.SetEdgeSwipeCb(_handler, null, IntPtr.Zero);
+                    ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
                 }
             }
         }
@@ -531,11 +535,11 @@ namespace Tizen.NUI.WindowSystem
                     _edgeDragDelegate = (IntPtr userData, int mode,  int fingers, int cx, int cy, int edge) =>
                     {
                         EdgeDragEventArgs args = new EdgeDragEventArgs(mode, fingers, cx, cy, edge);
-                        Log.Debug(LogTag, $"EdgeDrag Event received. mode: {mode}, fingers: {fingers}");
+                        Log.Debug(Interop.InputGesture.LogTag, $"EdgeDrag Event received. mode: {mode}, fingers: {fingers}");
                         _edgeDragEventHandler?.Invoke(null, args);
                     };
-                    Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetEdgeDragCb(_handler, _edgeDragDelegate, IntPtr.Zero);
-                    ErrorCodeThrow(res);
+                    int ret = Interop.InputGesture.SetEdgeDragCb(_handler, _edgeDragDelegate, IntPtr.Zero);
+                    ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
                 }
 
                 _edgeDragEventHandler += value;
@@ -545,8 +549,8 @@ namespace Tizen.NUI.WindowSystem
                 _edgeDragEventHandler -= value;
                 if (_edgeDragEventHandler == null)
                 {
-                    Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetEdgeDragCb(_handler, null, IntPtr.Zero);
-                    ErrorCodeThrow(res);
+                    int ret = Interop.InputGesture.SetEdgeDragCb(_handler, null, IntPtr.Zero);
+                    ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
                 }
             }
         }
@@ -564,11 +568,11 @@ namespace Tizen.NUI.WindowSystem
                     _tapDelegate = (IntPtr userData, int mode,  int fingers, int repeats) =>
                     {
                         TapEventArgs args = new TapEventArgs(mode, fingers, repeats);
-                        Log.Debug(LogTag, $"Tap Event received. mode: {mode}, fingers: {fingers}, repeats: {repeats}");
+                        Log.Debug(Interop.InputGesture.LogTag, $"Tap Event received. mode: {mode}, fingers: {fingers}, repeats: {repeats}");
                         _tapEventHandler?.Invoke(null, args);
                     };
-                    Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetTapCb(_handler, _tapDelegate, IntPtr.Zero);
-                    ErrorCodeThrow(res);
+                    int ret = Interop.InputGesture.SetTapCb(_handler, _tapDelegate, IntPtr.Zero);
+                    ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
                 }
 
                 _tapEventHandler += value;
@@ -578,8 +582,8 @@ namespace Tizen.NUI.WindowSystem
                 _tapEventHandler -= value;
                 if (_tapEventHandler == null)
                 {
-                    Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetTapCb(_handler, null, IntPtr.Zero);
-                    ErrorCodeThrow(res);
+                    int ret = Interop.InputGesture.SetTapCb(_handler, null, IntPtr.Zero);
+                    ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
                 }
             }
         }
@@ -596,11 +600,11 @@ namespace Tizen.NUI.WindowSystem
                     _palmCoverDelegate = (IntPtr userData, int mode,  int duration, int cx, int cy, int size, double pressure) =>
                     {
                         PalmCoverEventArgs args = new PalmCoverEventArgs(mode, duration, cx, cy, size, pressure);
-                        Log.Debug(LogTag, $"PalmCover Event received. mode: {mode}, duration: {duration}");
+                        Log.Debug(Interop.InputGesture.LogTag, $"PalmCover Event received. mode: {mode}, duration: {duration}");
                         _palmCoverEventHandler?.Invoke(null, args);
                     };
-                    Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetPalmCoverCb(_handler, _palmCoverDelegate, IntPtr.Zero);
-                    ErrorCodeThrow(res);
+                    int ret = Interop.InputGesture.SetPalmCoverCb(_handler, _palmCoverDelegate, IntPtr.Zero);
+                    ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
                 }
                 _palmCoverEventHandler += value;
             }
@@ -609,8 +613,8 @@ namespace Tizen.NUI.WindowSystem
                 _palmCoverEventHandler -= value;
                 if (_palmCoverEventHandler == null)
                 {
-                    Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetPalmCoverCb(_handler, null, IntPtr.Zero);
-                    ErrorCodeThrow(res);
+                    int ret = Interop.InputGesture.SetPalmCoverCb(_handler, null, IntPtr.Zero);
+                    ErrorCodeThrow((Interop.InputGesture.ErrorCode)ret);
                 }
             }
         }

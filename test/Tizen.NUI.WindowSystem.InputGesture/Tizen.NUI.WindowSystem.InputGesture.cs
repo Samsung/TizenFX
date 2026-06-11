@@ -18,7 +18,9 @@ namespace Tizen.NUI.WindowSystem
         void Initialize()
         {
             Window win = Window.Instance;
-            inputGesture = new InputGesture();
+            display = new TizenCoreWlDisplay();
+            display.Connect();
+            inputGesture = new InputGesture(display);
 
             win.WindowSize = new Size2D(500, 500);
             win.KeyEvent += OnKeyEvent;
@@ -241,6 +243,7 @@ namespace Tizen.NUI.WindowSystem
             app.Run(args);
         }
 
+        private TizenCoreWlDisplay display;
         private InputGesture inputGesture;
         IntPtr edgeSwipeG;
         IntPtr edgeDragG;

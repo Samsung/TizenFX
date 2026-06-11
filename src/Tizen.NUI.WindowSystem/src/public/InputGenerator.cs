@@ -31,6 +31,7 @@ namespace Tizen.NUI.WindowSystem
     public class InputGenerator : IDisposable
     {
         private IntPtr _handler;
+        private TizenCoreWlDisplay _display;
         private bool disposed = false;
         private bool isDisposeQueued = false;
 
@@ -70,11 +71,6 @@ namespace Tizen.NUI.WindowSystem
         /// </summary>
         public enum TouchType
         {
-            /// <summary>
-            /// None.
-            /// </summary>
-            None = Interop.InputGenerator.TouchType.None,
-
             /// <summary>
             /// Touch begin.
             /// </summary>
@@ -142,8 +138,8 @@ namespace Tizen.NUI.WindowSystem
                     throw new Tizen.Applications.Exceptions.PermissionDeniedException("Permission denied");
                 case Interop.InputGenerator.ErrorCode.NotSupported :
                     throw new NotSupportedException("Not Supported");
-                case Interop.InputGenerator.ErrorCode.NoService :
-                    throw new InvalidOperationException("No Service");
+                case Interop.InputGenerator.ErrorCode.NotConnected :
+                    throw new InvalidOperationException("Not Connected");
                 default :
                     throw new InvalidOperationException("Unknown Error");
             }
@@ -152,30 +148,70 @@ namespace Tizen.NUI.WindowSystem
         /// <summary>
         /// Creates a new InputGenerator.
         /// </summary>
+        /// <param name="display">The TizenCoreWlDisplay instance.</param>
         /// <param name="devType">The Device type of the new input generator.</param>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
-        public InputGenerator(DeviceType devType)
+        public InputGenerator(TizenCoreWlDisplay display, DeviceType devType)
         {
+            if (display == null)
+            {
+                Tizen.Log.Error("InputGenerator", "InputGenerator: display is null");
+                throw new ArgumentNullException("display is null.");
+            }
             if (devType == DeviceType.None)
             {
+                Tizen.Log.Error("InputGenerator", "InputGenerator: Invalid device type (None)");
                 throw new ArgumentException("Invalid device type");
             }
 
-            _handler = Interop.InputGenerator.Init((int)devType);
+            _display = display;
+            Tizen.Log.Debug("InputGenerator", $"InputGenerator: Creating with devType={devType}");
+            int ret = Interop.InputGenerator.Create(display.GetNativeHandle(), (int)devType, out _handler);
+            if (ret != (int)Interop.InputGenerator.ErrorCode.None)
+            {
+                Tizen.Log.Error("InputGenerator", $"InputGenerator: Create() failed with error={ret}");
+                ErrorCodeThrow((Interop.InputGenerator.ErrorCode)ret);
+            }
+            Tizen.Log.Debug("InputGenerator", $"InputGenerator: Create() succeeded, handler=0x{_handler:X}");
         }
 
-        public InputGenerator(DeviceType devType, string name, bool sync = false)
+        /// <summary>
+        /// Creates a new InputGenerator with a custom device name.
+        /// </summary>
+        /// <param name="display">The TizenCoreWlDisplay instance.</param>
+        /// <param name="devType">The Device type of the new input generator.</param>
+        /// <param name="name">The device name.</param>
+        /// <param name="sync">If true, creates synchronously.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
+        public InputGenerator(TizenCoreWlDisplay display, DeviceType devType, string name, bool sync = false)
         {
+            if (display == null)
+            {
+                Tizen.Log.Error("InputGenerator", "InputGenerator: display is null");
+                throw new ArgumentNullException("display is null.");
+            }
             if (devType == DeviceType.None)
             {
+                Tizen.Log.Error("InputGenerator", "InputGenerator: Invalid device type (None)");
                 throw new ArgumentException("Invalid device type");
             }
 
+            _display = display;
+            Tizen.Log.Debug("InputGenerator", $"InputGenerator: Creating with devType={devType}, name={name}, sync={sync}");
+            int ret;
             if (sync)
-                _handler = Interop.InputGenerator.SyncInit((int)devType, name);
+                ret = Interop.InputGenerator.CreateWithSync(display.GetNativeHandle(), (int)devType, name, out _handler);
             else
-                _handler = Interop.InputGenerator.InitWithName((int)devType, name);
+                ret = Interop.InputGenerator.CreateWithName(display.GetNativeHandle(), (int)devType, name, out _handler);
+
+            if (ret != (int)Interop.InputGenerator.ErrorCode.None)
+            {
+                Tizen.Log.Error("InputGenerator", $"InputGenerator: Create with name failed, error={ret}");
+                ErrorCodeThrow((Interop.InputGenerator.ErrorCode)ret);
+            }
+            Tizen.Log.Debug("InputGenerator", $"InputGenerator: Create with name succeeded, handler=0x{_handler:X}");
         }
 
         /// <summary>
@@ -213,8 +249,8 @@ namespace Tizen.NUI.WindowSystem
             {
                 if (_handler != IntPtr.Zero)
                 {
-                    Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.Deinit(_handler);
-                    ErrorCodeThrow(res);
+                    int res = Interop.InputGenerator.Destroy(_handler);
+                    ErrorCodeThrow((Interop.InputGenerator.ErrorCode)res);
                     _handler = IntPtr.Zero;
                 }
                 disposed = true;
@@ -226,10 +262,10 @@ namespace Tizen.NUI.WindowSystem
         /// </summary>
         /// <param name="keyName">The key name to generate.</param>
         /// <param name="pressed">Set the key is pressed or released.</param>
-        public void GenerateKey(string keyName, int pressed)
+        public void GenerateKey(string keyName, bool pressed)
         {
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateKey(_handler, keyName, pressed);
-            ErrorCodeThrow(res);
+            int res = Interop.InputGenerator.GenerateKey(_handler, keyName, pressed);
+            ErrorCodeThrow((Interop.InputGenerator.ErrorCode)res);
         }
 
         /// <summary>
@@ -241,8 +277,8 @@ namespace Tizen.NUI.WindowSystem
         /// <param name="y">Y coordinate of the pointer.</param>
         public void GeneratePointer(int buttons, PointerType pointerType, int x, int y)
         {
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GeneratePointer(_handler, buttons, (int)pointerType, x, y);
-            ErrorCodeThrow(res);
+            int res = Interop.InputGenerator.GeneratePointer(_handler, buttons, (int)pointerType, x, y);
+            ErrorCodeThrow((Interop.InputGenerator.ErrorCode)res);
         }
 
         /// <summary>
@@ -252,8 +288,8 @@ namespace Tizen.NUI.WindowSystem
         /// <param name="value">The value of the wheel.</param>
         public void GenerateWheel(PointerWheelType wheelType, int value)
         {
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateWheel(_handler, (int)wheelType, value);
-            ErrorCodeThrow(res);
+            int res = Interop.InputGenerator.GenerateWheel(_handler, (int)wheelType, value);
+            ErrorCodeThrow((Interop.InputGenerator.ErrorCode)res);
         }
 
         /// <summary>
@@ -265,8 +301,8 @@ namespace Tizen.NUI.WindowSystem
         /// <param name="y">Y coordinate of the touch.</param>
         public void GenerateTouch(int idx, TouchType touchType, int x, int y)
         {
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateTouch(_handler, idx, (int) touchType, x, y);
-            ErrorCodeThrow(res);
+            int res = Interop.InputGenerator.GenerateTouch(_handler, idx, (int) touchType, x, y);
+            ErrorCodeThrow((Interop.InputGenerator.ErrorCode)res);
         }
 
         /// <summary>
@@ -283,8 +319,8 @@ namespace Tizen.NUI.WindowSystem
         /// <param name="palm">palm of the touch.</param>
         public void GenerateTouchAxis(int idx, TouchType touchType, int x, int y, double radius_x, double radius_y, double pressure, double angle, double palm)
         {
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateTouchAxis(_handler, idx, (int) touchType, x, y, radius_x, radius_y, pressure, angle, palm);
-            ErrorCodeThrow(res);
+            int res = Interop.InputGenerator.GenerateTouchAxis(_handler, idx, (int) touchType, x, y, radius_x, radius_y, pressure, angle, palm);
+            ErrorCodeThrow((Interop.InputGenerator.ErrorCode)res);
         }
     }
 }
