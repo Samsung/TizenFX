@@ -18,7 +18,20 @@ namespace Tizen.NUI.WindowSystem
         void Initialize()
         {
             Window win = Window.Instance;
-            inputGesture = new InputGesture();
+            try
+            {
+                display = new TizenCoreWlDisplay();
+                display.Connect();
+                inputGesture = new InputGesture(display);
+            }
+            catch (Exception e)
+            {
+                Log.Error("GestureSample", $"Failed to initialize TizenCoreWl/InputGesture: {e.GetType().Name}: {e.Message}");
+                Log.Error("GestureSample", $"StackTrace: {e.StackTrace}");
+                display?.Dispose();
+                display = null;
+                inputGesture = null;
+            }
 
             win.WindowSize = new Size2D(500, 500);
             win.KeyEvent += OnKeyEvent;
@@ -52,6 +65,11 @@ namespace Tizen.NUI.WindowSystem
             {
                 repeatCounter++;
                 centerLabel.Text = "Return Key Pressed, counter: " + repeatCounter.ToString();
+            }
+
+            if (inputGesture == null)
+            {
+                return;
             }
 
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "S" || e.Key.KeyPressedName == "s"))
@@ -241,6 +259,7 @@ namespace Tizen.NUI.WindowSystem
             app.Run(args);
         }
 
+        private TizenCoreWlDisplay display;
         private InputGesture inputGesture;
         IntPtr edgeSwipeG;
         IntPtr edgeDragG;
