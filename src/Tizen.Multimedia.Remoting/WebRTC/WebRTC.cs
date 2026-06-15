@@ -168,7 +168,7 @@ namespace Tizen.Multimedia.Remoting
 
             ValidateWebRTCState(WebRTCState.Idle);
 
-            var tcs = new TaskCompletionSource<bool>();
+            var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             var error = WebRTCError.ConnectionFailed;
 
             EventHandler<WebRTCStateChangedEventArgs> stateChangedEventHandler = (s, e) =>
@@ -244,7 +244,7 @@ namespace Tizen.Multimedia.Remoting
 
             ValidateWebRTCState(WebRTCState.Negotiating, WebRTCState.Playing);
 
-            var tcsSdpCreated = new TaskCompletionSource<string>();
+            var tcsSdpCreated = new TaskCompletionSource<string>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             NativeWebRTC.SdpCreatedCallback cb = (handle, sdp, _) =>
             {
@@ -283,7 +283,7 @@ namespace Tizen.Multimedia.Remoting
 
             ValidateWebRTCState(WebRTCState.Negotiating, WebRTCState.Playing);
 
-            var tcsSdpCreated = new TaskCompletionSource<string>();
+            var tcsSdpCreated = new TaskCompletionSource<string>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             NativeWebRTC.SdpCreatedCallback cb = (handle, sdp, _) =>
             {

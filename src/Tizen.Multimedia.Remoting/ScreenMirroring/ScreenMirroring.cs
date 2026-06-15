@@ -262,7 +262,7 @@ namespace Tizen.Multimedia.Remoting
 
         private Task RunAsync(Func<IntPtr, ScreenMirroringErrorCode> func, string failMessage)
         {
-            var tcs = new TaskCompletionSource<bool>();
+            var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             Task.Run(() =>
             {
