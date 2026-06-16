@@ -28,6 +28,7 @@ namespace Tizen.System
     /// <summary>
     /// Provides methods to manage subsession users. Allows to register for events triggered by operations on subsession users.
     /// </summary>
+    /// <since_tizen>10.1</since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class Session
     {
@@ -40,12 +41,14 @@ namespace Tizen.System
         /// <summary>
         /// Maximum length of any given user ID.
         /// </summary>
+        /// <since_tizen>10.1</since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const int MaxUserLength = 20;
 
         /// <summary>
         /// Special subsession ID, which is always present and does not represent any user.
         /// </summary>
+        /// <since_tizen>10.1</since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const string EmptyUser = "";
 
@@ -77,6 +80,7 @@ namespace Tizen.System
         /// <remarks>
         /// To ensure thread safety, explicit creation of Session object is not allowed.
         /// </remarks>
+        /// <since_tizen>10.1</since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Session GetInstance(int sessionUID)
         {
@@ -88,6 +92,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets session UID of this session object.
         /// </summary>
+        /// <since_tizen>10.1</since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int SessionUID { get; private set; }
 
@@ -107,6 +112,7 @@ namespace Tizen.System
         /// <exception cref="IOException">Internal error</exception>
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
+        /// <since_tizen>10.1</since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IReadOnlyList<string> GetUsers()
         {
@@ -137,6 +143,7 @@ namespace Tizen.System
         /// <exception cref="IOException">Internal error</exception>
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
+        /// <since_tizen>10.1</since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetCurrentUser()
         {
@@ -286,12 +293,13 @@ namespace Tizen.System
         /// <param name="subsessionEventArgs">Event argument of the event (obtained from said event)</param>
         /// <remarks>
         /// This method is assumed to be called from an event handler. You can only mark an event as completed
-        /// if you registered for in in the same process.
+        /// if you registered for it in the same process.
         /// </remarks>
         /// <exception cref="ArgumentException">Session UID of this object is invalid</exception>
         /// <exception cref="IOException">Internal error</exception>
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
+        /// <since_tizen>10.1</since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SubsessionEventMarkAsDone(SubsessionEventArgs subsessionEventArgs)
         {
@@ -318,6 +326,7 @@ namespace Tizen.System
         /// <exception cref="IOException">Internal error</exception>
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
+        /// <since_tizen>10.1</since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<AddUserEventArgs> AddUserWait
         {
@@ -360,6 +369,7 @@ namespace Tizen.System
         /// <exception cref="IOException">Internal error</exception>
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
+        /// <since_tizen>10.1</since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<RemoveUserEventArgs> RemoveUserWait
         {
@@ -402,6 +412,7 @@ namespace Tizen.System
         /// <exception cref="IOException">Internal error</exception>
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
+        /// <since_tizen>10.1</since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<SwitchUserWaitEventArgs> SwitchUserWait
         {
@@ -444,6 +455,7 @@ namespace Tizen.System
         /// <exception cref="IOException">Internal error</exception>
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
+        /// <since_tizen>10.1</since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<SwitchUserCompletionEventArgs> SwitchUserCompleted
         {
