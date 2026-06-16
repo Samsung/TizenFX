@@ -29,7 +29,6 @@ namespace Tizen.System
     /// Provides methods to manage subsession users. Allows to register for events triggered by operations on subsession users.
     /// </summary>
     /// <since_tizen>10.1</since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class Session
     {
         /// <summary>
@@ -42,14 +41,12 @@ namespace Tizen.System
         /// Maximum length of any given user ID.
         /// </summary>
         /// <since_tizen>10.1</since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public const int MaxUserLength = 20;
 
         /// <summary>
         /// Special subsession ID, which is always present and does not represent any user.
         /// </summary>
         /// <since_tizen>10.1</since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public const string EmptyUser = "";
 
         private static ConcurrentDictionary<int, Session> s_sessionInstances = new ConcurrentDictionary<int, Session>();
@@ -81,7 +78,6 @@ namespace Tizen.System
         /// To ensure thread safety, explicit creation of Session object is not allowed.
         /// </remarks>
         /// <since_tizen>10.1</since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Session GetInstance(int sessionUID)
         {
             if (!s_sessionInstances.ContainsKey(sessionUID))
@@ -93,7 +89,6 @@ namespace Tizen.System
         /// Gets session UID of this session object.
         /// </summary>
         /// <since_tizen>10.1</since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public int SessionUID { get; private set; }
 
         /// <summary>
@@ -113,7 +108,6 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
         /// <since_tizen>10.1</since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public IReadOnlyList<string> GetUsers()
         {
 
@@ -144,7 +138,6 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
         /// <since_tizen>10.1</since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetCurrentUser()
         {
             StringBuilder user = new StringBuilder(MaxUserLength);
@@ -300,7 +293,6 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
         /// <since_tizen>10.1</since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SubsessionEventMarkAsDone(SubsessionEventArgs subsessionEventArgs)
         {
             SessionError ret = Interop.Session.SubsessionEventWaitDone(subsessionEventArgs.SessionInfo);
@@ -327,7 +319,6 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
         /// <since_tizen>10.1</since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<AddUserEventArgs> AddUserWait
         {
             add
@@ -370,7 +361,6 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
         /// <since_tizen>10.1</since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<RemoveUserEventArgs> RemoveUserWait
         {
             add
@@ -413,7 +403,6 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
         /// <since_tizen>10.1</since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<SwitchUserWaitEventArgs> SwitchUserWait
         {
             add
@@ -456,7 +445,6 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
         /// <since_tizen>10.1</since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<SwitchUserCompletionEventArgs> SwitchUserCompleted
         {
             add
