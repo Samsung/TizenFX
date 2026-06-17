@@ -45,6 +45,12 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_GetBlurDownscaleFactor")]
             public static extern float GetBlurDownscaleFactor(HandleRef effect);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_SetDitherNoiseStrength")]
+            public static extern void SetDitherNoiseStrength(HandleRef effect, float noiseStrength);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_GetDitherNoiseStrength")]
+            public static extern float GetDitherNoiseStrength(HandleRef effect);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_AddBlurStrengthAnimation")]
             public static extern void AddBlurStrengthAnimation(HandleRef effect, HandleRef animation, HandleRef alphaFunction, HandleRef timePeriod, float fromValue, float toValue);
 
