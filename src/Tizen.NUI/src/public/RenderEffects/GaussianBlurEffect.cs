@@ -124,7 +124,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The property downscales input texture's width and height to enhance performance.
-        /// The value should be bigger than 0.0f and lower than 1.0f. Note that values near zero may ignore blur calculation.
+        /// The value is clamped internally to the range between 0.25f and 1.0f.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float BlurDownscaleFactor
@@ -139,6 +139,26 @@ namespace Tizen.NUI
             set
             {
                 Interop.GaussianBlurEffect.SetBlurDownscaleFactor(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// The property controls dither noise strength used to reduce blur banding.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float DitherNoiseStrength
+        {
+            get
+            {
+                float noiseStrength = Interop.GaussianBlurEffect.GetDitherNoiseStrength(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return noiseStrength;
+            }
+
+            set
+            {
+                Interop.GaussianBlurEffect.SetDitherNoiseStrength(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
