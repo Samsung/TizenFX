@@ -24,15 +24,13 @@ namespace Tizen.NUI
     /// <summary>
     /// It tries to detect when the user moves two touch points towards or away from each other.
     /// </summary>
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10.1 </since_tizen>
     public class PinchGestureDetector : GestureDetector
     {
         /// <summary>
         /// Creates an initialized PinchGestureDetector.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public PinchGestureDetector() : this(Interop.PinchGesture.PinchGestureDetectorNew(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -43,8 +41,7 @@ namespace Tizen.NUI
         /// The copy constructor.
         /// </summary>
         /// <param name="handle">A reference to the copied handle</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public PinchGestureDetector(PinchGestureDetector handle) : this(Interop.PinchGesture.NewPinchGestureDetector(PinchGestureDetector.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -58,7 +55,7 @@ namespace Tizen.NUI
         {
         }
 
-        private DaliEventHandler<object, DetectedEventArgs> detectedEventHandler;
+        private EventHandler<DetectedEventArgs> detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr pinchGesture);
         private DetectedCallbackType detectedCallback;
@@ -66,9 +63,8 @@ namespace Tizen.NUI
         /// <summary>
         /// This signal is emitted when the specified pinch is detected on the attached view.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event DaliEventHandler<object, DetectedEventArgs> Detected
+        /// <since_tizen> 10.1 </since_tizen>
+        public event EventHandler<DetectedEventArgs> Detected
         {
             add
             {
@@ -192,9 +188,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via the PinchGestureEvent signal.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public class DetectedEventArgs : EventArgs
         {
             private View view;
@@ -204,9 +198,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The attached view.
             /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             public View View
             {
                 get
@@ -222,9 +214,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The PinchGesture.
             /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             public PinchGesture PinchGesture
             {
                 get
@@ -240,7 +230,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Gets or sets a value that indicates whether the event handler has completely handled the event or whether the system should continue its own processing.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             public bool Handled
             {
                 get => handled;

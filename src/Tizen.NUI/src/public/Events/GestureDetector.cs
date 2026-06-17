@@ -25,16 +25,14 @@ namespace Tizen.NUI
     /// trigger a detected event to the application.<br />
     /// This is the base class for different gesture detectors available and provides functionality that is common to all the gesture detectors.<br />
     /// </summary>
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10.1 </since_tizen>
     public class GestureDetector : BaseHandle
     {
 
         /// <summary>
         /// Constructor. Creates an uninitialized GestureDetector.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public GestureDetector() : this(Interop.GestureDetector.NewGestureDetector(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -44,8 +42,7 @@ namespace Tizen.NUI
         /// The copy Constructor.
         /// </summary>
         /// <param name="handle">A reference to the copied handle</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public GestureDetector(GestureDetector handle) : this(Interop.GestureDetector.NewGestureDetector(GestureDetector.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -63,8 +60,7 @@ namespace Tizen.NUI
         /// Attaches an view to the gesture. The detected event will be triggered when the gesture occurs on the attached view.
         /// </summary>
         /// <param name="view">The view to attach to the gesture detector</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public void Attach(View view)
         {
             Interop.GestureDetector.Attach(SwigCPtr, View.getCPtr(view));
@@ -75,8 +71,7 @@ namespace Tizen.NUI
         /// Detaches the attached view from the gesture detector.
         /// </summary>
         /// <param name="view">The view to detach from the gesture detector</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public void Detach(View view)
         {
             Interop.GestureDetector.Detach(SwigCPtr, View.getCPtr(view));
@@ -86,8 +81,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Detaches all the views that have been attached to the gesture detector.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public void DetachAll()
         {
             Interop.GestureDetector.DetachAll(SwigCPtr);
@@ -98,8 +92,7 @@ namespace Tizen.NUI
         /// Returns the number of views attached to the gesture detector.
         /// </summary>
         /// <returns>The count</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public uint GetAttachedViewCount()
         {
             uint ret = Interop.GestureDetector.GetAttachedActorCount(SwigCPtr);
@@ -112,8 +105,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="index">The attached view's index</param>
         /// <returns>The attached view or an empty handle</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public View GetAttachedView(uint index)
         {
             View ret = new View(Interop.GestureDetector.GetAttachedActor(SwigCPtr, index), true);
@@ -129,7 +121,7 @@ namespace Tizen.NUI
         /// <param name="view">The view associated with the gesture detector.</param>
         /// <param name="touch">The touch input data to analyze for gestures.</param>
         /// <returns>True if the event was handled successfully, otherwise false.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public bool HandleEvent(View view, Touch touch)
         {
             bool ret = Interop.GestureDetector.HandleEvent(SwigCPtr, View.getCPtr(view), Touch.getCPtr(touch));
@@ -140,7 +132,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Cancels all other gesture detectors that are currently recognizing gestures by HandleEvent(View view, Touch touch) api
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public void CancelAllOtherGestureDetectors()
         {
             Interop.GestureDetector.CancelAllOtherGestureDetectors(SwigCPtr);

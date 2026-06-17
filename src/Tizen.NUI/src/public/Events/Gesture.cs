@@ -118,51 +118,51 @@ namespace Tizen.NUI
         /// <summary>
         /// This is the value of which source the gesture was started with. (ex : mouse)
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public enum SourceType
         {
             /// <summary>
             /// invalid data.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             Invalid,
             /// <summary>
             /// Mouse.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             Mouse,
             /// <summary>
             /// Touch.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             Touch,
         }
 
         /// <summary>
         /// This is the data of source type
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public enum SourceDataType
         {
             /// <summary>
             /// invalid data.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             Invalid = -1,
             /// <summary>
             /// Primary(Left) mouse button.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             MousePrimary = 1,
             /// <summary>
             /// Secondary(Right) mouse button.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             MouseSecondary = 3,
             /// <summary>
             /// Tertiary(Third) mouse button.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             MouseTertiary = 2,
         }
 
@@ -259,8 +259,8 @@ namespace Tizen.NUI
         /// This is the property of which source type the gesture (read-only).
         /// If you started the gesture with the mouse, it will tell you what type of mouse it is.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Gesture.SourceType Source
+        /// <since_tizen> 10.1 </since_tizen>
+        public SourceType Source
         {
             get
             {
@@ -272,8 +272,8 @@ namespace Tizen.NUI
         /// This is a property of the source type data (read-only).
         /// If you started the gesture with the mouse, it will tell you which mouse button you started the gesture with.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Gesture.SourceDataType SourceData
+        /// <since_tizen> 10.1 </since_tizen>
+        public SourceDataType SourceData
         {
             get
             {

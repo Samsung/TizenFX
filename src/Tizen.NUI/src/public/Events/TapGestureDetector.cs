@@ -26,15 +26,13 @@ namespace Tizen.NUI
     /// This class emits a signal when a tap gesture occurs that meets the requirements set by the application.<br />
     /// A TapGesture is a discrete gesture, which means it does not have any state information attached.<br />
     /// </summary>
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10.1 </since_tizen>
     public class TapGestureDetector : GestureDetector
     {
         /// <summary>
         /// Creates an initialized TapGestureDetector.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public TapGestureDetector() : this(Interop.TapGestureDetector.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -43,10 +41,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an initialized TapGestureDetector with the specified parameters.
         /// </summary>
-        /// <param name="tapsRequired">The minimum and maximum number of taps required</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TapGestureDetector(uint tapsRequired) : this(Interop.TapGestureDetector.New(tapsRequired), true)
+        /// <param name="tapsRequiredCount">The minimum and maximum number of taps required</param>
+        /// <since_tizen> 10.1 </since_tizen>
+        public TapGestureDetector(uint tapsRequiredCount) : this(Interop.TapGestureDetector.New(tapsRequiredCount), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -55,8 +52,7 @@ namespace Tizen.NUI
         /// The copy constructor.
         /// </summary>
         /// <param name="handle">A reference to the copied handle</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public TapGestureDetector(TapGestureDetector handle) : this(Interop.TapGestureDetector.NewTapGestureDetector(TapGestureDetector.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -70,7 +66,7 @@ namespace Tizen.NUI
         {
         }
 
-        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
+        private EventHandler<DetectedEventArgs> _detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr TapGesture);
         private DetectedCallbackType _detectedCallback;
@@ -78,9 +74,8 @@ namespace Tizen.NUI
         /// <summary>
         /// This signal is emitted when the specified tap is detected on the attached view.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event DaliEventHandler<object, DetectedEventArgs> Detected
+        /// <since_tizen> 10.1 </since_tizen>
+        public event EventHandler<DetectedEventArgs> Detected
         {
             add
             {
@@ -109,12 +104,11 @@ namespace Tizen.NUI
         /// Sets the minimum number of taps required. The tap count is the number of times a user should "tap" the screen.<br />
         /// The default is 1.<br />
         /// </summary>
-        /// <param name="minimumTaps">The minimum taps required</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetMinimumTapsRequired(uint minimumTaps)
+        /// <param name="minimumTapCount">The minimum taps required</param>
+        /// <since_tizen> 10.1 </since_tizen>
+        public void SetMinimumTapCount(uint minimumTapCount)
         {
-            Interop.TapGestureDetector.SetMinimumTapsRequired(SwigCPtr, minimumTaps);
+            Interop.TapGestureDetector.SetMinimumTapsRequired(SwigCPtr, minimumTapCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -122,12 +116,11 @@ namespace Tizen.NUI
         /// Sets the maximum number of taps required. The tap count is the number of times a user should "tap" the screen.<br />
         /// The default is 1.<br />
         /// </summary>
-        /// <param name="maximumTaps">The maximum taps required</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetMaximumTapsRequired(uint maximumTaps)
+        /// <param name="maximumTapCount">The maximum taps required</param>
+        /// <since_tizen> 10.1 </since_tizen>
+        public void SetMaximumTapCount(uint maximumTapCount)
         {
-            Interop.TapGestureDetector.SetMaximumTapsRequired(SwigCPtr, maximumTaps);
+            Interop.TapGestureDetector.SetMaximumTapsRequired(SwigCPtr, maximumTapCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -135,8 +128,7 @@ namespace Tizen.NUI
         /// Retrieves the minimum number of taps required.
         /// </summary>
         /// <returns>The minimum taps required</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public uint GetMinimumTapsRequired()
         {
             uint ret = Interop.TapGestureDetector.GetMinimumTapsRequired(SwigCPtr);
@@ -148,8 +140,7 @@ namespace Tizen.NUI
         /// Retrieves the maximum number of taps required.
         /// </summary>
         /// <returns>The maximum taps required</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public uint GetMaximumTapsRequired()
         {
             uint ret = Interop.TapGestureDetector.GetMaximumTapsRequired(SwigCPtr);
@@ -258,9 +249,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that are passed via the TapGestureEvent signal.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public class DetectedEventArgs : EventArgs
         {
             private View _view;
@@ -270,9 +259,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The attached view.
             /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             public View View
             {
                 get
@@ -288,9 +275,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The TapGesture.
             /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             public TapGesture TapGesture
             {
                 get
@@ -306,7 +291,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Gets or sets a value that indicates whether the event handler has completely handled the event or whether the system should continue its own processing.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 10.1 </since_tizen>
             public bool Handled
             {
                 get => handled;

@@ -201,9 +201,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="point">The index of a touch point.</param>
         /// <returns></returns>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public MouseButton GetMouseButton(uint point)
         {
             int ret = Interop.Touch.GetMouseButton(SwigCPtr, point);
@@ -215,7 +213,7 @@ namespace Tizen.NUI
         /// Gets the device class type from which the mouse/touch event is originated.
         /// </summary>
         /// <param name="point">The index of a touch point.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public DeviceClassType GetDeviceClass(uint point)
         {
             int ret = Interop.Touch.GetDeviceClass(SwigCPtr, point);
@@ -227,7 +225,7 @@ namespace Tizen.NUI
         /// Gets the subclass type of the device from which the mouse/touch event is originated.
         /// </summary>
         /// <param name="point">The index of a touch point.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public DeviceSubClassType GetDeviceSubClass(uint point)
         {
             int ret = Interop.Touch.GetDeviceSubClass(SwigCPtr, point);
@@ -240,7 +238,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="point">The index of a touch point.</param>
         /// <returns>Device name</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10.1 </since_tizen>
         public string GetDeviceName(uint point)
         {
             string ret = Interop.Touch.GetDeviceName(SwigCPtr, point);
@@ -251,11 +249,11 @@ namespace Tizen.NUI
         /// <summary>
         /// sets the time (in ms) that the touch event occurred.
         /// </summary>
-        /// <param name="time">The time (in ms)</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetTime(uint time)
+        /// <param name="timeInMilliseconds">The time (in ms)</param>
+        /// <since_tizen> 10.1 </since_tizen>
+        public void SetTime(uint timeInMilliseconds)
         {
-            Interop.Touch.SetTime(SwigCPtr, time);
+            Interop.Touch.SetTime(SwigCPtr, timeInMilliseconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -266,8 +264,13 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Retrieves the angle of the press point.
+        /// The angle represents the orientation of the touch contact, measured in degrees.
+        /// </summary>
+        /// <param name="point">The index of a touch point.</param>
+        /// <returns>The angle of the press point in degrees.</returns>
+        /// <since_tizen> 10.1 </since_tizen>
         public Degree GetAngle(uint point)
         {
             Degree ret = new Degree(Interop.Touch.GetAngle(SwigCPtr, point), true);
@@ -286,30 +289,28 @@ namespace Tizen.NUI
     /// <summary>
     /// Mouse device button type.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10.1 </since_tizen>
     public enum MouseButton
     {
         /// <summary>
         /// No mouse button event or invalid data.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 10.1 </since_tizen>
         Invalid = -1,
         /// <summary>
         /// Primary(Left) mouse button.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 10.1 </since_tizen>
         Primary = 1,
         /// <summary>
         /// Secondary(Right) mouse button.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 10.1 </since_tizen>
         Secondary = 3,
         /// <summary>
         /// Center(Wheel) mouse button.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 10.1 </since_tizen>
         Tertiary = 2,
     }
 }
