@@ -107,6 +107,7 @@ namespace Tizen.System
         /// <exception cref="IOException">Internal error</exception>
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
+        /// <returns>A read-only list of all subsession IDs for this session.</returns>
         /// <since_tizen>10.1</since_tizen>
         public IReadOnlyList<string> GetUsers()
         {
@@ -137,6 +138,7 @@ namespace Tizen.System
         /// <exception cref="IOException">Internal error</exception>
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
+        /// <returns>The currently active subsession user ID, or "" (EmptyUser) when no subsession is enabled.</returns>
         /// <since_tizen>10.1</since_tizen>
         public string GetCurrentUser()
         {
