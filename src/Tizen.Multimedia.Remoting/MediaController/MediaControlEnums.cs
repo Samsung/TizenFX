@@ -378,6 +378,12 @@ namespace Tizen.Multimedia.Remoting
 
     internal static class EnumExtensions
     {
+        private static readonly MediaControlNativeDisplayMode[] s_allDisplayModes
+            = Enum.GetValues<MediaControlNativeDisplayMode>();
+
+        private static readonly MediaControlNativeDisplayRotation[] s_allDisplayRotations
+            = Enum.GetValues<MediaControlNativeDisplayRotation>();
+
         internal static MediaControlPlaybackState ToPublic(this MediaControllerNativePlaybackState nativeState)
         {
             switch (nativeState)
@@ -528,7 +534,7 @@ namespace Tizen.Multimedia.Remoting
         {
             var supportedModes = new List<MediaControlDisplayMode>();
 
-            foreach (MediaControlNativeDisplayMode mode in Enum.GetValues(typeof(MediaControlNativeDisplayMode)))
+            foreach (MediaControlNativeDisplayMode mode in s_allDisplayModes)
             {
                 if (modes.HasFlag(mode))
                 {
@@ -592,7 +598,7 @@ namespace Tizen.Multimedia.Remoting
         {
             var supportedRotations = new List<Rotation>();
 
-            foreach (MediaControlNativeDisplayRotation mode in Enum.GetValues(typeof(MediaControlNativeDisplayRotation)))
+            foreach (MediaControlNativeDisplayRotation mode in s_allDisplayRotations)
             {
                 if (modes.HasFlag(mode))
                 {
