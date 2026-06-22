@@ -12,7 +12,7 @@ jobs:
     steps:
 
     - name: Download Artifacts from Build
-      uses: TizenAPI/tizenfx-build-actions/download-workflow-artifacts@master
+      uses: TizenAPI/tizenfx-build-actions/download-workflow-artifacts@0237152c5708e470b6e9634ae4ad702701d1451a # master @ 2026-06-22
       with:
         token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
         run-id: ${{ github.event.workflow_run.id }}
@@ -59,7 +59,7 @@ jobs:
 
     - name: Report API comparison result
       if: ${{ github.event.workflow_run.conclusion == 'success' }}
-      uses: TizenAPI/tizenfx-build-actions/apidb-report@master
+      uses: TizenAPI/tizenfx-build-actions/apidb-report@0237152c5708e470b6e9634ae4ad702701d1451a # master @ 2026-06-22
       with:
         token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
         issue-number: ${{ steps.pull_request.outputs.number }}

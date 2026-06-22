@@ -28,7 +28,7 @@ jobs:
 
     - name: Build
       id: build
-      uses: TizenAPI/tizenfx-build-actions/problem-filter@master
+      uses: TizenAPI/tizenfx-build-actions/problem-filter@0237152c5708e470b6e9634ae4ad702701d1451a # master @ 2026-06-22
       with:
         run: ./build.sh full /p:BuildWithAnalyzer=True -consoleloggerparameters:NoSummary
         files: ${{ steps.getChangedFiles.outputs.all }}
@@ -48,6 +48,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: TizenAPI/APITool
+        ref: 4e441d70a1d2576848394aabc8dc3095c99b366a # master @ 2026-06-22
         path: .apitool
 
     - name: Extract API Spec
@@ -87,7 +88,7 @@ jobs:
         path: base
 
     - name: Build Base Branch
-      uses: TizenAPI/tizenfx-build-actions/problem-filter@master
+      uses: TizenAPI/tizenfx-build-actions/problem-filter@0237152c5708e470b6e9634ae4ad702701d1451a # master @ 2026-06-22
       with:
         run: ./build.sh full
         working-directory: base
@@ -96,6 +97,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: TizenAPI/APITool
+        ref: 4e441d70a1d2576848394aabc8dc3095c99b366a # master @ 2026-06-22
         path: .apitool
 
     - name: Extract Base API
@@ -105,7 +107,7 @@ jobs:
             -o Artifacts/base-api.json base/Artifacts/bin/public/
 
     - name: Check API Compatibilities
-      uses: TizenAPI/tizenfx-build-actions/apidb-compare@master
+      uses: TizenAPI/tizenfx-build-actions/apidb-compare@0237152c5708e470b6e9634ae4ad702701d1451a # master @ 2026-06-22
       with:
         file: Artifacts/api.json
         base-file: Artifacts/base-api.json
