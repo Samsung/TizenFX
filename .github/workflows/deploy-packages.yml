@@ -36,11 +36,11 @@ jobs:
       run: |
         git config --global user.name "TizenAPI-Bot"
         git config --global user.email "tizenapi@samsung.com"
-        git config core.sshCommand "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+        git config --global core.sshCommand "ssh -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts"
 
     - name: Get Branch Metadata
       id: metadata
-      uses: TizenAPI/tizenfx-build-actions/branch-metadata@master
+      uses: TizenAPI/tizenfx-build-actions/branch-metadata@0237152c5708e470b6e9634ae4ad702701d1451a # master @ 2026-06-22
       with:
         ref: ${{ env.TARGET_BRANCH }}
 
@@ -79,6 +79,15 @@ jobs:
       uses: webfactory/ssh-agent@v0.7.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Pin Gerrit SSH host key
+      if: github.event.inputs.deploy_to_tizen == 'true'
+      env:
+        GERRIT_KNOWN_HOSTS: ${{ secrets.GERRIT_KNOWN_HOSTS }}
+      run: |
+        mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
+        printf '%s\n' "$GERRIT_KNOWN_HOSTS" >> "$HOME/.ssh/known_hosts"
+        chmod 600 "$HOME/.ssh/known_hosts"
 
     - name: Submit changes to Tizen
       if: github.event.inputs.deploy_to_tizen == 'true'
