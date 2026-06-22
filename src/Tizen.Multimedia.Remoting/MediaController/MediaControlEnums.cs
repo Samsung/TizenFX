@@ -378,11 +378,21 @@ namespace Tizen.Multimedia.Remoting
 
     internal static class EnumExtensions
     {
-        private static readonly MediaControlNativeDisplayMode[] s_allDisplayModes
-            = Enum.GetValues<MediaControlNativeDisplayMode>();
+        private static readonly MediaControlNativeDisplayMode[] s_allDisplayModes = new[]
+        {
+            MediaControlNativeDisplayMode.LetterBox,
+            MediaControlNativeDisplayMode.OriginSize,
+            MediaControlNativeDisplayMode.FullScreen,
+            MediaControlNativeDisplayMode.CroppedFull
+        };
 
-        private static readonly MediaControlNativeDisplayRotation[] s_allDisplayRotations
-            = Enum.GetValues<MediaControlNativeDisplayRotation>();
+        private static readonly MediaControlNativeDisplayRotation[] s_allDisplayRotations = new[]
+        {
+            MediaControlNativeDisplayRotation.Rotate0,
+            MediaControlNativeDisplayRotation.Rotate90,
+            MediaControlNativeDisplayRotation.Rotate180,
+            MediaControlNativeDisplayRotation.Rotate270
+        };
 
         internal static MediaControlPlaybackState ToPublic(this MediaControllerNativePlaybackState nativeState)
         {
