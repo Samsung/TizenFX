@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -39,43 +39,53 @@ namespace Tizen.Applications
 
         static UIGadgetManager()
         {
-            var ptr = Interop.Libc.GetEnvironmentVariable("GADGET_PKGIDS");
-            if (ptr != IntPtr.Zero)
+            try
             {
-                var packages = Marshal.PtrToStringAnsi(ptr);
-                if (!string.IsNullOrWhiteSpace(packages))
+                var ptr = Interop.Libc.GetEnvironmentVariable("GADGET_PKGIDS");
+                if (ptr != IntPtr.Zero)
                 {
-                    foreach (var pkg in packages.Split(':'))
+                    var packages = Marshal.PtrToStringAnsi(ptr);
+                    if (!string.IsNullOrWhiteSpace(packages))
                     {
-                        var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
-                        if (info != null)
+                        foreach (var pkg in packages.Split(':'))
                         {
-                            try
+                            var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
+                            if (info != null)
                             {
-                                _gadgetInfos.TryAdd(info.ResourceType, info);
-                            }
-                            catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
-                            {
-                                Log.Error("Exception occurs. " + e.Message);
+                                try
+                                {
+                                    _gadgetInfos.TryAdd(info.ResourceType, info);
+                                }
+                                catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
+                                {
+                                    Log.Error("Exception occurs while adding gadget info. packageId: " + pkg + ", " + e.Message);
+                                }
                             }
                         }
                     }
                 }
+                else
+                {
+                    Log.Warn("Failed to get environment variable");
+                }
+
+                var app = CoreApplication.Current as CoreApplication;
+                if (app != null)
+                {
+                    app.AppControlReceived += (s, e) => HandleAppControl(e);
+                    app.LowMemory += (s, e) => HandleLowMemoryEvent(e);
+                    app.LowBattery += (s, e) => HandleLowBatteryEvent(e);
+                    app.LocaleChanged += (s, e) => HandleLocaleChangedEvent(e);
+                    app.RegionFormatChanged += (s, e) => HandleRegionFormatChangedEvent(e);
+                    app.DeviceOrientationChanged += (s, e) => HandleDeviceOrientationChangedEvent(e);
+                }
+
+                UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
             }
-            else
+            catch (Exception e)
             {
-                Log.Warn("Failed to get environment variable");
+                Log.Error("Exception occurs in UIGadgetManager static constructor. " + e);
             }
-
-            var app = (CoreApplication)CoreApplication.Current;
-            app.AppControlReceived += (s, e) => HandleAppControl(e);
-            app.LowMemory += (s, e) => HandleLowMemoryEvent(e);
-            app.LowBattery += (s, e) => HandleLowBatteryEvent(e);
-            app.LocaleChanged += (s, e) => HandleLocaleChangedEvent(e);
-            app.RegionFormatChanged += (s, e) => HandleRegionFormatChangedEvent(e);
-            app.DeviceOrientationChanged += (s, e) => HandleDeviceOrientationChangedEvent(e);
-
-            UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
         }
 
         /// <summary>
@@ -657,7 +667,7 @@ namespace Tizen.Applications
                         }
                         catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
                         {
-                            Log.Error("Exception occurs. " + e.Message);
+                            Log.Error("Exception occurs while adding gadget info. packageId: " + pkg + ", " + e.Message);
                         }
                     }
                 }
