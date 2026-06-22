@@ -26,11 +26,11 @@ namespace Tizen.Multimedia
     /// <since_tizen> 4 </since_tizen>
     public partial class VideoRecorder
     {
-        private static readonly Lazy<IEnumerable<Size>> _frontResolutions =
-            new Lazy<IEnumerable<Size>>(() => LoadVideoResolutions(CameraDevice.Front));
+        private static IEnumerable<Size> _frontResolutions;
+        private static readonly object _frontLock = new object();
 
-        private static readonly Lazy<IEnumerable<Size>> _rearResolutions =
-            new Lazy<IEnumerable<Size>>(() => LoadVideoResolutions(CameraDevice.Rear));
+        private static IEnumerable<Size> _rearResolutions;
+        private static readonly object _rearLock = new object();
 
         private static IEnumerable<Size> GetVideoResolutions(NativeHandle handle)
         {
@@ -81,9 +81,15 @@ namespace Tizen.Multimedia
             switch (device)
             {
                 case CameraDevice.Front:
-                    return _frontResolutions.Value;
+                    lock (_frontLock)
+                    {
+                        return _frontResolutions ?? (_frontResolutions = LoadVideoResolutions(CameraDevice.Front));
+                    }
                 case CameraDevice.Rear:
-                    return _rearResolutions.Value;
+                    lock (_rearLock)
+                    {
+                        return _rearResolutions ?? (_rearResolutions = LoadVideoResolutions(CameraDevice.Rear));
+                    }
                 default:
                     Debug.Fail($"No cache for {device}.");
                     return LoadVideoResolutions(device);
