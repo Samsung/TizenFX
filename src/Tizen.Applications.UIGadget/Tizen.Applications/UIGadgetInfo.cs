@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -222,31 +222,40 @@ namespace Tizen.Applications
 
         internal static UIGadgetInfo CreateUIGadgetInfo(string packageId)
         {
-            Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGet(packageId, out IntPtr handle);
-            if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
+            IntPtr handle = IntPtr.Zero;
+            try
             {
-                Log.Error("Failed to get package info. error = " + errorCode);
-                return null;
+                Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGet(packageId, out handle);
+                if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
+                {
+                    Log.Error("Failed to get package info. packageId: " + packageId + ", error = " + errorCode);
+                    return null;
+                }
+
+                UIGadgetInfo info = new UIGadgetInfo(packageId);
+
+                SetResourceType(info, handle);
+                SetResourceVersion(info, handle);
+                SetMetadata(info, handle);
+
+                SetExecutableFile(info);
+                SetResourceFile(info);
+                SetResourceClassName(info);
+                SetResourcePath(info);
+                SetUIGadgetResourcePath(info);
+                return info;
             }
-
-            UIGadgetInfo info = new UIGadgetInfo(packageId);
-
-            SetResourceType(info, handle);
-            SetResourceVersion(info, handle);
-            SetMetadata(info, handle);
-
-            errorCode = Interop.PackageManagerInfo.PackageInfoDestroy(handle);
-            if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
+            finally
             {
-                Log.Warn("Failed to destroy package info. error = " + errorCode);
+                if (handle != IntPtr.Zero)
+                {
+                    Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoDestroy(handle);
+                    if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
+                    {
+                        Log.Warn("Failed to destroy package info. error = " + errorCode);
+                    }
+                }
             }
-
-            SetExecutableFile(info);
-            SetResourceFile(info);
-            SetResourceClassName(info);
-            SetResourcePath(info);
-            SetUIGadgetResourcePath(info);
-            return info;
         }
     }
 }
