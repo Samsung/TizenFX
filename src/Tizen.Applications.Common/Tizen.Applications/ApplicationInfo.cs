@@ -24,7 +24,7 @@ namespace Tizen.Applications
     /// This class provides methods and properties to get information of the application.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class ApplicationInfo : IDisposable
+    public class ApplicationInfo : IDisposable, IApplicationInfo
     {
         private const string LogTag = "Tizen.Applications";
         private bool _disposed = false;

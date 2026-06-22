@@ -18,93 +18,95 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen.Internals;
 
-internal static partial class Interop
-{
-    internal static partial class TeamMember
+namespace Tizen.Applications {
+    internal static partial class Interop
     {
-        internal delegate void AppTerminateCallback(IntPtr context, IntPtr userdata);
-        internal delegate void AppControlCallback(IntPtr context, IntPtr appControl, IntPtr userdata);
-        internal delegate void AppResumeCallback(IntPtr context, IntPtr userdata);
-        internal delegate void AppPauseCallback(IntPtr context, IntPtr userdata);
-        internal delegate void AppLowMemoryCallback(IntPtr context, int status, IntPtr userdata);
-        internal delegate void AppLowBatteryCallback(IntPtr context, int status, IntPtr userdata);
-        internal delegate void AppLanguageChangedCallback(IntPtr context,
-            [MarshalAs(UnmanagedType.LPStr)] string language, IntPtr userdata);
-        internal delegate void AppDeviceOrientationChangedCallback(IntPtr context, int status, IntPtr userdata);
-        internal delegate void AppRegionFormatChangedCallback(IntPtr context,
-            [MarshalAs(UnmanagedType.LPStr)] string region, IntPtr userdata);
-        internal delegate void AppSuspendStateChangedCallback(IntPtr context, int status, IntPtr userdata);
-        internal delegate void AppTimeZoneChangedCallback(IntPtr context,
-            [MarshalAs(UnmanagedType.LPStr)] string timeZone,
-            [MarshalAs(UnmanagedType.LPStr)] string timeZoneId,
-            IntPtr userdata);
-        internal delegate IntPtr UIAppCreateCallback(IntPtr context, IntPtr userdata);
-        internal delegate IntPtr ViewAppCreateCallback(IntPtr context, IntPtr userdata);
-        internal delegate bool ServiceAppCreateCallback(IntPtr context, IntPtr userdata);
-        [StructLayout(LayoutKind.Sequential)]
-        internal struct UIMemberLifecycleCallbacks
+        internal static partial class TeamMember
         {
-            public UIAppCreateCallback Create;
-            public AppTerminateCallback Terminate;
-            public AppControlCallback Control;
-            public AppResumeCallback Resume;
-            public AppPauseCallback Pause;
-            public AppLowMemoryCallback LowMemory;
-            public AppLowBatteryCallback LowBattery;
-            public AppLanguageChangedCallback LanguageChanged;
-            public AppDeviceOrientationChangedCallback DeviceOrientationChanged;
-            public AppRegionFormatChangedCallback RegionFormatChanged;
-            public AppSuspendStateChangedCallback SuspendStateChanged;
-            public AppTimeZoneChangedCallback TimezoneChanged;
+            internal delegate void AppTerminateCallback(IntPtr context, IntPtr userdata);
+            internal delegate void AppControlCallback(IntPtr context, IntPtr appControl, IntPtr userdata);
+            internal delegate void AppResumeCallback(IntPtr context, IntPtr userdata);
+            internal delegate void AppPauseCallback(IntPtr context, IntPtr userdata);
+            internal delegate void AppLowMemoryCallback(IntPtr context, int status, IntPtr userdata);
+            internal delegate void AppLowBatteryCallback(IntPtr context, int status, IntPtr userdata);
+            internal delegate void AppLanguageChangedCallback(IntPtr context,
+                [MarshalAs(UnmanagedType.LPStr)] string language, IntPtr userdata);
+            internal delegate void AppDeviceOrientationChangedCallback(IntPtr context, int status, IntPtr userdata);
+            internal delegate void AppRegionFormatChangedCallback(IntPtr context,
+                [MarshalAs(UnmanagedType.LPStr)] string region, IntPtr userdata);
+            internal delegate void AppSuspendStateChangedCallback(IntPtr context, int status, IntPtr userdata);
+            internal delegate void AppTimeZoneChangedCallback(IntPtr context,
+                [MarshalAs(UnmanagedType.LPStr)] string timeZone,
+                [MarshalAs(UnmanagedType.LPStr)] string timeZoneId,
+                IntPtr userdata);
+            internal delegate IntPtr UIAppCreateCallback(IntPtr context, IntPtr userdata);
+            internal delegate IntPtr ViewAppCreateCallback(IntPtr context, IntPtr userdata);
+            internal delegate bool ServiceAppCreateCallback(IntPtr context, IntPtr userdata);
+            [StructLayout(LayoutKind.Sequential)]
+            internal struct UIMemberLifecycleCallbacks
+            {
+                public UIAppCreateCallback Create;
+                public AppTerminateCallback Terminate;
+                public AppControlCallback Control;
+                public AppResumeCallback Resume;
+                public AppPauseCallback Pause;
+                public AppLowMemoryCallback LowMemory;
+                public AppLowBatteryCallback LowBattery;
+                public AppLanguageChangedCallback LanguageChanged;
+                public AppDeviceOrientationChangedCallback DeviceOrientationChanged;
+                public AppRegionFormatChangedCallback RegionFormatChanged;
+                public AppSuspendStateChangedCallback SuspendStateChanged;
+                public AppTimeZoneChangedCallback TimezoneChanged;
+            }
+            [StructLayout(LayoutKind.Sequential)]
+            internal struct ServiceMemberLifecycleCallbacks
+            {
+                public ServiceAppCreateCallback Create;
+                public AppTerminateCallback Terminate;
+                public AppControlCallback Control;
+                public AppLowMemoryCallback LowMemory;
+                public AppLowBatteryCallback LowBattery;
+                public AppLanguageChangedCallback LanguageChanged;
+                public AppDeviceOrientationChangedCallback DeviceOrientationChanged;
+                public AppRegionFormatChangedCallback RegionFormatChanged;
+                public AppSuspendStateChangedCallback SuspendStateChanged;
+                public AppTimeZoneChangedCallback TimezoneChanged;
+            }
+
+            [DllImport(Libraries.TeamLib, EntryPoint = "team_ui_app_teamup")]
+            internal static extern IntPtr UIMemberTeamup(UIMemberLifecycleCallbacks callbacks, IntPtr userdata);
+
+            [DllImport(Libraries.TeamLib, EntryPoint = "team_ui_app_quit")]
+            internal static extern void UIMemberQuit(IntPtr member);
+
+            [DllImport(Libraries.TeamLib, EntryPoint = "team_service_app_teamup")]
+            internal static extern IntPtr ServiceMemberTeamup(ServiceMemberLifecycleCallbacks callbacks, IntPtr userdata);
+
+            [DllImport(Libraries.TeamLib, EntryPoint = "team_service_app_quit")]
+            internal static extern void ServiceMemberQuit(IntPtr member);
+
+            [StructLayout(LayoutKind.Sequential)]
+            internal struct ViewMemberLifecycleCallbacks
+            {
+                public ViewAppCreateCallback Create;
+                public AppTerminateCallback Terminate;
+                public AppControlCallback Control;
+                public AppResumeCallback Resume;
+                public AppPauseCallback Pause;
+                public AppLowMemoryCallback LowMemory;
+                public AppLowBatteryCallback LowBattery;
+                public AppLanguageChangedCallback LanguageChanged;
+                public AppDeviceOrientationChangedCallback DeviceOrientationChanged;
+                public AppRegionFormatChangedCallback RegionFormatChanged;
+                public AppSuspendStateChangedCallback SuspendStateChanged;
+                public AppTimeZoneChangedCallback TimezoneChanged;
+            }
+
+            [DllImport(Libraries.TeamLib, EntryPoint = "team_view_app_teamup")]
+            internal static extern IntPtr ViewMemberTeamup(ViewMemberLifecycleCallbacks callbacks, IntPtr userdata);
+
+            [DllImport(Libraries.TeamLib, EntryPoint = "team_view_app_quit")]
+            internal static extern void ViewMemberQuit(IntPtr member);
         }
-        [StructLayout(LayoutKind.Sequential)]
-        internal struct ServiceMemberLifecycleCallbacks
-        {
-            public ServiceAppCreateCallback Create;
-            public AppTerminateCallback Terminate;
-            public AppControlCallback Control;
-            public AppLowMemoryCallback LowMemory;
-            public AppLowBatteryCallback LowBattery;
-            public AppLanguageChangedCallback LanguageChanged;
-            public AppDeviceOrientationChangedCallback DeviceOrientationChanged;
-            public AppRegionFormatChangedCallback RegionFormatChanged;
-            public AppSuspendStateChangedCallback SuspendStateChanged;
-            public AppTimeZoneChangedCallback TimezoneChanged;
-        }
-
-        [DllImport(Libraries.TeamLib, EntryPoint = "team_ui_app_teamup")]
-        internal static extern IntPtr UIMemberTeamup(UIMemberLifecycleCallbacks callbacks, IntPtr userdata);
-
-        [DllImport(Libraries.TeamLib, EntryPoint = "team_ui_app_quit")]
-        internal static extern void UIMemberQuit(IntPtr member);
-
-        [DllImport(Libraries.TeamLib, EntryPoint = "team_service_app_teamup")]
-        internal static extern IntPtr ServiceMemberTeamup(ServiceMemberLifecycleCallbacks callbacks, IntPtr userdata);
-
-        [DllImport(Libraries.TeamLib, EntryPoint = "team_service_app_quit")]
-        internal static extern void ServiceMemberQuit(IntPtr member);
-
-        [StructLayout(LayoutKind.Sequential)]
-        internal struct ViewMemberLifecycleCallbacks
-        {
-            public ViewAppCreateCallback Create;
-            public AppTerminateCallback Terminate;
-            public AppControlCallback Control;
-            public AppResumeCallback Resume;
-            public AppPauseCallback Pause;
-            public AppLowMemoryCallback LowMemory;
-            public AppLowBatteryCallback LowBattery;
-            public AppLanguageChangedCallback LanguageChanged;
-            public AppDeviceOrientationChangedCallback DeviceOrientationChanged;
-            public AppRegionFormatChangedCallback RegionFormatChanged;
-            public AppSuspendStateChangedCallback SuspendStateChanged;
-            public AppTimeZoneChangedCallback TimezoneChanged;
-        }
-
-        [DllImport(Libraries.TeamLib, EntryPoint = "team_view_app_teamup")]
-        internal static extern IntPtr ViewMemberTeamup(ViewMemberLifecycleCallbacks callbacks, IntPtr userdata);
-
-        [DllImport(Libraries.TeamLib, EntryPoint = "team_view_app_quit")]
-        internal static extern void ViewMemberQuit(IntPtr member);
     }
 }

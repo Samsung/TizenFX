@@ -24,7 +24,7 @@ namespace Tizen.Applications
     /// Represents directory information of the application.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class DirectoryInfo
+    public class DirectoryInfo : IDirectoryInfo
     {
         private string _dataPath;
         private string _cachePath;
