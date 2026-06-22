@@ -241,10 +241,20 @@ namespace Tizen.Applications.Notifications
 
                 if (button.Index == ButtonIndex.None)
                 {
-                    button.Index = (ButtonIndex)buttonDictionary.Count;
-                    buttonDictionary.Add(button.Index, button);
+                    for (int i = (int)ButtonIndex.First; i <= (int)ButtonIndex.Third; i++)
+                    {
+                        ButtonIndex index = (ButtonIndex)i;
+                        if (buttonDictionary.ContainsKey(index) == false)
+                        {
+                            button.Index = index;
+                            buttonDictionary.Add(index, button);
+                            return;
+                        }
+                    }
+
+                    throw NotificationErrorFactory.GetException(NotificationError.InvalidParameter, "too many ButtonAction objects");
                 }
-                else if (button.Index >= ButtonIndex.First)
+                else if (button.Index >= ButtonIndex.First && button.Index <= ButtonIndex.Third)
                 {
                     if (buttonDictionary.ContainsKey(button.Index))
                     {
@@ -252,6 +262,10 @@ namespace Tizen.Applications.Notifications
                     }
 
                     buttonDictionary.Add(button.Index, button);
+                }
+                else
+                {
+                    throw NotificationErrorFactory.GetException(NotificationError.InvalidParameter, "invalid ButtonAction index");
                 }
             }
 
