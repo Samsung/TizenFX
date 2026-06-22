@@ -29,7 +29,7 @@ namespace Tizen.Security.SecureRepository
         /// Initializes an instance of Policy class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>Default value for Password is null and default value for Extractable is false.</remarks>
+        /// <remarks>Default value for Password is null and default value for Extractable is true.</remarks>
         public Policy()
         {
             Password = null;
