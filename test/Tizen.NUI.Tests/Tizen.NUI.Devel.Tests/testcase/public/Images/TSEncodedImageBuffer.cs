@@ -61,7 +61,7 @@ namespace Tizen.NUI.Devel.Tests
 
                 try
                 {
-                    var testingTarget = new EncodedImageBuffer(buffer);
+                    var testingTarget = new EncodedImageBuffer(buffer, EncodedImageBuffer.ImageTypes.RegularImage);
                     Assert.IsNotNull(testingTarget, "Can't create success object EncodedImageBuffer");
                     Assert.IsInstanceOf<EncodedImageBuffer>(testingTarget, "Should be an instance of EncodedImageBuffer type.");
 

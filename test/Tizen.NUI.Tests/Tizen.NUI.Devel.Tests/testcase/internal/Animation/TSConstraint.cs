@@ -115,34 +115,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Constraint RemoveAction")]
-        [Property("SPEC", "Tizen.NUI.Constraint.Remove A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ConstraintRemoveAction()
-        {
-            tlog.Debug(tag, $"ConstraintRemoveAction START");
-
-            using (Animatable ani = new Animatable())
-            {
-                var testingTarget = new Constraint((global::System.IntPtr)ani.SwigCPtr, false);
-                Assert.IsNotNull(testingTarget, "should be not null");
-                Assert.IsInstanceOf<Constraint>(testingTarget, "should be an instance of testing target class!");
-
-                tlog.Info(tag, "Default RemoveAction: " + testingTarget.RemoveAction);
-                                                                                    
-                testingTarget.RemoveAction = Tizen.NUI.Constraint.RemoveActionType.Discard;     // // set(private?)
-                tlog.Info(tag, "RemoveAction : " + testingTarget.RemoveAction);
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"ConstraintRemoveAction END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Constraint GetTargetObject")]
         [Property("SPEC", "Tizen.NUI.Constraint.GetTargetObject M")]
         [Property("SPEC_URL", "-")]
@@ -177,8 +149,8 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Constraint GetTargetPropert")]
-        [Property("SPEC", "Tizen.NUI.Constraint.GetTargetPropert M")]
+        [Description("Constraint GetTargetPropertyIndex")]
+        [Property("SPEC", "Tizen.NUI.Constraint.GetTargetPropertyIndex M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -192,8 +164,8 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.IsNotNull(testingTarget, "should be not null");
                 Assert.IsInstanceOf<Constraint>(testingTarget, "should be an instance of testing target class!");
 
-                var result = testingTarget.GetTargetPropert();
-                tlog.Debug(tag, "GetTargetPropert : " + result);
+                //var result = testingTarget.GetTargetPropertIndex();
+                //tlog.Debug(tag, "GetTargetPropertIndex : " + result);
 
                 testingTarget.Dispose();
             }

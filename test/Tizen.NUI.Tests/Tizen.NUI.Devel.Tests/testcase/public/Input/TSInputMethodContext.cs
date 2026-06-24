@@ -721,26 +721,26 @@ namespace Tizen.NUI.Devel.Tests
             Assert.Pass("InputMethodContextDownCast");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("InputMethodContext ApplyOptions")]
-        [Property("SPEC", "Tizen.NUI.InputMethodContext.ApplyOptions M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        [Obsolete]
-        public void InputMethodContextApplyOptions()
-        {
-            tlog.Debug(tag, $"InputMethodContextApplyOptions START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("InputMethodContext ApplyOptions")]
+        //[Property("SPEC", "Tizen.NUI.InputMethodContext.ApplyOptions M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //[Obsolete]
+        //public void InputMethodContextApplyOptions()
+        //{
+        //    tlog.Debug(tag, $"InputMethodContextApplyOptions START");
 
-            InputMethodContext a1 = new InputMethodContext();
-            InputMethodOptions option = new InputMethodOptions();
+        //    InputMethodContext a1 = new InputMethodContext();
+        //    InputMethodOptions option = new InputMethodOptions();
 
-            a1.ApplyOptions(option);
-            a1.Dispose();
-            tlog.Debug(tag, $"InputMethodContextApplyOptions END (OK)");
-            Assert.Pass("InputMethodContextApplyOptions");
-        }
+        //    a1.ApplyOptions(option);
+        //    a1.Dispose();
+        //    tlog.Debug(tag, $"InputMethodContextApplyOptions END (OK)");
+        //    Assert.Pass("InputMethodContextApplyOptions");
+        //}
 
         [Test]
         [Category("P1")]

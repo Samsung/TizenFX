@@ -388,8 +388,8 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Matrix IDENTITY.")]
-        [Property("SPEC", "Tizen.NUI.Matrix.IDENTITY A")]
+        [Description("Matrix Identity.")]
+        [Property("SPEC", "Tizen.NUI.Matrix.Identity A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -397,7 +397,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"MatrixIDENTITY START");
 
-            var testingTarget = Matrix.IDENTITY;
+            var testingTarget = Matrix.Identity;
             Assert.IsNotNull(testingTarget, "Should be not null!");
             Assert.IsInstanceOf<Matrix>(testingTarget, "Should be an Instance of Matrix!");
 

@@ -1410,7 +1410,7 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P1")]
         [Description("View GetHierarchyDepth.")]
-        [Property("SPEC", "Tizen.NUI.View.GetHierarchyDepth M")]
+        [Property("SPEC", "Tizen.NUI.View.GetEffectiveRenderableCount M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -1430,7 +1430,7 @@ namespace Tizen.NUI.Devel.Tests
             var depth = testingTarget.GetHierarchyDepth();
             tlog.Debug(tag, "GetHierarchyDepth : " + depth);
 
-            var count = testingTarget.GetRendererCount();
+            var count = testingTarget.GetEffectiveRenderableCount();
             tlog.Debug(tag, "GetRendererCount : " + count);
 
             testingTarget.Dispose();

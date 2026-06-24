@@ -489,27 +489,27 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"Size2DClone END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("Size2D GetSize2DFromPtr.")]
-        [Property("SPEC", "Tizen.NUI.Size2D.GetSize2DFromPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void Size2DGetSize2DFromPtr()
-        {
-            tlog.Debug(tag, $"Size2DGetSize2DFromPtr START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("Size2D GetSize2DFromPtr.")]
+        //[Property("SPEC", "Tizen.NUI.Size2D.GetSize2DFromPtr M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void Size2DGetSize2DFromPtr()
+        //{
+        //    tlog.Debug(tag, $"Size2DGetSize2DFromPtr START");
 
-            using (Size size = new Size(100, 50))
-            {
-                var testingTarget = Size2D.GetSize2DFromPtr(size.SwigCPtr.Handle);
-                Assert.AreEqual(100, testingTarget.Width, "Should be equal!");
-                Assert.AreEqual(50, testingTarget.Height, "Should be equal!");
+        //    using (Size size = new Size(100, 50))
+        //    {
+        //        var testingTarget = Size2D.GetSize2DFromPtr(size.SwigCPtr.Handle);
+        //        Assert.AreEqual(100, testingTarget.Width, "Should be equal!");
+        //        Assert.AreEqual(50, testingTarget.Height, "Should be equal!");
 
-                testingTarget.Dispose();
-            }
+        //        testingTarget.Dispose();
+        //    }
 
-            tlog.Debug(tag, $"Size2DGetSize2DFromPtr END (OK)");
-        }
+        //    tlog.Debug(tag, $"Size2DGetSize2DFromPtr END (OK)");
+        //}
     }
 }

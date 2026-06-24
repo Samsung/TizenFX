@@ -86,8 +86,8 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Property propertyIndex. Get")]
-        [Property("SPEC", "Tizen.NUI.Property.propertyIndex A")]
+        [Description("Property PropertyIndex. Get")]
+        [Property("SPEC", "Tizen.NUI.Property.PropertyIndex A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -103,7 +103,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null!");
             Assert.IsInstanceOf<Property>(testingTarget, "Should return PropertyValue instance.");
 
-            var result = testingTarget.propertyIndex;
+            var result = testingTarget.PropertyIndex;
             Assert.IsTrue(28000000 == result);
 
             testingTarget.Dispose();
@@ -113,8 +113,8 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Property propertyIndex. Set")]
-        [Property("SPEC", "Tizen.NUI.Property.propertyIndex A")]
+        [Description("Property PropertyIndex. Set")]
+        [Property("SPEC", "Tizen.NUI.Property.PropertyIndex A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -130,8 +130,8 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null!");
             Assert.IsInstanceOf<Property>(testingTarget, "Should return PropertyValue instance.");
 
-            testingTarget.propertyIndex = 29000000;
-            var result = testingTarget.propertyIndex;
+            testingTarget.PropertyIndex = 29000000;
+            var result = testingTarget.PropertyIndex;
             Assert.IsTrue(29000000 == result);
 
             testingTarget.Dispose();

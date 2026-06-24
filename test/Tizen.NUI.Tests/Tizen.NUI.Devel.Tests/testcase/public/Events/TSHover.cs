@@ -82,7 +82,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Hover hover = new Hover(300))
             {
-                var testingTarget = new Hover(hover);
+                var testingTarget = new Hover((nint)hover.SwigCPtr, true);
                 Assert.IsNotNull(testingTarget, "Can't create success object Hover");
                 Assert.IsInstanceOf<Hover>(testingTarget, "Should be an instance of Hover type.");
 
@@ -90,6 +90,31 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"HoverConstructorWithHover END (OK)");
+            Assert.Pass("HoverConstructor");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Create a Hover object.")]
+        [Property("SPEC", "Tizen.NUI.Hover.Hover C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void HoverConstructorWithHover2()
+        {
+            tlog.Debug(tag, $"HoverConstructorWithHover2 START");
+
+            using (Hover hover = new Hover(300))
+            {
+                var testingTarget = new Hover((nint)hover.SwigCPtr, true, true);
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<Hover>(testingTarget, "Should be an instance of Hover type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"HoverConstructorWithHover2 END (OK)");
             Assert.Pass("HoverConstructor");
         }
 

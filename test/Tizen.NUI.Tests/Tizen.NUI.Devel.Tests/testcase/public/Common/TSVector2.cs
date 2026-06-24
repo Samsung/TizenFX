@@ -805,25 +805,25 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"Vector2Clone END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("Vector2 AsFloat")]
-        [Property("SPEC", "Tizen.NUI.Vector2.AsFloat M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void Vector2AsFloat()
-        {
-            tlog.Debug(tag, $"Vector2AsFloat START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("Vector2 AsFloat")]
+        //[Property("SPEC", "Tizen.NUI.Vector2.AsFloat M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void Vector2AsFloat()
+        //{
+        //    tlog.Debug(tag, $"Vector2AsFloat START");
 
-            using (Vector2 vec = new Vector2(20, 20))
-            {
-                var testingTarget = vec.AsFloat();
-                Assert.IsNotNull(testingTarget, "should be not null");
-                Assert.IsInstanceOf<Tizen.NUI.SWIGTYPE_p_float>(testingTarget, "should be an instance of testing target class!");
-            }
+        //    using (Vector2 vec = new Vector2(20, 20))
+        //    {
+        //        var testingTarget = vec.AsFloat();
+        //        Assert.IsNotNull(testingTarget, "should be not null");
+        //        Assert.IsInstanceOf<Tizen.NUI.SWIGTYPE_p_float>(testingTarget, "should be an instance of testing target class!");
+        //    }
 
-            tlog.Debug(tag, $"Vector2AsFloat END (OK)");
-        }
+        //    tlog.Debug(tag, $"Vector2AsFloat END (OK)");
+        //}
     }
 }

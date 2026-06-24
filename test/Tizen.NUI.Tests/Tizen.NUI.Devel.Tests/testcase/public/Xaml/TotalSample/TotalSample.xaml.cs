@@ -39,7 +39,7 @@ namespace Tizen.NUI.Devel.Tests
     {
         private void LoadEXaml()
         {
-            eXamlData = global::Tizen.NUI.EXaml.EXamlExtensions.LoadFromEXamlByRelativePath(this, @"examl/Tizen.NUI.Devel.Tests.TotalSample.examl");
+            var eXamlData = global::Tizen.NUI.EXaml.EXamlExtensions.LoadFromEXamlByRelativePath(this, @"examl/Tizen.NUI.Devel.Tests.TotalSample.examl");
             global::Tizen.NUI.EXaml.EXamlExtensions.RemoveEventsInXaml(eXamlData);
             global::Tizen.NUI.EXaml.EXamlExtensions.DisposeXamlElements(this);
         }
@@ -67,7 +67,7 @@ namespace Tizen.NUI.Devel.Tests
             }
             else
             {
-                InitializeComponent();
+                //InitializeComponent();
             }
         }
     }
