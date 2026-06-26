@@ -381,6 +381,21 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_SetVideoHole")]
             public static extern void SetVideoHole(HandleRef webViewRef, bool enable, bool isWaylandWindow);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterPlaybackVideoReadyCallback")]
+            public static extern void RegisterPlaybackVideoReadyCallback(HandleRef webViewRef, IntPtr callbackRef);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterPlaybackVideoStartedCallback")]
+            public static extern void RegisterPlaybackVideoStartedCallback(HandleRef webViewRef, IntPtr callbackRef);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterPlaybackVideoFinishedCallback")]
+            public static extern void RegisterPlaybackVideoFinishedCallback(HandleRef webViewRef, IntPtr callbackRef);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterPlaybackVideoStoppedCallback")]
+            public static extern void RegisterPlaybackVideoStoppedCallback(HandleRef webViewRef, IntPtr callbackRef);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterPlaybackVideoPausedCallback")]
+            public static extern void RegisterPlaybackVideoPausedCallback(HandleRef webViewRef, IntPtr callbackRef);
         }
     }
 }
