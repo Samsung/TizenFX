@@ -1127,14 +1127,16 @@ namespace Tizen.NUI.Components
                 View curHighlightedView = Accessibility.Accessibility.GetCurrentlyHighlightedView();
                 if (curHighlightedView != null)
                 {
-                    curHighlightedView.NotifyAccessibilityStatesChange(new AccessibilityStates(AccessibilityState.Visible, AccessibilityState.Showing), AccessibilityStatesNotifyMode.Single);
+                    curHighlightedView.NotifyAccessibilityStatesChange(new AccessibilityStates(AccessibilityState.Visible), AccessibilityStatesNotifyMode.Single);
+                    curHighlightedView.NotifyAccessibilityPresentationChanged(false);
                 }
             }
 
             if (appearedPage != null)
             {
                 appearedPage.RegisterDefaultLabel();
-                appearedPage.NotifyAccessibilityStatesChange(new AccessibilityStates(AccessibilityState.Visible, AccessibilityState.Showing), AccessibilityStatesNotifyMode.Single);
+                appearedPage.NotifyAccessibilityStatesChange(new AccessibilityStates(AccessibilityState.Visible), AccessibilityStatesNotifyMode.Single);
+                appearedPage.NotifyAccessibilityPresentationChanged(true);
             }
         }
 
