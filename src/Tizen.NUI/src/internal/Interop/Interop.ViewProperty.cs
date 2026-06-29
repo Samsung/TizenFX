@@ -93,6 +93,7 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_AUTOMATION_ID_get")]
             public static extern int AutomationIdGet();
 
+            // Legacy compatibility only. Do not use for AccessibilityStatesV2; the native symbol logs and returns INVALID_INDEX.
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_ACCESSIBILITY_STATES_get")]
             public static extern int AccessibilityStateGet();
 
