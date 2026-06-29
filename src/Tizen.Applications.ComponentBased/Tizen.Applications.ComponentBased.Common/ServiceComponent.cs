@@ -23,6 +23,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// This class provides methods for handling the lifecycle and state of service components.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("This has been deprecated in API14")]
     public abstract class ServiceComponent : BaseComponent
     {
         /// <summary>
@@ -32,6 +33,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <c>true</c> if the service component is successfully created; otherwise, <c>false</c>.
         /// </returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public abstract bool OnCreate();
 
         /// <summary>
@@ -40,6 +42,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <param name="appControl">The <see cref="AppControl"/> object containing the app control data.</param>
         /// <param name="restarted"><c>true</c> if the component was restarted; otherwise, <c>false</c>.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public virtual void OnStartCommand(AppControl appControl, bool restarted)
         {
         }
@@ -48,6 +51,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Called when the service component is destroyed. Override this method to handle destruction behavior.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public virtual void OnDestroy()
         {
         }
