@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 - 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -41,6 +41,9 @@ internal static partial class Interop
             Allow = 0,
             Deny = 1,
             Ask = 2,
+            AllowSession = 3,
+            DenySession = 4,
+            AllowInUse = 5,
         }
 
         internal enum RequestResult
@@ -48,6 +51,9 @@ internal static partial class Interop
             AllowForever = 0,
             DenyForever = 1,
             DenyOnce = 2,
+            AllowSession = 3,
+            DenySession = 4,
+            AllowInUse = 5,
         }
 
         //[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
