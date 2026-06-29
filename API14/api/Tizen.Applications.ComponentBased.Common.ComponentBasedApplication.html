@@ -67,7 +67,8 @@ This class allows the creation and management of multiple application components
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class ComponentBasedApplication : Application, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public abstract class ComponentBasedApplication : Application, IDisposable</code></pre>
   </div>
 
 
@@ -119,7 +120,8 @@ Each component has its own lifecycle, and the framework handles these lifecycles
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ComponentBasedApplication(IDictionary&lt;Type, string&gt; typeInfo)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public ComponentBasedApplication(IDictionary&lt;Type, string&gt; typeInfo)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -171,7 +173,8 @@ app.Run(args);</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Exit()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public override void Exit()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.Application.html#Tizen_Applications_Application_Exit">Application.Exit()</a></div>
@@ -196,7 +199,8 @@ Each component has its own lifecycle, and the framework handles these lifecycles
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnExit()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+protected virtual void OnExit()</code></pre>
   </div>
   <h5 id="Tizen_Applications_ComponentBased_Common_ComponentBasedApplication_OnExit_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Override this method to handle any logic needed before the application exits.</p>
@@ -218,7 +222,8 @@ Each component has its own lifecycle, and the framework handles these lifecycles
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnFinished()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+protected virtual void OnFinished()</code></pre>
   </div>
   <h5 id="Tizen_Applications_ComponentBased_Common_ComponentBasedApplication_OnFinished_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Override this method to handle any cleanup logic after the application has finished running.</p>
@@ -240,7 +245,8 @@ Each component has its own lifecycle, and the framework handles these lifecycles
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnInit(string[] args)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+protected virtual void OnInit(string[] args)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -280,7 +286,8 @@ Each component has its own lifecycle, and the framework handles these lifecycles
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected abstract void OnRun()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+protected abstract void OnRun()</code></pre>
   </div>
   <h5 id="Tizen_Applications_ComponentBased_Common_ComponentBasedApplication_OnRun_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This is an abstract method that must be implemented by derived classes to define the behavior when the application starts.</p>
@@ -302,7 +309,8 @@ Each component has its own lifecycle, and the framework handles these lifecycles
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void RegisterComponent(Type compType, string compId)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public void RegisterComponent(Type compType, string compId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -367,7 +375,8 @@ Each component has its own lifecycle, and the framework handles these lifecycles
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Run(string[] args)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public override void Run(string[] args)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">

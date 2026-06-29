@@ -66,7 +66,8 @@ BaseComponent
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class BaseComponent</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public abstract class BaseComponent</code></pre>
   </div>
 
 
@@ -113,7 +114,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ComponentId { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public string ComponentId { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -152,7 +154,8 @@ It will be created after OnCreate method is invoked.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Id { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public string Id { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -190,7 +193,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ComponentBasedApplication Parent { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public ComponentBasedApplication Parent { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -230,7 +234,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Finish()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public void Finish()</code></pre>
   </div>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_Finish_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
@@ -253,7 +258,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void OnRestoreContents(Bundle c)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public virtual void OnRestoreContents(Bundle c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -294,7 +300,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void OnSaveContent(Bundle c)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public virtual void OnSaveContent(Bundle c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -335,7 +342,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;AppControlResult&gt; SendLaunchRequestAsync(AppControl control, AppControlReplyCallback replyAfterLaunching)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public Task&lt;AppControlResult&gt; SendLaunchRequestAsync(AppControl control, AppControlReplyCallback replyAfterLaunching)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -430,7 +438,8 @@ If group mode is not required, you can use SendLaunchRequestAsync() instead.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;DeviceOrientationEventArgs&gt; DeviceOrientationChanged</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public event EventHandler&lt;DeviceOrientationEventArgs&gt; DeviceOrientationChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -467,7 +476,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;LocaleChangedEventArgs&gt; LocaleChanged</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public event EventHandler&lt;LocaleChangedEventArgs&gt; LocaleChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -504,7 +514,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;LowBatteryEventArgs&gt; LowBattery</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public event EventHandler&lt;LowBatteryEventArgs&gt; LowBattery</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -541,7 +552,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;LowMemoryEventArgs&gt; LowMemory</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public event EventHandler&lt;LowMemoryEventArgs&gt; LowMemory</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -578,7 +590,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RegionFormatChangedEventArgs&gt; RegionFormatChanged</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public event EventHandler&lt;RegionFormatChangedEventArgs&gt; RegionFormatChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -615,7 +628,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;SuspendedStateEventArgs&gt; SuspendedStateChanged</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public event EventHandler&lt;SuspendedStateEventArgs&gt; SuspendedStateChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -652,7 +666,8 @@ It serves as a base class to be inherited by other components.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;TimeZoneChangedEventArgs&gt; TimeZoneChanged</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API14&quot;)]
+public event EventHandler&lt;TimeZoneChangedEventArgs&gt; TimeZoneChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
