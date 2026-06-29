@@ -323,6 +323,17 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Notifies accessibility clients that this view's presentation state changed.
+        /// </summary>
+        /// <param name="presented">True when this view is presented, otherwise false</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void NotifyAccessibilityPresentationChanged(bool presented)
+        {
+            Interop.ControlDevel.DaliAccessibilityNotifyAccessibilityPresentationChanged(SwigCPtr, Convert.ToInt32(presented));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Emits accessibility text inserted event.
         /// </summary>
         /// <param name="cursorPosition">Text cursor position</param>
