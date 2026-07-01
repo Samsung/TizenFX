@@ -31,6 +31,9 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 4 </since_tizen>
     public partial class MediaController
     {
+        private static readonly MediaControllerNativePlaybackAction[] s_allPlaybackActions
+            = Enum.GetValues<MediaControllerNativePlaybackAction>();
+
         internal MediaController(MediaControllerManager manager, string serverAppId)
         {
             Debug.Assert(manager != null);
@@ -539,7 +542,7 @@ namespace Tizen.Multimedia.Remoting
                 Native.GetPlaybackCapabilityHandle(Manager.Handle, ServerAppId, out playbackCapaHandle).
                     ThrowIfError("Failed to get playback capability handle.");
 
-                foreach (MediaControllerNativePlaybackAction action in Enum.GetValues(typeof(MediaControllerNativePlaybackAction)))
+                foreach (MediaControllerNativePlaybackAction action in s_allPlaybackActions)
                 {
                     Native.GetPlaybackCapability(playbackCapaHandle, action, out MediaControlCapabilitySupport support);
                     playbackCapabilities.Add(action.ToPublic(), support);
