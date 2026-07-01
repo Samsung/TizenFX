@@ -118,10 +118,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public virtual void Run(string[] args)
         {
-            if (args == null)
-            {
-                throw new ArgumentNullException(nameof(args));
-            }
+            ArgumentNullException.ThrowIfNull(args);
             s_CurrentApplication = this;
         }
 
