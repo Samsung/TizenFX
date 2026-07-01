@@ -27,92 +27,40 @@ namespace Tizen.Network.Bluetooth
         /// Exceptions for Bluetooth Errors.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth Error happens.</exception>
-        internal static void ThrowBluetoothException(int exception)
-        {
+        internal static void ThrowBluetoothException(int exception) =>
             throw CreateBluetoothException(exception);
-        }
 
         /// <summary>
         /// Creates Bluetooth Exception.
         /// </summary>
-        internal static Exception CreateBluetoothException(int exception)
-        {
-            BluetoothError error = (BluetoothError)exception;
-            switch (error)
+        internal static Exception CreateBluetoothException(int exception) =>
+            (BluetoothError)exception switch
             {
-                case BluetoothError.InvalidParameter:
-                    return new InvalidOperationException("Invalid parameter");
-
-                case BluetoothError.Cancelled:
-                    return new InvalidOperationException("Operation cancelled");
-
-                case BluetoothError.AlreadyDone:
-                    return new InvalidOperationException("Operation already done");
-
-                case BluetoothError.TimedOut:
-                    return new InvalidOperationException("Timeout error");
-
-                case BluetoothError.AuthFailed:
-                    return new InvalidOperationException("Authentication failed");
-
-                case BluetoothError.AuthRejected:
-                    return new InvalidOperationException("Authentication rejected");
-
-                case BluetoothError.NoData:
-                    return new InvalidOperationException("No data available");
-
-                case BluetoothError.NotEnabled:
-                    return new InvalidOperationException("Local adapter not enabled");
-
-                case BluetoothError.NotInitialized:
-                    return new InvalidOperationException("Local adapter not initialized");
-
-                case BluetoothError.NowInProgress:
-                    return new InvalidOperationException("Operation now in progress");
-
-                case BluetoothError.NotInProgress:
-                    return new InvalidOperationException("Operation not in progress");
-
-                case BluetoothError.NotSupported:
-                    return new NotSupportedException("Bluetooth is not supported");
-
-                case BluetoothError.OperationFailed:
-                    return new InvalidOperationException("Operation failed");
-
-                case BluetoothError.OutOfMemory:
-                    return new InvalidOperationException("Out of memory");
-
-                case BluetoothError.PermissionDenied:
-                    return new InvalidOperationException("Permission denied");
-
-                case BluetoothError.QuotaExceeded:
-                    return new InvalidOperationException("Quota exceeded");
-
-                case BluetoothError.RemoteDeviceNotBonded:
-                    return new InvalidOperationException("Remote device not bonded");
-
-                case BluetoothError.RemoteDeviceNotConnected:
-                    return new InvalidOperationException("Remote device not connected");
-
-                case BluetoothError.RemoteDeviceNotFound:
-                    return new InvalidOperationException("Remote device not found");
-
-                case BluetoothError.ResourceBusy:
-                    return new InvalidOperationException("Device or resource busy");
-
-                case BluetoothError.ResourceUnavailable:
-                    return new InvalidOperationException("Resource temporarily unavailable");
-
-                case BluetoothError.ServiceNotFound:
-                    return new InvalidOperationException("Service Not Found");
-
-                case BluetoothError.ServiceSearchFailed:
-                    return new InvalidOperationException("Service search failed");
-
-                default:
-                    return new InvalidOperationException("Unknown exception");
-            }
-        }
+                BluetoothError.InvalidParameter         => new InvalidOperationException("Invalid parameter"),
+                BluetoothError.Cancelled                => new InvalidOperationException("Operation cancelled"),
+                BluetoothError.AlreadyDone              => new InvalidOperationException("Operation already done"),
+                BluetoothError.TimedOut                 => new InvalidOperationException("Timeout error"),
+                BluetoothError.AuthFailed               => new InvalidOperationException("Authentication failed"),
+                BluetoothError.AuthRejected             => new InvalidOperationException("Authentication rejected"),
+                BluetoothError.NoData                   => new InvalidOperationException("No data available"),
+                BluetoothError.NotEnabled               => new InvalidOperationException("Local adapter not enabled"),
+                BluetoothError.NotInitialized           => new InvalidOperationException("Local adapter not initialized"),
+                BluetoothError.NowInProgress            => new InvalidOperationException("Operation now in progress"),
+                BluetoothError.NotInProgress            => new InvalidOperationException("Operation not in progress"),
+                BluetoothError.NotSupported             => new NotSupportedException("Bluetooth is not supported"),
+                BluetoothError.OperationFailed          => new InvalidOperationException("Operation failed"),
+                BluetoothError.OutOfMemory              => new InvalidOperationException("Out of memory"),
+                BluetoothError.PermissionDenied         => new InvalidOperationException("Permission denied"),
+                BluetoothError.QuotaExceeded            => new InvalidOperationException("Quota exceeded"),
+                BluetoothError.RemoteDeviceNotBonded    => new InvalidOperationException("Remote device not bonded"),
+                BluetoothError.RemoteDeviceNotConnected => new InvalidOperationException("Remote device not connected"),
+                BluetoothError.RemoteDeviceNotFound     => new InvalidOperationException("Remote device not found"),
+                BluetoothError.ResourceBusy             => new InvalidOperationException("Device or resource busy"),
+                BluetoothError.ResourceUnavailable      => new InvalidOperationException("Resource temporarily unavailable"),
+                BluetoothError.ServiceNotFound          => new InvalidOperationException("Service Not Found"),
+                BluetoothError.ServiceSearchFailed      => new InvalidOperationException("Service search failed"),
+                _                                       => new InvalidOperationException("Unknown exception"),
+            };
     }
 }
 
