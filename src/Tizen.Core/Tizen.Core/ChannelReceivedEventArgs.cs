@@ -26,10 +26,7 @@ namespace Tizen.Core
     {
         internal ChannelReceivedEventArgs(ChannelObject channelObject)
         {
-            if (channelObject == null)
-            {
-                throw new ArgumentNullException(nameof(channelObject));
-            }
+            ArgumentNullException.ThrowIfNull(channelObject);
 
             Id = channelObject.Id;
             Data = channelObject.Data;

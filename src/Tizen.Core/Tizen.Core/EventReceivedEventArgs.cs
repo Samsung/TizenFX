@@ -26,10 +26,7 @@ namespace Tizen.Core
     {
         internal EventReceivedEventArgs(EventObject eventObject)
         {
-            if (eventObject == null)
-            {
-                throw new ArgumentNullException(nameof(eventObject));
-            }
+            ArgumentNullException.ThrowIfNull(eventObject);
 
             Id = eventObject.Id;
             Data = eventObject.Data;

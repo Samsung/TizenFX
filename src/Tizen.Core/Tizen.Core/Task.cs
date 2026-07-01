@@ -117,10 +117,7 @@ namespace Tizen.Core
         /// <since_tizen> 12 </since_tizen>
         public void Post(Action action)
         {
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            ArgumentNullException.ThrowIfNull(action);
 
             int id;
             lock (_idLock)
@@ -172,10 +169,7 @@ namespace Tizen.Core
         /// <since_tizen> 12 </since_tizen>
         public void Post(Func<System.Threading.Tasks.Task> task)
         {
-            if (task == null)
-            {
-                throw new ArgumentNullException(nameof(task));
-            }
+            ArgumentNullException.ThrowIfNull(task);
 
             int id;
             lock (_idLock)
@@ -222,10 +216,7 @@ namespace Tizen.Core
         /// <since_tizen> 12 </since_tizen>
         public int AddTimer(uint interval, Func<bool> callback)
         {
-            if (callback == null)
-            {
-                throw new ArgumentNullException(nameof(callback));
-            }
+            ArgumentNullException.ThrowIfNull(callback);
 
             int id;
             lock (_idLock)
@@ -309,7 +300,7 @@ namespace Tizen.Core
         /// <since_tizen> 12 </since_tizen>
         public void AddChannelReceiver(ChannelReceiver receiver)
         {
-            if (receiver == null) { throw new ArgumentNullException(nameof(receiver)); }
+            ArgumentNullException.ThrowIfNull(receiver);
 
             if (receiver.Handle == IntPtr.Zero)
             {
@@ -371,10 +362,7 @@ namespace Tizen.Core
         /// <since_tizen> 12 </since_tizen>
         public void RemoveChannelReceiver(ChannelReceiver receiver)
         {
-            if (receiver == null)
-            {
-                throw new ArgumentNullException(nameof(receiver));
-            }
+            ArgumentNullException.ThrowIfNull(receiver);
 
             if (receiver.Id == 0 || receiver.Source == IntPtr.Zero)
             {
@@ -425,10 +413,7 @@ namespace Tizen.Core
         /// <since_tizen> 12 </since_tizen>
         public void AddEvent(Event coreEvent)
         {
-            if (coreEvent == null)
-            {
-                throw new ArgumentNullException(nameof(coreEvent));
-            }
+            ArgumentNullException.ThrowIfNull(coreEvent);
 
             if (coreEvent.Handle == IntPtr.Zero)
             {
@@ -491,10 +476,7 @@ namespace Tizen.Core
         /// <since_tizen> 12 </since_tizen>
         public void RemoveEvent(Event coreEvent)
         {
-            if (coreEvent == null)
-            {
-                throw new ArgumentNullException(nameof(coreEvent));
-            }
+            ArgumentNullException.ThrowIfNull(coreEvent);
 
             if (coreEvent.Id == 0 || coreEvent.Source == IntPtr.Zero)
             {
@@ -539,10 +521,7 @@ namespace Tizen.Core
         /// <since_tizen> 12 </since_tizen>
         public void EmitEvent(EventObject eventObject)
         {
-            if (eventObject == null)
-            {
-                throw new ArgumentNullException(nameof(eventObject));
-            }
+            ArgumentNullException.ThrowIfNull(eventObject);
 
             if (eventObject.Handle == IntPtr.Zero)
             {
