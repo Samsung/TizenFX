@@ -44,18 +44,12 @@ namespace Tizen.WindowSystem.Shell
         /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
         public TaskbarService(TizenShell tzShell, IWindowProvider win, TaskbarPosition position = TaskbarPosition.Bottom)
         {
-            if (tzShell == null)
-            {
-                throw new ArgumentNullException(nameof(tzShell));
-            }
+            ArgumentNullException.ThrowIfNull(tzShell);
             if (tzShell.SafeHandle == null || tzShell.SafeHandle.IsInvalid)
             {
                 throw new ArgumentException("tzShell is not initialized.");
             }
-            if (win == null)
-            {
-                throw new ArgumentNullException(nameof(win));
-            }
+            ArgumentNullException.ThrowIfNull(win);
 
             _tzsh = tzShell;
             _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);
