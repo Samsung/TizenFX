@@ -108,14 +108,6 @@ namespace Tizen.Multimedia
             }
         }
 
-        CameraError IDisplayable<CameraError>.ApplyEvasDisplay(DisplayType type, ElmSharp.EvasObject evasObject)
-        {
-            Debug.Assert(_disposed == false);
-            ValidationUtil.ValidateEnum(typeof(DisplayType), type, nameof(type));
-
-            return CameraDisplay.SetDisplay(GetHandle(), type, evasObject);
-        }
-
         CameraError IDisplayable<CameraError>.ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation)
         {
             Debug.Assert(_disposed == false);
