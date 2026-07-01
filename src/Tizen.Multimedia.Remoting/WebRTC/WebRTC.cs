@@ -168,7 +168,7 @@ namespace Tizen.Multimedia.Remoting
 
             ValidateWebRTCState(WebRTCState.Idle);
 
-            var tcs = new TaskCompletionSource<bool>();
+            var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             var error = WebRTCError.ConnectionFailed;
 
             EventHandler<WebRTCStateChangedEventArgs> stateChangedEventHandler = (s, e) =>
@@ -193,7 +193,6 @@ namespace Tizen.Multimedia.Remoting
                 NativeWebRTC.Start(Handle).ThrowIfFailed("Failed to start the WebRTC");
 
                 var result = await tcs.Task.ConfigureAwait(false);
-                await Task.Yield();
 
                 if (!result)
                 {
@@ -244,7 +243,7 @@ namespace Tizen.Multimedia.Remoting
 
             ValidateWebRTCState(WebRTCState.Negotiating, WebRTCState.Playing);
 
-            var tcsSdpCreated = new TaskCompletionSource<string>();
+            var tcsSdpCreated = new TaskCompletionSource<string>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             NativeWebRTC.SdpCreatedCallback cb = (handle, sdp, _) =>
             {
@@ -258,7 +257,6 @@ namespace Tizen.Multimedia.Remoting
                     ThrowIfFailed("Failed to create offer asynchronously");
 
                 offer = await tcsSdpCreated.Task.ConfigureAwait(false);
-                await Task.Yield();
             }
 
             Log.Info(WebRTCLog.Tag, "Leave");
@@ -283,7 +281,7 @@ namespace Tizen.Multimedia.Remoting
 
             ValidateWebRTCState(WebRTCState.Negotiating, WebRTCState.Playing);
 
-            var tcsSdpCreated = new TaskCompletionSource<string>();
+            var tcsSdpCreated = new TaskCompletionSource<string>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             NativeWebRTC.SdpCreatedCallback cb = (handle, sdp, _) =>
             {
@@ -297,7 +295,6 @@ namespace Tizen.Multimedia.Remoting
                     ThrowIfFailed("Failed to create answer asynchronously");
 
                 answer = await tcsSdpCreated.Task.ConfigureAwait(false);
-                await Task.Yield();
             }
 
             Log.Info(WebRTCLog.Tag, "Leave");

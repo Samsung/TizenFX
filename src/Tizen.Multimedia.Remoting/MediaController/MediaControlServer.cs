@@ -850,7 +850,7 @@ namespace Tizen.Multimedia.Remoting
 
             command.SetRequestInformation(clientId);
 
-            var tcs = new TaskCompletionSource<int>();
+            var tcs = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
             string reqeustId = null;
             Bundle bundle = null;
 
@@ -909,7 +909,7 @@ namespace Tizen.Multimedia.Remoting
 
             command.SetRequestInformation(clientId);
 
-            var tcs = new TaskCompletionSource<int>();
+            var tcs = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
             string reqeustId = null;
             Bundle bundle = null;
 
