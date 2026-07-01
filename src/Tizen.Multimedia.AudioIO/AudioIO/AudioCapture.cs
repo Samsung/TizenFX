@@ -132,8 +132,17 @@ namespace Tizen.Multimedia
                     {
                         Unprepare();
                     }
-                    catch (Exception)
+                    catch (ObjectDisposedException)
                     {
+                        // Expected during shutdown races.
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        // Expected if the underlying handle has already been torn down.
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(GetType().Name, $"Unexpected error during Dispose: {ex}");
                     }
                 }
 
