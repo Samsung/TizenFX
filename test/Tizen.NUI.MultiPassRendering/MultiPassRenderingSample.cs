@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
+using System.Reflection;
 
 class MultiPassRenderingSample : NUIApplication
 {
@@ -69,11 +70,19 @@ class MultiPassRenderingSample : NUIApplication
         mWindow.Add(textureViewer);
     }
 
+    // Helper to invoke internal SetBuiltinCamera via reflection
+    private void InvokeSetBuiltinCamera(RenderTask task, string typeName, uint width, uint height, bool invertY)
+    {
+        var enumType = typeof(RenderTask).GetNestedType("BuiltinCameraType", System.Reflection.BindingFlags.NonPublic);
+        var enumVal = System.Enum.Parse(enumType, typeName);
+        var method = typeof(RenderTask).GetMethod("SetBuiltinCamera", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
+        method?.Invoke(task, new object[] { enumVal, (float)width, (float)height, invertY, null });
+    }
+
     #region First Scene Creation
     private RenderTask mFirstRenderTask; // Must have reference. Dispose will remove rendering automatically
     private FrameBuffer mFirstFrameBuffer;
     private Texture mFirstRenderedTexture;
-    private Texture mFirstDepthTexture;
 
     const uint c_FirstSceneWidth = 100u;
     const uint c_FirstSceneHeight = 200u;
@@ -91,21 +100,7 @@ class MultiPassRenderingSample : NUIApplication
 
         mFirstRenderTask.ClearColor = new Vector4(0.0f, 0.0f, 1.0f, 0.5f);
         mFirstRenderTask.OrderIndex = -100;
-
-        // TODO : Tizen.NUI.Camera is deprecated! Need to find more good way to support it.
-        Tizen.NUI.Camera camera = new Tizen.NUI.Camera()
-        {
-            PositionUsesPivotPoint = true,
-            ParentOrigin = ParentOrigin.Center,
-            PivotPoint = PivotPoint.Center,
-        };
-        camera.SetPerspectiveProjection(new Vector2(c_FirstSceneWidth, c_FirstSceneHeight));
-        camera.SetInvertYAxis(true);
-
-        camera.NearPlaneDistance = camera.Position.Z - 0.1f;
-        camera.FarPlaneDistance = camera.Position.Z + 0.1f;
-
-        mFirstRenderTask.SetCamera(camera);
+        InvokeSetBuiltinCamera(mFirstRenderTask, "AttachedToSourceView", c_FirstSceneWidth, c_FirstSceneHeight, true);
 
         mFirstFrameBuffer = new FrameBuffer(c_FirstSceneWidth, c_FirstSceneHeight, 0);
         mFirstRenderedTexture = new Texture(TextureShape.Texture2D, PixelFormat.RGBA8888, c_FirstSceneWidth, c_FirstSceneHeight);
@@ -134,7 +129,6 @@ class MultiPassRenderingSample : NUIApplication
 
         mFirstRenderTask.SetSourceView(firstSceneRoot);
 
-        mWindow.Add(camera);
         mWindow.Add(firstSceneRoot);
         firstSceneRoot.Add(firstSceneChild);
 
@@ -151,7 +145,6 @@ class MultiPassRenderingSample : NUIApplication
     private RenderTask mSecondRenderTask; // Must have reference. Dispose will remove rendering automatically
     private FrameBuffer mSecondFrameBuffer;
     private Texture mSecondRenderedTexture;
-    private Texture mSecondDepthTexture;
 
     const uint c_SecondSceneWidth = 400u;
     const uint c_SecondSceneHeight = 200u;
@@ -169,18 +162,7 @@ class MultiPassRenderingSample : NUIApplication
 
         mSecondRenderTask.ClearColor = new Vector4(0.0f, 1.0f, 0.0f, 0.5f);
         mSecondRenderTask.OrderIndex = mFirstRenderTask.OrderIndex + 1;
-
-        // TODO : Tizen.NUI.Camera is deprecated! Need to find more good way to support it.
-        Tizen.NUI.Camera camera = new Tizen.NUI.Camera()
-        {
-            PositionUsesPivotPoint = true,
-            ParentOrigin = ParentOrigin.Center,
-            PivotPoint = PivotPoint.Center,
-        };
-        camera.SetPerspectiveProjection(new Vector2(c_SecondSceneWidth, c_SecondSceneHeight));
-        camera.SetInvertYAxis(true);
-
-        mSecondRenderTask.SetCamera(camera);
+        InvokeSetBuiltinCamera(mSecondRenderTask, "AttachedToSourceView", c_SecondSceneWidth, c_SecondSceneHeight, true);
 
         mSecondFrameBuffer = new FrameBuffer(c_SecondSceneWidth, c_SecondSceneHeight, 0);
         mSecondRenderedTexture = new Texture(TextureShape.Texture2D, PixelFormat.RGBA8888, c_SecondSceneWidth, c_SecondSceneHeight);
@@ -201,7 +183,6 @@ class MultiPassRenderingSample : NUIApplication
 
         mSecondRenderTask.SetSourceView(secondSceneRoot);
 
-        mWindow.Add(camera);
         mWindow.Add(secondSceneRoot);
 
         mSecondSceneAnimation = new Animation(3000);
@@ -217,7 +198,6 @@ class MultiPassRenderingSample : NUIApplication
     private RenderTask mThirdRenderTask; // Must have reference. Dispose will remove rendering automatically
     private FrameBuffer mThirdFrameBuffer;
     private Texture mThirdRenderedTexture;
-    private Texture mThirdDepthTexture;
 
     const uint c_ThirdSceneWidth = 450u;
     const uint c_ThirdSceneHeight = 400u;
@@ -234,18 +214,7 @@ class MultiPassRenderingSample : NUIApplication
 
         mThirdRenderTask.ClearColor = Vector4.Zero;
         mThirdRenderTask.OrderIndex = mSecondRenderTask.OrderIndex + 1;
-
-        // TODO : Tizen.NUI.Camera is deprecated! Need to find more good way to support it.
-        Tizen.NUI.Camera camera = new Tizen.NUI.Camera()
-        {
-            PositionUsesPivotPoint = true,
-            ParentOrigin = ParentOrigin.Center,
-            PivotPoint = PivotPoint.Center,
-        };
-        camera.SetPerspectiveProjection(new Vector2(c_ThirdSceneWidth, c_ThirdSceneHeight));
-        camera.SetInvertYAxis(true);
-
-        mThirdRenderTask.SetCamera(camera);
+        InvokeSetBuiltinCamera(mThirdRenderTask, "AttachedToSourceView", c_ThirdSceneWidth, c_ThirdSceneHeight, true);
 
         mThirdFrameBuffer = new FrameBuffer(c_ThirdSceneWidth, c_ThirdSceneHeight, 0);
         mThirdRenderedTexture = new Texture(TextureShape.Texture2D, PixelFormat.RGBA8888, c_ThirdSceneWidth, c_ThirdSceneHeight);
@@ -265,7 +234,6 @@ class MultiPassRenderingSample : NUIApplication
 
         mThirdRenderTask.SetSourceView(thirdSceneRoot);
 
-        mWindow.Add(camera);
         mWindow.Add(thirdSceneRoot);
 
         mThirdSceneAnimation = new Animation(3000);
@@ -422,8 +390,8 @@ class MultiPassRenderingSample : NUIApplication
     const uint c_FourthSceneWidth = 200u;
     const uint c_FourthSceneHeight = 400u;
 
-    private Animation mFourceSceneAnimation;
-    private View mFourceStopperView;
+    private Animation mFourthSceneAnimation;
+    private View mFourthStopperView;
     private void CreateFourthScene()
     {
         mFourthRenderTask = mRenderTaskList.CreateTask();
@@ -435,18 +403,7 @@ class MultiPassRenderingSample : NUIApplication
 
         mFourthRenderTask.ClearColor = Vector4.Zero;
         mFourthRenderTask.OrderIndex = mThirdRenderTask.OrderIndex + 1;
-
-        // TODO : Tizen.NUI.Camera is deprecated! Need to find more good way to support it.
-        Tizen.NUI.Camera camera = new Tizen.NUI.Camera()
-        {
-            PositionUsesPivotPoint = true,
-            ParentOrigin = ParentOrigin.Center,
-            PivotPoint = PivotPoint.Center,
-        };
-        camera.SetPerspectiveProjection(new Vector2(c_FourthSceneWidth, c_FourthSceneHeight));
-        camera.SetInvertYAxis(true);
-
-        mFourthRenderTask.SetCamera(camera);
+        InvokeSetBuiltinCamera(mFourthRenderTask, "AttachedToSourceView", c_FourthSceneWidth, c_FourthSceneHeight, true);
 
         mFourthFrameBuffer = new FrameBuffer(c_FourthSceneWidth, c_FourthSceneHeight, 0);
         mFourthRenderedTexture = new Texture(TextureShape.Texture2D, PixelFormat.RGBA8888, c_FourthSceneWidth, c_FourthSceneHeight);
@@ -475,15 +432,14 @@ class MultiPassRenderingSample : NUIApplication
         BuildFourthViews(fourthSceneRotator);
 
         mFourthRenderTask.SetSourceView(fourthSceneRoot);
-        mFourthRenderTask.RenderUntil(mFourceStopperView);
+        mFourthRenderTask.RenderUntil(mFourthStopperView);
 
-        fourthSceneRoot.Add(camera); // Make camera follow scene root
         mWindow.Add(fourthSceneRoot);
 
-        mFourceSceneAnimation = new Animation(10000);
-        mFourceSceneAnimation.AnimateBy(fourthSceneRotator, "Orientation", new Rotation(new Radian(new Degree(360.0f)), Vector3.ZAxis));
-        mFourceSceneAnimation.Looping = true;
-        mFourceSceneAnimation.Play();
+        mFourthSceneAnimation = new Animation(10000);
+        mFourthSceneAnimation.AnimateBy(fourthSceneRotator, "Orientation", new Rotation(new Radian(new Degree(360.0f)), Vector3.ZAxis));
+        mFourthSceneAnimation.Looping = true;
+        mFourthSceneAnimation.Play();
 
         AttachViewer(mFourthRenderedTexture, new Size(c_FourthSceneWidth, c_FourthSceneHeight), new Position(20 + c_FourthSceneWidth, 30 + c_SecondSceneHeight + c_ThirdSceneHeight));
     }
@@ -518,7 +474,7 @@ class MultiPassRenderingSample : NUIApplication
             }
             else if(i == childrenCount / 2)
             {
-                mFourceStopperView = view;
+                mFourthStopperView = view;
                 view.BackgroundColor = Color.White;
                 var label = new TextLabel("E");
                 view.Add(label);

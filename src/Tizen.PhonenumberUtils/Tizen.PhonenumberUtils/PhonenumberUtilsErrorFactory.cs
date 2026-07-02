@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.Internals.Errors;
 
 namespace Tizen.PhonenumberUtils
@@ -37,6 +38,7 @@ namespace Tizen.PhonenumberUtils
         internal const string LogTag = "Tizen.PhonenumberUtils";
     }
 
+    [ExcludeFromCodeCoverage]
     internal static class PhonenumberUtilsErrorFactory
     {
         static internal void ThrowPhonenumberUtilsException(int e)

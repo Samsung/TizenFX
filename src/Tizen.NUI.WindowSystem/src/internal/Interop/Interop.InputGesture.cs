@@ -1,7 +1,5 @@
 using System;
 using System.Runtime.InteropServices;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Tizen.NUI.WindowSystem
 {
@@ -9,87 +7,87 @@ namespace Tizen.NUI.WindowSystem
     {
         internal static class InputGesture
         {
-            const string lib = "libcapi-ui-efl-util.so.0";
+            const string lib = "libtizen-core-wl.so.0";
 
             internal static string LogTag = "Tizen.NUI.WindowSystem";
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_initialize")]
-            internal static extern IntPtr Initialize();
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_create")]
+            internal static extern int Create(IntPtr display, out IntPtr gesture);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_deinitialize")]
-            internal static extern ErrorCode Deinitialize(IntPtr gestureHandler);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_destroy")]
+            internal static extern int Destroy(IntPtr gesture);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_edge_swipe_new")]
-            internal static extern IntPtr EdgeSwipeNew(IntPtr gestureHandler, int fingers, int edge);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_edge_swipe_new")]
+            internal static extern int EdgeSwipeNew(IntPtr gesture, uint fingers, int edge, out IntPtr data);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_edge_swipe_free")]
-            internal static extern ErrorCode EdgeSwipeFree(IntPtr gestureHandler, IntPtr gestureData);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_edge_swipe_free")]
+            internal static extern int EdgeSwipeFree(IntPtr gesture, IntPtr data);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_edge_swipe_size_set")]
-            internal static extern ErrorCode EdgeSwipeSizeSet(IntPtr gestureData, int edgeSize, int startPoint, int endPoint);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_edge_swipe_size_set")]
+            internal static extern int EdgeSwipeSizeSet(IntPtr data, int edgeSize, uint startPoint, uint endPoint);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_edge_drag_new")]
-            internal static extern IntPtr EdgeDragNew(IntPtr gestureHandler, int fingers, int edge);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_edge_drag_new")]
+            internal static extern int EdgeDragNew(IntPtr gesture, uint fingers, int edge, out IntPtr data);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_edge_drag_free")]
-            internal static extern ErrorCode EdgeDragFree(IntPtr gestureHandler, IntPtr gestureData);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_edge_drag_free")]
+            internal static extern int EdgeDragFree(IntPtr gesture, IntPtr data);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_edge_drag_size_set")]
-            internal static extern ErrorCode EdgeDragSizeSet(IntPtr gestureData, int edgeSize, int startPoint, int endPoint);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_edge_drag_size_set")]
+            internal static extern int EdgeDragSizeSet(IntPtr data, int edgeSize, uint startPoint, uint endPoint);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_tap_new")]
-            internal static extern IntPtr TapNew(IntPtr gestureHandler, int fingers, int repeats);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_tap_new")]
+            internal static extern int TapNew(IntPtr gesture, uint fingers, uint repeats, out IntPtr data);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_tap_free")]
-            internal static extern ErrorCode TapFree(IntPtr gestureHandler, IntPtr gestureData);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_tap_free")]
+            internal static extern int TapFree(IntPtr gesture, IntPtr data);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_palm_cover_new")]
-            internal static extern IntPtr PalmCoverNew(IntPtr gestureHandler);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_palm_cover_new")]
+            internal static extern int PalmCoverNew(IntPtr gesture, out IntPtr data);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_palm_cover_free")]
-            internal static extern ErrorCode PalmCoverFree(IntPtr gestureHandler, IntPtr gestureData);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_palm_cover_free")]
+            internal static extern int PalmCoverFree(IntPtr gesture, IntPtr data);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_grab")]
-            internal static extern ErrorCode GestureGrab(IntPtr gestureHandler, IntPtr gestureData);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_grab")]
+            internal static extern int GestureGrab(IntPtr gesture, IntPtr data);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_grab_mode_set")]
-            internal static extern ErrorCode SetGestureGrabMode(IntPtr gestureHandler, IntPtr gestureData, int mode);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_grab_mode_set")]
+            internal static extern int SetGestureGrabMode(IntPtr gesture, IntPtr data, int mode);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_ungrab")]
-            internal static extern ErrorCode GestureUngrab(IntPtr gestureHandler, IntPtr gestureData);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_ungrab")]
+            internal static extern int GestureUngrab(IntPtr gesture, IntPtr data);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_edge_swipe_cb_set")]
-            internal static extern ErrorCode SetEdgeSwipeCb(IntPtr gestureHandler, EdgeSwipeCb cbFunc, IntPtr usergestureData);
-
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            internal delegate void EdgeSwipeCb(IntPtr usergestureData, int mode, int fingers, int sx, int sy, int edge);
-
-            [DllImport(lib, EntryPoint = "efl_util_gesture_edge_drag_cb_set")]
-            internal static extern ErrorCode SetEdgeDragCb(IntPtr gestureHandler, EdgeDragCb cbFunc, IntPtr usergestureData);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_edge_swipe_cb_set")]
+            internal static extern int SetEdgeSwipeCb(IntPtr gesture, EdgeSwipeCb cbFunc, IntPtr userData);
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            internal delegate void EdgeDragCb(IntPtr usergestureData, int mode, int fingers, int cx, int cy, int edge);
+            internal delegate void EdgeSwipeCb(IntPtr userData, int mode, int fingers, int sx, int sy, int edge);
 
-            [DllImport(lib, EntryPoint = "efl_util_gesture_tap_cb_set")]
-            internal static extern ErrorCode SetTapCb(IntPtr gestureHandler, TapCb cbFunc, IntPtr usergestureData);
-
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            internal delegate void TapCb(IntPtr usergestureData, int mode, int fingers, int repeats);
-
-            [DllImport(lib, EntryPoint = "efl_util_gesture_palm_cover_cb_set")]
-            internal static extern ErrorCode SetPalmCoverCb(IntPtr gestureHandler, PalmCoverCb cbFunc, IntPtr usergestureData);
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_edge_drag_cb_set")]
+            internal static extern int SetEdgeDragCb(IntPtr gesture, EdgeDragCb cbFunc, IntPtr userData);
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            internal delegate void PalmCoverCb(IntPtr usergestureData, int mode, int duration, int cx, int cy, int size, double pressure);
+            internal delegate void EdgeDragCb(IntPtr userData, int mode, int fingers, int cx, int cy, int edge);
+
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_tap_cb_set")]
+            internal static extern int SetTapCb(IntPtr gesture, TapCb cbFunc, IntPtr userData);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void TapCb(IntPtr userData, int mode, int fingers, int repeats);
+
+            [DllImport(lib, EntryPoint = "tizen_core_wl_gesture_palm_cover_cb_set")]
+            internal static extern int SetPalmCoverCb(IntPtr gesture, PalmCoverCb cbFunc, IntPtr userData);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void PalmCoverCb(IntPtr userData, int mode, int duration, int cx, int cy, int size, double pressure);
 
             internal enum ErrorCode
             {
                 None = Tizen.Internals.Errors.ErrorCode.None,                            // Successful
                 OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,              // Out of memory
                 InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,    // Invalid parameter
-                InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,    // Invalid operation
-                PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,    // Permission denied
                 NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,            // NOT supported
+                PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,    // Permission denied
+                NotConnected = -0x02000000 | 0xA000 | 0x01,                             // No connection to display server
             };
         }
     }

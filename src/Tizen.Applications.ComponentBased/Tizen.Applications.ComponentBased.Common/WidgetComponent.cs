@@ -23,6 +23,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// This class provides methods for handling the lifecycle and state of widget components.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("This has been deprecated in API14")]
     public abstract class WidgetComponent : BaseComponent
     {
         /// <summary>
@@ -34,6 +35,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <c>true</c> if the widget component is successfully created; otherwise, <c>false</c>.
         /// </returns>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public abstract bool OnCreate(int width, int height);
 
         /// <summary>
@@ -45,6 +47,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// An <see cref="IWindowProxy"/> object representing the window to use.
         /// </returns>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public abstract IWindowProxy CreateWindowInfo(int width, int height);
 
         /// <summary>
@@ -54,6 +57,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <c>true</c> if the component was restarted; otherwise, <c>false</c>.
         /// </param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public virtual void OnStart(bool restarted)
         {
         }
@@ -62,6 +66,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Called when the widget component is resumed. Override this method to handle resume behavior.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public virtual void OnResume()
         {
         }
@@ -70,6 +75,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Called when the widget component is paused. Override this method to handle pause behavior.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public virtual void OnPause()
         {
         }
@@ -78,6 +84,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Called when the widget component is stopped. Override this method to handle stop behavior.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public virtual void OnStop()
         {
         }
@@ -89,6 +96,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <c>true</c> if the instance is permanent; otherwise, <c>false</c>.
         /// </param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public virtual void OnDestroy(bool permanent)
         {
         }

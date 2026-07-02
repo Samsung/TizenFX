@@ -144,14 +144,20 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
+                if (value == null)
+                {
+                    return;
+                }
                 _stopOffsets = value;
-                PropertyArray stopOffsetArray = new PropertyArray();
+
+                using PropertyArray stopOffsetArray = new PropertyArray();
                 foreach (float val in _stopOffsets)
                 {
-                    stopOffsetArray.Add(new PropertyValue(val));
+                    using var propertyValue = new PropertyValue(val);
+                    stopOffsetArray.Add(propertyValue);
                 }
 
-                UpdateVisualProperty((int)Tizen.NUI.GradientVisualProperty.StopOffset, stopOffsetArray);
+                UpdateVisualProperty((int)Tizen.NUI.GradientVisualProperty.StopOffset, stopOffsetArray, false);
             }
             get
             {
@@ -170,13 +176,19 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
+                if (value == null)
+                {
+                    return;
+                }
                 _stopColors = value;
-                PropertyArray stopColorArray = new PropertyArray();
+
+                using PropertyArray stopColorArray = new PropertyArray();
                 foreach (UIColor val in _stopColors)
                 {
-                    stopColorArray.Add(new PropertyValue(new Vector4(val.R, val.G, val.B, val.A)));
+                    using var propertyValue = new PropertyValue(val.R, val.G, val.B, val.A);
+                    stopColorArray.Add(propertyValue);
                 }
-                UpdateVisualProperty((int)Tizen.NUI.GradientVisualProperty.StopColor, stopColorArray);
+                UpdateVisualProperty((int)Tizen.NUI.GradientVisualProperty.StopColor, stopColorArray, false);
             }
             get
             {
@@ -194,7 +206,7 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.GradientVisualProperty.Units, value);
+                UpdateVisualProperty((int)Tizen.NUI.GradientVisualProperty.Units, value, false);
             }
             get
             {
@@ -215,7 +227,7 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.GradientVisualProperty.SpreadMethod, value);
+                UpdateVisualProperty((int)Tizen.NUI.GradientVisualProperty.SpreadMethod, value, false);
             }
             get
             {
@@ -236,7 +248,7 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.GradientVisualProperty.StartOffset, value);
+                UpdateVisualProperty((int)Tizen.NUI.GradientVisualProperty.StartOffset, value, false);
             }
             get
             {
