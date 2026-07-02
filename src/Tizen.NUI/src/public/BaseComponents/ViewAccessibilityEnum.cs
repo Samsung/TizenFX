@@ -25,7 +25,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// Accessibility interface.
     /// </summary>
-    // Values are from Dali::Accessibility::AtspiInterface
+    // Values are from Dali::Integration::Accessibility::AccessibilityInterface
     [EditorBrowsable(EditorBrowsableState.Never)]
     internal enum AccessibilityInterface
     {

@@ -417,12 +417,7 @@ namespace Tizen.NUI.BaseComponents
 #if !PROFILE_TV
             if (GetAccessibilityStates()[AccessibilityState.Modal])
             {
-                RegisterDefaultLabel();
-
-                if (Accessibility.Accessibility.IsEnabled)
-                {
-                    EmitAccessibilityStateChangedEvent(AccessibilityState.Showing, true);
-                }
+                NotifyAccessibilityPresentationChanged(true);
             }
 #endif
         }
@@ -443,12 +438,7 @@ namespace Tizen.NUI.BaseComponents
 #if !PROFILE_TV
             if (GetAccessibilityStates()[AccessibilityState.Modal])
             {
-                UnregisterDefaultLabel();
-
-                if (Accessibility.Accessibility.IsEnabled)
-                {
-                    EmitAccessibilityStateChangedEvent(AccessibilityState.Showing, false);
-                }
+                NotifyAccessibilityPresentationChanged(false);
             }
 #endif
         }

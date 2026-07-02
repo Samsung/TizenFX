@@ -78,6 +78,14 @@ namespace Tizen.NUI
             public static extern ulong DaliToolkitDevelControlGetAccessibilityStates(HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_Control_GetAccessibilityStates")]
+            public static extern uint DaliToolkitControlGetAccessibilityStates(HandleRef arg1);
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_Control_SetAccessibilityStates")]
+            public static extern void DaliToolkitControlSetAccessibilityStates(HandleRef arg1, uint arg2);
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_NotifyAccessibilityStateChange")]
             public static extern IntPtr DaliToolkitDevelControlNotifyAccessibilityStateChange(HandleRef arg1, ulong arg2, int arg3);
 
@@ -88,6 +96,10 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitAccessibilityStateChangedEvent")]
             public static extern IntPtr DaliAccessibilityEmitAccessibilityStateChangedEvent(HandleRef arg1, int arg2_state, int arg3);
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_NotifyAccessibilityPresentationChanged")]
+            public static extern void DaliAccessibilityNotifyAccessibilityPresentationChanged(HandleRef arg1, int arg2_presented);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitTextInsertedEvent")]
