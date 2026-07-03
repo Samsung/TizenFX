@@ -93,6 +93,27 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
+        /// ModeChanged is raised when the tethering mode is changed.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.InvalidOperation">Thrown when the method failed due to an invalid operation.</exception>
+        static public event EventHandler<TetheringExtensionModeChangedEventArgs> ModeChanged
+        {
+            add
+            {
+                TetheringExtensionManagerImpl.Instance.ModeChanged += value;
+            }
+            remove
+            {
+                TetheringExtensionManagerImpl.Instance.ModeChanged -= value;
+            }
+        }
+
+        /// <summary>
         /// Activates the TetheringExtension.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
@@ -120,6 +141,22 @@ namespace Tizen.Network.Tethering
         static public void Deactivate()
         {
             TetheringExtensionManagerImpl.Instance.DeActivate();
+        }
+
+        /// <summary>
+        /// Updates the tethering information with new SSID and passphrase.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when SSID or passphrase is invalid.</exception>
+        /// <exception cref="TetheringError.InvalidOperation">Thrown when tethering is not active or settings match current values.</exception>
+        /// <param name="ssid">The new SSID</param>
+        /// <param name="passphrase">The new passphrase</param>
+        static public void UpdateTetheringInfo(string ssid, string passphrase)
+        {
+            TetheringExtensionManagerImpl.Instance.UpdateTetheringInfo(ssid, passphrase);
         }
 
         /// <summary>

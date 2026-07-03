@@ -30,6 +30,8 @@ internal static partial class Interop
         internal delegate void DisabledCallback(int result, TetheringDisabledCause cause, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ConnectionStateChangedCallback(IntPtr client, bool opened, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ModeChangedCallback(int mode, IntPtr userData);
 
 
         // Tethering Manager
@@ -57,6 +59,12 @@ internal static partial class Interop
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_unset_connection_state_changed_cb")]
         internal static extern int UnsetConnectionStateChangedCallback(IntPtr tethering);
 
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_set_mode_changed_cb")]
+        internal static extern int SetModeChangedCallback(IntPtr tethering, ModeChangedCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_unset_mode_changed_cb")]
+        internal static extern int UnsetModeChangedCallback(IntPtr tethering);
+
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_activate")]
         internal static extern int Activate(IntPtr tethering);
 
@@ -71,6 +79,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_set_passphrase")]
         internal static extern int SetPassphrase(IntPtr tethering, string ssid);
+
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_update_tethering_info")]
+        internal static extern int UpdateTetheringInfo(IntPtr tethering, string ssid, string passphrase);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_set_channel")]
         internal static extern int SetChannel(IntPtr tethering, int channel);
