@@ -382,16 +382,19 @@ namespace Tizen.Security
 
             var tcs = s_multipleRequestMap[requestId];
             RequestMultipleResponseEventArgs requestResponse = new RequestMultipleResponseEventArgs();
+
             PermissionRequestResponse[] permissionResponses = new PermissionRequestResponse[privilegesCount];
+            bool isAnswer = (CallCause)cause == CallCause.Answer;
 
             for (int iterator = 0; iterator < privilegesCount; ++iterator)
             {
                 permissionResponses[iterator] = new PermissionRequestResponse
                 {
                     Privilege = requestedPrivileges[iterator],
-                    Result = (RequestResult)results[iterator]
+                    Result = isAnswer ? (RequestResult)results[iterator] : default(RequestResult)
                 };
             }
+
             requestResponse.Cause = (CallCause)cause;
             requestResponse.Responses = permissionResponses;
 
