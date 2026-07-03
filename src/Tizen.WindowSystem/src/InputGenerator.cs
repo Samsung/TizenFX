@@ -31,49 +31,64 @@ namespace Tizen.WindowSystem
     public class InputGenerator : IDisposable
     {
         private SafeHandles.InputGeneratorHandle _inputGeneratorHandle;
-        private bool disposed = false;
+        private TizenCoreWlDisplay _display;
+        private bool _disposed = false;
         private readonly InputGeneratorDevices _deviceType;
 
         /// <summary>
-        /// Creates a new InputGenerator with all device types.
+        /// Creates a new InputGenerator.
         /// </summary>
-        /// <param name="name">The name of the new input generator.</param>
-        /// <param name="sync">Whether to use synchronous initialization.</param>
-        /// <exception cref="ArgumentException"></exception>
-        public InputGenerator(string name = null, bool sync = false)
-            : this(InputGeneratorDevices.All, name, sync)
+        /// <param name="display">The TizenCoreWlDisplay instance.</param>
+        /// <param name="deviceType">The device types to initialize.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
+        public InputGenerator(TizenCoreWlDisplay display, InputGeneratorDevices deviceType)
+            : this(display, deviceType, null, false)
         {
         }
 
         /// <summary>
-        /// Creates a new InputGenerator with specified device types.
-        /// By specifying only the required device types instead of <see cref="InputGeneratorDevices.All"/>,
-        /// internal native resource overhead can be reduced.
+        /// Creates a new InputGenerator with a custom device name.
         /// </summary>
-        /// <remarks>
-        /// When a specific device type is specified, only methods corresponding to that device type can be called.
-        /// Calling a method that does not match the initialized device type will throw an <see cref="InvalidOperationException"/>.
-        /// For example, if initialized with <see cref="InputGeneratorDevices.Keyboard"/> only,
-        /// calling <see cref="SendPointer(int, PointerAction, int, int, InputGeneratorDevices)"/> will throw an exception.
-        /// </remarks>
-        /// <param name="deviceType">The device types to initialize. Only methods matching the specified device types can be used.</param>
-        /// <param name="name">The name of the new input generator.</param>
-        /// <param name="sync">Whether to use synchronous initialization.</param>
-        /// <exception cref="ArgumentException"></exception>
-        public InputGenerator(InputGeneratorDevices deviceType, string name = null, bool sync = false)
+        /// <param name="display">The TizenCoreWlDisplay instance.</param>
+        /// <param name="deviceType">The device types to initialize.</param>
+        /// <param name="name">The device name.</param>
+        /// <param name="sync">If true, creates synchronously.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
+        public InputGenerator(TizenCoreWlDisplay display, InputGeneratorDevices deviceType, string name, bool sync = false)
         {
+            if (display == null)
+            {
+                throw new ArgumentNullException(nameof(display));
+            }
+
+            if (display.GetNativeHandle() == IntPtr.Zero)
+            {
+                throw new ArgumentException("The display is not initialized or has been disposed.", nameof(display));
+            }
+
             _deviceType = deviceType;
+            _display = display;
+            int ret;
+            IntPtr handle;
             if (sync)
             {
-                _inputGeneratorHandle = Interop.InputGenerator.SyncInit(deviceType, name);
+                ret = Interop.InputGenerator.CreateWithSync(display.GetNativeHandle(), deviceType, name, out handle);
             }
             else
             {
                 if (name == null)
-                    _inputGeneratorHandle = Interop.InputGenerator.Init(deviceType);
+                    ret = Interop.InputGenerator.Create(display.GetNativeHandle(), deviceType, out handle);
                 else
-                    _inputGeneratorHandle = Interop.InputGenerator.InitWithName(deviceType, name);
+                    ret = Interop.InputGenerator.CreateWithName(display.GetNativeHandle(), deviceType, name, out handle);
             }
+
+            if (ret != (int)Interop.InputGenerator.ErrorCode.None)
+            {
+                ErrorUtils.ThrowIfError(ret, "Failed to create InputGenerator");
+            }
+            _inputGeneratorHandle = new SafeHandles.InputGeneratorHandle(handle, true);
         }
 
         /// <summary>
@@ -93,14 +108,13 @@ namespace Tizen.WindowSystem
         /// <inheritdoc/>
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (_disposed) return;
+
+            if (disposing)
             {
-                if (disposing)
-                {
-                    _inputGeneratorHandle?.Dispose();
-                }
-                disposed = true;
+                _inputGeneratorHandle?.Dispose();
             }
+            _disposed = true;
         }
 
         /// <summary>
@@ -111,9 +125,19 @@ namespace Tizen.WindowSystem
         /// <exception cref="InvalidOperationException">Thrown when the InputGenerator was not initialized with <see cref="InputGeneratorDevices.Keyboard"/>.</exception>
         public void SendKey(string keyName, bool isPressed)
         {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(InputGenerator));
+            }
+
+            if (keyName == null)
+            {
+                throw new ArgumentNullException(nameof(keyName));
+            }
+
             EnsureDeviceSupported(InputGeneratorDevices.Keyboard);
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateKey(_inputGeneratorHandle, keyName, isPressed);
-            ErrorUtils.ThrowIfError((int)res, "Unknown Error");
+            int res = Interop.InputGenerator.GenerateKey(_inputGeneratorHandle, keyName, isPressed);
+            ErrorUtils.ThrowIfError(res, "Unknown Error");
         }
 
         /// <summary>
@@ -127,6 +151,11 @@ namespace Tizen.WindowSystem
         /// <exception cref="InvalidOperationException">Thrown when the InputGenerator was not initialized with the specified device type.</exception>
         public void SendPointer(int index, PointerAction action, int x, int y, InputGeneratorDevices device = InputGeneratorDevices.Pointer)
         {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(InputGenerator));
+            }
+
             EnsureDeviceSupported(device);
             if (device == InputGeneratorDevices.Touchscreen)
             {
@@ -137,13 +166,13 @@ namespace Tizen.WindowSystem
                     case PointerAction.Up: touchAction = 3; break; // End
                     case PointerAction.Move: touchAction = 2; break; // Update
                 }
-                Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateTouch(_inputGeneratorHandle, index, touchAction, x, y);
-                ErrorUtils.ThrowIfError((int)res, "Unknown Error");
+                int res = Interop.InputGenerator.GenerateTouch(_inputGeneratorHandle, index, touchAction, x, y);
+                ErrorUtils.ThrowIfError(res, "Unknown Error");
             }
             else
             {
-                Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GeneratePointer(_inputGeneratorHandle, index, (int)action, x, y);
-                ErrorUtils.ThrowIfError((int)res, "Unknown Error");
+                int res = Interop.InputGenerator.GeneratePointer(_inputGeneratorHandle, index, (int)action, x, y);
+                ErrorUtils.ThrowIfError(res, "Unknown Error");
             }
         }
 
@@ -155,9 +184,14 @@ namespace Tizen.WindowSystem
         /// <exception cref="InvalidOperationException">Thrown when the InputGenerator was not initialized with <see cref="InputGeneratorDevices.Pointer"/>.</exception>
         public void SendWheel(WheelDirection wheelType, int value)
         {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(InputGenerator));
+            }
+
             EnsureDeviceSupported(InputGeneratorDevices.Pointer);
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateWheel(_inputGeneratorHandle, wheelType, value);
-            ErrorUtils.ThrowIfError((int)res, "Unknown Error");
+            int res = Interop.InputGenerator.GenerateWheel(_inputGeneratorHandle, wheelType, value);
+            ErrorUtils.ThrowIfError(res, "Unknown Error");
         }
 
         /// <summary>
@@ -175,6 +209,11 @@ namespace Tizen.WindowSystem
         /// <exception cref="InvalidOperationException">Thrown when the InputGenerator was not initialized with <see cref="InputGeneratorDevices.Touchscreen"/>.</exception>
         public void SendPointer(int index, PointerAction action, int x, int y, double radiusX, double radiusY, double pressure, double angle, double palm)
         {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(InputGenerator));
+            }
+
             EnsureDeviceSupported(InputGeneratorDevices.Touchscreen);
             int touchAction = 0; // None
             switch (action)
@@ -184,8 +223,8 @@ namespace Tizen.WindowSystem
                 case PointerAction.Move: touchAction = 2; break; // Update
             }
 
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateTouchAxis(_inputGeneratorHandle, index, touchAction, x, y, radiusX, radiusY, pressure, angle, palm);
-            ErrorUtils.ThrowIfError((int)res, "Unknown Error");
+            int res = Interop.InputGenerator.GenerateTouchAxis(_inputGeneratorHandle, index, touchAction, x, y, radiusX, radiusY, pressure, angle, palm);
+            ErrorUtils.ThrowIfError(res, "Unknown Error");
         }
 
         /// <summary>
