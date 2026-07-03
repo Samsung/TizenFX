@@ -19,13 +19,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+#pragma warning disable 618
+
 namespace Tizen.Security
 {
     /// <summary>
     /// The PrivacyPrivilegeManager provides the properties or methods to check and request a permission for privacy privilege.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
     public static class PrivacyPrivilegeManager
     {
         private const string LogTag = "Tizen.Privilege";
@@ -113,7 +114,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
+        [Obsolete("Deprecated in API11, will be removed in API13. Use CheckPermissionsAsync() instead.")]
         public static CheckResult CheckPermission(string privilege)
         {
             Interop.PrivacyPrivilegeManager.CheckResult result;
@@ -160,7 +161,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
+        [Obsolete("Deprecated in API11, will be removed in API13. Use CheckPermissionsAsync() instead.")]
         public static IEnumerable<CheckResult> CheckPermissions(IEnumerable<string> privileges)
         {
             string[] privilegesArray = CheckPrivilegesArgument(privileges, "CheckPermissions");
@@ -208,7 +209,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
+        [Obsolete("Deprecated in API11, will be removed in API13. Use RequestPermissionsAsync() instead.")]
         public static void RequestPermission(string privilege)
         {
             if (!s_PrivilegesInProgress.Add(privilege))
@@ -261,7 +262,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
+        [Obsolete("Deprecated in API11, will be removed in API13. Use RequestPermissionsAsync() instead.")]
         public static Task<RequestMultipleResponseEventArgs> RequestPermissions(IEnumerable<string> privileges)
         {
             string[] privilegesArray = CheckPrivilegesArgument(privileges, "RequestPermissions");
@@ -360,7 +361,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
+        [Obsolete("Deprecated in API11, will be removed in API13. Use RequestPermissionsAsync() which handles context internally.")]
         public static WeakReference<ResponseContext> GetResponseContext(string privilege)
         {
             if (!(s_responseWeakMap.TryGetValue(privilege, out WeakReference<ResponseContext> weakRef) && weakRef.TryGetTarget(out ResponseContext context)))
@@ -404,11 +405,205 @@ namespace Tizen.Security
         }
 
         /// <summary>
+        /// Gets the status of privacy privileges permission asynchronously.
+        /// </summary>
+        /// <param name="privileges">The privacy privileges to be checked.</param>
+        /// <returns>A task that returns a permission status of the requested privileges.</returns>
+        /// <exception cref="ArgumentException">Thrown when an invalid parameter is passed.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when a memory error occurred.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
+        /// <example>
+        /// <code>
+        /// <![CDATA[
+        /// string[] privileges = new [] {"http://tizen.org/privilege/account.read",
+        ///                               "http://tizen.org/privilege/alarm"};
+        /// PermissionResult results = await PrivacyPrivilegeManager.CheckPermissionsAsync(privileges);
+        /// foreach (var (privilege, status) in results)
+        /// {
+        ///     var name = Tizen.Security.Privilege.GetDisplayName("", privilege);
+        ///     Console.WriteLine($"Privilege: {name}, Status: {status}");
+        /// }
+        /// ]]>
+        /// </code>
+        /// </example>
+        /// <example>
+        /// Check if all privileges from manifest are granted.
+        /// <code>
+        /// <![CDATA[
+        /// List<string> manifestPrivileges = await PrivacyPrivilegeManager.LoadPrivilegesFromManifestAsync();
+        /// PermissionResult states = await PrivacyPrivilegeManager.CheckPermissionsAsync(manifestPrivileges);
+        /// bool allGranted = states.AllGranted();
+        /// if (allGranted)
+        /// {
+        ///     Console.WriteLine("All permissions are granted.");
+        /// }
+        /// ]]>
+        /// </code>
+        /// </example>
+        /// <since_tizen> 14 </since_tizen>
+        public static async Task<PermissionResult> CheckPermissionsAsync(IEnumerable<string> privileges)
+        {
+            string[] privilegesArray = CheckPrivilegesArgument(privileges, "CheckPermissionsAsync");
+
+            return await Task.Run(() =>
+            {
+                Interop.PrivacyPrivilegeManager.CheckResult[] results = new Interop.PrivacyPrivilegeManager.CheckResult[privilegesArray.Length];
+                int ret = (int)Interop.PrivacyPrivilegeManager.CheckPermissions(privilegesArray, (uint)privilegesArray.Length, results);
+                if (ret != (int)Interop.PrivacyPrivilegeManager.ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Failed to check permissions " + string.Join(", ", privileges));
+                    throw PrivacyPrivilegeManagerErrorFactory.GetException(ret);
+                }
+
+                var permissionStates = new PermissionResult();
+                for (int iterator = 0; iterator < results.Length; ++iterator)
+                {
+                    permissionStates[privilegesArray[iterator]] = results[iterator].ToPermissionStatus();
+                }
+                return permissionStates;
+            });
+        }
+
+        /// <summary>
+        /// Triggers the permissions request for a user asynchronously.
+        /// </summary>
+        /// <param name="required">The required privacy privileges to be requested.</param>
+        /// <param name="optional">The optional, non-critical privacy privileges to be requested.
+        /// Privileges listed in both required and optional are treated as optional.</param>
+        /// <returns>A task that returns a permission status of the requested privileges.</returns>
+        /// <exception cref="ArgumentException">Thrown when an invalid parameter is passed.</exception>
+        /// <exception cref="PermissionDeniedException">Thrown when one or more required permissions are denied.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when a memory error occurred.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
+        /// <example>
+        /// <code>
+        /// <![CDATA[
+        /// try
+        /// {
+        ///     var results = await PrivacyPrivilegeManager.RequestPermissionsAsync(
+        ///         required: await PrivacyPrivilegeManager.LoadPrivilegesFromManifestAsync(),
+        ///         optional: new[] { "http://tizen.org/privilege/alarm" });
+        ///     foreach (var (privilege, state) in results)
+        ///     {
+        ///         Console.WriteLine($"Privilege: {privilege}, State: {state}");
+        ///     }
+        ///     // required privileges have been granted, application can continue
+        ///     if (!results.IsGranted("http://tizen.org/privilege/alarm")) {
+        ///         HideAlarmRelatedUI();
+        ///     }
+        /// }
+        /// catch (PermissionDeniedException ex)
+        /// {
+        ///     foreach (var privilege in ex.DeniedPrivileges)
+        ///     {
+        ///         var name = Tizen.Security.Privilege.GetDisplayName("", privilege);
+        ///         Console.WriteLine($"{name} has been denied");
+        ///     }
+        ///     // application can not run, present a user option to re-request permissions
+        /// }
+        /// }
+        /// ]]>
+        /// </code>
+        /// </example>
+        /// <since_tizen> 14 </since_tizen>
+        public static async Task<PermissionResult> RequestPermissionsAsync(IEnumerable<string> required = null, IEnumerable<string> optional = null)
+        {
+            // Build the set of privileges to request
+            // Privileges in both required and optional are treated as optional
+            var optionalSet = optional != null ? new HashSet<string>(optional) : new HashSet<string>();
+            var requiredList = required != null ? new List<string>(required) : new List<string>();
+
+            // Remove from required any privileges that are also in optional (they become optional)
+            var actualRequired = requiredList.Where(p => !optionalSet.Contains(p)).ToList();
+
+            // Combine all privileges to request (required + optional)
+            var allPrivileges = actualRequired.Concat(optionalSet).ToList();
+
+            var states = new PermissionResult();
+            if (!allPrivileges.Any())
+            {
+                return states;
+            }
+
+            var result = await RequestPermissions(allPrivileges);
+
+            // Build dictionary of results
+            foreach (var response in result.Responses)
+            {
+                states[response.Privilege] = response.Result.ToPermissionStatus();
+            }
+
+            // Check if any required permissions were denied
+            var deniedMap = actualRequired
+                .Where(p => states.ContainsKey(p) && !states[p].IsGranted())
+                .ToDictionary(p => p, p => states[p]);
+
+            if (deniedMap.Any())
+            {
+                throw new PermissionDeniedException(deniedMap);
+            }
+
+            return states;
+        }
+
+        /// <summary>
+        /// Loads privileges from the application manifest file (tizen-manifest.xml) asynchronously.
+        /// </summary>
+        /// <returns>A task that returns a list of privilege strings declared in the manifest.</returns>
+        /// <exception cref="System.IO.FileNotFoundException">Thrown when the manifest file is not found.</exception>
+        /// <exception cref="System.Xml.XmlException">Thrown when the manifest file contains invalid XML.</exception>
+        /// <example>
+        /// <code>
+        /// <![CDATA[
+        /// List<string> privileges = await PrivacyPrivilegeManager.LoadPrivilegesFromManifestAsync();
+        /// foreach (var privilege in privileges)
+        /// {
+        ///     Console.WriteLine($"Privilege: {privilege}");
+        /// }
+        /// ]]>
+        /// </code>
+        /// </example>
+        /// <since_tizen> 14 </since_tizen>
+        public static async Task<IEnumerable<string>> LoadPrivilegesFromManifestAsync()
+        {
+            return await Task.Run(() =>
+            {
+                var manifestPath = System.IO.Path.GetDirectoryName(
+                    System.IO.Path.GetDirectoryName(
+                        Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath)
+                    ) + "/tizen-manifest.xml";
+                if (!System.IO.File.Exists(manifestPath))
+                {
+                    Log.Error(LogTag, "Manifest file not found: " + manifestPath);
+                    throw new System.IO.FileNotFoundException("Manifest file not found: " + manifestPath);
+                }
+
+                var privileges = new List<string>();
+                var doc = System.Xml.Linq.XDocument.Load(manifestPath);
+                var ns = doc.Root?.Name.Namespace ?? System.Xml.Linq.XNamespace.None;
+
+                var privilegesElement = doc.Root?.Element(ns + "privileges");
+                if (privilegesElement != null)
+                {
+                    foreach (var privilegeElement in privilegesElement.Elements(ns + "privilege"))
+                    {
+                        if (!string.IsNullOrEmpty(privilegeElement.Value))
+                        {
+                            privileges.Add(privilegeElement.Value.Trim());
+                        }
+                    }
+                }
+
+                return privileges;
+            });
+        }
+
+        /// <summary>
         /// This class manages event handlers of the privilege permission requests.
         /// This class enables having event handlers for an individual privilege.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
+        [Obsolete("Deprecated in API11, will be removed in API13. Use RequestPermissionsAsync() which handles context internally.")]
         public class ResponseContext
         {
             private string _privilege;
@@ -422,7 +617,7 @@ namespace Tizen.Security
             /// </summary>
             /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
             /// <since_tizen> 4 </since_tizen>
-            [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
+            [Obsolete("Deprecated in API11, will be removed in API13. Use RequestPermissionsAsync() which handles context internally.")]
             public event EventHandler<RequestResponseEventArgs> ResponseFetched
             {
                 add
