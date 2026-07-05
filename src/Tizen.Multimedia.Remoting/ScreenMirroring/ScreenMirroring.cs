@@ -499,32 +499,36 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="uibcMouseInfos"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="uibcMouseInfos"/> is empty.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendGenericMouseEvent(IEnumerable<UibcMouseInfo> uibcMouseInfos, ScreenMirroringMouseEventType type)
         {
+            ArgumentNullException.ThrowIfNull(uibcMouseInfos);
+
             ValidateState(ScreenMirroringState.Connected, ScreenMirroringState.Playing);
 
-            if (!uibcMouseInfos.Any())
+            var infos = uibcMouseInfos as IReadOnlyList<UibcMouseInfo> ?? uibcMouseInfos.ToArray();
+            if (infos.Count == 0)
             {
-                throw new ArgumentNullException(nameof(uibcMouseInfos));
+                throw new ArgumentException("uibcMouseInfos cannot be empty.", nameof(uibcMouseInfos));
             }
 
-            var uibcMouseInfosSize = uibcMouseInfos.Count();
+            var uibcMouseInfosSize = infos.Count;
             var uibcMouse = new Native.UibcMouse[uibcMouseInfosSize];
-            int i = 0;
             IntPtr unmanagedUibcMousePtr;
 
-            foreach (var uibcMouseInfo in uibcMouseInfos)
+            for (int i = 0; i < uibcMouseInfosSize; i++)
             {
+                var uibcMouseInfo = infos[i];
                 uibcMouse[i].id = uibcMouseInfo.Id;
                 uibcMouse[i].x = uibcMouseInfo.X;
-                uibcMouse[i++].y = uibcMouseInfo.Y;
+                uibcMouse[i].y = uibcMouseInfo.Y;
             }
 
             var size = Marshal.SizeOf(typeof(Native.UibcMouse));
             IntPtr unmanagedUibcMouse = Marshal.AllocHGlobal(size * uibcMouseInfosSize);
-            for (i = 0; i < uibcMouseInfosSize; i++)
+            for (int i = 0; i < uibcMouseInfosSize; i++)
             {
                 if (IntPtr.Size == 4)
                 {
