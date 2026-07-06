@@ -1758,25 +1758,51 @@ namespace Tizen.Uix.InputMethod
         /// <since_tizen> 4 </since_tizen>
         public static void UpdatePreEditString(string str, IEnumerable<PreEditAttribute> attrs)
         {
-            IntPtr einaList = IntPtr.Zero;
-            foreach (PreEditAttribute attribute in attrs)
+            var allocatedAttrs = new List<IntPtr>();
+            IntPtr glist = IntPtr.Zero;
+            try
             {
-                IntPtr attr = IntPtr.Zero;
-                ImePreEditAttributeStruct imePreEditAttribute = new ImePreEditAttributeStruct();
-                imePreEditAttribute.start = attribute.Start;
-                imePreEditAttribute.length = attribute.Length;
-                imePreEditAttribute.type = (int)attribute.Type;
-                imePreEditAttribute.value = attribute.Value;
-                attr = Marshal.AllocHGlobal(Marshal.SizeOf(imePreEditAttribute));
-                Marshal.WriteIntPtr(attr, IntPtr.Zero);
-                Marshal.StructureToPtr(imePreEditAttribute, attr, false);
-                einaList = Interop.EinaList.EinaListAppend(einaList, attr);
+                if (attrs != null)
+                {
+                    foreach (PreEditAttribute attribute in attrs)
+                    {
+                        var imePreEditAttribute = new ImePreEditAttributeStruct
+                        {
+                            start = attribute.Start,
+                            length = attribute.Length,
+                            type = (int)attribute.Type,
+                            value = attribute.Value
+                        };
+                        IntPtr attr = Marshal.AllocHGlobal(Marshal.SizeOf(imePreEditAttribute));
+                        allocatedAttrs.Add(attr);
+                        Marshal.StructureToPtr(imePreEditAttribute, attr, false);
+                        glist = Interop.GLib.GListAppend(glist, attr);
+                    }
+                }
+                ErrorCode error = ImeUpdatePreeditStringWithGlist(str, glist);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, $"UpdatePreEditString Failed with error {error}");
+                    throw InputMethodExceptionFactory.CreateException(error);
+                }
             }
-            ErrorCode error = ImeUpdatePreeditString(str, einaList);
-            if (error != ErrorCode.None)
+            catch
             {
-                Log.Error(LogTag, $"UpdatePreEditString Failed with error {error}");
-                throw InputMethodExceptionFactory.CreateException(error);
+                try
+                {
+                    foreach (IntPtr attr in allocatedAttrs)
+                    {
+                        Marshal.FreeHGlobal(attr);
+                    }
+                }
+                finally
+                {
+                    if (glist != IntPtr.Zero)
+                    {
+                        Interop.GLib.GListFree(glist);
+                    }
+                }
+                throw;
             }
         }
 
