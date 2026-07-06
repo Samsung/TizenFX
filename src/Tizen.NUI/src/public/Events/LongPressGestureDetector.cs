@@ -269,7 +269,7 @@ namespace Tizen.NUI
             private bool handled = true;
 
             /// <summary>
-            /// View the attached view.
+            /// The attached view.
             /// </summary>
             /// <since_tizen> 10.1 </since_tizen>
             public View View
