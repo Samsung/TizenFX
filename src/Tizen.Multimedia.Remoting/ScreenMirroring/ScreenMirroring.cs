@@ -516,7 +516,6 @@ namespace Tizen.Multimedia.Remoting
 
             var uibcMouseInfosSize = infos.Count;
             var uibcMouse = new Native.UibcMouse[uibcMouseInfosSize];
-            IntPtr unmanagedUibcMousePtr;
 
             for (int i = 0; i < uibcMouseInfosSize; i++)
             {
@@ -527,36 +526,38 @@ namespace Tizen.Multimedia.Remoting
             }
 
             var size = Marshal.SizeOf(typeof(Native.UibcMouse));
-            IntPtr unmanagedUibcMouse = Marshal.AllocHGlobal(size * uibcMouseInfosSize);
-            for (int i = 0; i < uibcMouseInfosSize; i++)
-            {
-                if (IntPtr.Size == 4)
-                {
-                    unmanagedUibcMousePtr = new IntPtr(unmanagedUibcMouse.ToInt32() + i * size);
-                }
-                else
-                {
-                    unmanagedUibcMousePtr = new IntPtr(unmanagedUibcMouse.ToInt64() + i * size);
-                }
-                Marshal.StructureToPtr(uibcMouse[i], unmanagedUibcMousePtr, false);
-            }
-
-            Native.UibcMouseEvent uibcObject;
-            uibcObject.size = uibcMouseInfosSize;
-            uibcObject.type = type;
-            uibcObject.uibcMouse = unmanagedUibcMouse;
-
-            var unmanagedUibcObject = Marshal.AllocHGlobal(Marshal.SizeOf(uibcObject));
-            Marshal.StructureToPtr(uibcObject, unmanagedUibcObject, false);
+            IntPtr unmanagedUibcMouse = IntPtr.Zero;
+            IntPtr unmanagedUibcObject = IntPtr.Zero;
 
             try
             {
+                unmanagedUibcMouse = Marshal.AllocHGlobal(size * uibcMouseInfosSize);
+                for (int i = 0; i < uibcMouseInfosSize; i++)
+                {
+                    IntPtr unmanagedUibcMousePtr = unmanagedUibcMouse + (i * size);
+                    Marshal.StructureToPtr(uibcMouse[i], unmanagedUibcMousePtr, false);
+                }
+
+                Native.UibcMouseEvent uibcObject;
+                uibcObject.size = uibcMouseInfosSize;
+                uibcObject.type = type;
+                uibcObject.uibcMouse = unmanagedUibcMouse;
+
+                unmanagedUibcObject = Marshal.AllocHGlobal(Marshal.SizeOf(uibcObject));
+                Marshal.StructureToPtr(uibcObject, unmanagedUibcObject, false);
+
                 Native.SendGenericMouseEvent(Handle, unmanagedUibcObject).ThrowIfError("Failed to send generic mouse event");
             }
             finally
             {
-                Marshal.FreeHGlobal(unmanagedUibcMouse);
-                Marshal.FreeHGlobal(unmanagedUibcObject);
+                if (unmanagedUibcMouse != IntPtr.Zero)
+                {
+                    Marshal.FreeHGlobal(unmanagedUibcMouse);
+                }
+                if (unmanagedUibcObject != IntPtr.Zero)
+                {
+                    Marshal.FreeHGlobal(unmanagedUibcObject);
+                }
             }
         }
 
