@@ -1910,6 +1910,7 @@ namespace Tizen.NUI.BaseComponents
         /// This property allows setting the tooltip properties such as text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14, will be removed in API16")]
         public Tizen.NUI.PropertyMap Tooltip
         {
             get
@@ -1960,6 +1961,7 @@ namespace Tizen.NUI.BaseComponents
         /// Displays a tooltip as a text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14, will be removed in API16")]
         public string TooltipText
         {
             get
