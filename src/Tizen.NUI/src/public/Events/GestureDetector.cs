@@ -79,7 +79,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Detaches all the views that have been attached to the gesture detector.
+        /// Detaches the gesture detector from all the views that have been attached to.
         /// </summary>
         /// <since_tizen> 10.1 </since_tizen>
         public void DetachAll()
