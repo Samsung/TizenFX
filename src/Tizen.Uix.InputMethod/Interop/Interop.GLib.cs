@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,7 +17,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Tizen.Uix.InputMethod;
 
 /// <summary>
 /// The Partial Interop class.
@@ -25,11 +24,14 @@ using Tizen.Uix.InputMethod;
 internal static partial class Interop
 {
     /// <summary>
-    /// The EinaList Interop class.
+    /// The GLib Interop class.
     /// </summary>
-    internal static class EinaList
+    internal static class GLib
     {
-        [DllImport(Libraries.Eina, EntryPoint = "eina_list_append")]
-        internal static extern IntPtr EinaListAppend(IntPtr list, IntPtr data);
+        [DllImport(Libraries.GLib, EntryPoint = "g_list_append")]
+        internal static extern IntPtr GListAppend(IntPtr list, IntPtr data);
+
+        [DllImport(Libraries.GLib, EntryPoint = "g_list_free")]
+        internal static extern void GListFree(IntPtr list);
     }
 }
