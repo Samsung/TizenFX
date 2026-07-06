@@ -90,6 +90,11 @@ namespace Tizen.Sensor
             if (events_count >= 1)
             {
                 BatchedEvents.Clear();
+                if (BatchedEvents is List<Interop.SensorEventStruct> list && list.Capacity < events_count)
+                {
+                    list.Capacity = (int)events_count;
+                }
+
                 IntPtr currentPtr = eventsPtr;
                 for (int i = 0; i < events_count; i++)
                 {
