@@ -70,7 +70,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Detaches the GestureDetector from the view.
         /// </summary>
-        /// <param name="view">The view to detach from the gesture detector</param>
+        /// <param name="view">The view to detach the gesture detector from.</param>
         /// <since_tizen> 10.1 </since_tizen>
         public void Detach(View view)
         {
