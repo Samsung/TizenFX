@@ -26,6 +26,7 @@ namespace Tizen.NUI.Extension
     /// RiveAnimationView renders an animated vector image (Rive file).
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("This has been deprecated in API14, and will be removed in API16")]
     public class RiveAnimationView : View
     {
         static RiveAnimationView() { }
@@ -35,6 +36,7 @@ namespace Tizen.NUI.Extension
         /// </summary>
         /// <param name="url">The rive resource URL</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public RiveAnimationView(string url) : this(Interop.RiveAnimationView.New(url), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -54,6 +56,7 @@ namespace Tizen.NUI.Extension
         /// <param name="animationName">The animation to enable</param>
         /// <param name="on">The enable state of given animation</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public void EnableAnimation(string animationName, bool on)
         {
             Interop.RiveAnimationView.EnableAnimation(SwigCPtr, animationName, on);
@@ -63,6 +66,7 @@ namespace Tizen.NUI.Extension
         /// Play animation.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public void Play()
         {
             Interop.RiveAnimationView.Play(SwigCPtr);
@@ -72,6 +76,7 @@ namespace Tizen.NUI.Extension
         /// Pause animation.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public void Pause()
         {
             Interop.RiveAnimationView.Pause(SwigCPtr);
@@ -81,6 +86,7 @@ namespace Tizen.NUI.Extension
         /// Stop animation.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public void Stop()
         {
             Interop.RiveAnimationView.Stop(SwigCPtr);
@@ -92,6 +98,7 @@ namespace Tizen.NUI.Extension
         /// <param name="shapeFillName">The shape fill name</param>
         /// <param name="color">The rgba color</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public void SetShapeFillColor(string shapeFillName, Color color)
         {
             if (color == null)
@@ -105,6 +112,7 @@ namespace Tizen.NUI.Extension
         /// <param name="shapeStrokeName">The shape stroke name</param>
         /// <param name="color">The rgba color</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public void SetShapeStrokeColor(string shapeStrokeName, Color color)
         {
             if (color == null)
@@ -118,6 +126,7 @@ namespace Tizen.NUI.Extension
         /// <param name="nodeName">The node name</param>
         /// <param name="opacity">The opacity of given node</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public void SetNodeOpacity(string nodeName, float opacity)
         {
             Interop.RiveAnimationView.SetNodeOpacity(SwigCPtr, nodeName, opacity);
@@ -129,6 +138,7 @@ namespace Tizen.NUI.Extension
         /// <param name="nodeName">The node name</param>
         /// <param name="scale">The scale of given node</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public void SetNodeScale(string nodeName, Vector2 scale)
         {
             if (scale == null)
@@ -142,6 +152,7 @@ namespace Tizen.NUI.Extension
         /// <param name="nodeName">The node name</param>
         /// <param name="degree">The degree of given node</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public void SetNodeRotation(string nodeName, Degree degree)
         {
             if (degree == null)
@@ -155,6 +166,7 @@ namespace Tizen.NUI.Extension
         /// <param name="nodeName">The node name</param>
         /// <param name="position">The position of given node</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public void SetNodePosition(string nodeName, Position position)
         {
             if (position == null)
@@ -168,6 +180,7 @@ namespace Tizen.NUI.Extension
         /// <param name="animationName">The animation name</param>
         /// <param name="elapsed">The elapsed time in seconds</param>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14, and will be removed in API16")]
         public void SetAnimationElapsedTime(string animationName, float elapsed)
         {
             Interop.RiveAnimationView.SetAnimationElapsedTime(SwigCPtr, animationName, elapsed);
