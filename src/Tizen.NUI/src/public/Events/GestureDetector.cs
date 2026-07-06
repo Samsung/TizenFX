@@ -59,7 +59,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Attaches the GestureDetector to the view. The detected event will be triggered when the gesture occurs on the attached view.
         /// </summary>
-        /// <param name="view">The view to attach to the gesture detector</param>
+        /// <param name="view">The view the gesture detector will be attached to.</param>
         /// <since_tizen> 10.1 </since_tizen>
         public void Attach(View view)
         {
