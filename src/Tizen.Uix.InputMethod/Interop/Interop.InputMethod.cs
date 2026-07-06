@@ -186,8 +186,8 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_hide_preedit_string")]
         internal static extern ErrorCode ImeHidePreeditString();
 
-        [DllImport(Libraries.InputMethod, EntryPoint = "ime_update_preedit_string")]
-        internal static extern ErrorCode ImeUpdatePreeditString(string str, IntPtr attrs);
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_update_preedit_string_with_glist")]
+        internal static extern ErrorCode ImeUpdatePreeditStringWithGlist(string str, IntPtr attrs);
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_request_surrounding_text")]
         internal static extern ErrorCode ImeRequestSurroundingText(int maxlenBefore, int maxlenAfter);
