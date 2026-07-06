@@ -116,7 +116,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This is the value of which source the gesture was started with. (ex : mouse)
+        /// This is the input device the gesture was started with. (ex : mouse)
         /// </summary>
         /// <since_tizen> 10.1 </since_tizen>
         public enum SourceType
