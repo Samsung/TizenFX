@@ -256,7 +256,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This is the property of which source type the gesture (read-only).
+        /// This is the property of which source type the gesture originated from (read-only).
         /// If you started the gesture with the mouse, it will tell you what type of mouse it is.
         /// </summary>
         /// <since_tizen> 10.1 </since_tizen>
