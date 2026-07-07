@@ -483,6 +483,24 @@ namespace Tizen.NUI.BaseComponents
         public delegate void WebViewDeviceListGetCallback(WebDeviceList list, int size);
         private WebViewDeviceListGetCallback deviceListGetCallbackForUser;
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WebViewPlaybackVideoCallback();
+
+        private EventHandler playbackVideoReadyEventHandler;
+        private WebViewPlaybackVideoCallback playbackVideoReadyCallback;
+
+        private EventHandler playbackVideoStartedEventHandler;
+        private WebViewPlaybackVideoCallback playbackVideoStartedCallback;
+
+        private EventHandler playbackVideoFinishedEventHandler;
+        private WebViewPlaybackVideoCallback playbackVideoFinishedCallback;
+
+        private EventHandler playbackVideoStoppedEventHandler;
+        private WebViewPlaybackVideoCallback playbackVideoStoppedCallback;
+
+        private EventHandler playbackVideoPausedEventHandler;
+        private WebViewPlaybackVideoCallback playbackVideoPausedCallback;
+
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading has started.<br />
@@ -3372,6 +3390,161 @@ namespace Tizen.NUI.BaseComponents
         private void OnDeviceConnectionChanged(int deviceType)
         {
             deviceConnectionChangedEventHandler?.Invoke(this, new WebViewDeviceConnectionChangedEventArgs(deviceType));
+        }
+
+        /// <summary>
+        /// Event for the PlaybackVideoReady signal which can be used to subscribe or unsubscribe the event handler.
+        /// This signal is emitted when playback video is ready.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler PlaybackVideoReady
+        {
+            add
+            {
+                if (playbackVideoReadyEventHandler == null)
+                {
+                    playbackVideoReadyCallback = OnPlaybackVideoReady;
+                    Interop.WebView.RegisterPlaybackVideoReadyCallback(SwigCPtr, Marshal.GetFunctionPointerForDelegate(playbackVideoReadyCallback));
+                }
+                playbackVideoReadyEventHandler += value;
+            }
+            remove
+            {
+                playbackVideoReadyEventHandler -= value;
+                if (playbackVideoReadyEventHandler == null)
+                {
+                    Interop.WebView.RegisterPlaybackVideoReadyCallback(SwigCPtr, IntPtr.Zero);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the PlaybackVideoStarted signal which can be used to subscribe or unsubscribe the event handler.
+        /// This signal is emitted when playback video is started.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler PlaybackVideoStarted
+        {
+            add
+            {
+                if (playbackVideoStartedEventHandler == null)
+                {
+                    playbackVideoStartedCallback = OnPlaybackVideoStarted;
+                    Interop.WebView.RegisterPlaybackVideoStartedCallback(SwigCPtr, Marshal.GetFunctionPointerForDelegate(playbackVideoStartedCallback));
+                }
+                playbackVideoStartedEventHandler += value;
+            }
+            remove
+            {
+                playbackVideoStartedEventHandler -= value;
+                if (playbackVideoStartedEventHandler == null)
+                {
+                    Interop.WebView.RegisterPlaybackVideoStartedCallback(SwigCPtr, IntPtr.Zero);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the PlaybackVideoFinished signal which can be used to subscribe or unsubscribe the event handler.
+        /// This signal is emitted when playback video is finished.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler PlaybackVideoFinished
+        {
+            add
+            {
+                if (playbackVideoFinishedEventHandler == null)
+                {
+                    playbackVideoFinishedCallback = OnPlaybackVideoFinished;
+                    Interop.WebView.RegisterPlaybackVideoFinishedCallback(SwigCPtr, Marshal.GetFunctionPointerForDelegate(playbackVideoFinishedCallback));
+                }
+                playbackVideoFinishedEventHandler += value;
+            }
+            remove
+            {
+                playbackVideoFinishedEventHandler -= value;
+                if (playbackVideoFinishedEventHandler == null)
+                {
+                    Interop.WebView.RegisterPlaybackVideoFinishedCallback(SwigCPtr, IntPtr.Zero);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the PlaybackVideoStopped signal which can be used to subscribe or unsubscribe the event handler.
+        /// This signal is emitted when playback video is stopped.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler PlaybackVideoStopped
+        {
+            add
+            {
+                if (playbackVideoStoppedEventHandler == null)
+                {
+                    playbackVideoStoppedCallback = OnPlaybackVideoStopped;
+                    Interop.WebView.RegisterPlaybackVideoStoppedCallback(SwigCPtr, Marshal.GetFunctionPointerForDelegate(playbackVideoStoppedCallback));
+                }
+                playbackVideoStoppedEventHandler += value;
+            }
+            remove
+            {
+                playbackVideoStoppedEventHandler -= value;
+                if (playbackVideoStoppedEventHandler == null)
+                {
+                    Interop.WebView.RegisterPlaybackVideoStoppedCallback(SwigCPtr, IntPtr.Zero);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the PlaybackVideoPaused signal which can be used to subscribe or unsubscribe the event handler.
+        /// This signal is emitted when playback video is paused.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler PlaybackVideoPaused
+        {
+            add
+            {
+                if (playbackVideoPausedEventHandler == null)
+                {
+                    playbackVideoPausedCallback = OnPlaybackVideoPaused;
+                    Interop.WebView.RegisterPlaybackVideoPausedCallback(SwigCPtr, Marshal.GetFunctionPointerForDelegate(playbackVideoPausedCallback));
+                }
+                playbackVideoPausedEventHandler += value;
+            }
+            remove
+            {
+                playbackVideoPausedEventHandler -= value;
+                if (playbackVideoPausedEventHandler == null)
+                {
+                    Interop.WebView.RegisterPlaybackVideoPausedCallback(SwigCPtr, IntPtr.Zero);
+                }
+            }
+        }
+
+        private void OnPlaybackVideoReady()
+        {
+            playbackVideoReadyEventHandler?.Invoke(this, new EventArgs());
+        }
+
+        private void OnPlaybackVideoStarted()
+        {
+            playbackVideoStartedEventHandler?.Invoke(this, new EventArgs());
+        }
+
+        private void OnPlaybackVideoFinished()
+        {
+            playbackVideoFinishedEventHandler?.Invoke(this, new EventArgs());
+        }
+
+        private void OnPlaybackVideoStopped()
+        {
+            playbackVideoStoppedEventHandler?.Invoke(this, new EventArgs());
+        }
+
+        private void OnPlaybackVideoPaused()
+        {
+            playbackVideoPausedEventHandler?.Invoke(this, new EventArgs());
         }
 
     }
