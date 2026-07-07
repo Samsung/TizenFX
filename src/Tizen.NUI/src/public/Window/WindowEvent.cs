@@ -36,16 +36,9 @@ namespace Tizen.NUI
         private RootLayerTouchDataCallbackType rootLayerInterceptTouchDataCallback;
         private WheelEventCallbackType wheelEventCallback;
         private WheelEventCallbackType interceptWheelCallback;
-        private EventCallbackDelegateType1 stageKeyCallbackDelegate;
-        private InterceptKeyEventDelegateType stageInterceptKeyCallbackDelegate;
-        private InterceptKeyEventDelegateType stageSystemInterceptKeyCallbackDelegate;
-        private EventCallbackDelegateType0 stageEventProcessingFinishedEventCallbackDelegate;
-        private EventHandler stageContextLostEventHandler;
-        private EventCallbackDelegateType0 stageContextLostEventCallbackDelegate;
-        private EventHandler stageContextRegainedEventHandler;
-        private EventCallbackDelegateType0 stageContextRegainedEventCallbackDelegate;
-        private EventHandler stageSceneCreatedEventHandler;
-        private EventCallbackDelegateType0 stageSceneCreatedEventCallbackDelegate;
+        private EventCallbackDelegateType1 keyCallbackDelegate;
+        private InterceptKeyEventDelegateType interceptKeyCallbackDelegate;
+        private InterceptKeyEventDelegateType systemInterceptKeyCallbackDelegate;
         private WindowResizeEventCallbackType windowResizeEventCallback;
         private WindowFocusChangedEventCallbackType windowFocusChangedEventCallback2;
         private TransitionEffectEventCallbackType transitionEffectEventCallback;
@@ -197,38 +190,22 @@ namespace Tizen.NUI
         {
             add
             {
-                if (stageWheelHandler == null)
+                if (wheelHandler == null)
                 {
-                    CreateSafeCallback(OnStageWheel, out wheelEventCallback);
+                    CreateSafeCallback(OnWindowWheel, out wheelEventCallback);
                     Interop.ActorSignal.WheelEventConnect(Layer.getCPtr(GetRootLayer()), wheelEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
-                stageWheelHandler += value;
-
-                if (DetentEventHandler == null)
-                {
-                    CreateSafeCallback(OnDetentEvent, out DetentEventCallback);
-                    using StageWheelSignal signal = new StageWheelSignal(Interop.StageSignal.WheelEventSignal(stageCPtr), false);
-                    signal.Ensure()?.Connect(DetentEventCallback);
-                }
-                DetentEventHandler += value;
+                wheelHandler += value;
             }
             remove
             {
-                stageWheelHandler -= value;
-                if (stageWheelHandler == null && wheelEventCallback != null)
+                wheelHandler -= value;
+                if (wheelHandler == null && wheelEventCallback != null)
                 {
                     Interop.ActorSignal.WheelEventDisconnect(Layer.getCPtr(GetRootLayer()), wheelEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                     ReleaseSafeCallback(ref wheelEventCallback);
-                }
-
-                DetentEventHandler -= value;
-                if (DetentEventHandler == null && DetentEventCallback != null)
-                {
-                    using StageWheelSignal signal = new StageWheelSignal(Interop.StageSignal.WheelEventSignal(stageCPtr), false);
-                    signal.Ensure()?.Disconnect(DetentEventCallback);
-                    ReleaseSafeCallback(ref DetentEventCallback);
                 }
             }
         }
@@ -272,22 +249,22 @@ namespace Tizen.NUI
         {
             add
             {
-                if (stageKeyHandler == null)
+                if (keyHandler == null)
                 {
-                    CreateSafeCallback(OnStageKey, out stageKeyCallbackDelegate);
+                    CreateSafeCallback(OnWindowKey, out keyCallbackDelegate);
                     using KeyEventSignal signal = new KeyEventSignal(Interop.Window.KeyEventSignal(SwigCPtr), false);
-                    signal.Ensure()?.Connect(stageKeyCallbackDelegate);
+                    signal.Ensure()?.Connect(keyCallbackDelegate);
                 }
-                stageKeyHandler += value;
+                keyHandler += value;
             }
             remove
             {
-                stageKeyHandler -= value;
-                if (stageKeyHandler == null && stageKeyCallbackDelegate != null)
+                keyHandler -= value;
+                if (keyHandler == null && keyCallbackDelegate != null)
                 {
                     using KeyEventSignal signal = new KeyEventSignal(Interop.Window.KeyEventSignal(SwigCPtr), false);
-                    signal.Ensure()?.Disconnect(stageKeyCallbackDelegate);
-                    ReleaseSafeCallback(ref stageKeyCallbackDelegate);
+                    signal.Ensure()?.Disconnect(keyCallbackDelegate);
+                    ReleaseSafeCallback(ref keyCallbackDelegate);
                 }
             }
         }
@@ -301,36 +278,36 @@ namespace Tizen.NUI
         {
             add
             {
-                if (stageInterceptKeyHandler == null)
+                if (interceptKeyHandler == null)
                 {
-                    CreateSafeCallback(OnStageInterceptKey, out stageInterceptKeyCallbackDelegate);
+                    CreateSafeCallback(OnWindowInterceptKey, out interceptKeyCallbackDelegate);
                     using KeyEventSignal signal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
-                    signal.Ensure()?.Connect(stageInterceptKeyCallbackDelegate);
+                    signal.Ensure()?.Connect(interceptKeyCallbackDelegate);
 
-                    // release systemInterceptKeyCallback, In OnStageInterceptKey, handle the same thing as systemInterceptKeyCallback.
-                    if (stageSystemInterceptKeyCallbackDelegate != null)
+                    // release systemInterceptKeyCallback, In OnWindowInterceptKey, handle the same thing as systemInterceptKeyCallback.
+                    if (systemInterceptKeyCallbackDelegate != null)
                     {
-                        signal.Ensure()?.Disconnect(stageSystemInterceptKeyCallbackDelegate);
-                        ReleaseSafeCallback(ref stageSystemInterceptKeyCallbackDelegate);
+                        signal.Ensure()?.Disconnect(systemInterceptKeyCallbackDelegate);
+                        ReleaseSafeCallback(ref systemInterceptKeyCallbackDelegate);
                     }
                 }
-                stageInterceptKeyHandler += value;
+                interceptKeyHandler += value;
             }
             remove
             {
-                stageInterceptKeyHandler -= value;
-                if (stageInterceptKeyHandler == null && stageInterceptKeyCallbackDelegate != null)
+                interceptKeyHandler -= value;
+                if (interceptKeyHandler == null && interceptKeyCallbackDelegate != null)
                 {
                     using KeyEventSignal signal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
-                    signal.Ensure()?.Disconnect(stageInterceptKeyCallbackDelegate);
-                    ReleaseSafeCallback(ref stageInterceptKeyCallbackDelegate);
+                    signal.Ensure()?.Disconnect(interceptKeyCallbackDelegate);
+                    ReleaseSafeCallback(ref interceptKeyCallbackDelegate);
 
-                    // If stageSystemInterceptKeyHandler is registered, reconnect the signal.
-                    if (stageSystemInterceptKeyHandler != null && stageSystemInterceptKeyCallbackDelegate == null)
+                    // If systemInterceptKeyHandler is registered, reconnect the signal.
+                    if (systemInterceptKeyHandler != null && systemInterceptKeyCallbackDelegate == null)
                     {
-                        CreateSafeCallback(OnSystemStageInterceptKey, out stageSystemInterceptKeyCallbackDelegate);
+                        CreateSafeCallback(OnSystemInterceptKey, out systemInterceptKeyCallbackDelegate);
                         using KeyEventSignal systemSignal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
-                        systemSignal.Ensure()?.Connect(stageSystemInterceptKeyCallbackDelegate);
+                        systemSignal.Ensure()?.Connect(systemInterceptKeyCallbackDelegate);
                     }
                 }
             }
@@ -725,12 +702,11 @@ namespace Tizen.NUI
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler;
         private event EventHandler<TouchEventArgs> rootLayerTouchDataEventHandler;
         private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
-        private event EventHandler<WheelEventArgs> stageWheelHandler;
+        private event EventHandler<WheelEventArgs> wheelHandler;
         private ReturnTypeEventHandler<object, WheelEventArgs, bool> interceptWheelHandler;
-        private event EventHandler<KeyEventArgs> stageKeyHandler;
-        private ReturnTypeEventHandler<object, KeyEventArgs, bool> stageInterceptKeyHandler;
-        private ReturnTypeEventHandler<object, KeyEventArgs, bool> stageSystemInterceptKeyHandler;
-        private event EventHandler stageEventProcessingFinishedEventHandler;
+        private event EventHandler<KeyEventArgs> keyHandler;
+        private ReturnTypeEventHandler<object, KeyEventArgs, bool> interceptKeyHandler;
+        private ReturnTypeEventHandler<object, KeyEventArgs, bool> systemInterceptKeyHandler;
         private event EventHandler<ResizedEventArgs> windowResizeEventHandler;
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler2;
         private event EventHandler<TransitionEffectEventArgs> transitionEffectHandler;
@@ -746,103 +722,6 @@ namespace Tizen.NUI
         private event EventHandler<PointerConstraintsEventArgs> windowPointerConstraintsEventHandler;
         private event EventHandler<HoverEventArgs> rootLayerHoverDataEventHandler;
 
-
-        internal event EventHandler EventProcessingFinished
-        {
-            add
-            {
-                if (stageEventProcessingFinishedEventHandler == null)
-                {
-                    CreateSafeCallback(OnEventProcessingFinished, out stageEventProcessingFinishedEventCallbackDelegate);
-                    using VoidSignal signal = new VoidSignal(Interop.StageSignal.EventProcessingFinishedSignal(stageCPtr), false);
-                    signal.Ensure()?.Connect(stageEventProcessingFinishedEventCallbackDelegate);
-                }
-                stageEventProcessingFinishedEventHandler += value;
-            }
-            remove
-            {
-                stageEventProcessingFinishedEventHandler -= value;
-                if (stageEventProcessingFinishedEventHandler == null && stageEventProcessingFinishedEventCallbackDelegate != null)
-                {
-                    using VoidSignal signal = new VoidSignal(Interop.StageSignal.EventProcessingFinishedSignal(stageCPtr), false);
-                    signal.Ensure()?.Disconnect(stageEventProcessingFinishedEventCallbackDelegate);
-                    ReleaseSafeCallback(ref stageEventProcessingFinishedEventCallbackDelegate);
-                }
-            }
-        }
-
-        internal event EventHandler ContextLost
-        {
-            add
-            {
-                if (stageContextLostEventHandler == null)
-                {
-                    CreateSafeCallback(OnContextLost, out stageContextLostEventCallbackDelegate);
-                    using VoidSignal signal = new VoidSignal(Interop.StageSignal.ContextLostSignal(stageCPtr), false);
-                    signal.Ensure()?.Connect(stageContextLostEventCallbackDelegate);
-                }
-                stageContextLostEventHandler += value;
-            }
-            remove
-            {
-                stageContextLostEventHandler -= value;
-                if (stageContextLostEventHandler == null && stageContextLostEventCallbackDelegate != null)
-                {
-                    using VoidSignal signal = new VoidSignal(Interop.StageSignal.ContextLostSignal(stageCPtr), false);
-                    signal.Ensure()?.Disconnect(stageContextLostEventCallbackDelegate);
-                    ReleaseSafeCallback(ref stageContextLostEventCallbackDelegate);
-                }
-            }
-        }
-
-        internal event EventHandler ContextRegained
-        {
-            add
-            {
-                if (stageContextRegainedEventHandler == null)
-                {
-                    CreateSafeCallback(OnContextRegained, out stageContextRegainedEventCallbackDelegate);
-                    using VoidSignal signal = new VoidSignal(Interop.StageSignal.ContextRegainedSignal(stageCPtr), false);
-                    signal.Ensure()?.Connect(stageContextRegainedEventCallbackDelegate);
-                }
-                stageContextRegainedEventHandler += value;
-            }
-            remove
-            {
-                stageContextRegainedEventHandler -= value;
-                if (stageContextRegainedEventHandler == null && stageContextRegainedEventCallbackDelegate != null)
-                {
-                    using VoidSignal signal = new VoidSignal(Interop.StageSignal.ContextRegainedSignal(stageCPtr), false);
-                    signal.Ensure()?.Disconnect(stageContextRegainedEventCallbackDelegate);
-                    ReleaseSafeCallback(ref stageContextRegainedEventCallbackDelegate);
-                }
-            }
-        }
-
-        internal event EventHandler SceneCreated
-        {
-            add
-            {
-                if (stageSceneCreatedEventHandler == null)
-                {
-                    CreateSafeCallback(OnSceneCreated, out stageSceneCreatedEventCallbackDelegate);
-                    using VoidSignal signal = new VoidSignal(Interop.StageSignal.SceneCreatedSignal(stageCPtr), false);
-                    signal.Ensure()?.Connect(stageSceneCreatedEventCallbackDelegate);
-                }
-                stageSceneCreatedEventHandler += value;
-            }
-            remove
-            {
-                stageSceneCreatedEventHandler -= value;
-                if (stageSceneCreatedEventHandler == null && stageSceneCreatedEventCallbackDelegate != null)
-                {
-                    using VoidSignal signal = new VoidSignal(Interop.StageSignal.SceneCreatedSignal(stageCPtr), false);
-                    signal.Ensure()?.Disconnect(stageSceneCreatedEventCallbackDelegate);
-                    ReleaseSafeCallback(ref stageSceneCreatedEventCallbackDelegate);
-                }
-            }
-        }
-
         /// <summary>
         /// System-level key event interception that occurs before the user-level InterceptKeyEvent.<br />
         /// This event is intended for internal framework use and provides the highest priority for intercepting key events.<br />
@@ -854,22 +733,22 @@ namespace Tizen.NUI
         {
             add
             {
-                if (stageSystemInterceptKeyHandler == null && stageInterceptKeyHandler == null)
+                if (systemInterceptKeyHandler == null && interceptKeyHandler == null)
                 {
-                    CreateSafeCallback(OnSystemStageInterceptKey, out stageSystemInterceptKeyCallbackDelegate);
+                    CreateSafeCallback(OnSystemInterceptKey, out systemInterceptKeyCallbackDelegate);
                     using KeyEventSignal signal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
-                    signal.Ensure()?.Connect(stageSystemInterceptKeyCallbackDelegate);
+                    signal.Ensure()?.Connect(systemInterceptKeyCallbackDelegate);
                 }
-                stageSystemInterceptKeyHandler += value;
+                systemInterceptKeyHandler += value;
             }
             remove
             {
-                stageSystemInterceptKeyHandler -= value;
-                if (stageSystemInterceptKeyHandler == null && stageSystemInterceptKeyCallbackDelegate != null)
+                systemInterceptKeyHandler -= value;
+                if (systemInterceptKeyHandler == null && systemInterceptKeyCallbackDelegate != null)
                 {
                     using KeyEventSignal signal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
-                    signal.Ensure()?.Disconnect(stageSystemInterceptKeyCallbackDelegate);
-                    ReleaseSafeCallback(ref stageSystemInterceptKeyCallbackDelegate);
+                    signal.Ensure()?.Disconnect(systemInterceptKeyCallbackDelegate);
+                    ReleaseSafeCallback(ref systemInterceptKeyCallbackDelegate);
                 }
             }
         }
@@ -921,13 +800,6 @@ namespace Tizen.NUI
                 wheelEventCallback = null;
             }
 
-            if (DetentEventCallback != null)
-            {
-                using StageWheelSignal signal = new StageWheelSignal(Interop.StageSignal.WheelEventSignal(stageCPtr), false);
-                signal?.Disconnect(DetentEventCallback);
-                DetentEventCallback = null;
-            }
-
             if (interceptWheelCallback != null)
             {
                 Interop.ActorSignal.InterceptWheelDisconnect(Layer.getCPtr(GetRootLayer()), interceptWheelCallback.ToHandleRef(this));
@@ -935,46 +807,18 @@ namespace Tizen.NUI
                 interceptWheelCallback = null;
             }
 
-            if (stageKeyCallbackDelegate != null)
+            if (keyCallbackDelegate != null)
             {
                 using KeyEventSignal signal = new KeyEventSignal(Interop.Window.KeyEventSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(stageKeyCallbackDelegate);
-                stageKeyCallbackDelegate = null;
+                signal?.Disconnect(keyCallbackDelegate);
+                keyCallbackDelegate = null;
             }
 
-            if (stageInterceptKeyCallbackDelegate != null)
+            if (interceptKeyCallbackDelegate != null)
             {
                 using KeyEventSignal signal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(stageInterceptKeyCallbackDelegate);
-                stageInterceptKeyCallbackDelegate = null;
-            }
-
-            if (stageEventProcessingFinishedEventCallbackDelegate != null)
-            {
-                using VoidSignal signal = new VoidSignal(Interop.StageSignal.EventProcessingFinishedSignal(stageCPtr), false);
-                signal?.Disconnect(stageEventProcessingFinishedEventCallbackDelegate);
-                stageEventProcessingFinishedEventCallbackDelegate = null;
-            }
-
-            if (stageContextLostEventCallbackDelegate != null)
-            {
-                using VoidSignal signal = new VoidSignal(Interop.StageSignal.ContextLostSignal(stageCPtr), false);
-                signal?.Disconnect(stageContextLostEventCallbackDelegate);
-                stageContextLostEventCallbackDelegate = null;
-            }
-
-            if (stageContextRegainedEventCallbackDelegate != null)
-            {
-                using VoidSignal signal = new VoidSignal(Interop.StageSignal.ContextRegainedSignal(stageCPtr), false);
-                signal?.Disconnect(stageContextRegainedEventCallbackDelegate);
-                stageContextRegainedEventCallbackDelegate = null;
-            }
-
-            if (stageSceneCreatedEventCallbackDelegate != null)
-            {
-                using VoidSignal signal = new VoidSignal(Interop.StageSignal.SceneCreatedSignal(stageCPtr), false);
-                signal?.Disconnect(stageSceneCreatedEventCallbackDelegate);
-                stageSceneCreatedEventCallbackDelegate = null;
+                signal?.Disconnect(interceptKeyCallbackDelegate);
+                interceptKeyCallbackDelegate = null;
             }
 
             if (windowResizeEventCallback != null)
@@ -1151,7 +995,7 @@ namespace Tizen.NUI
             return consumed;
         }
 
-        private bool OnStageWheel(IntPtr rootLayer, IntPtr wheelEvent)
+        private bool OnWindowWheel(IntPtr rootLayer, IntPtr wheelEvent)
         {
             if (IsDisposedOrQueued)
             {
@@ -1165,11 +1009,11 @@ namespace Tizen.NUI
                 return true;
             }
 
-            if (stageWheelHandler != null)
+            if (wheelHandler != null)
             {
                 WheelEventArgs e = new WheelEventArgs();
                 e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
-                stageWheelHandler(this, e);
+                wheelHandler(this, e);
             }
             return true;
         }
@@ -1198,8 +1042,8 @@ namespace Tizen.NUI
             return consumed;
         }
 
-        // Callback for Stage KeyEventsignal
-        private void OnStageKey(IntPtr data)
+        // Callback for Window KeyEventsignal
+        private void OnWindowKey(IntPtr data)
         {
             if (IsDisposedOrQueued)
             {
@@ -1207,17 +1051,17 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (stageKeyHandler != null)
+            if (keyHandler != null)
             {
                 KeyEventArgs e = new KeyEventArgs();
                 e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
                 //here we send all data to user event handlers
-                stageKeyHandler(this, e);
+                keyHandler(this, e);
             }
         }
 
-        // Callback for Stage InterceptKeyEventsignal
-        private bool OnStageInterceptKey(IntPtr data)
+        // Callback for Window InterceptKeyEventsignal
+        private bool OnWindowInterceptKey(IntPtr data)
         {
             if (IsDisposedOrQueued)
             {
@@ -1226,12 +1070,12 @@ namespace Tizen.NUI
             }
 
             bool systemConsumed = false;
-            if (stageSystemInterceptKeyHandler != null)
+            if (systemInterceptKeyHandler != null)
             {
                 KeyEventArgs e = new KeyEventArgs();
                 e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
 
-                Delegate[] delegateList = stageSystemInterceptKeyHandler.GetInvocationList();
+                Delegate[] delegateList = systemInterceptKeyHandler.GetInvocationList();
                 // Oring the result of each callback.
                 foreach (ReturnTypeEventHandler<object, KeyEventArgs, bool> del in delegateList)
                 {
@@ -1246,18 +1090,18 @@ namespace Tizen.NUI
             }
 
             bool consumed = false;
-            if (stageInterceptKeyHandler != null)
+            if (interceptKeyHandler != null)
             {
                 KeyEventArgs e = new KeyEventArgs();
                 e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
                 //here we send all data to user event handlers
-                consumed = stageInterceptKeyHandler(this, e);
+                consumed = interceptKeyHandler(this, e);
             }
             return consumed;
         }
 
-        // Callback for Stage InterceptKeyEventsignal
-        private bool OnSystemStageInterceptKey(IntPtr data)
+        // Callback for Window InterceptKeyEventsignal
+        private bool OnSystemInterceptKey(IntPtr data)
         {
             if (IsDisposedOrQueued)
             {
@@ -1266,12 +1110,12 @@ namespace Tizen.NUI
             }
 
             bool systemConsumed = false;
-            if (stageSystemInterceptKeyHandler != null)
+            if (systemInterceptKeyHandler != null)
             {
                 KeyEventArgs e = new KeyEventArgs();
                 e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
 
-                Delegate[] delegateList = stageSystemInterceptKeyHandler.GetInvocationList();
+                Delegate[] delegateList = systemInterceptKeyHandler.GetInvocationList();
                 // Oring the result of each callback.
                 foreach (ReturnTypeEventHandler<object, KeyEventArgs, bool> del in delegateList)
                 {
@@ -1279,50 +1123,6 @@ namespace Tizen.NUI
                 }
             }
             return systemConsumed;
-        }
-
-        // Callback for Stage EventProcessingFinishedSignal
-        private void OnEventProcessingFinished()
-        {
-            if (IsDisposedOrQueued)
-            {
-                return;
-            }
-
-            stageEventProcessingFinishedEventHandler?.Invoke(this, null);
-        }
-
-        // Callback for Stage ContextLostSignal
-        private void OnContextLost()
-        {
-            if (IsDisposedOrQueued)
-            {
-                return;
-            }
-
-            stageContextLostEventHandler?.Invoke(this, null);
-        }
-
-        // Callback for Stage ContextRegainedSignal
-        private void OnContextRegained()
-        {
-            if (IsDisposedOrQueued)
-            {
-                return;
-            }
-
-            stageContextRegainedEventHandler?.Invoke(this, null);
-        }
-
-        // Callback for Stage SceneCreatedSignal
-        private void OnSceneCreated()
-        {
-            if (IsDisposedOrQueued)
-            {
-                return;
-            }
-
-            stageSceneCreatedEventHandler?.Invoke(this, null);
         }
 
         private void OnResized(IntPtr window, IntPtr windowSize)
@@ -1896,31 +1696,6 @@ namespace Tizen.NUI
                     type = value;
                 }
             }
-        }
-
-        private EventHandler<WheelEventArgs> DetentEventHandler;
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void DetentEventCallbackType(IntPtr arg1);
-
-        private DetentEventCallbackType DetentEventCallback;
-
-        private void OnDetentEvent(IntPtr wheelEvent)
-        {
-            if (IsDisposedOrQueued)
-            {
-                // Ignore native callback if the window is disposed or queued for disposal.
-                return;
-            }
-
-            WheelEventArgs e = new WheelEventArgs();
-
-            if (wheelEvent != global::System.IntPtr.Zero)
-            {
-                e.Wheel = Wheel.GetWheelFromPtr(wheelEvent);
-            }
-
-            DetentEventHandler?.Invoke(this, e);
         }
 
         /// <summary>

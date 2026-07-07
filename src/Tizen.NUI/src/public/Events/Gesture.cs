@@ -167,6 +167,59 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Enumeration for subclass of gesture input source.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum SourceSubType
+        {
+            /// <summary>Not a device.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+            /// <summary>The normal flat of your finger.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Finger = 1,
+            /// <summary>A fingernail.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Fingernail = 2,
+            /// <summary>A Knuckle.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Knuckle = 3,
+            /// <summary>The palm of a user's hand.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Palm = 4,
+            /// <summary>The side of your hand.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            HandSide = 5,
+            /// <summary>The flat of your hand.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            HandFlat = 6,
+            /// <summary>The tip of a pen.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            PenTip = 7,
+            /// <summary>A trackpad style mouse.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Trackpad = 8,
+            /// <summary>A trackpoint style mouse.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Trackpoint = 9,
+            /// <summary>A trackball style mouse.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Trackball = 10,
+            /// <summary>A remote controller.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Remocon = 11,
+            /// <summary>A virtual keyboard.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            VirtualKeyboard = 12,
+            /// <summary>A virtual remocon.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            VirtualRemocon = 13,
+            /// <summary>A virtual mouse.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            VirtualMouse = 14,
+        }
+
+        /// <summary>
         /// Gets the type of gesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -228,6 +281,19 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is a property of the source subclass (read-only).
+        /// Provides detailed input type: Finger, Knuckle, Palm for touch, Trackpad, Trackball for mouse.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Gesture.SourceSubType SourceSub
+        {
+            get
+            {
+                return sourceSubType;
+            }
+        }
+
         private Gesture.GestureType type
         {
             get
@@ -262,9 +328,16 @@ namespace Tizen.NUI
         {
             get
             {
-                Gesture.SourceType ret = (Gesture.SourceType)Interop.Gesture.SourceTypeGet(SwigCPtr);
+                int rawValue = Interop.Gesture.SourceTypeGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                // Binder returns Device::Class::Type values (MOUSE=3, TOUCH=4).
+                // Map to Gesture.SourceType (Mouse=1, Touch=2) for backward compatibility.
+                switch (rawValue)
+                {
+                    case 3: return Gesture.SourceType.Mouse;
+                    case 4: return Gesture.SourceType.Touch;
+                    default: return Gesture.SourceType.Invalid;
+                }
             }
         }
 
@@ -273,6 +346,16 @@ namespace Tizen.NUI
             get
             {
                 Gesture.SourceDataType ret = (Gesture.SourceDataType)Interop.Gesture.SourceDataGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private Gesture.SourceSubType sourceSubType
+        {
+            get
+            {
+                Gesture.SourceSubType ret = (Gesture.SourceSubType)Interop.Gesture.SourceSubTypeGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
