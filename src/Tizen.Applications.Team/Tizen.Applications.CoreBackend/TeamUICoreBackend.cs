@@ -128,7 +128,7 @@ namespace Tizen.Applications
             {
                 TeamManager.UnregisterDefaultWindow(defaultWindow);
             }
-            defaultWindow?.Hide();
+            defaultWindow?.Minimize(true);
             DefaultWindowId = -1;
             defaultWindow = null;
         }
@@ -204,7 +204,7 @@ namespace Tizen.Applications
                 }
 
                 SetDefaultWindow(window);
-                window.Hide();
+                window.Minimize(true);
             }
         }
         private IntPtr OnCreateNative(IntPtr context, IntPtr userdata)
