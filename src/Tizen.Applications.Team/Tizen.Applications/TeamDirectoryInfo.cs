@@ -31,7 +31,7 @@ namespace Tizen.Applications
     /// </remarks>
     /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TeamDirectoryInfo
+    public class TeamDirectoryInfo : IDirectoryInfo
     {
         private IntPtr _memberHandle;
         private string _dataPath;
