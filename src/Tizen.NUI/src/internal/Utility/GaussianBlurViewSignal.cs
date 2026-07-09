@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.GaussianBlurViewSignal.DeleteGaussianBlurViewSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.GaussianBlurViewSignal.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.GaussianBlurViewSignal.GetConnectionCount(SwigCPtr);
@@ -58,12 +51,6 @@ namespace Tizen.NUI
                 Interop.GaussianBlurViewSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(GaussianBlurView arg)
-        {
-            Interop.GaussianBlurViewSignal.Emit(SwigCPtr, GaussianBlurView.getCPtr(arg));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public GaussianBlurViewSignal() : this(Interop.GaussianBlurViewSignal.NewGaussianBlurViewSignal(), true)

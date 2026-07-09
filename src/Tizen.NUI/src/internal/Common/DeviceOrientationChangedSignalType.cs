@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.DeviceOrientationChangedSignalType.DeleteDeviceOrientationChangedSignalType(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.DeviceOrientationChangedSignalType.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.DeviceOrientationChangedSignalType.GetConnectionCount(SwigCPtr);
@@ -58,12 +51,6 @@ namespace Tizen.NUI
                 Interop.DeviceOrientationChangedSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        internal void Emit(Application.MemoryStatus arg)
-        {
-            Interop.DeviceOrientationChangedSignalType.Emit(SwigCPtr, (int)arg);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public DeviceOrientationChangedSignalType() : this(Interop.DeviceOrientationChangedSignalType.NewDeviceOrientationChangedSignalType(), true)

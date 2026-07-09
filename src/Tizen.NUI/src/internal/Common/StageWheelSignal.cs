@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.Wheel.DeleteStageWheelSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.Wheel.StageWheelSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.Wheel.StageWheelSignalGetConnectionCount(SwigCPtr);
@@ -58,12 +51,6 @@ namespace Tizen.NUI
                 Interop.Wheel.StageWheelSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(Wheel arg)
-        {
-            Interop.Wheel.StageWheelSignalEmit(SwigCPtr, Wheel.getCPtr(arg));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public StageWheelSignal() : this(Interop.Wheel.NewStageWheelSignal(), true)
