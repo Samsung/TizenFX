@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.KeyEventSignal.DeleteKeyEventSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.KeyEventSignal.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.KeyEventSignal.GetConnectionCount(SwigCPtr);
@@ -58,12 +51,6 @@ namespace Tizen.NUI
                 Interop.KeyEventSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(Key arg)
-        {
-            Interop.KeyEventSignal.Emit(SwigCPtr, Key.getCPtr(arg));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public KeyEventSignal() : this(Interop.KeyEventSignal.NewKeyEventSignal(), true)

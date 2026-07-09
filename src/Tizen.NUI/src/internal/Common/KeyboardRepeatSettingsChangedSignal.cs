@@ -29,14 +29,6 @@ namespace Tizen.NUI
             Interop.KeyboardRepeatSettingsChangedSignal.DeleteSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.KeyboardRepeatSettingsChangedSignal.Empty(SwigCPtr);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.KeyboardRepeatSettingsChangedSignal.GetConnectionCount(SwigCPtr);
@@ -61,13 +53,6 @@ namespace Tizen.NUI
                 Interop.KeyboardRepeatSettingsChangedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public bool Emit()
-        {
-            bool ret = Interop.KeyboardRepeatSettingsChangedSignal.Emit(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public KeyboardRepeatSettingsChangedSignal(Window window) : this(Interop.KeyboardRepeatSettingsChangedSignal.GetSignal(Window.getCPtr(window)), false)

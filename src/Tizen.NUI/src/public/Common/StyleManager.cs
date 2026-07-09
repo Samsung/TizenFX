@@ -74,10 +74,11 @@ namespace Tizen.NUI
             remove
             {
                 styleManagerStyleChangedEventHandler -= value;
-                using var signal = StyleChangedSignal();
-                if (styleManagerStyleChangedEventHandler == null && signal.Empty() == false)
+                if (styleManagerStyleChangedEventHandler == null && styleManagerStyleChangedCallbackDelegate != null)
                 {
+                    using var signal = StyleChangedSignal();
                     signal.Disconnect(styleManagerStyleChangedCallbackDelegate);
+                    styleManagerStyleChangedCallbackDelegate = null;
                 }
             }
         }

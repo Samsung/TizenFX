@@ -241,10 +241,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 videoViewFinishedEventHandler -= value;
-                using var signal = FinishedSignal();
-                if (videoViewFinishedEventHandler == null && signal.Empty() == false)
+                if (videoViewFinishedEventHandler == null && videoViewFinishedCallbackDelegate != null)
                 {
+                    using var signal = FinishedSignal();
                     signal.Disconnect(videoViewFinishedCallbackDelegate);
+                    videoViewFinishedCallbackDelegate = null;
                 }
             }
         }
@@ -759,6 +760,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 using var signal = FinishedSignal();
                 signal.Disconnect(videoViewFinishedCallbackDelegate);
+                videoViewFinishedCallbackDelegate = null;
             }
 
             base.Dispose(type);
