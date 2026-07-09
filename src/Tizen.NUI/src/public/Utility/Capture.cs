@@ -424,13 +424,6 @@ namespace Tizen.NUI
             // Do nothing because native didn't create new signal handle.
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.Capture.SignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.Capture.SignalGetConnectionCount(SwigCPtr);
@@ -454,12 +447,6 @@ namespace Tizen.NUI
                 Interop.Capture.SignalDisconnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(Capture src, bool success)
-        {
-            Interop.Capture.SignalEmit(SwigCPtr, src.SwigCPtr, (success ? 0 : 1));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }
