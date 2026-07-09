@@ -16,8 +16,9 @@
 
 using System;
 using Tizen.Internals;
+using Tizen.Applications.CoreBackend;
 
-namespace Tizen.Applications.CoreBackend
+namespace Tizen.Applications
 {
     /// <summary>
     /// Backend implementation for Team service applications that run without a graphical UI.
@@ -81,15 +82,7 @@ namespace Tizen.Applications.CoreBackend
             // base.Run() is not required.
             if (!TeamManager.IsInit())
             {
-              string[] argsClone = new string[args == null ? 1 : args.Length + 1];
-              if (args != null && args.Length > 1)
-              {
-                  args.CopyTo(argsClone, 1);
-              }
-              argsClone[0] = "Tizen.Applications.Team.dll";
-
-              TeamManager.Init(argsClone);
-              Log.Info("DN_TAM", $"Launching Team Loop.");
+              Log.Error("DN_TAM", $"Team Loop is not running!. Launch app via launcher.");
               return;
             }
 
@@ -146,6 +139,7 @@ namespace Tizen.Applications.CoreBackend
                     catch (Exception ex)
                     {
                         Log.Error(LogTag, $"Error in Created handler: {ex.Message}");
+                        Log.Error(LogTag, $"{ex.StackTrace}");
                         return false;
                     }
                 }
@@ -167,6 +161,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in Terminated handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -185,6 +180,7 @@ namespace Tizen.Applications.CoreBackend
                     catch (Exception ex)
                     {
                         Log.Error(LogTag, $"Error in AppControlReceived handler: {ex.Message}");
+                        Log.Error(LogTag, $"{ex.StackTrace}");
                     }
                 }
             }
@@ -203,6 +199,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LowMemory handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -220,6 +217,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LowBattery handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -236,6 +234,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LocaleChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -253,6 +252,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in DeviceOrientationChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -269,6 +269,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in RegionFormatChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -286,6 +287,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in SuspendedStateChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -302,6 +304,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in TimeZoneChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }

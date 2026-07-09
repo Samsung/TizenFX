@@ -17,19 +17,22 @@
 using System;
 using Tizen.Internals;
 using Tizen.NUI;
+using Tizen.Applications.CoreBackend;
 
-namespace Tizen.Applications.CoreBackend
+
+namespace Tizen.Applications
 {
     /// <summary>
     /// Backend implementation for Team UI applications that own a default <see cref="Window"/>.
     /// </summary>
-    internal class TeamUICoreBackend : TeamCoreBackend
+    internal class TeamUICoreBackend : TeamCoreBackend, IUICoreBackend
     {
         internal new static string LogTag = "DN_TAM";
         private Interop.TeamMember.UIMemberLifecycleCallbacks _callbacks;
         private bool _disposedValue = false;
         private int DefaultWindowId = 0;
         internal Window defaultWindow;
+        internal WindowData initWindowData;
         internal override IntPtr MemberHandle => _memberHandle;
         internal override IntPtr LoadObjId => _loadObjId;
         internal override IntPtr ArgHandle => _argHandle;
@@ -48,6 +51,19 @@ namespace Tizen.Applications.CoreBackend
         private Interop.TeamMember.AppTimeZoneChangedCallback _onTimeZoneChangedNative;
 
         public TeamUICoreBackend()
+        {
+          initWindowData = null;
+          SetUpCallback();
+        }
+
+
+        public TeamUICoreBackend(WindowData windowdata)
+        {
+          initWindowData = windowdata;
+          SetUpCallback();
+        }
+
+        internal void SetUpCallback()
         {
             _onCreateNative = new Interop.TeamMember.UIAppCreateCallback(OnCreateNative);
             _onTerminateNative = new Interop.TeamMember.AppTerminateCallback(OnTerminateNative);
@@ -93,6 +109,28 @@ namespace Tizen.Applications.CoreBackend
         {
             defaultWindow = window;
             SetDefaultWindowId(window.GetNativeId());
+
+            // Register window with appid to TeamManager
+            var err = Interop.TeamManager.TeamAppGetAppId(MemberHandle, out string appid);
+            if (err == Interop.TeamManager.TeamAppErrorCode.None && !string.IsNullOrEmpty(appid))
+            {
+                TeamManager.RegisterDefaultWindow(window, appid);
+            }
+            else
+            {
+                Log.Warn(LogTag, $"Failed to get AppId for RegisterDefaultWindow. err = {err}");
+            }
+        }
+
+        internal void UnsetDefaultWindow()
+        {
+            if (defaultWindow != null)
+            {
+                TeamManager.UnregisterDefaultWindow(defaultWindow);
+            }
+            defaultWindow?.Minimize(true);
+            DefaultWindowId = -1;
+            defaultWindow = null;
         }
         public override void Exit()
         {
@@ -108,15 +146,7 @@ namespace Tizen.Applications.CoreBackend
             // base.Run() is not required.
             if (!TeamManager.IsInit())
             {
-              string[] argsClone = new string[args == null ? 1 : args.Length + 1];
-              if (args != null && args.Length > 1)
-              {
-                  args.CopyTo(argsClone, 1);
-              }
-              argsClone[0] = "Tizen.Applications.Team.dll";
-
-              TeamManager.Init(argsClone);
-              Log.Info("DN_TAM", $"Launching Team Loop.");
+              Log.Error("DN_TAM", $"Team Loop is not running!. Launch app via launcher.");
               return;
             }
 
@@ -151,6 +181,32 @@ namespace Tizen.Applications.CoreBackend
             }
         }
 
+        internal void CreateDefaultWindow()
+        {
+            if(GetDefaultWindow() == null) {
+
+                Window window = null;
+                var err = Interop.TeamManager.TeamAppGetName(MemberHandle, out string name);
+                if (err != Interop.TeamManager.TeamAppErrorCode.None)
+                {
+                    Log.Warn(LogTag, $"Failed to get Name. err = {err}");
+                    name = "";
+                }
+
+                if(initWindowData != null)
+                {
+                    window = new Window(name, initWindowData);
+                }
+                else
+                {
+                    window = new Window();
+                    window.Title = name;
+                }
+
+                SetDefaultWindow(window);
+                window.Minimize(true);
+            }
+        }
         private IntPtr OnCreateNative(IntPtr context, IntPtr userdata)
         {
             if (_memberHandle != IntPtr.Zero)
@@ -159,32 +215,55 @@ namespace Tizen.Applications.CoreBackend
             }
             _memberHandle = context;
 
+            CreateDefaultWindow();
+
+            if (Handlers.ContainsKey(EventType.PreCreated))
+            {
+                var handler = Handlers[EventType.PreCreated] as Action;
+                if (handler != null)
+                {
+                    try
+                    {
+                      handler?.Invoke();
+                    }
+                    catch (Exception ex)
+                    {
+                      Log.Error(LogTag, $"Error in User PreCreated handler: {ex.Message}");
+                      Log.Error(LogTag, $"{ex.StackTrace}");
+                    }
+                }
+                else
+                {
+                    Log.Error(LogTag, "Invalid OnPreCreate Callback type");
+                    return IntPtr.Zero;
+                }
+            }
+
             if (Handlers.ContainsKey(EventType.Created))
             {
                 var handler = Handlers[EventType.Created] as Action;
                 if (handler != null)
                 {
-                    // This function will set default window
                     try
                     {
-                        var window = new Window();
-                        SetDefaultWindow(window);
-                        window.Hide();
+                      handler?.Invoke();
+                    }
+                    catch (Exception ex)
+                    {
+                      Log.Error(LogTag, $"Error in User Created handler: {ex.Message}");
+                      Log.Error(LogTag, $"{ex.StackTrace}");
+                      return IntPtr.Zero;
+                    }
 
-                        try {
-                          handler?.Invoke();
-                        }
-                        catch (Exception ex)
-                        {
-                          Log.Error(LogTag, $"Error in User Created handler: {ex.Message}");
-                        }
-
+                    try
+                    {
                         IntPtr window_h = Interop.TeamManager.CreateWl2WindowById(GetDefaultWindowId());
                         return window_h;
                     }
                     catch (Exception ex)
                     {
                         Log.Error(LogTag, $"Error in Internal Created handler: {ex.Message}");
+                        Log.Error(LogTag, $"{ex.StackTrace}");
                         return IntPtr.Zero;
                     }
                 }
@@ -211,12 +290,10 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in Terminated handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
-
-                defaultWindow?.Hide();
-                DefaultWindowId = -1;
-                defaultWindow = null;
             }
+            UnsetDefaultWindow();
         }
 
         private void OnAppControlNative(IntPtr context, IntPtr appControl, IntPtr userdata)
@@ -233,6 +310,7 @@ namespace Tizen.Applications.CoreBackend
                     catch (Exception ex)
                     {
                         Log.Error(LogTag, $"Error in AppControlReceived handler: {ex.Message}");
+                        Log.Error(LogTag, $"{ex.StackTrace}");
                     }
                 }
             }
@@ -250,6 +328,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in Resumed handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -266,6 +345,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in Paused handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -283,6 +363,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LowMemory handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -300,6 +381,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LowBattery handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -316,6 +398,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in LocaleChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -333,6 +416,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in DeviceOrientationChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -349,6 +433,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in RegionFormatChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -366,6 +451,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in SuspendedStateChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
@@ -382,6 +468,7 @@ namespace Tizen.Applications.CoreBackend
                 catch (Exception ex)
                 {
                     Log.Error(LogTag, $"Error in TimeZoneChanged handler: {ex.Message}");
+                    Log.Error(LogTag, $"{ex.StackTrace}");
                 }
             }
         }
