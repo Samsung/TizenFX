@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.LowMemorySignalType.DeleteLowMemorySignalType(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.LowMemorySignalType.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.LowMemorySignalType.GetConnectionCount(SwigCPtr);
@@ -58,12 +51,6 @@ namespace Tizen.NUI
                 Interop.LowMemorySignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        internal void Emit(Application.MemoryStatus arg)
-        {
-            Interop.LowMemorySignalType.Emit(SwigCPtr, (int)arg);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public LowMemorySignalType() : this(Interop.LowMemorySignalType.NewLowMemorySignalType(), true)

@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.ScrollableSignal.DeleteScrollableSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.ScrollableSignal.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.ScrollableSignal.GetConnectionCount(SwigCPtr);
@@ -58,12 +51,6 @@ namespace Tizen.NUI
                 Interop.ScrollableSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(Vector2 arg)
-        {
-            Interop.ScrollableSignal.Emit(SwigCPtr, Vector2.getCPtr(arg));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ScrollableSignal() : this(Interop.ScrollableSignal.NewScrollableSignal(), true)

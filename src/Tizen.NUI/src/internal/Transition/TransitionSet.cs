@@ -61,9 +61,8 @@ namespace Tizen.NUI
             {
                 if (transitionSetFinishedEventHandler == null && disposed == false)
                 {
-                    TransitionSetFinishedSignal finishedSignal = FinishedSignal();
-                    finishedSignal.Connect(finishedCallbackOfNative);
-                    finishedSignal.Dispose();
+                    using TransitionSetFinishedSignal finishedSignal = FinishedSignal();
+                    finishedSignal?.Connect(finishedCallbackOfNative);
                 }
                 transitionSetFinishedEventHandler += value;
             }
@@ -71,12 +70,11 @@ namespace Tizen.NUI
             {
                 transitionSetFinishedEventHandler -= value;
 
-                TransitionSetFinishedSignal finishedSignal = FinishedSignal();
-                if (transitionSetFinishedEventHandler == null && finishedSignal.Empty() == false)
+                if (transitionSetFinishedEventHandler == null && disposed == false)
                 {
-                    finishedSignal.Disconnect(finishedCallbackOfNative);
+                    using TransitionSetFinishedSignal finishedSignal = FinishedSignal();
+                    finishedSignal?.Disconnect(finishedCallbackOfNative);
                 }
-                finishedSignal.Dispose();
             }
         }
 
@@ -180,9 +178,8 @@ namespace Tizen.NUI
 
             if (transitionSetFinishedEventHandler != null)
             {
-                TransitionSetFinishedSignal finishedSignal = FinishedSignal();
+                using TransitionSetFinishedSignal finishedSignal = FinishedSignal();
                 finishedSignal?.Disconnect(finishedCallbackOfNative);
-                finishedSignal?.Dispose();
                 transitionSetFinishedEventHandler = null;
             }
 

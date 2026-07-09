@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.Watch.DeleteWatchTimeSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.Watch.WatchTimeSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.Watch.WatchTimeSignalGetConnectionCount(SwigCPtr);
@@ -58,12 +51,6 @@ namespace Tizen.NUI
                 Interop.Watch.WatchTimeSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(Application arg1, WatchTime arg2)
-        {
-            Interop.Watch.WatchTimeSignalEmit(SwigCPtr, Application.getCPtr(arg1), WatchTime.getCPtr(arg2));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public WatchTimeSignal() : this(Interop.Watch.NewWatchTimeSignal(), true)

@@ -31,17 +31,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Queries whether there are any connected slots.
-        /// </summary>
-        /// <returns>True if there are any slots connected to the signal</returns>
-        public bool Empty()
-        {
-            bool ret = Interop.KeyboardEventSignalType.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
@@ -76,19 +65,6 @@ namespace Tizen.NUI
                 Interop.KeyboardEventSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        /// <summary>
-        /// Emits the signal.
-        /// </summary>
-        /// <param name="arg1">The first value to pass to callbacks</param>
-        /// <param name="arg2">The second value to pass to callbacks</param>
-        /// <returns>The value returned by the last callback, or a default constructed value if no callbacks are connected</returns>
-        public InputMethodContext.CallbackData Emit(InputMethodContext arg1, InputMethodContext.EventData arg2)
-        {
-            InputMethodContext.CallbackData ret = new InputMethodContext.CallbackData(Interop.KeyboardEventSignalType.Emit(SwigCPtr, InputMethodContext.getCPtr(arg1), InputMethodContext.EventData.getCPtr(arg2)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>

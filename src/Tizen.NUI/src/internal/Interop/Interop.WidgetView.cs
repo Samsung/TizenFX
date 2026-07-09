@@ -110,10 +110,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetFaultedSignal")]
             public static extern global::System.IntPtr WidgetFaultedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_Empty")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool WidgetViewSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_GetConnectionCount")]
             public static extern uint WidgetViewSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -122,9 +118,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_Disconnect")]
             public static extern void WidgetViewSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_Emit")]
-            public static extern void WidgetViewSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_new_WidgetViewSignal")]
             public static extern global::System.IntPtr NewWidgetViewSignal();
