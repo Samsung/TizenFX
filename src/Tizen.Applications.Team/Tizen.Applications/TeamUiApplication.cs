@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,53 +15,43 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
+using Tizen.NUI;
+using Tizen.Applications.CoreBackend;
 
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Represents the resource control information for a Team application.
+    /// Represents a Team application that provides a default NUI window.
     /// </summary>
     /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ResourceControl
+    public class TeamUiApplication : TeamCoreUiApplication
     {
-        internal ResourceControl(string resourceType, string minResourceVersion, string maxResourceVersion, bool isAutoClose)
+        /// <summary>
+        /// Initializes the <see cref="TeamUiApplication"/> class.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TeamUiApplication() : base (new TeamUICoreBackend())
         {
-            ResourceType = resourceType;
-            MinResourceVersion = minResourceVersion ?? null;
-            MaxResourceVersion = maxResourceVersion ?? null;
-            IsAutoClose = isAutoClose;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TeamUiApplication(WindowData windowdata)
+          : base (new TeamUICoreBackend(windowdata))
+        {
         }
 
         /// <summary>
-        /// Gets the resource type.
+        /// Runs the Team UI application's main loop.
         /// </summary>
+        /// <param name="args">Arguments from commandline.</param>
         /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ResourceType { get; }
-
-        /// <summary>
-        /// Gets the minimum version of the required resource package.
-        /// </summary>
-        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string MinResourceVersion { get; }
-
-        /// <summary>
-        /// Gets the maximum version of the required resource package.
-        /// </summary>
-        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string MaxResourceVersion { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether the resource is auto-closed.
-        /// </summary>
-        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsAutoClose { get; }
+        public override void Run(string[] args)
+        {
+            base.Run(args);
+        }
     }
 }

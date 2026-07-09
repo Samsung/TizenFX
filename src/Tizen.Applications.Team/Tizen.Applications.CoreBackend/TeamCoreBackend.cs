@@ -16,8 +16,10 @@
 
 using System;
 using System.ComponentModel;
+using Tizen.Applications.CoreBackend;
 
-namespace Tizen.Applications.CoreBackend
+
+namespace Tizen.Applications
 {
     /// <summary>
     /// Represents the abstract base backend that drives a Team application instance.
