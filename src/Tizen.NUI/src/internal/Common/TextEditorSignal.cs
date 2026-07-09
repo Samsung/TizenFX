@@ -30,13 +30,6 @@ namespace Tizen.NUI
             Interop.TextEditor.DeleteTextEditorSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.TextEditor.TextEditorSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.TextEditor.TextEditorSignalGetConnectionCount(SwigCPtr);
@@ -60,12 +53,6 @@ namespace Tizen.NUI
                 Interop.TextEditor.TextEditorSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(TextEditor arg)
-        {
-            Interop.TextEditor.TextEditorSignalEmit(SwigCPtr, TextEditor.getCPtr(arg));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public TextEditorSignal() : this(Interop.TextEditor.NewTextEditorSignal(), true)

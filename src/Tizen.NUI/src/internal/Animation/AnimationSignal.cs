@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.Animation.DeleteAnimationSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.Animation.AnimationSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.Animation.AnimationSignalGetConnectionCount(SwigCPtr);
@@ -73,6 +66,8 @@ namespace Tizen.NUI
 
         public void Emit(Animation arg)
         {
+            // TODO : This function only be used at Tizen.NUI.Components Navigator, to emit finished callback immediatly.
+            // Finished callback immediatly is not recommended, because it may cause unexpected behavior. So, must fix Navigator codes in future.
             Interop.Animation.AnimationSignalEmit(SwigCPtr, Animation.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

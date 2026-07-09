@@ -104,10 +104,11 @@ namespace Tizen.NUI
             remove
             {
                 preFocusChangeEventHandler -= value;
-                using PreFocusChangeSignal signal = PreFocusChangeSignal();
-                if (preFocusChangeEventHandler == null && signal?.Empty() == false)
+                if (preFocusChangeEventHandler == null && preFocusChangeCallback != null)
                 {
+                    using PreFocusChangeSignal signal = PreFocusChangeSignal();
                     signal?.Disconnect(preFocusChangeCallback);
+                    preFocusChangeCallback = null;
                 }
             }
         }
@@ -140,10 +141,11 @@ namespace Tizen.NUI
             {
                 focusChangingEventHandler -= value;
                 //this is same as old PreFocusChangeSignal, so the body will be same. (only name is changed, behavior is same)
-                using PreFocusChangeSignal signal = PreFocusChangeSignal();
-                if (focusChangingEventHandler == null && signal?.Empty() == false)
+                if (focusChangingEventHandler == null && focusChangingCallback != null)
                 {
+                    using PreFocusChangeSignal signal = PreFocusChangeSignal();
                     signal?.Disconnect(focusChangingCallback);
+                    focusChangingCallback = null;
                 }
             }
         }
@@ -168,10 +170,11 @@ namespace Tizen.NUI
             {
                 focusChangedEventHandler -= value;
 
-                using FocusChangedSignal signal = FocusChangedSignal();
-                if (focusChangedEventCallback == null && signal?.Empty() == false)
+                if (focusChangedEventHandler == null && focusChangedEventCallback != null)
                 {
+                    using FocusChangedSignal signal = FocusChangedSignal();
                     signal?.Disconnect(focusChangedEventCallback);
+                    focusChangedEventCallback = null;
                 }
             }
         }
@@ -198,10 +201,11 @@ namespace Tizen.NUI
             {
                 focusGroupChangedEventHandler -= value;
 
-                using FocusGroupChangedSignal signal = FocusGroupChangedSignal();
-                if (focusGroupChangedEventCallback == null && signal?.Empty() == false)
+                if (focusGroupChangedEventHandler == null && focusGroupChangedEventCallback != null)
                 {
+                    using FocusGroupChangedSignal signal = FocusGroupChangedSignal();
                     signal?.Disconnect(focusGroupChangedEventCallback);
+                    focusGroupChangedEventCallback = null;
                 }
             }
         }

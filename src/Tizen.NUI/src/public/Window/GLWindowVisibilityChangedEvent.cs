@@ -33,14 +33,6 @@ namespace Tizen.NUI
             Interop.GLWindowVisibilityChangedSignal.DeleteSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.GLWindowVisibilityChangedSignal.Empty(SwigCPtr);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.GLWindowVisibilityChangedSignal.GetConnectionCount(SwigCPtr);
@@ -65,12 +57,6 @@ namespace Tizen.NUI
                 Interop.GLWindowVisibilityChangedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(GLWindow glWindow, bool visibility)
-        {
-            Interop.GLWindowVisibilityChangedSignal.Emit(SwigCPtr, GLWindow.getCPtr(glWindow), visibility);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }

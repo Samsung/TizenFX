@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.WindowFocusSignalType.DeleteWindowFocusSignalType(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.WindowFocusSignalType.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.WindowFocusSignalType.GetConnectionCount(SwigCPtr);
@@ -58,12 +51,6 @@ namespace Tizen.NUI
                 Interop.WindowFocusSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(Window window, bool focusIn)
-        {
-            Interop.WindowFocusSignalType.Emit(SwigCPtr, Window.getCPtr(window), focusIn);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public WindowFocusSignalType() : this(Interop.WindowFocusSignalType.NewWindowFocusSignalType(), true)

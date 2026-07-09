@@ -39,17 +39,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Queries whether there are any connected slots.
-        /// </summary>
-        /// <returns>True if there are any slots connected to the signal</returns>
-        internal bool Empty()
-        {
-            bool ret = Interop.WidgetView.WidgetViewSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
@@ -84,16 +73,6 @@ namespace Tizen.NUI
                 Interop.WidgetView.WidgetViewSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        /// <summary>
-        /// Connects a member function.
-        /// </summary>
-        /// <param name="arg">The member function to connect</param>
-        internal void Emit(WidgetView arg)
-        {
-            Interop.WidgetView.WidgetViewSignalEmit(SwigCPtr, WidgetView.getCPtr(arg));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
