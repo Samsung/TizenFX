@@ -55,7 +55,7 @@ namespace Tizen.NUI
         {
         }
 
-        private EventHandler<DetectedEventArgs> detectedEventHandler;
+        private DaliEventHandler<object, DetectedEventArgs> detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr pinchGesture);
         private DetectedCallbackType detectedCallback;
@@ -64,7 +64,7 @@ namespace Tizen.NUI
         /// This signal is emitted when the specified pinch is detected on the attached view.
         /// </summary>
         /// <since_tizen> 10.1 </since_tizen>
-        public event EventHandler<DetectedEventArgs> Detected
+        public event DaliEventHandler<object, DetectedEventArgs> Detected
         {
             add
             {

@@ -62,17 +62,17 @@ namespace Tizen.NUI
             {
                 if (GestureOptions.Instance.GetPanGestureMinimumTouchesRequired() > 0)
                 {
-                    SetMinimumTouchCount(GestureOptions.Instance.GetPanGestureMinimumTouchesRequired());
+                    SetMinimumTouchesRequired(GestureOptions.Instance.GetPanGestureMinimumTouchesRequired());
                 }
 
                 if (GestureOptions.Instance.GetPanGestureMaximumTouchesRequired() > 0)
                 {
-                    SetMaximumTouchCount(GestureOptions.Instance.GetPanGestureMaximumTouchesRequired());
+                    SetMaximumTouchesRequired(GestureOptions.Instance.GetPanGestureMaximumTouchesRequired());
                 }
             }
         }
 
-        private EventHandler<DetectedEventArgs> detectedEventHandler;
+        private DaliEventHandler<object, DetectedEventArgs> detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr panGesture);
         private DetectedCallbackType detectedCallback;
@@ -81,7 +81,7 @@ namespace Tizen.NUI
         /// This signal is emitted when the specified pan is detected on the attached view.
         /// </summary>
         /// <since_tizen> 10.1 </since_tizen>
-        public event EventHandler<DetectedEventArgs> Detected
+        public event DaliEventHandler<object, DetectedEventArgs> Detected
         {
             add
             {
@@ -354,7 +354,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="minimumTouchCount">Minimum touches required</param>
         /// <since_tizen> 10.1 </since_tizen>
-        public void SetMinimumTouchCount(uint minimumTouchCount)
+        public void SetMinimumTouchesRequired(uint minimumTouchCount)
         {
             Interop.PanGestureDetector.SetMinimumTouchesRequired(SwigCPtr, minimumTouchCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -365,7 +365,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="maximumTouchCount">Maximum touches required</param>
         /// <since_tizen> 10.1 </since_tizen>
-        public void SetMaximumTouchCount(uint maximumTouchCount)
+        public void SetMaximumTouchesRequired(uint maximumTouchCount)
         {
             Interop.PanGestureDetector.SetMaximumTouchesRequired(SwigCPtr, maximumTouchCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
