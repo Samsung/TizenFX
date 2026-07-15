@@ -1261,6 +1261,27 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Forces dynamic properties registered via DoActionExtension() to be re-evaluated
+        /// at the current frame, without changing which frame is displayed.
+        /// </summary>
+        /// <remarks>
+        /// Useful when the value returned by a dynamic property callback changes while the
+        /// animation is paused or stopped: simply re-setting CurrentFrame to the same value
+        /// has no effect (the underlying engine treats it as a no-op), so this action is
+        /// needed to force the callback to be re-invoked and the result rendered.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RefreshDynamicProperty()
+        {
+            if (Disposed)
+            {
+                return;
+            }
+            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionRefreshDynamicProperty);
+        }
+
         private void CleanCallbackDictionaries(bool disposing)
         {
             // Called from main, or GC threads
@@ -1568,6 +1589,7 @@ namespace Tizen.NUI.BaseComponents
         // This is used for internal purpose.
         internal static readonly int ActionSetDynamicProperty = Interop.LottieAnimationView.AnimatedVectorImageVisualActionSetDynamicPropertyGet();
         internal static readonly int ActionFlush = Interop.LottieAnimationView.AnimatedVectorImageVisualActionFlushGet();
+        internal static readonly int ActionRefreshDynamicProperty = Interop.LottieAnimationView.AnimatedVectorImageVisualActionRefreshDynamicPropertyGet();
 
         internal class VisualEventSignalArgs : EventArgs
         {
