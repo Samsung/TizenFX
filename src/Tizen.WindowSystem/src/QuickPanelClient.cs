@@ -60,18 +60,12 @@ namespace Tizen.WindowSystem.Shell
         public QuickPanelClient(TizenShell tzShell, IWindowProvider win, QuickPanelCategory type)
         {
             int width = 0, height = 0;
-            if (tzShell == null)
-            {
-                throw new ArgumentNullException("tzShell");
-            }
+            ArgumentNullException.ThrowIfNull(tzShell);
             if (tzShell.SafeHandle == null || tzShell.SafeHandle.IsInvalid)
             {
                 throw new ArgumentException("tzShell is not initialized.");
             }
-            if (win == null)
-            {
-                throw new ArgumentNullException("win");
-            }
+            ArgumentNullException.ThrowIfNull(win);
 
             _tzsh = tzShell;
             _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);

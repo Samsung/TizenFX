@@ -47,18 +47,12 @@ namespace Tizen.WindowSystem.Shell
         /// <since_tizen> 12 </since_tizen>
         public QuickPanelService(TizenShell tzShell, IWindowProvider win, QuickPanelCategory type)
         {
-            if (tzShell == null)
-            {
-                throw new ArgumentNullException(nameof(tzShell));
-            }
+            ArgumentNullException.ThrowIfNull(tzShell);
             if (tzShell.SafeHandle == null || tzShell.SafeHandle.IsInvalid)
             {
                 throw new ArgumentException("tzShell is not initialized.");
             }
-            if (win == null)
-            {
-                throw new ArgumentNullException(nameof(win));
-            }
+            ArgumentNullException.ThrowIfNull(win);
 
             _tzsh = tzShell;
             _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);
@@ -187,10 +181,7 @@ namespace Tizen.WindowSystem.Shell
         /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
         public void SetContentRegion(uint angle, params (int x, int y, int width, int height)[] regions)
         {
-            if (regions == null)
-            {
-                throw new ArgumentNullException(nameof(regions));
-            }
+            ArgumentNullException.ThrowIfNull(regions);
 
             var regionHandle = Interop.TizenShellRegion.Create(_tzsh.SafeHandle);
             if (regionHandle.IsInvalid)
@@ -224,10 +215,7 @@ namespace Tizen.WindowSystem.Shell
         /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
         public void SetHandlerRegion(uint angle, params (int x, int y, int width, int height)[] regions)
         {
-            if (regions == null)
-            {
-                throw new ArgumentNullException(nameof(regions));
-            }
+            ArgumentNullException.ThrowIfNull(regions);
 
             var regionHandle = Interop.TizenShellRegion.Create(_tzsh.SafeHandle);
             if (regionHandle.IsInvalid)
