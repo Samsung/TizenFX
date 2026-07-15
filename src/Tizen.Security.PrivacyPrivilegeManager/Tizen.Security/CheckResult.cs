@@ -37,5 +37,20 @@ namespace Tizen.Security
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         Ask = Interop.PrivacyPrivilegeManager.CheckResult.Ask,
+        /// <summary>
+        /// The access to privilege is allowed for the current session only.
+        /// </summary>
+        /// <since_tizen> 14 </since_tizen>
+        AllowSession = Interop.PrivacyPrivilegeManager.CheckResult.AllowSession,
+        /// <summary>
+        /// The access to privilege is denied for the current session only.
+        /// </summary>
+        /// <since_tizen> 14 </since_tizen>
+        DenySession = Interop.PrivacyPrivilegeManager.CheckResult.DenySession,
+        /// <summary>
+        /// The access to privilege is allowed only while the application is in foreground.
+        /// </summary>
+        /// <since_tizen> 14 </since_tizen>
+        AllowInUse = Interop.PrivacyPrivilegeManager.CheckResult.AllowInUse,
     }
 }
