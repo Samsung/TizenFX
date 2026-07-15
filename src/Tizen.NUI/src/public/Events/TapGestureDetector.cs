@@ -66,7 +66,7 @@ namespace Tizen.NUI
         {
         }
 
-        private EventHandler<DetectedEventArgs> _detectedEventHandler;
+        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr TapGesture);
         private DetectedCallbackType _detectedCallback;
@@ -75,7 +75,7 @@ namespace Tizen.NUI
         /// This signal is emitted when the specified tap is detected on the attached view.
         /// </summary>
         /// <since_tizen> 10.1 </since_tizen>
-        public event EventHandler<DetectedEventArgs> Detected
+        public event DaliEventHandler<object, DetectedEventArgs> Detected
         {
             add
             {
@@ -106,7 +106,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="minimumTapCount">The minimum taps required</param>
         /// <since_tizen> 10.1 </since_tizen>
-        public void SetMinimumTapCount(uint minimumTapCount)
+        public void SetMinimumTapsRequired(uint minimumTapCount)
         {
             Interop.TapGestureDetector.SetMinimumTapsRequired(SwigCPtr, minimumTapCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -118,7 +118,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="maximumTapCount">The maximum taps required</param>
         /// <since_tizen> 10.1 </since_tizen>
-        public void SetMaximumTapCount(uint maximumTapCount)
+        public void SetMaximumTapsRequired(uint maximumTapCount)
         {
             Interop.TapGestureDetector.SetMaximumTapsRequired(SwigCPtr, maximumTapCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

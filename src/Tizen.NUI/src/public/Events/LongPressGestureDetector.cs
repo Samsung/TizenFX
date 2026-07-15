@@ -80,7 +80,7 @@ namespace Tizen.NUI
         {
         }
 
-        private EventHandler<DetectedEventArgs> detectedEventHandler;
+        private DaliEventHandler<object, DetectedEventArgs> detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr longPressGesture);
         private DetectedCallbackType detectedCallback;
@@ -89,7 +89,7 @@ namespace Tizen.NUI
         /// This signal is emitted when the specified long press is detected on the attached view.
         /// </summary>
         /// <since_tizen> 10.1 </since_tizen>
-        public event EventHandler<DetectedEventArgs> Detected
+        public event DaliEventHandler<object, DetectedEventArgs> Detected
         {
             add
             {
@@ -120,7 +120,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="touchCount">Touches required</param>
         /// <since_tizen> 10.1 </since_tizen>
-        public void SetTouchCount(uint touchCount)
+        public void SetTouchesRequired(uint touchCount)
         {
             Interop.LongPressGestureDetector.SetTouchesRequired(SwigCPtr, touchCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -132,7 +132,7 @@ namespace Tizen.NUI
         /// <param name="minTouchCount">Minimum touches required.</param>
         /// <param name="maxTouchCount">Maximum touches required.</param>
         /// <since_tizen> 10.1 </since_tizen>
-        public void SetTouchCountRange(uint minTouchCount, uint maxTouchCount)
+        public void SetTouchesRequired(uint minTouchCount, uint maxTouchCount)
         {
             Interop.LongPressGestureDetector.SetTouchesRequired(SwigCPtr, minTouchCount, maxTouchCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
