@@ -204,7 +204,7 @@ namespace Tizen.Multimedia.Remoting
             var capabilities = new Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport>();
             try
             {
-                foreach (MediaControllerNativePlaybackAction action in Enum.GetValues(typeof(MediaControllerNativePlaybackAction)))
+                foreach (MediaControllerNativePlaybackAction action in s_allPlaybackActions)
                 {
                     Native.GetPlaybackCapability(playbackCapaHandle, action, out MediaControlCapabilitySupport support);
                     capabilities.Add(action.ToPublic(), support);
