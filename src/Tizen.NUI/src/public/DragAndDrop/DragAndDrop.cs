@@ -61,6 +61,23 @@ namespace Tizen.NUI
         private const int MinDragWindowWidth = 100;
         private const int MinDragWindowHeight = 100;
 
+        private static string [] GetMimeTypes(IntPtr nativeDragEvent)
+        {
+            int count = Interop.DragAndDrop.GetMimeTypeCount(nativeDragEvent);
+            if (count <= 0)
+            {
+                return null;
+            }
+
+            string [] managedMimeTypes = new string[count];
+            for (int iterator = 0; iterator < count; iterator++)
+            {
+                managedMimeTypes[iterator] = Interop.DragAndDrop.GetMimeType(nativeDragEvent, iterator);
+            }
+
+            return managedMimeTypes;
+        }
+
         private void ProcessDragEventTargetCallback(IntPtr nativeDragEvent, View targetView, DragAndDropEventHandler callback)
         {
             DragType type = (DragType)Interop.DragAndDrop.GetAction(nativeDragEvent);
@@ -68,21 +85,9 @@ namespace Tizen.NUI
             global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(nativeDragEvent);
             dragEvent.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, true);
 
-            IntPtr nativeMimeTypes;
-            int count;
-            Interop.DragAndDrop.GetMimeTypes(nativeDragEvent, out nativeMimeTypes, out count);
-            if (count > 0)
+            string [] managedMimeTypes = GetMimeTypes(nativeDragEvent);
+            if (managedMimeTypes != null)
             {
-                IntPtr [] nativeMimeTypesArrary = new IntPtr[count];
-                Marshal.Copy(nativeMimeTypes, nativeMimeTypesArrary, 0, count);
-
-                string [] managedMimeTypes = new string[count];
-
-                for (int iterator = 0; iterator < count; iterator++)
-                {
-                managedMimeTypes[iterator] = Marshal.PtrToStringAnsi(nativeMimeTypesArrary[iterator]);
-                }
-
                 dragEvent.MimeType = managedMimeTypes[0];
                 dragEvent.MimeTypes = managedMimeTypes;
             }
@@ -117,21 +122,9 @@ namespace Tizen.NUI
             global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(nativeDragEvent);
             dragEvent.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
 
-            IntPtr nativeMimeTypes;
-            int count;
-            Interop.DragAndDrop.GetMimeTypes(nativeDragEvent, out nativeMimeTypes, out count);
-            if (count > 0)
+            string [] managedMimeTypes = GetMimeTypes(nativeDragEvent);
+            if (managedMimeTypes != null)
             {
-                IntPtr [] nativeMimeTypesArrary = new IntPtr[count];
-                Marshal.Copy(nativeMimeTypes, nativeMimeTypesArrary, 0, count);
-
-                string [] managedMimeTypes = new string[count];
-
-                for (int iterator = 0; iterator < count; iterator++)
-                {
-                managedMimeTypes[iterator] = Marshal.PtrToStringAnsi(nativeMimeTypesArrary[iterator]);
-                }
-
                 dragEvent.MimeType = managedMimeTypes[0];
                 dragEvent.MimeTypes = managedMimeTypes;
             }
@@ -318,7 +311,8 @@ namespace Tizen.NUI
             if (!Interop.DragAndDrop.AddListener(SwigCPtr, View.getCPtr(targetView), mimeType,
                                                  new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
             {
-                 throw new InvalidOperationException("Fail to AddListener for View");
+                targetEventDictionary.Remove(targetView);
+                throw new InvalidOperationException("Fail to AddListener for View");
             }
         }
 
@@ -336,12 +330,12 @@ namespace Tizen.NUI
             }
 
             InternalDragAndDropEventHandler cb = targetEventDictionary[targetView];
-            targetEventDictionary.Remove(targetView);
             if (!Interop.DragAndDrop.RemoveListener(SwigCPtr, View.getCPtr(targetView),
                                                     new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
             {
-                 throw new InvalidOperationException("Fail to RemoveListener for View");
+                throw new InvalidOperationException("Fail to RemoveListener for View");
             }
+            targetEventDictionary.Remove(targetView);
         }
 
         /// <summary>
@@ -371,7 +365,8 @@ namespace Tizen.NUI
             if (!Interop.DragAndDrop.WindowAddListener(SwigCPtr, Window.getCPtr(targetWindow), mimeType,
                                                        new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
             {
-                 throw new InvalidOperationException("Fail to AddListener for Window");
+                targetWindowEventDictionary.Remove(targetWindow);
+                throw new InvalidOperationException("Fail to AddListener for Window");
             }
         }
 
@@ -389,12 +384,12 @@ namespace Tizen.NUI
             }
 
             InternalDragAndDropEventHandler cb = targetWindowEventDictionary[targetWindow];
-            targetWindowEventDictionary.Remove(targetWindow);
             if (!Interop.DragAndDrop.WindowRemoveListener(SwigCPtr, Window.getCPtr(targetWindow),
                                                           new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
             {
-                 throw new InvalidOperationException("Fail to RemoveListener for Window");
+                throw new InvalidOperationException("Fail to RemoveListener for Window");
             }
+            targetWindowEventDictionary.Remove(targetWindow);
         }
 
         /// <summary>
