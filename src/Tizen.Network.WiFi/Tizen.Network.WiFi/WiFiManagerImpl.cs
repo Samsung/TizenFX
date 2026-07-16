@@ -316,7 +316,7 @@ namespace Tizen.Network.WiFi
         internal Task ActivateAsync()
         {
             Log.Info(Globals.LogTag, "ActivateAsync");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (_callback_map)
             {
@@ -362,7 +362,7 @@ namespace Tizen.Network.WiFi
         internal Task ActivateWithWiFiPickerTestedAsync()
         {
             Log.Info(Globals.LogTag, "ActivateWithWiFiPickerTestedAsync");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (_callback_map)
             {
@@ -408,7 +408,7 @@ namespace Tizen.Network.WiFi
         internal Task DeactivateAsync()
         {
             Log.Info(Globals.LogTag, "DeactivateAsync");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (_callback_map)
             {
@@ -454,7 +454,7 @@ namespace Tizen.Network.WiFi
         internal Task ScanAsync()
         {
             Log.Info(Globals.LogTag, "ScanAsync");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (_callback_map)
             {
@@ -500,7 +500,7 @@ namespace Tizen.Network.WiFi
         internal Task ScanSpecificAPAsync(string essid)
         {
             Log.Info(Globals.LogTag, $"ScanSpecificAPAsync {essid}");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (_callback_map)
             {
@@ -546,7 +546,7 @@ namespace Tizen.Network.WiFi
         internal Task BssidScanAsync()
         {
             Log.Info(Globals.LogTag, "BssidScanAsync");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (_callback_map)
             {
@@ -599,7 +599,7 @@ namespace Tizen.Network.WiFi
         internal Task HiddenAPConnectAsync(string essid, int secType, string passphrase)
         {
             Log.Info(Globals.LogTag, "HiddenAPConnect");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (_callback_map)
             {
@@ -667,7 +667,7 @@ namespace Tizen.Network.WiFi
         internal Task StartMultiScan()
         {
             Log.Debug(Globals.LogTag, "StartMultiScan");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id;
             lock (_callback_map)
             {
