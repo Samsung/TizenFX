@@ -15,24 +15,42 @@
  */
 
 using System;
-using System.Diagnostics;
-using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Tizen.Multimedia
 {
     internal static class AudioIOUtil
     {
-        internal static void ValidateState(AudioIOState curState, params AudioIOState[] desiredStates)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static void ValidateState(AudioIOState curState, AudioIOState desired)
         {
-            Debug.Assert(desiredStates.Length > 0);
-
-            if (desiredStates.Contains(curState))
+            if (curState == desired)
             {
                 return;
             }
 
-            throw new InvalidOperationException($"The audio is not in a valid state. " +
-                $"Current State : { curState }, Valid State : { string.Join(", ", desiredStates) }.");
+            ThrowInvalidState(curState, desired);
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static void ValidateState(AudioIOState curState, AudioIOState desired1, AudioIOState desired2)
+        {
+            if (curState == desired1 || curState == desired2)
+            {
+                return;
+            }
+
+            ThrowInvalidState(curState, desired1, desired2);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowInvalidState(AudioIOState curState, AudioIOState desired) =>
+            throw new InvalidOperationException($"The audio is not in a valid state. " +
+                $"Current State : { curState }, Valid State : { desired }.");
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowInvalidState(AudioIOState curState, AudioIOState desired1, AudioIOState desired2) =>
+            throw new InvalidOperationException($"The audio is not in a valid state. " +
+                $"Current State : { curState }, Valid State : { desired1 }, { desired2 }.");
     }
 }

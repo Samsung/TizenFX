@@ -189,11 +189,18 @@ namespace Tizen.Multimedia
         }
         #endregion
 
-        private void ValidateState(params AudioIOState[] desiredStates)
+        private void ValidateState(AudioIOState desired)
         {
             ValidateNotDisposed();
 
-            AudioIOUtil.ValidateState(_state, desiredStates);
+            AudioIOUtil.ValidateState(_state, desired);
+        }
+
+        private void ValidateState(AudioIOState desired1, AudioIOState desired2)
+        {
+            ValidateNotDisposed();
+
+            AudioIOUtil.ValidateState(_state, desired1, desired2);
         }
 
         /// <summary>
