@@ -187,7 +187,7 @@ namespace Tizen.Network.Bluetooth
             {
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
             }
-            _taskForAccept = new TaskCompletionSource<SocketConnection>();
+            _taskForAccept = new TaskCompletionSource<SocketConnection>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             int ret = Interop.Bluetooth.Accept(socketFd);
             if (ret != (int)BluetoothError.None)
