@@ -201,7 +201,6 @@ namespace Tizen.Pims.Contacts
         /// <since_tizen> 4 </since_tizen>
         public T Get<T>(uint propertyId)
         {
-            object parsedValue = null;
             if (typeof(T) == typeof(string))
             {
                 string val;
@@ -211,7 +210,7 @@ namespace Tizen.Pims.Contacts
                     Log.Error(Globals.LogTag, $"Get String Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
-                parsedValue = Convert.ChangeType(val, typeof(T));
+                return (T)(object)val;
             }
             else if (typeof(T) == typeof(int))
             {
@@ -222,7 +221,7 @@ namespace Tizen.Pims.Contacts
                     Log.Error(Globals.LogTag, $"Get Int Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
-                parsedValue = Convert.ChangeType(val, typeof(T));
+                return (T)(object)val;
             }
             else if (typeof(T) == typeof(bool))
             {
@@ -233,7 +232,7 @@ namespace Tizen.Pims.Contacts
                     Log.Error(Globals.LogTag, $"Get Bool Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
-                parsedValue = Convert.ChangeType(val, typeof(T));
+                return (T)(object)val;
             }
             else if (typeof(T) == typeof(long))
             {
@@ -244,7 +243,7 @@ namespace Tizen.Pims.Contacts
                     Log.Error(Globals.LogTag, $"Get Long Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
-                parsedValue = Convert.ChangeType(val, typeof(T));
+                return (T)(object)val;
             }
             else if (typeof(T) == typeof(double))
             {
@@ -255,14 +254,13 @@ namespace Tizen.Pims.Contacts
                     Log.Error(Globals.LogTag, $"Get Long Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
-                parsedValue = Convert.ChangeType(val, typeof(T));
+                return (T)(object)val;
             }
             else
             {
                 Log.Error(Globals.LogTag, "Not Supported Data Type");
                 throw ContactsErrorFactory.CheckAndCreateException((int)ContactsError.NotSupported);
             }
-            return (T)parsedValue;
         }
 
         /// <summary>
@@ -278,7 +276,7 @@ namespace Tizen.Pims.Contacts
         {
             if (typeof(T) == typeof(string))
             {
-                string val = Convert.ToString(value);
+                string val = (string)(object)value ?? string.Empty;
                 int error = Interop.Record.SetStr(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
@@ -288,7 +286,7 @@ namespace Tizen.Pims.Contacts
             }
             else if (typeof(T) == typeof(int))
             {
-                int val = Convert.ToInt32(value);
+                int val = (int)(object)value;
                 int error = Interop.Record.SetInt(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
@@ -298,7 +296,7 @@ namespace Tizen.Pims.Contacts
             }
             else if (typeof(T) == typeof(bool))
             {
-                bool val = Convert.ToBoolean(value);
+                bool val = (bool)(object)value;
                 int error = Interop.Record.SetBool(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
@@ -308,7 +306,7 @@ namespace Tizen.Pims.Contacts
             }
             else if (typeof(T) == typeof(long))
             {
-                long val = Convert.ToInt64(value);
+                long val = (long)(object)value;
                 int error = Interop.Record.SetLli(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
@@ -318,7 +316,7 @@ namespace Tizen.Pims.Contacts
             }
             else if (typeof(T) == typeof(double))
             {
-                double val = Convert.ToDouble(value);
+                double val = (double)(object)value;
                 int error = Interop.Record.SetDouble(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
