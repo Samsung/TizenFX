@@ -55,7 +55,7 @@ namespace Tizen.NUI
         {
             if (_ownerView != null)
             {
-                if (!_ownerView.Equals(view) && _ownerView.TryGetTarget(out View previousTarget) && previousTarget != null)
+                if (!_ownerView.Equals(view) && _ownerView.TryGetTarget(out View previousTarget) && previousTarget != null && !previousTarget.Disposed)
                 {
                     previousTarget.ClearRenderEffect(false);
                 }
@@ -76,7 +76,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            if ((_ownerView != null) && _ownerView.TryGetTarget(out View target) && target != null)
+            if ((_ownerView != null) && _ownerView.TryGetTarget(out View target) && target != null && !target.Disposed)
             {
                 target.ClearRenderEffect();
                 _ownerView = null;
