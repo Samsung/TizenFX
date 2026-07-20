@@ -1280,6 +1280,8 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
             Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionRefreshDynamicProperty);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private void CleanCallbackDictionaries(bool disposing)
