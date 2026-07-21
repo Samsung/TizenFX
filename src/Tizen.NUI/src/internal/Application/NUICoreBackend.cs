@@ -189,6 +189,7 @@ namespace Tizen.NUI
             Tizen.Tracer.End();
 
             Tizen.Tracer.Begin("[NUI] NUICorebackend Run(): args of main set, window type set");
+            Tizen.Log.Info("NUI", "NUICoreBackend.Run(): begin to set main arguments");
             if (Tizen.Applications.Application.Current?.ApplicationInfo != null)
             {
                 args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
@@ -198,6 +199,7 @@ namespace Tizen.NUI
                 args[0] = this.GetType().Assembly.FullName.Replace(" ", "");
             }
 
+            Tizen.Log.Info("NUI", "NUICoreBackend.Run(): main arguments set, begin to create application");
             if (windowData != null)
             {
                 bool enableUIThread = coreTask != null;
@@ -236,6 +238,7 @@ namespace Tizen.NUI
                     }
                 }
             }
+            Tizen.Log.Info("NUI", "NUICoreBackend.Run(): application created");
             Tizen.Tracer.End();
 
             Tizen.Tracer.Begin("[NUI] NUICorebackend Run(): add application related events");
