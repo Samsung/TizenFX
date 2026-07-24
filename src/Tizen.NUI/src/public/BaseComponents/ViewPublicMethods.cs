@@ -339,6 +339,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderEffect GetRenderEffect()
         {
+            if (Disposed)
+            {
+                return null;
+            }
+
             IntPtr cPtr = Interop.View.GetRenderEffect(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -360,6 +365,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearRenderEffect(bool disposeEffect = false)
         {
+            if (Disposed)
+            {
+                return;
+            }
+
             var renderEffect = GetRenderEffect();
             if (renderEffect != null)
             {
