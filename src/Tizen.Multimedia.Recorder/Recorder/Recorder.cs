@@ -16,7 +16,7 @@
 
 using System;
 using System.Diagnostics;
-using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using Native = Interop.Recorder;
 using NativeHandle = Interop.RecorderHandle;
@@ -110,17 +110,39 @@ namespace Tizen.Multimedia
         #endregion Dispose support
 
         #region State validation
+        internal void ValidateState(RecorderState required)
+        {
+            var curState = _state;
+            if (curState != required)
+            {
+                ThrowInvalidState(curState, required);
+            }
+        }
+
+        internal void ValidateState(RecorderState required1, RecorderState required2)
+        {
+            var curState = _state;
+            if (curState != required1 && curState != required2)
+            {
+                ThrowInvalidState(curState, required1, required2);
+            }
+        }
+
         internal void ValidateState(params RecorderState[] required)
         {
             Debug.Assert(required.Length > 0);
 
             var curState = _state;
-            if (!required.Contains(curState))
+            if (Array.IndexOf(required, curState) < 0)
             {
-                throw new InvalidOperationException("The recorder is not in a valid state. " +
-                    $"Current State : { curState }, Valid State : { string.Join(", ", required) }.");
+                ThrowInvalidState(curState, required);
             }
         }
+
+        [DoesNotReturn]
+        private static void ThrowInvalidState(RecorderState curState, params RecorderState[] required)
+            => throw new InvalidOperationException("The recorder is not in a valid state. " +
+                $"Current State : { curState }, Valid State : { string.Join(", ", required) }.");
 
         private void SetState(RecorderState state)
         {
