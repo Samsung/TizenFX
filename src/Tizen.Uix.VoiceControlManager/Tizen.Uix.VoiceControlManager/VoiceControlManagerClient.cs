@@ -378,8 +378,8 @@ namespace Tizen.Uix.VoiceControlManager
 
         private static VcMgrAllResultCallback _recognizedCommandsSelectionCallback = (RecognizedResult result, IntPtr vcCmdList, IntPtr recognizedText, IntPtr msg, IntPtr userData) =>
         {
-            string recognizedString = Marshal.PtrToStringAnsi(recognizedText);
-            string msgString = Marshal.PtrToStringAnsi(msg);
+            string recognizedString = Marshal.PtrToStringAnsi(recognizedText) ?? string.Empty;
+            string msgString = Marshal.PtrToStringAnsi(msg) ?? string.Empty;
 
             if (_allRecognitionResult != null)
             {
