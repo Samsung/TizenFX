@@ -29,13 +29,6 @@ namespace Tizen.NUI
             Interop.RotationGesture.DeleteRotationGestureDetectedSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.RotationGesture.RotationGestureDetectedSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.RotationGesture.RotationGestureDetectedSignalGetConnectionCount(SwigCPtr);
@@ -59,12 +52,6 @@ namespace Tizen.NUI
                 Interop.RotationGesture.RotationGestureDetectedSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(View arg1, RotationGesture arg2)
-        {
-            Interop.RotationGesture.RotationGestureDetectedSignalEmit(SwigCPtr, View.getCPtr(arg1), RotationGesture.getCPtr(arg2));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public RotationGestureDetectedSignal() : this(Interop.RotationGesture.NewRotationGestureDetectedSignal(), true)

@@ -30,13 +30,6 @@ namespace Tizen.NUI
             Interop.VideoView.DeleteVideoViewSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.VideoView.VideoViewSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.VideoView.VideoViewSignalGetConnectionCount(SwigCPtr);
@@ -60,12 +53,6 @@ namespace Tizen.NUI
                 Interop.VideoView.VideoViewSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(VideoView arg)
-        {
-            Interop.VideoView.VideoViewSignalEmit(SwigCPtr, VideoView.getCPtr(arg));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public VideoViewSignal() : this(Interop.VideoView.NewVideoViewSignal(), true)

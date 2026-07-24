@@ -37,10 +37,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_DataSelectedSignal")]
             public static extern global::System.IntPtr ClipboardDataSelectedSignal(global::System.Runtime.InteropServices.HandleRef clipboard);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Empty")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool ClipboardSignalEmpty(global::System.Runtime.InteropServices.HandleRef signal);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_GetConnectionCount")]
             public static extern uint ClipboardSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef signal);
 
@@ -49,9 +45,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Disconnect")]
             public static extern void ClipboardSignalDisconnect(global::System.Runtime.InteropServices.HandleRef signal, global::System.Runtime.InteropServices.HandleRef clipboard);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Emit")]
-            public static extern void ClipboardSignalEmit(global::System.Runtime.InteropServices.HandleRef signal, global::System.Runtime.InteropServices.HandleRef clipboard);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ClipboardSignal")]
             public static extern global::System.IntPtr NewClipboardSignal();

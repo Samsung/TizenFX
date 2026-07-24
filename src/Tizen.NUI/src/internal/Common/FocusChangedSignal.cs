@@ -30,13 +30,6 @@ namespace Tizen.NUI
             Interop.FocusChangedSignal.DeleteFocusChangedSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.FocusChangedSignal.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.FocusChangedSignal.GetConnectionCount(SwigCPtr);
@@ -60,12 +53,6 @@ namespace Tizen.NUI
                 Interop.FocusChangedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(View arg1, View arg2)
-        {
-            Interop.FocusChangedSignal.Emit(SwigCPtr, View.getCPtr(arg1), View.getCPtr(arg2));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public FocusChangedSignal() : this(Interop.FocusChangedSignal.NewFocusChangedSignal(), true)
