@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -47,17 +47,17 @@ namespace Tizen.Applications
                 {
                     foreach (var pkg in packages.Split(':'))
                     {
-                        var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
-                        if (info != null)
+                        try
                         {
-                            try
+                            var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
+                            if (info != null)
                             {
                                 _gadgetInfos.TryAdd(info.ResourceType, info);
                             }
-                            catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
-                            {
-                                Log.Error("Exception occurs. " + e.Message);
-                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error("Exception occurs while creating gadget info. packageId: " + pkg + ", " + e);
                         }
                     }
                 }
@@ -648,17 +648,17 @@ namespace Tizen.Applications
             {
                 foreach (var pkg in pkgList.Split(':'))
                 {
-                    var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
-                    if (info != null)
+                    try
                     {
-                        try
+                        var info = UIGadgetInfo.CreateUIGadgetInfo(pkg);
+                        if (info != null)
                         {
                             _gadgetInfos.TryAdd(info.ResourceType, info);
                         }
-                        catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
-                        {
-                            Log.Error("Exception occurs. " + e.Message);
-                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Exception occurs while creating gadget info. packageId: " + pkg + ", " + e);
                     }
                 }
             }
