@@ -251,7 +251,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.GetDouble(_recordHandle, propertyId, out val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, $"Get Long Failed with error {error}");
+                    Log.Error(Globals.LogTag, $"Get Double Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
                 return (T)(object)val;
@@ -276,7 +276,7 @@ namespace Tizen.Pims.Contacts
         {
             if (typeof(T) == typeof(string))
             {
-                string val = (string)(object)value ?? string.Empty;
+                string val = value as string ?? string.Empty;
                 int error = Interop.Record.SetStr(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
@@ -320,7 +320,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.SetDouble(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, $"Get Long Failed with error {error}");
+                    Log.Error(Globals.LogTag, $"Set Double Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
             }
