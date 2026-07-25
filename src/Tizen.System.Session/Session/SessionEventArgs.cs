@@ -28,13 +28,13 @@ namespace Tizen.System
     /// You can check the event type that was invoked by checking a type of event arguments
     /// during runtime - they all derive from this base class.
     /// </remarks>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen>10.1</since_tizen>
     public abstract class SubsessionEventArgs : EventArgs
     {
         /// <summary>
         /// Session UID of the session invoking the event
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen>10.1</since_tizen>
         public int SessionUID { get; internal set; }
 
         internal SubsessionEventInfoNative SessionInfo { get; set; }
@@ -50,13 +50,13 @@ namespace Tizen.System
     /// <summary>
     /// An event argument type for AddUserWait event type
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen>10.1</since_tizen>
     public class AddUserEventArgs : SubsessionEventArgs
     {
         /// <summary>
         /// Added subsession user ID
-        /// </summary> 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// </summary>
+        /// <since_tizen>10.1</since_tizen>
         public string UserName { get; internal set; }
 
         internal AddUserEventArgs(SubsessionEventInfoNative eventInfo)
@@ -75,13 +75,13 @@ namespace Tizen.System
     /// <summary>
     /// An event argument type for RemoveUserWait event type
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen>10.1</since_tizen>
     public class RemoveUserEventArgs : SubsessionEventArgs
     {
         /// <summary>
         /// Removed subsession user ID
-        /// </summary> 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// </summary>
+        /// <since_tizen>10.1</since_tizen>
         public string UserName { get; internal set; }
 
         internal RemoveUserEventArgs(SubsessionEventInfoNative eventInfo)
@@ -99,25 +99,25 @@ namespace Tizen.System
     /// <summary>
     /// A generic base class for Switch event types
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen>10.1</since_tizen>
     public abstract class SwitchUserEventArgs : SubsessionEventArgs
     {
         /// <summary>
         /// ID of this switch operation
-        /// </summary> 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// </summary>
+        /// <since_tizen>10.1</since_tizen>
         public long SwitchID { get; internal set; }
 
         /// <summary>
         /// Active subsession user ID before this switch operation
-        /// </summary> 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// </summary>
+        /// <since_tizen>10.1</since_tizen>
         public string UserNamePrev { get; internal set; }
 
         /// <summary>
         /// Active subsession ID after this switch operation
-        /// </summary> 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// </summary>
+        /// <since_tizen>10.1</since_tizen>
         public string UserNameNext { get; internal set; }
 
         internal SwitchUserEventArgs(SubsessionEventInfoNative eventInfo)
@@ -141,7 +141,7 @@ namespace Tizen.System
     /// <summary>
     /// An event argument type for SwitchUserWait event type
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen>10.1</since_tizen>
     public class SwitchUserWaitEventArgs : SwitchUserEventArgs
     {
         internal SwitchUserWaitEventArgs(SubsessionEventInfoNative eventInfo) : base(eventInfo) { }
@@ -150,7 +150,7 @@ namespace Tizen.System
     /// <summary>
     /// An event argument type for SwitchUserCompleted event type
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen>10.1</since_tizen>
     public class SwitchUserCompletionEventArgs : SwitchUserEventArgs
     {
         internal SwitchUserCompletionEventArgs(SubsessionEventInfoNative eventInfo) : base(eventInfo) { }
