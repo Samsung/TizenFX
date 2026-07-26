@@ -324,13 +324,17 @@ namespace Tizen.Network.Nfc
         void TransceiveCompletedCallback(int result, IntPtr resultData, int dataSize, IntPtr userData)
         {
             int requestId = (int)userData;
-            if (_transceiveTaskSource.ContainsKey(requestId))
+            if (_transceiveTaskSource.TryGetValue(requestId, out var taskSource))
             {
                 if (result == (int)NfcError.None)
                 {
                     byte[] resultBuffer = new byte[dataSize];
                     Marshal.Copy(resultData, resultBuffer, 0, dataSize);
-                    _transceiveTaskSource[requestId].TrySetResult(resultBuffer);
+                    taskSource.TrySetResult(resultBuffer);
+                }
+                else
+                {
+                    taskSource.TrySetException(new InvalidOperationException(((NfcError)result).ToString()));
                 }
                 _transceiveTaskSource.Remove(requestId);
             }
@@ -351,13 +355,17 @@ namespace Tizen.Network.Nfc
         {
             bool ret = false;
             int requestId = (int)userData;
-            if (_readNdefTaskSource.ContainsKey(requestId))
+            if (_readNdefTaskSource.TryGetValue(requestId, out var taskSource))
             {
                 if (result == (int)NfcError.None)
                 {
                     var ndefMsg = new NfcNdefMessage(ndefMessage);
-                    _readNdefTaskSource[requestId].TrySetResult(ndefMsg);
+                    taskSource.TrySetResult(ndefMsg);
                     ret = true;
+                }
+                else
+                {
+                    taskSource.TrySetException(new InvalidOperationException(((NfcError)result).ToString()));
                 }
                 _readNdefTaskSource.Remove(requestId);
             }
