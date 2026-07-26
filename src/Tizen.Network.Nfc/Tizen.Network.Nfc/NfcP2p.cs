@@ -104,7 +104,7 @@ namespace Tizen.Network.Nfc
         /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public Task<NfcError> SendNdefMessageAsync(NfcNdefMessage ndefMessage)
         {
-            var task = new TaskCompletionSource<NfcError>();
+            var task = new TaskCompletionSource<NfcError>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             Interop.Nfc.VoidCallback callback = (int result, IntPtr userData) =>
             {

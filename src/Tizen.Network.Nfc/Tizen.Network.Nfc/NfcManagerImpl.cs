@@ -238,7 +238,7 @@ namespace Tizen.Network.Nfc
 
         internal Task SetActivationAsync(bool activation)
         {
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id = IntPtr.Zero;
             lock (_callback_map)
             {
