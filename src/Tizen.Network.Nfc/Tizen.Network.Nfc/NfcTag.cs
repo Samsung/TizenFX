@@ -334,7 +334,15 @@ namespace Tizen.Network.Nfc
                 }
                 else
                 {
-                    taskSource.TrySetException(new InvalidOperationException(((NfcError)result).ToString()));
+                    Log.Error(Globals.LogTag, $"Failed to transceive data, Error - {(NfcError)result}");
+                    try
+                    {
+                        NfcErrorFactory.ThrowNfcException(result);
+                    }
+                    catch (Exception e)
+                    {
+                        taskSource.TrySetException(e);
+                    }
                 }
                 _transceiveTaskSource.Remove(requestId);
             }
@@ -365,7 +373,15 @@ namespace Tizen.Network.Nfc
                 }
                 else
                 {
-                    taskSource.TrySetException(new InvalidOperationException(((NfcError)result).ToString()));
+                    Log.Error(Globals.LogTag, $"Failed to read ndef message, Error - {(NfcError)result}");
+                    try
+                    {
+                        NfcErrorFactory.ThrowNfcException(result);
+                    }
+                    catch (Exception e)
+                    {
+                        taskSource.TrySetException(e);
+                    }
                 }
                 _readNdefTaskSource.Remove(requestId);
             }
