@@ -104,7 +104,6 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The type of a video.
         /// </summary>
-        /// <seealso cref="VideoInfo"/>
         Video = 1,
 
         /// <summary>
