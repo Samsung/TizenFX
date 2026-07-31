@@ -44,7 +44,6 @@ namespace Tizen.Applications
             _ops.Load = new Interop.TeamLoop.TeamLoopOpsLoad(DoLoad);
             _ops.Unload = new Interop.TeamLoop.TeamLoopOpsUnload(DoUnload);
             _ops.CreateArgs = new Interop.TeamLoop.TeamLoopOpsCreateArgs(DoCreateArgs);
-            _ops.CreateLibPath = new Interop.TeamLoop.TeamLoopOpsCreateLibPath(DoCreateLibPath);
             _ops.OnLoopCreate = new Interop.TeamLoop.TeamLoopOpsOnLoopCreate(DoOnLoopCreate);
             _ops.OnLoopTerminate = new Interop.TeamLoop.TeamLoopOpsOnLoopTerminate(DoOnLoopTerminate);
         }
@@ -65,10 +64,7 @@ namespace Tizen.Applications
             _isRunning = true;
             _systemArgs = args;
 
-            Log.Info("NUI", "[NUI] NUIApplicationInitializer: StaticInitialize");
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            PropertyBridge.RegisterStringGetter();
-            Log.Info("NUI", "[NUI] NUIApplicationInitializer: StaticInitialize done");
+            NUIApplicationInitializer.StaticInitialize();
 
             var err = Interop.TeamLoop.Main(args.Length, args, _ops);
             if (err != 0)
@@ -177,7 +173,7 @@ namespace Tizen.Applications
             try
             {
                 var mainMethod = assemblyInfo.Assembly.EntryPoint;
-                Log.Info(LogTag, $"Main method {mainMethod.Name}");
+                Log.Info(LogTag, $"Main method {mainMethod?.Name}");
 
                 if (mainMethod == null)
                 {
@@ -206,41 +202,6 @@ namespace Tizen.Applications
             }
         }
 
-        internal static void DoCreateLibPath(string path, ref IntPtr output)
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                Log.Error(LogTag, "Invalid path: null or empty");
-                output = IntPtr.Zero;
-                return;
-            }
-
-            int lastDotIndex = path.LastIndexOf('.');
-            if (lastDotIndex < 0)
-            {
-                Log.Error(LogTag, $"Invalid path format: {path}. Expected format: org.appfw.csteam.{{member_id}}");
-                output = IntPtr.Zero;
-                return;
-            }
-
-            string memberId = path.Substring(lastDotIndex + 1);
-            if (string.IsNullOrEmpty(memberId))
-            {
-                Log.Error(LogTag, $"Empty member_id extracted from: {path}");
-                output = IntPtr.Zero;
-                return;
-            }
-
-            string libPath = $"/usr/share/csteam/dll/{memberId}.dll";
-            Log.Info(LogTag, $"Created lib path: {libPath} from {path}");
-
-            output = Marshal.StringToHGlobalAnsi(libPath);
-
-            if (output == IntPtr.Zero) {
-                Log.Error(LogTag, "Failed to allocate memory for lib path");
-            }
-        }
-
         /// <summary>
         /// Gets the command line arguments that were passed to <see cref="Run(string[])"/>.
         /// </summary>
@@ -256,17 +217,10 @@ namespace Tizen.Applications
         internal static void DoOnLoopCreate()
         {
             Log.Info(LogTag, "DoOnLoopCreate() called");
-
-            Log.Info("NUI", "[NUI] NUIApplicationInitializer: ProcessorController Initialize");
-            Tracer.Begin("[NUI] NUIApplicationInitializer: ProcessorController Initialize");
-            ProcessorController.Instance.Initialize();
-            Tracer.End();
-
-            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
-            Log.Info("NUI", "[NUI] NUIApplicationInitializer: DisposeQueue Initialize");
-            Tracer.Begin("[NUI] NUIApplicationInitializer: DisposeQueue Initialize");
-            DisposeQueue.Instance.Initialize();
-            Tracer.End();
+            NUIApplicationInitializer.Initialize();
+            UIContext.Instance?.GetDefaultWindow()?.SetPositionSize(new Rectangle(0, 0, 1, 1));
+            UIContext.Instance?.GetDefaultWindow()?.SetTransparency(true);
+            UIContext.Instance?.GetDefaultWindow()?.Hide();
 
             // Empty implementation for C# launcher
         }

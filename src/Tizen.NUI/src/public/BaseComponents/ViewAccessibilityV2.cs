@@ -38,7 +38,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AccessibilityStatesV2 GetAccessibilityStatesV2()
         {
-            return (AccessibilityStatesV2)Object.InternalGetPropertyInt(SwigCPtr, Property.AccessibilityState);
+            return (AccessibilityStatesV2)Interop.ControlDevel.DaliToolkitControlGetAccessibilityStates(SwigCPtr);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAccessibilityStatesV2(AccessibilityStatesV2 states)
         {
-            Object.InternalSetPropertyInt(SwigCPtr, Property.AccessibilityState, (int)states);
+            Interop.ControlDevel.DaliToolkitControlSetAccessibilityStates(SwigCPtr, (uint)states);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Tizen.NUI.BaseComponents
                 current = current.Remove(states);
             }
 
-            Object.InternalSetPropertyInt(SwigCPtr, Property.AccessibilityState, (int)current);
+            Interop.ControlDevel.DaliToolkitControlSetAccessibilityStates(SwigCPtr, (uint)current);
         }
 
         /// <summary>

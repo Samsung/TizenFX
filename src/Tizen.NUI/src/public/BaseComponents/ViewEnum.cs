@@ -314,7 +314,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int DispatchKeyEvents = Interop.ViewProperty.DispatchKeyEventsGet();
             internal static readonly int AccessibilityHidden = Interop.ViewProperty.AccessibilityHiddenGet();
             internal static readonly int AutomationId = Interop.ViewProperty.AutomationIdGet();
-            internal static readonly int AccessibilityState = Interop.ViewProperty.AccessibilityStateGet();
+            // Legacy compatibility only. AccessibilityStatesV2 is handled by Control accessibility state methods.
+            internal const int AccessibilityState = Tizen.NUI.Property.InvalidIndex;
             internal static readonly int AccessibilityIsModal = Interop.ViewProperty.AccessibilityIsModalGet();
             internal static readonly int AccessibilityValue = Interop.ViewProperty.AccessibilityValueGet();
             internal static readonly int AccessibilityScrollable = Interop.ViewProperty.AccessibilityScrollableGet();

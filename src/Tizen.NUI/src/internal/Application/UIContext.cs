@@ -317,16 +317,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Sets the application's language independently of the system language.
-        /// </summary>
-        /// <param name="locale">The application's language and region in BCP 47 format (e.g., "en-US", "ko-KR").</param>
-        public void SetApplicationLocale(string locale)
-        {
-            Interop.UiContext.SetApplicationLocale(SwigCPtr, locale);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -315,25 +315,6 @@ namespace Tizen.Applications
         }
     }
 
-    internal static class GlobalizationMode
-    {
-        private static int _invariant = -1;
-
-        internal static bool Invariant
-        {
-            get
-            {
-                if (_invariant == -1)
-                {
-                    string value = Environment.GetEnvironmentVariable("DOTNET_SYSTEM_GLOBALIZATION_INVARIANT");
-                    _invariant = value != null ? (value.Equals("1") ? 1 : 0) : 0;
-                }
-
-                return _invariant != 0;
-            }
-        }
-    }
-
     internal static class TeamLocaleManager
     {
         private static readonly string LogTag = "DN_TAM";

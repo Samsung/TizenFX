@@ -31,7 +31,7 @@ namespace Tizen.Applications
     /// </remarks>
     /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TeamApplicationInfo : IDisposable
+    public class TeamApplicationInfo : IDisposable, IApplicationInfo
     {
         private const string LogTag = "DN_TAMS";
         private bool _disposed = false;

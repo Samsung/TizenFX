@@ -39,9 +39,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_UiContext_FlushUpdateMessages")]
             public static extern void FlushUpdateMessages(global::System.Runtime.InteropServices.HandleRef uiContext);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_UiContext_SetApplicationLocale")]
-            public static extern void SetApplicationLocale(global::System.Runtime.InteropServices.HandleRef uiContext, string locale);
         }
     }
 }

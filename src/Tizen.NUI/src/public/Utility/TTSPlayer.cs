@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// The Text-to-speech (TTS) player.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
     public class TTSPlayer : BaseHandle
     {
         private static readonly TTSPlayer[] instance = {TTSPlayer.GetInternal(TTSMode.Default), TTSPlayer.GetInternal(TTSMode.Notification), TTSPlayer.GetInternal(TTSMode.ScreenReader)};
@@ -56,6 +57,7 @@ namespace Tizen.NUI
         /// The StateChanged event is triggered when the state of the TTS player changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -84,25 +86,30 @@ namespace Tizen.NUI
         /// Enumeration for the instance of TTS mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public enum TTSMode
         {
             /// <summary>
             /// Default mode for normal application.
             /// </summary>
+            [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
             Default = 0,
             /// <summary>
             /// Notification mode, such as playing utterance is started or completed.
             /// </summary>
+            [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
             Notification,
             /// <summary>
             /// Screen reader mode. <br />
             /// To help visually impaired users interact with their devices,<br />
             /// screen reader reads text or graphic elements on the screen using the TTS engine.
             /// </summary>
+            [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
             ScreenReader,
             /// <summary>
             /// Number of mode.
             /// </summary>
+            [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
             ModeNum
         }
 
@@ -110,23 +117,28 @@ namespace Tizen.NUI
         /// Enumeration for the instance of TTS state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public enum TTSState
         {
             /// <summary>
             /// Player is not available.
             /// </summary>
+            [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
             Unavailable = 0,
             /// <summary>
             /// Player is ready to play.
             /// </summary>
+            [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
             Ready,
             /// <summary>
             /// Player is playing.
             /// </summary>
+            [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
             Playing,
             /// <summary>
             /// Player is paused.
             /// </summary>
+            [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
             Paused
         }
 
@@ -134,6 +146,7 @@ namespace Tizen.NUI
         /// Gets the singleton of the TTSPlayer object.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public static TTSPlayer Instance
         {
             get
@@ -148,6 +161,7 @@ namespace Tizen.NUI
         /// <param name="mode"> The mode of TTS player.</param>
         /// <returns> A handle of the TTS player for the given mode.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public static TTSPlayer Get(TTSMode mode)
         {
             return instance[(int)mode];
@@ -158,6 +172,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns> A handle of the TTS player for the default mode.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public static TTSPlayer Get()
         {
             return TTSPlayer.Instance;
@@ -210,6 +225,7 @@ namespace Tizen.NUI
         /// <param name="text"> The text to play.</param>
         /// <remarks>The TTS player needs to be initialized.</remarks>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public void Play(string text)
         {
             Interop.TtsPlayer.Play(SwigCPtr, text);
@@ -221,6 +237,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <remarks>The TTS player needs to be initialized.</remarks>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public void Stop()
         {
             Interop.TtsPlayer.Stop(SwigCPtr);
@@ -232,6 +249,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <remarks>The TTS player needs to be initialized.</remarks>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public void Pause()
         {
             Interop.TtsPlayer.Pause(SwigCPtr);
@@ -243,6 +261,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <remarks>The TTS player needs to be initialized.</remarks>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public void Resume()
         {
             Interop.TtsPlayer.Resume(SwigCPtr);
@@ -255,6 +274,7 @@ namespace Tizen.NUI
         /// <returns> The current TTS state. </returns>
         /// <remarks>The TTS player needs to be initialized.</remarks>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public TTSState GetState()
         {
             TTSState ret = (TTSState)Interop.TtsPlayer.GetState(SwigCPtr);
@@ -292,12 +312,14 @@ namespace Tizen.NUI
         /// This class represents the event arguments used when the state of the TTS player changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
         public class StateChangedEventArgs : EventArgs
         {
             /// <summary>
             /// The previous state of the TTS player before the change.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
             public TTSState PrevState
             {
                 get;
@@ -308,6 +330,7 @@ namespace Tizen.NUI
             /// The new state of the TTS player after the change.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("This has been deprecated in API14. Please use Tizen.Uix.Tts instead.")]
             public TTSState NextState
             {
                 get;
