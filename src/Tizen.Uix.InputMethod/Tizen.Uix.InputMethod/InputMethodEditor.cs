@@ -984,8 +984,6 @@ namespace Tizen.Uix.InputMethod
         private static ImeProcessKeyEventCb _imeProcessKeyDelegate;
         private static event EventHandler<DisplayLanguageChangedEventArgs> _displayLanguageChanged;
         private static ImeDisplayLanguageChangedCb _imeDisplayLanguageChangedDelegate;
-        private static event EventHandler<RotationChangedEventArgs> _rotationDegreeChanged;
-        private static ImeRotationChangedCb _imeRotationChangedDelegate;
         private static event EventHandler<AccessibilityStateChangedEventArgs> _accessibilityStateChanged;
         private static ImeAccessibilityStateChangedCb _imeAccessibilityStateChangedDelegate;
         private static event EventHandler<PredictionHintUpdatedEventArgs> _predictionHintUpdated;
@@ -1455,36 +1453,6 @@ namespace Tizen.Uix.InputMethod
             remove
             {
                 _displayLanguageChanged -= value;
-            }
-        }
-
-        /// <summary>
-        /// Called when the device is rotated.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12. Will be removed in API14. Please use Window.Resized instead.")]
-        public static event EventHandler<RotationChangedEventArgs> RotationChanged
-        {
-            add
-            {
-                _imeRotationChangedDelegate = (int degree, IntPtr userData) =>
-                {
-                    RotationChangedEventArgs args = new RotationChangedEventArgs(degree);
-                    _rotationDegreeChanged?.Invoke(null, args);
-                };
-                ErrorCode error = ImeEventSetRotationChangedCb(_imeRotationChangedDelegate, IntPtr.Zero);
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, $"Add RotationChanged Failed with error {error}");
-                }
-                else
-                {
-                    _rotationDegreeChanged += value;
-                }
-            }
-            remove
-            {
-                _rotationDegreeChanged -= value;
             }
         }
 
