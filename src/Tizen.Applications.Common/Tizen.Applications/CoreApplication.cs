@@ -349,10 +349,7 @@ namespace Tizen.Applications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Post(Action runner)
         {
-            if (runner == null)
-            {
-                throw new ArgumentNullException(nameof(runner));
-            }
+            ArgumentNullException.ThrowIfNull(runner);
 
             GSourceManager.Post(runner, true);
         }
@@ -372,10 +369,7 @@ namespace Tizen.Applications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static async Task<T> Post<T>(Func<T> runner)
         {
-            if (runner == null)
-            {
-                throw new ArgumentNullException(nameof(runner));
-            }
+            ArgumentNullException.ThrowIfNull(runner);
 
             var task = new TaskCompletionSource<T>();
             GSourceManager.Post(() => { task.SetResult(runner()); }, true);

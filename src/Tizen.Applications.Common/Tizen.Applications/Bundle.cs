@@ -68,10 +68,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public Bundle(SafeBundleHandle handle)
         {
-            if (handle == null)
-            {
-                throw new ArgumentNullException(nameof(handle));
-            }
+            ArgumentNullException.ThrowIfNull(handle);
 
             if (handle.IsInvalid)
             {
@@ -230,10 +227,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public void AddItem(string key, byte[] value)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
+            ArgumentNullException.ThrowIfNull(value);
             AddItem(key, value, 0, value.Length);
         }
 
@@ -260,10 +254,7 @@ namespace Tizen.Applications
         {
             if (!_keys.Contains(key))
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
+                ArgumentNullException.ThrowIfNull(value);
                 if (offset < 0)
                 {
                     throw new ArgumentOutOfRangeException(nameof(offset), offset, "Cannot be less than 0");
@@ -773,10 +764,7 @@ namespace Tizen.Applications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Bundle ImportFromArgv(string[] argv)
         {
-            if (argv == null)
-            {
-                throw new ArgumentNullException(nameof(argv));
-            }
+            ArgumentNullException.ThrowIfNull(argv);
 
             return new Bundle(Interop.Bundle.ImportFromArgv(argv.Length, argv));
         }
