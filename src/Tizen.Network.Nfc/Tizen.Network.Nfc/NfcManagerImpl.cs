@@ -238,7 +238,7 @@ namespace Tizen.Network.Nfc
 
         internal Task SetActivationAsync(bool activation)
         {
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             IntPtr id = IntPtr.Zero;
             lock (_callback_map)
             {
@@ -249,9 +249,12 @@ namespace Tizen.Network.Nfc
                     if (error != (int)NfcError.None)
                     {
                         Log.Error(Globals.LogTag, $"Error occurs during Nfc activating, {(NfcError)error}");
-                        task.SetException(new InvalidOperationException("Error occurs during Nfc activating, " + (NfcError)error));
+                        task.TrySetException(new InvalidOperationException("Error occurs during Nfc activating, " + (NfcError)error));
                     }
-                    task.SetResult(true);
+                    else
+                    {
+                        task.TrySetResult(true);
+                    }
                     lock (_callback_map)
                     {
                         _callback_map.Remove(key);

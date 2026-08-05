@@ -29,10 +29,14 @@ namespace Tizen.Network.Nfc
     {
         private IntPtr _p2pTargetHandle = IntPtr.Zero;
         private bool disposed = false;
+        private int _requestId = 0;
 
         private event EventHandler<P2pDataReceivedEventArgs> _p2pDataReceived;
 
         private Interop.Nfc.P2pDataReceivedCallback _p2pDataReceivedCallback;
+
+        // Roots the per-request send callbacks so the GC cannot collect them before the native completion fires.
+        private Dictionary<int, Interop.Nfc.VoidCallback> _sendNdefCallbacks = new Dictionary<int, Interop.Nfc.VoidCallback>();
 
         /// <summary>
         /// The event for receiving data from the NFC peer-to-peer target.
@@ -104,18 +108,32 @@ namespace Tizen.Network.Nfc
         /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public Task<NfcError> SendNdefMessageAsync(NfcNdefMessage ndefMessage)
         {
-            var task = new TaskCompletionSource<NfcError>();
+            var task = new TaskCompletionSource<NfcError>(TaskCreationOptions.RunContinuationsAsynchronously);
 
-            Interop.Nfc.VoidCallback callback = (int result, IntPtr userData) =>
+            int requestId;
+            Interop.Nfc.VoidCallback callback;
+            lock (_sendNdefCallbacks)
             {
-                task.SetResult((NfcError)result);
-                return;
-            };
+                requestId = _requestId++;
+                callback = (int result, IntPtr userData) =>
+                {
+                    task.TrySetResult((NfcError)result);
+                    lock (_sendNdefCallbacks)
+                    {
+                        _sendNdefCallbacks.Remove(requestId);
+                    }
+                };
+                _sendNdefCallbacks[requestId] = callback;
+            }
 
             int ret = Interop.Nfc.P2p.Send(_p2pTargetHandle, ndefMessage.GetHandle(), callback, IntPtr.Zero);
             if (ret != (int)NfcError.None)
             {
                 Log.Error(Globals.LogTag, $"Failed to write ndef message, Error - {(NfcError)ret}");
+                lock (_sendNdefCallbacks)
+                {
+                    _sendNdefCallbacks.Remove(requestId);
+                }
                 NfcErrorFactory.ThrowNfcException(ret);
             }
 
