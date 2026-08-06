@@ -418,7 +418,7 @@ namespace Tizen.Network.IoTConnectivity
         [Obsolete("Deprecated since API level 13")]
         public async Task<RemoteResponse> GetAsync(ResourceQuery query = null)
         {
-            TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
+            TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             IntPtr id = IntPtr.Zero;
             lock (_taskCompletionMap)
@@ -482,7 +482,7 @@ namespace Tizen.Network.IoTConnectivity
         [Obsolete("Deprecated since API level 13")]
         public async Task<RemoteResponse> PutAsync(Representation representation, ResourceQuery query = null)
         {
-            TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
+            TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             IntPtr id = IntPtr.Zero;
             lock (_taskCompletionMap)
@@ -553,7 +553,7 @@ namespace Tizen.Network.IoTConnectivity
         [Obsolete("Deprecated since API level 13")]
         public async Task<RemoteResponse> PostAsync(Representation representation, ResourceQuery query = null)
         {
-            TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
+            TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             IntPtr id = IntPtr.Zero;
             lock (_taskCompletionMap)
@@ -615,7 +615,7 @@ namespace Tizen.Network.IoTConnectivity
         [Obsolete("Deprecated since API level 13")]
         public async Task<RemoteResponse> DeleteAsync()
         {
-            TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
+            TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             IntPtr id = IntPtr.Zero;
             lock (_taskCompletionMap)
