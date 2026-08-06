@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Tizen.Applications.RPCPort
 {
@@ -82,8 +83,30 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 9 </since_tizen>
         public void SetTag(string tag)
         {
-            var r = Interop.LibRPCPort.Parcel.SetTag(_handle, tag);
-            if (r != Interop.LibRPCPort.ErrorCode.None)
+            if (tag == null)
+                throw new InvalidIOException();
+            string[] parts = tag.Split(new char[] {'.', ':'}, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length != 5)
+            {
+                var r = Interop.LibRPCPort.Parcel.SetTag(_handle, tag);
+                if (r != Interop.LibRPCPort.ErrorCode.None)
+                    throw new InvalidIOException();
+                return;
+            }
+
+            if (!int.TryParse(parts[0], out int major))
+                throw new InvalidIOException();
+            if (!int.TryParse(parts[1], out int minor))
+                throw new InvalidIOException();
+            if (!int.TryParse(parts[2], out int patch))
+                throw new InvalidIOException();
+            if (!int.TryParse(parts[3], out int protocol))
+                throw new InvalidIOException();
+            if (!int.TryParse(parts[4], out int flags))
+                throw new InvalidIOException();
+
+            var ret = Interop.LibRPCPort.Parcel.SetTagEx(_handle, (byte)major, (byte)minor, (byte)patch, (byte)protocol, (byte)flags);
+            if (ret != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();
         }
 
@@ -175,6 +198,22 @@ namespace Tizen.Applications.RPCPort
             Interop.LibRPCPort.ErrorCode error;
 
             error = Interop.LibRPCPort.Parcel.CreateFromParcel(out _handle, origin._handle, startPos, size);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Constructs with capacity.
+        /// </summary>
+        /// <param name="capacity">The size of the new parcel.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Parcel(uint capacity)
+        {
+            Interop.LibRPCPort.ErrorCode error;
+
+            error = Interop.LibRPCPort.Parcel.CreateWithCapacity(out _handle, (UIntPtr)capacity);
             if (error != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();
         }
@@ -400,7 +439,23 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 5 </since_tizen>
         public void WriteString(string b)
         {
-            Interop.LibRPCPort.Parcel.WriteString(_handle, b);
+            int utf8ByteCount = Encoding.UTF8.GetByteCount(b);
+            Interop.LibRPCPort.Parcel.WriteInt32(_handle, utf8ByteCount + 1);
+            Interop.LibRPCPort.Parcel.GetDataSize(_handle, out uint size);
+            Interop.LibRPCPort.Parcel.Reserve(_handle, (uint)utf8ByteCount + 1);
+            Interop.LibRPCPort.Parcel.GetDataPtr(_handle, out IntPtr dataHandle);
+
+            unsafe
+            {
+                fixed (char* charPtr = b)
+                {
+                    byte* bytePtr = (byte*)dataHandle.ToPointer() + size;
+                    int bytesEncoded = Encoding.UTF8.GetBytes(
+                        charPtr, b.Length,
+                        bytePtr, utf8ByteCount);
+                    bytePtr[bytesEncoded] = 0;
+                }
+            }
         }
 
         /// <summary>
