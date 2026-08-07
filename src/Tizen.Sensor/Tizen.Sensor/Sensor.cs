@@ -48,6 +48,7 @@ namespace Tizen.Sensor
         private SensorPausePolicy _pausePolicy = SensorPausePolicy.None;
         private IntPtr _sensorHandle = IntPtr.Zero;
         private IntPtr _listenerHandle = IntPtr.Zero;
+        private static readonly int s_sensorEventStructSize = Marshal.SizeOf<Interop.SensorEventStruct>();
         internal IList<Interop.SensorEventStruct> BatchedEvents { get; set; } = new List<Interop.SensorEventStruct>();
 
 
@@ -89,11 +90,16 @@ namespace Tizen.Sensor
             if (events_count >= 1)
             {
                 BatchedEvents.Clear();
+                if (BatchedEvents is List<Interop.SensorEventStruct> list && list.Capacity < events_count)
+                {
+                    list.Capacity = (int)events_count;
+                }
+
                 IntPtr currentPtr = eventsPtr;
                 for (int i = 0; i < events_count; i++)
                 {
                     BatchedEvents.Add(Interop.IntPtrToEventStruct(currentPtr));
-                    currentPtr += Marshal.SizeOf<Interop.SensorEventStruct>();
+                    currentPtr += s_sensorEventStructSize;
                 }
             }
         }
