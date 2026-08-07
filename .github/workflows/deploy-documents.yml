@@ -13,6 +13,10 @@ on:
         description: "TizenFX-Docs branch/tag to build with"
         type: string
         default: "net8.0"
+      dry-run:
+        description: "Build and verify only, skip deployment"
+        type: boolean
+        default: false
 
 # TODO: switch DOCS_REF to 'master' once TizenAPI/TizenFX-Docs net8.0 is merged
 env:
@@ -83,6 +87,7 @@ jobs:
 
   deploy:
     needs: [build]
+    if: ${{ !inputs.dry-run }}
     runs-on: ubuntu-24.04
 
     steps:
