@@ -313,9 +313,14 @@ namespace Tizen.Network.WiFi
             return ap;
         }
 
-        internal Task ActivateAsync()
+        // Shared boilerplate for the one-shot, callback-completed native async
+        // operations on this manager (Activate/Deactivate/Scan/...). Each call
+        // site supplies only the parts that actually differ: the operation name
+        // (used for logging and CheckReturnValue), the native interop call, and
+        // the factory that maps a non-zero error code to an exception.
+        private Task RunOneShotAsync(string opName, Func<Interop.WiFi.VoidCallback, IntPtr, int> nativeCall, Func<int, Exception> exceptionFactory)
         {
-            Log.Info(Globals.LogTag, "ActivateAsync");
+            Log.Info(Globals.LogTag, opName);
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -323,11 +328,11 @@ namespace Tizen.Network.WiFi
                 id = (IntPtr)_requestId++;
                 _callback_map[id] = (error, key) =>
                 {
-                    Log.Info(Globals.LogTag, "ActivateAsync done");
+                    Log.Info(Globals.LogTag, $"{opName} done");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, $"Error occurs during WiFi activating, {(WiFiError)error}");
-                        task.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi activating"));
+                        Log.Error(Globals.LogTag, $"Error occurs during {opName}, {(WiFiError)error}");
+                        task.SetException(exceptionFactory(error));
                     }
                     else
                     {
@@ -340,254 +345,57 @@ namespace Tizen.Network.WiFi
                 };
             }
 
-            Log.Info(Globals.LogTag, "Interop.WiFi.ActivateAsync");
             try
             {
                 int ret = (int)WiFiError.None;
                 lock (_callback_map)
                 {
-                    ret = Interop.WiFi.Activate(GetSafeHandle(), _callback_map[id], id);
+                    ret = nativeCall(_callback_map[id], id);
                 }
-                CheckReturnValue(ret, "Activate", "");
+                CheckReturnValue(ret, opName, "");
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on ActivateAsync\n{e}");
+                Log.Error(Globals.LogTag, $"Exception on {opName}\n{e}");
+                lock (_callback_map)
+                {
+                    _callback_map.Remove(id);
+                }
                 task.SetException(e);
             }
 
             return task.Task;
         }
 
-        internal Task ActivateWithWiFiPickerTestedAsync()
-        {
-            Log.Info(Globals.LogTag, "ActivateWithWiFiPickerTestedAsync");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            IntPtr id;
-            lock (_callback_map)
-            {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
-                {
-                    Log.Info(Globals.LogTag, "ActivateWithWiFiPickerTestedAsync done");
-                    if (error != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, $"Error occurs during WiFi activating, {(WiFiError)error}");
-                        task.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi activating"));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                    lock (_callback_map)
-                    {
-                        _callback_map.Remove(key);
-                    }
-                };
-            }
+        internal Task ActivateAsync() =>
+            RunOneShotAsync("Activate",
+                (cb, id) => Interop.WiFi.Activate(GetSafeHandle(), cb, id),
+                error => WiFiErrorFactory.GetException(error, "Error occurs during WiFi activating"));
 
-            Log.Info(Globals.LogTag, "Interop.WiFi.ActivateWithWiFiPickerTestedAsync");
-            try
-            {
-                int ret = (int)WiFiError.None;
-                lock (_callback_map)
-                {
-                    ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
-                }
-                CheckReturnValue(ret, "ActivateWithWiFiPickerTested", "");
-            }
-            catch (Exception e)
-            {
-                Log.Error(Globals.LogTag, $"Exception on ActivateWithWiFiPickerTestedAsync\n{e}");
-                task.SetException(e);
-            }
+        internal Task ActivateWithWiFiPickerTestedAsync() =>
+            RunOneShotAsync("ActivateWithWiFiPickerTested",
+                (cb, id) => Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), cb, id),
+                error => WiFiErrorFactory.GetException(error, "Error occurs during WiFi activating"));
 
-            return task.Task;
-        }
+        internal Task DeactivateAsync() =>
+            RunOneShotAsync("Deactivate",
+                (cb, id) => Interop.WiFi.Deactivate(GetSafeHandle(), cb, id),
+                error => WiFiErrorFactory.GetException(error, "Error occurs during WiFi deactivating"));
 
-        internal Task DeactivateAsync()
-        {
-            Log.Info(Globals.LogTag, "DeactivateAsync");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            IntPtr id;
-            lock (_callback_map)
-            {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
-                {
-                    Log.Info(Globals.LogTag, "DeactivateAsync done");
-                    if (error != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, $"Error occurs during WiFi deactivating, {(WiFiError)error}");
-                        task.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi deactivating"));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                    lock (_callback_map)
-                    {
-                        _callback_map.Remove(key);
-                    }
-                };
-            }
+        internal Task ScanAsync() =>
+            RunOneShotAsync("Scan",
+                (cb, id) => Interop.WiFi.Scan(GetSafeHandle(), cb, id),
+                error => new InvalidOperationException("Error occurs during WiFi scanning, " + (WiFiError)error));
 
-            Log.Info(Globals.LogTag, "Interop.WiFi.Deactivate");
-            try
-            {
-                int ret = (int)WiFiError.None;
-                lock (_callback_map)
-                {
-                    ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
-                }
-                CheckReturnValue(ret, "Deactivate", "");
-            }
-            catch (Exception e)
-            {
-                Log.Error(Globals.LogTag, $"Exception on Deactivate\n{e}");
-                task.SetException(e);
-            }
+        internal Task ScanSpecificAPAsync(string essid) =>
+            RunOneShotAsync("ScanSpecificAP",
+                (cb, id) => Interop.WiFi.ScanSpecificAP(GetSafeHandle(), essid, cb, id),
+                error => new InvalidOperationException("Error occurs during WiFi scanning, " + (WiFiError)error));
 
-            return task.Task;
-        }
-
-        internal Task ScanAsync()
-        {
-            Log.Info(Globals.LogTag, "ScanAsync");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            IntPtr id;
-            lock (_callback_map)
-            {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
-                {
-                    Log.Info(Globals.LogTag, "ScanAsync done");
-                    if (error != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, $"Error occurs during WiFi scanning, {(WiFiError)error}");
-                        task.SetException(new InvalidOperationException("Error occurs during WiFi scanning, " + (WiFiError)error));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                    lock (_callback_map)
-                    {
-                        _callback_map.Remove(key);
-                    }
-                };
-            }
-
-            Log.Info(Globals.LogTag, "Interop.WiFi.Scan");
-            try
-            {
-                int ret = (int)WiFiError.None;
-                lock (_callback_map)
-                {
-                    ret = Interop.WiFi.Scan(GetSafeHandle(), _callback_map[id], id);
-                }
-                CheckReturnValue(ret, "Scan", "");
-            }
-            catch (Exception e)
-            {
-                Log.Error(Globals.LogTag, $"Exception on Scan\n{e}");
-                task.SetException(e);
-            }
-
-            return task.Task;
-        }
-
-        internal Task ScanSpecificAPAsync(string essid)
-        {
-            Log.Info(Globals.LogTag, $"ScanSpecificAPAsync {essid}");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            IntPtr id;
-            lock (_callback_map)
-            {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
-                {
-                    Log.Info(Globals.LogTag, $"ScanSpecificAPAsync Done {essid}");
-                    if (error != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, $"Error occurs during WiFi scanning, {(WiFiError)error}");
-                        task.SetException(new InvalidOperationException("Error occurs during WiFi scanning, " + (WiFiError)error));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                    lock (_callback_map)
-                    {
-                        _callback_map.Remove(key);
-                    }
-                };
-            }
-
-            Log.Info(Globals.LogTag, "Interop.WiFi.ScanSpecificAPAsync");
-            try
-            {
-                int ret = (int)WiFiError.None;
-                lock (_callback_map)
-                {
-                    ret = Interop.WiFi.ScanSpecificAP(GetSafeHandle(), essid, _callback_map[id], id);
-                }
-                CheckReturnValue(ret, "ScanSpecificAP", "");
-            }
-            catch (Exception e)
-            {
-                Log.Error(Globals.LogTag, $"Exception on ScanSpecificAPAsync\n{e}");
-                task.SetException(e);
-            }
-
-            return task.Task;
-        }
-
-        internal Task BssidScanAsync()
-        {
-            Log.Info(Globals.LogTag, "BssidScanAsync");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            IntPtr id;
-            lock (_callback_map)
-            {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
-                {
-                    Log.Info(Globals.LogTag, "BssidScanAsync done");
-                    if (error != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, $"Error occurs during bssid scanning, {(WiFiError)error}");
-                        task.SetException(new InvalidOperationException("Error occurs during bssid scanning, " + (WiFiError)error));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                    lock (_callback_map)
-                    {
-                        _callback_map.Remove(key);
-                    }
-                };
-            }
-
-            Log.Info(Globals.LogTag, "Interop.WiFi.BssidScan");
-            try
-            {
-                int ret = (int)WiFiError.None;
-                lock (_callback_map)
-                {
-                    ret = Interop.WiFi.BssidScan(GetSafeHandle(), _callback_map[id], id);
-                }
-                CheckReturnValue(ret, "BssidScan", "");
-            }
-            catch (Exception e)
-            {
-                Log.Error(Globals.LogTag, $"Exception on BssidScan\n{e}");
-                task.SetException(e);
-            }
-
-            return task.Task;
-        }
+        internal Task BssidScanAsync() =>
+            RunOneShotAsync("BssidScan",
+                (cb, id) => Interop.WiFi.BssidScan(GetSafeHandle(), cb, id),
+                error => new InvalidOperationException("Error occurs during bssid scanning, " + (WiFiError)error));
 
         internal void SetAutoScanMode(int scanMode)
         {
@@ -596,51 +404,10 @@ namespace Tizen.Network.WiFi
             CheckReturnValue(ret, "GetSafeHandle", PrivilegeNetworkGet);
         }
 
-        internal Task HiddenAPConnectAsync(string essid, int secType, string passphrase)
-        {
-            Log.Info(Globals.LogTag, "HiddenAPConnect");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            IntPtr id;
-            lock (_callback_map)
-            {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
-                {
-                    Log.Info(Globals.LogTag, $"HiddenAPConnect Done {essid}");
-                    if (error != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, $"Error occurs during HiddenAPConnect, {(WiFiError)error}");
-                        task.SetException(new InvalidOperationException("Error occurs during HiddenAPConnect, " + (WiFiError)error));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                    lock (_callback_map)
-                    {
-                        _callback_map.Remove(key);
-                    }
-                };
-            }
-
-            Log.Info(Globals.LogTag, "Interop.WiFi.HiddenAPConnect");
-            try
-            {
-                int ret = (int)WiFiError.None;
-                lock (_callback_map)
-                {
-                    ret = Interop.WiFi.ConnectHiddenAP(GetSafeHandle(), essid, secType, passphrase, _callback_map[id], id);
-                }
-                CheckReturnValue(ret, "HiddenAPConnect", "");
-            }
-            catch (Exception e)
-            {
-                Log.Error(Globals.LogTag, $"Exception on HiddenAPConnect\n{e}");
-                task.SetException(e);
-            }
-
-            return task.Task;
-        }
+        internal Task HiddenAPConnectAsync(string essid, int secType, string passphrase) =>
+            RunOneShotAsync("HiddenAPConnect",
+                (cb, id) => Interop.WiFi.ConnectHiddenAP(GetSafeHandle(), essid, secType, passphrase, cb, id),
+                error => new InvalidOperationException("Error occurs during HiddenAPConnect, " + (WiFiError)error));
 
         internal void CreateSpecificScanHandle()
         {
@@ -664,51 +431,10 @@ namespace Tizen.Network.WiFi
             CheckReturnValue(ret, "SetSpecificScanFreq", PrivilegeNetworkProfile);
         }
 
-        internal Task StartMultiScan()
-        {
-            Log.Debug(Globals.LogTag, "StartMultiScan");
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-            IntPtr id;
-            lock (_callback_map)
-            {
-                id = (IntPtr)_requestId++;
-                _callback_map[id] = (error, key) =>
-                {
-                    Log.Info(Globals.LogTag, "Multi Scan done");
-                    if (error != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, $"Error occurs during multi scanning, {(WiFiError)error}");
-                        task.SetException(new InvalidOperationException("Error occurs during multi scanning, " + (WiFiError)error));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                    lock (_callback_map)
-                    {
-                        _callback_map.Remove(key);
-                    }
-                };
-            }
-
-            Log.Info(Globals.LogTag, "Interop.WiFi.SpecificApStartMultiScan");
-            try
-            {
-                int ret = (int)WiFiError.None;
-                lock (_callback_map)
-                {
-                    ret = Interop.WiFi.SpecificApStartMultiScan(GetSafeHandle(), _specificScanHandle, _callback_map[id], id);
-                }
-                CheckReturnValue(ret, "MultiScan", "");
-            }
-            catch (Exception e)
-            {
-                Log.Error(Globals.LogTag, $"Exception on Multi Scan\n{e}");
-                task.SetException(e);
-            }
-
-            return task.Task;
-        }
+        internal Task StartMultiScan() =>
+            RunOneShotAsync("MultiScan",
+                (cb, id) => Interop.WiFi.SpecificApStartMultiScan(GetSafeHandle(), _specificScanHandle, cb, id),
+                error => new InvalidOperationException("Error occurs during multi scanning, " + (WiFiError)error));
 
         internal string TDLSConnectedPeer
         {
