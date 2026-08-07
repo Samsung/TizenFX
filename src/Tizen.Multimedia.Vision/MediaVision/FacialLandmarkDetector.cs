@@ -126,7 +126,7 @@ namespace Tizen.Multimedia.Vision
                 return Enumerable.Empty<Point>();
             }
 
-            var results = new List<Point>();
+            var results = new List<Point>(number);
 
             for (int i = 0; i < number; i++)
             {
