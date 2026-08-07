@@ -80,6 +80,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Network.Tethering.TetheringExtensionMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Network.Tethering.TetheringExtensionMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Network.Tethering.TetheringExtensionMode",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Network.Tethering.TetheringExtensionMode.yml\" sourcestartlinenumber=\"1\">Enumeration for the Tethering Extension mode.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "obj/internals/api/Tizen.Network.Tethering.TetheringSecurityType.yml",
       "output": {
         ".html": {
@@ -485,7 +499,7 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "repos/API14/internals/docs/api/index.md",
+      "source_relative_path": "repos/API15/internals/docs/api/index.md",
       "output": {
         ".html": {
           "relative_path": "internals/api/index.html"
@@ -495,7 +509,7 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "repos/API14/internals/docs/guides/inspections.md",
+      "source_relative_path": "repos/API15/internals/docs/guides/inspections.md",
       "output": {
         ".html": {
           "relative_path": "internals/guides/inspections.html"
@@ -505,7 +519,7 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "repos/API14/internals/docs/guides/peripheral-gpio.md",
+      "source_relative_path": "repos/API15/internals/docs/guides/peripheral-gpio.md",
       "output": {
         ".html": {
           "relative_path": "internals/guides/peripheral-gpio.html"
@@ -515,7 +529,7 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "repos/API14/internals/docs/guides/peripheral-i2c.md",
+      "source_relative_path": "repos/API15/internals/docs/guides/peripheral-i2c.md",
       "output": {
         ".html": {
           "relative_path": "internals/guides/peripheral-i2c.html"
@@ -525,7 +539,7 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "repos/API14/internals/docs/guides/peripheral-pwm.md",
+      "source_relative_path": "repos/API15/internals/docs/guides/peripheral-pwm.md",
       "output": {
         ".html": {
           "relative_path": "internals/guides/peripheral-pwm.html"
@@ -535,7 +549,7 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "repos/API14/internals/docs/guides/peripheral-spi.md",
+      "source_relative_path": "repos/API15/internals/docs/guides/peripheral-spi.md",
       "output": {
         ".html": {
           "relative_path": "internals/guides/peripheral-spi.html"
@@ -545,7 +559,7 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "repos/API14/internals/docs/guides/peripheral-uart.md",
+      "source_relative_path": "repos/API15/internals/docs/guides/peripheral-uart.md",
       "output": {
         ".html": {
           "relative_path": "internals/guides/peripheral-uart.html"
@@ -555,7 +569,7 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "repos/API14/internals/docs/guides/peripheral.md",
+      "source_relative_path": "repos/API15/internals/docs/guides/peripheral.md",
       "output": {
         ".html": {
           "relative_path": "internals/guides/peripheral.html"
@@ -565,7 +579,7 @@
     },
     {
       "type": "Toc",
-      "source_relative_path": "repos/API14/internals/docs/guides/toc.md",
+      "source_relative_path": "repos/API15/internals/docs/guides/toc.md",
       "output": {
         ".html": {
           "relative_path": "internals/guides/toc.html"
@@ -578,7 +592,7 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "repos/API14/internals/docs/index.md",
+      "source_relative_path": "repos/API15/internals/docs/index.md",
       "output": {
         ".html": {
           "relative_path": "internals/index.html"
@@ -588,7 +602,7 @@
     },
     {
       "type": "Toc",
-      "source_relative_path": "repos/API14/internals/docs/toc.md",
+      "source_relative_path": "repos/API15/internals/docs/toc.md",
       "output": {
         ".html": {
           "relative_path": "internals/toc.html"

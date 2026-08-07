@@ -80,9 +80,85 @@
             <article class="content wrap" id="_content" data-uid="Tizen.Network.WiFiDirect">
 
   <h1 id="Tizen_Network_WiFiDirect" data-uid="Tizen.Network.WiFiDirect" class="text-break">Namespace Tizen.Network.WiFiDirect</h1>
-  <div class="markdown level0 summary">
-<p>The Tizen.Network.WiFiDirect namespace provides classes to manage the settings of Wi-Fi Direct.
-In addition, this namespace provides classes to connect and disconnect remote devices using Wi-Fi Direct.</p>
+  <div class="markdown level0 summary"><h1 id="tizennetworkwifidirect-namespace">Tizen.Network.WiFiDirect Namespace</h1>
+<p>The Tizen.Network.WiFiDirect namespace provides classes to manage the settings of Wi-Fi Direct. In addition, this namespace provides classes to connect and disconnect remote devices using Wi-Fi Direct.</p>
+<h2 id="main-classes">Main Classes</h2>
+<h3 id="wifidirectmanager"><a href="xref:Tizen.Network.WiFiDirect.WiFiDirectManager">WiFiDirectManager</a></h3>
+<p>The main class for managing Wi-Fi Direct functionality. It provides methods for:</p>
+<ul>
+<li>Activating and deactivating Wi-Fi Direct</li>
+<li>Discovering peer devices</li>
+<li>Managing connections</li>
+<li>Creating and destroying groups</li>
+<li>Handling Wi-Fi Display (Miracast) functionality</li>
+</ul>
+<h3 id="wifidirectpeer"><a href="xref:Tizen.Network.WiFiDirect.WiFiDirectPeer">WiFiDirectPeer</a></h3>
+<p>Represents a remote Wi-Fi Direct device. It provides properties and methods for:</p>
+<ul>
+<li>Getting peer device information</li>
+<li>Connecting to and disconnecting from peers</li>
+<li>Service discovery</li>
+<li>Event handling for connection state changes</li>
+</ul>
+<h3 id="wifidirectpersistentgroup"><a href="xref:Tizen.Network.WiFiDirect.WiFiDirectPersistentGroup">WiFiDirectPersistentGroup</a></h3>
+<p>Represents a persistent Wi-Fi Direct group that can be reconnected automatically.</p>
+<h2 id="key-enumerations">Key Enumerations</h2>
+<ul>
+<li><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectState.html">WiFiDirectState</a> - Wi-Fi Direct service states</li>
+<li><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectConnectionState.html">WiFiDirectConnectionState</a> - Connection states</li>
+<li><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectDiscoveryState.html">WiFiDirectDiscoveryState</a> - Discovery states</li>
+<li><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectWpsType.html">WiFiDirectWpsType</a> - WPS configuration types</li>
+<li><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectServiceType.html">WiFiDirectServiceType</a> - Service discovery types</li>
+</ul>
+<h2 id="event-arguments">Event Arguments</h2>
+<ul>
+<li><a href="xref:Tizen.Network.WiFiDirect.StateChangedEventArgs">StateChangedEventArgs</a> - Wi-Fi Direct state change events</li>
+<li><a href="xref:Tizen.Network.WiFiDirect.ConnectionStateChangedEventArgs">ConnectionStateChangedEventArgs</a> - Connection state change events</li>
+<li><a href="xref:Tizen.Network.WiFiDirect.PeerFoundEventArgs">PeerFoundEventArgs</a> - Peer discovery events</li>
+<li><a href="xref:Tizen.Network.WiFiDirect.DiscoveryStateChangedEventArgs">DiscoveryStateChangedEventArgs</a> - Discovery state change events</li>
+</ul>
+<h2 id="basic-usage-example">Basic Usage Example</h2>
+<pre><code class="lang-csharp">using Tizen.Network.WiFiDirect;
+
+// Activate Wi-Fi Direct
+WiFiDirectManager.Activate();
+
+// Start peer discovery
+WiFiDirectManager.StartDiscovery(false, 30); // 30 seconds discovery
+
+// Handle peer found event
+WiFiDirectManager.PeerFound += (sender, e) =&gt;
+{
+    if (e.Error == WiFiDirectError.None)
+    {
+        Console.WriteLine($&quot;Found peer: {e.Peer.Name}&quot;);
+        // Connect to the peer
+        e.Peer.Connect();
+    }
+};
+
+// Handle connection state changes
+WiFiDirectManager.ConnectionStatusChanged += (sender, e) =&gt;
+{
+    Console.WriteLine($&quot;Connection state: {e.ConnectionState}&quot;);
+};
+</code></pre>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li><strong>Tizen Version</strong>: 3.0 or later</li>
+<li><strong>Privilege</strong>: <a href="http://tizen.org/privilege/wifidirect">http://tizen.org/privilege/wifidirect</a></li>
+<li><strong>Feature</strong>: <a href="http://tizen.org/feature/network.wifidirect">http://tizen.org/feature/network.wifidirect</a></li>
+</ul>
+<h2 id="related-features">Related Features</h2>
+<ul>
+<li><strong>Wi-Fi Display</strong>: <a href="http://tizen.org/feature/network.wifi.direct.display">http://tizen.org/feature/network.wifi.direct.display</a></li>
+<li><strong>Service Discovery</strong>: <a href="http://tizen.org/feature/network.wifi.direct.service_discovery">http://tizen.org/feature/network.wifi.direct.service_discovery</a></li>
+</ul>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="https://docs.tizen.org/application/native/guides/connectivity/wifi-direct">Wi-Fi Direct Overview</a></li>
+<li><a href="https://docs.tizen.org/application/native/guides/connectivity">Network Connectivity Guide</a></li>
+</ul>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
@@ -121,6 +197,9 @@ Enums
 </section>
       <h4><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectState.html">WiFiDirectState</a></h4>
       <section><p>Enumeration for the Wi-Fi Direct link status.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectVsieFrameType.html">WiFiDirectVsieFrameType</a></h4>
+      <section><p>Enumeration for Wi-Fi frame type.</p>
 </section>
       <h4><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectWpsType.html">WiFiDirectWpsType</a></h4>
       <section><p>Enumeration for the Wi-Fi WPS type.</p>

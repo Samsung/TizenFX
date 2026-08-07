@@ -121,6 +121,24 @@ references:
   commentId: F:Tizen.Network.Tethering.TetheringError.ResourceBusy
   fullName: Tizen.Network.Tethering.TetheringError.ResourceBusy
   nameWithType: TetheringError.ResourceBusy
+- uid: Tizen.Network.Tethering.TetheringExtensionMode
+  name: TetheringExtensionMode
+  href: internals/api/Tizen.Network.Tethering.TetheringExtensionMode.html
+  commentId: T:Tizen.Network.Tethering.TetheringExtensionMode
+  fullName: Tizen.Network.Tethering.TetheringExtensionMode
+  nameWithType: TetheringExtensionMode
+- uid: Tizen.Network.Tethering.TetheringExtensionMode.Disabled
+  name: Disabled
+  href: internals/api/Tizen.Network.Tethering.TetheringExtensionMode.html#Tizen_Network_Tethering_TetheringExtensionMode_Disabled
+  commentId: F:Tizen.Network.Tethering.TetheringExtensionMode.Disabled
+  fullName: Tizen.Network.Tethering.TetheringExtensionMode.Disabled
+  nameWithType: TetheringExtensionMode.Disabled
+- uid: Tizen.Network.Tethering.TetheringExtensionMode.Enabled
+  name: Enabled
+  href: internals/api/Tizen.Network.Tethering.TetheringExtensionMode.html#Tizen_Network_Tethering_TetheringExtensionMode_Enabled
+  commentId: F:Tizen.Network.Tethering.TetheringExtensionMode.Enabled
+  fullName: Tizen.Network.Tethering.TetheringExtensionMode.Enabled
+  nameWithType: TetheringExtensionMode.Enabled
 - uid: Tizen.Network.Tethering.TetheringSecurityType
   name: TetheringSecurityType
   href: internals/api/Tizen.Network.Tethering.TetheringSecurityType.html
