@@ -36,6 +36,16 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetId")]
             public static extern uint GetId(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetAnnotation")]
+            public static extern void SetAnnotation(global::System.Runtime.InteropServices.HandleRef actor, string entityId, string entityType, string entityInfo);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetAnnotation")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool GetAnnotation(global::System.Runtime.InteropServices.HandleRef actor, out string entityId, out string entityType, out string entityInfo);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_ClearAnnotation")]
+            public static extern void ClearAnnotation(global::System.Runtime.InteropServices.HandleRef actor);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OnStage")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool OnStage(global::System.Runtime.InteropServices.HandleRef jarg1);
