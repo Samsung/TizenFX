@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+    <ProjectReference Include="../../src/Tizen/Tizen.csproj" />
+    <ProjectReference Include="../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
+    <!-- gen/ImplApp.cs (actionc output) uses Tizen.Applications.RPCPort. -->
+    <ProjectReference Include="../../src/Tizen.Applications.Common/Tizen.Applications.Common.csproj" />
+  </ItemGroup>
+  <PropertyGroup>
+    <NeedInjection>True</NeedInjection>
+  </PropertyGroup>
+</Project>
