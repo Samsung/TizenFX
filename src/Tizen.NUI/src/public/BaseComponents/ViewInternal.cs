@@ -420,6 +420,46 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAnnotation(string entityId, string entityType, string entityInfo)
+        {
+            if (entityId == null)
+            {
+                throw new ArgumentNullException(nameof(entityId));
+            }
+
+            if (entityType == null)
+            {
+                throw new ArgumentNullException(nameof(entityType));
+            }
+
+            if (entityInfo == null)
+            {
+                throw new ArgumentNullException(nameof(entityInfo));
+            }
+
+            Interop.Actor.SetAnnotation(SwigCPtr, entityId, entityType, entityInfo);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetAnnotation(out string entityId, out string entityType, out string entityInfo)
+        {
+            bool ret = Interop.Actor.GetAnnotation(SwigCPtr, out entityId, out entityType, out entityInfo);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ClearAnnotation()
+        {
+            Interop.Actor.ClearAnnotation(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal bool IsRoot()
         {
             bool ret = Interop.ActorInternal.IsRoot(SwigCPtr);
