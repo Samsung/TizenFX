@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.ApplicationControlSignal.DeleteApplicationControlSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.ApplicationControlSignal.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.ApplicationControlSignal.GetConnectionCount(SwigCPtr);
@@ -58,12 +51,6 @@ namespace Tizen.NUI
                 Interop.ApplicationControlSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(Application arg1, System.IntPtr arg2)
-        {
-            Interop.ApplicationControlSignal.Emit(SwigCPtr, Application.getCPtr(arg1), arg2);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ApplicationControlSignal() : this(Interop.ApplicationControlSignal.NewApplicationControlSignal(), true)

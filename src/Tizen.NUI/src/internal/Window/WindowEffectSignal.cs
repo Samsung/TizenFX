@@ -29,14 +29,6 @@ namespace Tizen.NUI
             Interop.WindowTransitionEffectSignal.DeleteSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.WindowTransitionEffectSignal.Empty(SwigCPtr);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.WindowTransitionEffectSignal.GetConnectionCount(SwigCPtr);
@@ -61,13 +53,6 @@ namespace Tizen.NUI
                 Interop.WindowTransitionEffectSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public bool Emit(Window arg1, int state, int type)
-        {
-            bool ret = Interop.WindowTransitionEffectSignal.Emit(SwigCPtr, Window.getCPtr(arg1), state, type);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public WindowTransitionEffectSignal(Window window) : this(Interop.WindowTransitionEffectSignal.GetSignal(Window.getCPtr(window)), false)

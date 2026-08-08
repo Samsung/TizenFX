@@ -28,14 +28,6 @@ namespace Tizen.NUI
             Interop.WindowMovedSignal.DeleteSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.WindowMovedSignal.Empty(SwigCPtr);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.WindowMovedSignal.GetConnectionCount(SwigCPtr);
@@ -60,13 +52,6 @@ namespace Tizen.NUI
                 Interop.WindowMovedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public bool Emit(Window window, Position2D position)
-        {
-            bool ret = Interop.WindowMovedSignal.Emit(SwigCPtr, Window.getCPtr(window), Position2D.getCPtr(position));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public WindowMovedSignal(Window window) : this(Interop.WindowMovedSignal.GetSignal(Window.getCPtr(window)), false)

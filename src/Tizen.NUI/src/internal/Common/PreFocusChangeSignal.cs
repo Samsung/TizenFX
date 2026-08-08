@@ -36,13 +36,6 @@ namespace Tizen.NUI
             Interop.PreFocusSignal.DeletePreFocusChangeSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.PreFocusSignal.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.PreFocusSignal.GetConnectionCount(SwigCPtr);
@@ -63,13 +56,6 @@ namespace Tizen.NUI
                 Interop.PreFocusSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public View Emit(View arg1, View arg2, View.FocusDirection arg3)
-        {
-            View ret = new View(Interop.PreFocusSignal.Emit(SwigCPtr, View.getCPtr(arg1), View.getCPtr(arg2), (int)arg3), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public PreFocusChangeSignal() : this(Interop.PreFocusSignal.NewPreFocusChangeSignal(), true)

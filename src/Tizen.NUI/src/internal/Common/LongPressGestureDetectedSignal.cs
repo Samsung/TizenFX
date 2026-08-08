@@ -29,13 +29,6 @@ namespace Tizen.NUI
             Interop.LongPressGestureDetectedSignal.DeleteLongPressGestureDetectedSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.LongPressGestureDetectedSignal.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.LongPressGestureDetectedSignal.GetConnectionCount(SwigCPtr);
@@ -59,12 +52,6 @@ namespace Tizen.NUI
                 Interop.LongPressGestureDetectedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(View arg1, LongPressGesture arg2)
-        {
-            Interop.LongPressGestureDetectedSignal.Emit(SwigCPtr, View.getCPtr(arg1), LongPressGesture.getCPtr(arg2));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public LongPressGestureDetectedSignal() : this(Interop.LongPressGestureDetectedSignal.NewLongPressGestureDetectedSignal(), true)

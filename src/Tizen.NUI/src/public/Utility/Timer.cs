@@ -104,9 +104,9 @@ namespace Tizen.NUI
             remove
             {
                 timerTickEventHandler -= value;
-                using var signal = TickSignal();
-                if (timerTickEventHandler == null && signal.Empty() == false)
+                if (timerTickEventHandler == null && disposed == false)
                 {
+                    using var signal = TickSignal();
                     signal.Disconnect(timerTickCallbackOfNative);
                 }
             }
