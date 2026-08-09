@@ -251,7 +251,6 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public T Get<T>(uint propertyId)
         {
-            object parsedValue = null;
             if (typeof(T) == typeof(string))
             {
                 string val;
@@ -261,7 +260,7 @@ namespace Tizen.Pims.Calendar
                     Log.Error(Globals.LogTag, $"Get String Failed [{error}]{propertyId:X}");
                     throw CalendarErrorFactory.GetException(error);
                 }
-                parsedValue = Convert.ChangeType(val, typeof(T));
+                return (T)(object)val;
             }
             else if (typeof(T) == typeof(int))
             {
@@ -272,7 +271,7 @@ namespace Tizen.Pims.Calendar
                     Log.Error(Globals.LogTag, $"Get Intger Failed [{error}]{propertyId:X}");
                     throw CalendarErrorFactory.GetException(error);
                 }
-                parsedValue = Convert.ChangeType(val, typeof(T));
+                return (T)(object)val;
             }
             else if (typeof(T) == typeof(long))
             {
@@ -283,7 +282,7 @@ namespace Tizen.Pims.Calendar
                     Log.Error(Globals.LogTag, $"Get Long Failed [{error}]{propertyId:X}");
                     throw CalendarErrorFactory.GetException(error);
                 }
-                parsedValue = Convert.ChangeType(val, typeof(T));
+                return (T)(object)val;
             }
             else if (typeof(T) == typeof(double))
             {
@@ -294,7 +293,7 @@ namespace Tizen.Pims.Calendar
                     Log.Error(Globals.LogTag, $"Get Double Failed [{error}]{propertyId:X}");
                     throw CalendarErrorFactory.GetException(error);
                 }
-                parsedValue = Convert.ChangeType(val, typeof(T));
+                return (T)(object)val;
             }
             else if (typeof(T) == typeof(CalendarTime))
             {
@@ -306,14 +305,13 @@ namespace Tizen.Pims.Calendar
                     throw CalendarErrorFactory.GetException(error);
                 }
                 CalendarTime val = ConvertIntPtrToCalendarTime(time);
-                parsedValue = Convert.ChangeType(val, typeof(T));
+                return (T)(object)val;
             }
             else
             {
                 Log.Error(Globals.LogTag, "Not supported Data T/ype");
                 throw CalendarErrorFactory.GetException((int)CalendarError.NotSupported);
             }
-            return (T)parsedValue;
         }
 
         /// <summary>
@@ -329,7 +327,7 @@ namespace Tizen.Pims.Calendar
         {
             if (typeof(T) == typeof(string))
             {
-                string val = Convert.ToString(value);
+                string val = value as string ?? string.Empty;
                 int error = Interop.Record.SetString(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
@@ -339,7 +337,7 @@ namespace Tizen.Pims.Calendar
             }
             else if (typeof(T) == typeof(int))
             {
-                int val = Convert.ToInt32(value);
+                int val = (int)(object)value;
                 int error = Interop.Record.SetInteger(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
@@ -349,7 +347,7 @@ namespace Tizen.Pims.Calendar
             }
             else if (typeof(T) == typeof(long))
             {
-                long val = Convert.ToInt64(value);
+                long val = (long)(object)value;
                 int error = Interop.Record.SetLli(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
@@ -359,7 +357,7 @@ namespace Tizen.Pims.Calendar
             }
             else if (typeof(T) == typeof(double))
             {
-                double val = Convert.ToDouble(value);
+                double val = (double)(object)value;
                 int error = Interop.Record.SetDouble(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
@@ -369,7 +367,7 @@ namespace Tizen.Pims.Calendar
             }
             else if (typeof(T) == typeof(CalendarTime))
             {
-                CalendarTime time = (CalendarTime)Convert.ChangeType(value, typeof(CalendarTime));
+                CalendarTime time = (CalendarTime)(object)value;
                 //Interop.Record.DateTime val = ConvertCalendarTimeToStruct(time);
                 IntPtr val = ConvertCalendarTimeToStruct(time);
                 //int error = Interop.Record.SetCalendarTime(_recordHandle, propertyId, val);
