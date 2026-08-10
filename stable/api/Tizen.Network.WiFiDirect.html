@@ -11,7 +11,7 @@
     <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -83,7 +83,7 @@
   <div class="markdown level0 summary"><h1 id="tizennetworkwifidirect-namespace">Tizen.Network.WiFiDirect Namespace</h1>
 <p>The Tizen.Network.WiFiDirect namespace provides classes to manage the settings of Wi-Fi Direct. In addition, this namespace provides classes to connect and disconnect remote devices using Wi-Fi Direct.</p>
 <h2 id="main-classes">Main Classes</h2>
-<h3 id="wifidirectmanager"><a href="xref:Tizen.Network.WiFiDirect.WiFiDirectManager">WiFiDirectManager</a></h3>
+<h3 id="wifidirectmanager"><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectManager.html">WiFiDirectManager</a></h3>
 <p>The main class for managing Wi-Fi Direct functionality. It provides methods for:</p>
 <ul>
 <li>Activating and deactivating Wi-Fi Direct</li>
@@ -92,7 +92,7 @@
 <li>Creating and destroying groups</li>
 <li>Handling Wi-Fi Display (Miracast) functionality</li>
 </ul>
-<h3 id="wifidirectpeer"><a href="xref:Tizen.Network.WiFiDirect.WiFiDirectPeer">WiFiDirectPeer</a></h3>
+<h3 id="wifidirectpeer"><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectPeer.html">WiFiDirectPeer</a></h3>
 <p>Represents a remote Wi-Fi Direct device. It provides properties and methods for:</p>
 <ul>
 <li>Getting peer device information</li>
@@ -100,7 +100,7 @@
 <li>Service discovery</li>
 <li>Event handling for connection state changes</li>
 </ul>
-<h3 id="wifidirectpersistentgroup"><a href="xref:Tizen.Network.WiFiDirect.WiFiDirectPersistentGroup">WiFiDirectPersistentGroup</a></h3>
+<h3 id="wifidirectpersistentgroup"><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectPersistentGroup.html">WiFiDirectPersistentGroup</a></h3>
 <p>Represents a persistent Wi-Fi Direct group that can be reconnected automatically.</p>
 <h2 id="key-enumerations">Key Enumerations</h2>
 <ul>
@@ -112,10 +112,10 @@
 </ul>
 <h2 id="event-arguments">Event Arguments</h2>
 <ul>
-<li><a href="xref:Tizen.Network.WiFiDirect.StateChangedEventArgs">StateChangedEventArgs</a> - Wi-Fi Direct state change events</li>
-<li><a href="xref:Tizen.Network.WiFiDirect.ConnectionStateChangedEventArgs">ConnectionStateChangedEventArgs</a> - Connection state change events</li>
-<li><a href="xref:Tizen.Network.WiFiDirect.PeerFoundEventArgs">PeerFoundEventArgs</a> - Peer discovery events</li>
-<li><a href="xref:Tizen.Network.WiFiDirect.DiscoveryStateChangedEventArgs">DiscoveryStateChangedEventArgs</a> - Discovery state change events</li>
+<li><a class="xref" href="Tizen.Network.WiFiDirect.StateChangedEventArgs.html">StateChangedEventArgs</a> - Wi-Fi Direct state change events</li>
+<li><a class="xref" href="Tizen.Network.WiFiDirect.ConnectionStateChangedEventArgs.html">ConnectionStateChangedEventArgs</a> - Connection state change events</li>
+<li><a class="xref" href="Tizen.Network.WiFiDirect.PeerFoundEventArgs.html">PeerFoundEventArgs</a> - Peer discovery events</li>
+<li><a class="xref" href="Tizen.Network.WiFiDirect.DiscoveryStateChangedEventArgs.html">DiscoveryStateChangedEventArgs</a> - Discovery state change events</li>
 </ul>
 <h2 id="basic-usage-example">Basic Usage Example</h2>
 <pre><code class="lang-csharp">using Tizen.Network.WiFiDirect;
@@ -162,6 +162,47 @@ WiFiDirectManager.ConnectionStatusChanged += (sender, e) =&gt;
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
+    <h3 id="classes">
+Classes
+</h3>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.ConnectionStateChangedEventArgs.html">ConnectionStateChangedEventArgs</a></h4>
+      <section><p>An extended EventArgs class which contains the changed connection state during connecting or disconnecting the peer device.
+This event is triggered when the connection state with a specific peer device changes.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.ConnectionStatusChangedEventArgs.html">ConnectionStatusChangedEventArgs</a></h4>
+      <section><p>An extended EventArgs class which contains the changed connection state during disconnecting of all peers or grouping related operations.
+This event is triggered for global connection status changes that affect the entire Wi-Fi Direct group or all connected peers.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.DeviceStateChangedEventArgs.html">DeviceStateChangedEventArgs</a></h4>
+      <section><p>An extended EventArgs class which contains the changed device state during activation or deactivation.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.DiscoveryStateChangedEventArgs.html">DiscoveryStateChangedEventArgs</a></h4>
+      <section><p>An extended EventArgs class which contains the changed Wi-Fi Direct discovery state during the Wi-Fi Direct scan operation.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.IpAddressAssignedEventArgs.html">IpAddressAssignedEventArgs</a></h4>
+      <section><p>An extended EventArgs class which contains address properties of the peer when it connects to a group owner.
+This event is triggered when a peer device successfully connects to a Wi-Fi Direct group and receives IP address assignment.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.PeerFoundEventArgs.html">PeerFoundEventArgs</a></h4>
+      <section></section>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.ServiceStateChangedEventArgs.html">ServiceStateChangedEventArgs</a></h4>
+      <section><p>An extended EventArgs class which contains the changed service information during the service discovery.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.StateChangedEventArgs.html">StateChangedEventArgs</a></h4>
+      <section><p>An extended EventArgs class which contains the changed Wi-Fi Direct state of the local device.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectManager.html">WiFiDirectManager</a></h4>
+      <section><p>A class which is used to manage settings of Wi-Fi Direct.<br>
+This class is used to discover peer devices and manage settings of Wi-Fi Direct.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectPeer.html">WiFiDirectPeer</a></h4>
+      <section><p>The WiFiDirectPeer class is used to handle the connection with remote devices using Wi-Fi Direct.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectPersistentGroup.html">WiFiDirectPersistentGroup</a></h4>
+      <section><p>A class to handle persistent groups in Wi-Fi Direct.
+Persistent groups allow devices to automatically reconnect to previously established Wi-Fi Direct groups without requiring manual pairing each time.
+This class provides information about saved persistent groups that can be used for automatic reconnection.</p>
+</section>
     <h3 id="enums">
 Enums
 </h3>

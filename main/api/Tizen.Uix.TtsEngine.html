@@ -11,7 +11,7 @@
     <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -83,6 +83,12 @@
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
+    <h3 id="classes">
+Classes
+</h3>
+      <h4><a class="xref" href="Tizen.Uix.TtsEngine.Engine.html">Engine</a></h4>
+      <section><p>This class represents the TTS engine, which has to be inherited to make the engine.</p>
+</section>
     <h3 id="enums">
 Enums
 </h3>
@@ -97,6 +103,19 @@ Enums
 </section>
       <h4><a class="xref" href="Tizen.Uix.TtsEngine.VoiceType.html">VoiceType</a></h4>
       <section><p>Enumeration for the voice types.</p>
+</section>
+    <h3 id="delegates">
+Delegates
+</h3>
+      <h4><a class="xref" href="Tizen.Uix.TtsEngine.Engine.Action-1.html">Engine.Action&lt;T&gt;</a></h4>
+      <section><p>An action with 2 input parameters returning an error.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.TtsEngine.Engine.OutAction-1.html">Engine.OutAction&lt;T&gt;</a></h4>
+      <section><p>An action with 2 out parameters returning an error.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.TtsEngine.Engine.SupportedVoice.html">Engine.SupportedVoice</a></h4>
+      <section><p>Called when the TTS engine informs the engine service user about whole supported language and voice type list.
+This callback function is implemented by the engine service user, therefore, the engine developer does NOT have to implement this callback function.</p>
 </section>
 
 

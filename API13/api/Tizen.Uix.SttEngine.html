@@ -11,7 +11,7 @@
     <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -83,6 +83,12 @@
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
+    <h3 id="classes">
+Classes
+</h3>
+      <h4><a class="xref" href="Tizen.Uix.SttEngine.Engine.html">Engine</a></h4>
+      <section><p>This class represents the STT Engine, which has to be inherited to make the engine.</p>
+</section>
     <h3 id="enums">
 Enums
 </h3>
@@ -103,6 +109,23 @@ Enums
 </section>
       <h4><a class="xref" href="Tizen.Uix.SttEngine.TimeEvent.html">TimeEvent</a></h4>
       <section><p>Enumeration for the result time.</p>
+</section>
+    <h3 id="delegates">
+Delegates
+</h3>
+      <h4><a class="xref" href="Tizen.Uix.SttEngine.Engine.Action-1.html">Engine.Action&lt;T&gt;</a></h4>
+      <section><p>An action with 2 input parameters returning an error.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.SttEngine.Engine.OutAction-1.html">Engine.OutAction&lt;T&gt;</a></h4>
+      <section><p>An action with 2 out parameters returning an error.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.SttEngine.Engine.ResultTime.html">Engine.ResultTime</a></h4>
+      <section><p>Called when the STT engine provides the time stamp of result to the engine service user.
+This callback function is implemented by the engine service user. Therefore, the engine developer does NOT have to implement this callback function.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.SttEngine.Engine.SupportedLanguages.html">Engine.SupportedLanguages</a></h4>
+      <section><p>Called when the STT engine informs the engine service user about the whole supported language list.
+This callback function is implemented by the engine service user. Therefore, the engine developer does NOT have to implement this callback function.</p>
 </section>
 
 

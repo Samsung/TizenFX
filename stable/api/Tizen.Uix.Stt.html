@@ -11,7 +11,7 @@
     <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -83,6 +83,38 @@
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
+    <h3 id="classes">
+Classes
+</h3>
+      <h4><a class="xref" href="Tizen.Uix.Stt.DefaultLanguageChangedEventArgs.html">DefaultLanguageChangedEventArgs</a></h4>
+      <section><p>This class holds information about the DefaultLanguageChanged event.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.Stt.EngineChangedEventArgs.html">EngineChangedEventArgs</a></h4>
+      <section><p>This class holds information related to the EngineChanged event.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.Stt.ErrorOccurredEventArgs.html">ErrorOccurredEventArgs</a></h4>
+      <section><p>This class holds information related to the STT ErrorOccurred event.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.Stt.RecognitionResultEventArgs.html">RecognitionResultEventArgs</a></h4>
+      <section><p>The recognition result from the engine.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.Stt.ResultTime.html">ResultTime</a></h4>
+      <section><p>This class represents the result of recognition result from the engine.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.Stt.StateChangedEventArgs.html">StateChangedEventArgs</a></h4>
+      <section><p>This class holds information related to the STT StateChanged event.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.Stt.SttClient.html">SttClient</a></h4>
+      <section><p>A main function of Speech-To-Text (below STT) API recognizes sound data recorded by users.
+After choosing a language, the applications will start recording and recognizing.
+After recording, the applications will receive the recognized result.
+The STT has a client-server for the service of multi-applications.
+The STT service always works in the background as a server. If the service is not working, client library will invoke it and the client will communicate with it.
+The service has engines and a recorder, so that the client does not have the recorder itself. Only the client request commands to the STT service for using STT.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Uix.Stt.SupportedEngine.html">SupportedEngine</a></h4>
+      <section><p>This class provides the information related to STT engine.</p>
+</section>
     <h3 id="enums">
 Enums
 </h3>

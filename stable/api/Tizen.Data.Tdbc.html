@@ -11,7 +11,7 @@
     <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -95,6 +95,24 @@ DriverManager.RegisterDriver(&quot;Tizen.Data.Tdbc.Driver.Sqlite&quot;);
 var conn = DriverManager.GetConnection(new Uri(&quot;tdbc://localhost/sqlite_test.db?mode=rwc&quot;));
 </code></pre>
 </div>
+    <h3 id="classes">
+Classes
+</h3>
+      <h4><a class="xref" href="Tizen.Data.Tdbc.ConnectionUriBuilder.html">ConnectionUriBuilder</a></h4>
+      <section><p>Provides a simple way to create and manage the contents of connection uri used by the Connection class.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Data.Tdbc.DriverManager.html">DriverManager</a></h4>
+      <section><p>DriverManager loads TDBC drivers and gets connections to databases.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Data.Tdbc.RecordChangedEventArgs.html">RecordChangedEventArgs</a></h4>
+      <section><p>RecordChangedEventArgs class. This class is an event arguments of the RecordChanged events.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Data.Tdbc.Sql.html">Sql</a></h4>
+      <section><p>Represents a SQL query string.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Data.Tdbc.TransactionGuard.html">TransactionGuard</a></h4>
+      <section><p>This class helps the operation of the statement in a transacted way.</p>
+</section>
     <h3 id="interfaces">
 Interfaces
 </h3>

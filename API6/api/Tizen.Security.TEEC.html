@@ -11,7 +11,7 @@
     <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -136,6 +136,40 @@ ses.Close();
 ctx.Dispose();
 </code></pre>
 </div>
+    <h3 id="classes">
+Classes
+</h3>
+      <h4><a class="xref" href="Tizen.Security.TEEC.BaseParameter-1.html">BaseParameter&lt;TEnum&gt;</a></h4>
+      <section><p>This type defines a template for the parameter types.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.TEEC.Context.html">Context</a></h4>
+      <section><p>This type denotes a TEE Context, the main logical container linking a Client Application with a particular TEE.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.TEEC.LoginMethod.html">LoginMethod</a></h4>
+      <section><p>This type denotes the Session Login Method used in OpenSession.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.TEEC.Parameter.html">Parameter</a></h4>
+      <section><p>This type defines the payload of either an open session operation or an invoke command operation. It is
+also used for cancelation of operations, which may be desirable even if no payload is passed.
+Parameters are used to exchange data between CA and TA.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.TEEC.RegisteredMemoryReference.html">RegisteredMemoryReference</a></h4>
+      <section><p>This type defines a memory reference that uses a pre-registered or pre-allocated shared memory block.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.TEEC.Session.html">Session</a></h4>
+      <section><p>This type denotes a TEE Session, the logical container linking a client application with a particular trusted application.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.TEEC.SharedMemory.html">SharedMemory</a></h4>
+      <section><p>This type denotes a shared memory block which has been either registered
+with the implementation or allocated by it.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.TEEC.TempMemoryReference.html">TempMemoryReference</a></h4>
+      <section><p>This type defines a temporary memory reference.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.TEEC.Value.html">Value</a></h4>
+      <section><p>This type defines a parameter that is not referencing the shared memory, but carries instead small raw data
+passed by a value.</p>
+</section>
     <h3 id="enums">
 Enums
 </h3>
