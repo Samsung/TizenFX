@@ -1,0 +1,90 @@
+{{!Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE file in the project root for full license information.}}
+<div class="entity">{{!Start of entity wrapper}}
+
+<div class="entity-header w-100 d-flex justify-content-between">
+  {{^obsolete}}
+  <h1 id="{{id}}" data-uid="{{uid}}" class="mt-0 text-break">{{>partials/entity-title}}</h1>
+  {{/obsolete}}
+  {{#obsolete}}
+  <h1 id="{{id}}" data-uid="{{uid}}" data-obsolete="{{obsolete}}" class="mt-0 text-break obsolete">{{>partials/entity-title}}</h1>
+  {{/obsolete}}
+  {{^_disableContribution}}
+    {{#sourceurl}}
+    <div class="contribution align-self-end">
+      <a href="{{sourceurl}}" class="contribution-link">{{__global.viewSource}}</a>
+    </div>
+    {{/sourceurl}}
+  {{/_disableContribution}}
+</div>
+<h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+<dl class="attribute-list"><dt>{{__global.namespace}}:</dt><dd id="parent-namespace">{{{namespace.specName.0.value}}}</dd></dl>
+<dl class="attribute-list"><dt>{{__global.assembly}}:</dt><dd>{{assemblies.0}}.dll</dd></dl>
+{{#sincetizen}}
+<dl class="attribute-list"><dt>{{__global.sincetizen}}:</dt><dd>{{{sincetizen}}}</dd></dl>
+{{/sincetizen}}
+{{#privlevel}}
+<dl class="attribute-list"><dt>{{__global.privlevel}}:</dt><dd>{{{privlevel}}}</dd></dl>
+{{/privlevel}}
+{{#privilege}}
+<dl class="attribute-list"><dt>{{__global.privilege}}:</dt><dd><span class="tz_multiple_items">{{{privilege}}}</span></dd></dl>
+{{/privilege}}
+{{#feature}}
+<dl class="attribute-list"><dt>{{__global.feature}}:</dt><dd><span class="tz_multiple_items">{{{feature}}}</span></dd></dl>
+{{/feature}}
+
+<div class="markdown level0 summary">{{{summary}}}</div>
+<div class="markdown level0 conceptual">{{{conceptual}}}</div>
+
+<div class="codewrapper">
+  <pre><code class="lang-{{_lang}} hljs">{{syntax.content.0.value}}</code></pre>
+</div>
+
+{{#inClass}}
+
+<dl class="attribute-list stack">
+  <dt>{{__global.inheritance}}</dt>
+  <dd>
+    <div class="pdl-holder">
+      {{#inheritance}}
+      <div class="pdl">{{{specName.0.value}}}</div>
+      {{/inheritance}}
+      <div><span class="xref">{{name.0.value}}</span></div>
+    </div>
+  </dd>
+</dl>
+
+{{#derivedClasses.0}}
+<dl class="attribute-list">
+  <dt>{{__global.derived}}</dt>
+  <dd>
+    {{#derivedClasses}}
+    <div class="pdl">{{{specName.0.value}}}</div>
+    {{/derivedClasses}}
+  </dd>
+</dl>
+{{/derivedClasses.0}}
+
+{{/inClass}}
+
+{{#implements.0}}
+<dl class="attribute-list">
+  <dt>{{__global.implements}}</dt>
+  <dd>
+    {{#implements}}
+    <div class="pdl">{{{specName.0.value}}}</div>
+    {{/implements}}
+  </dd>
+</dl>
+{{/implements.0}}
+
+{{#remarks}}
+<h5 id="{{id}}_remarks"><strong>{{__global.remarks}}</strong></h5>
+<div class="markdown level0 remarks">{{{remarks}}}</div>
+{{/remarks}}
+{{#example.0}}
+<h5 id="{{id}}_examples"><strong>{{__global.examples}}</strong></h5>
+{{/example.0}}
+{{#example}}
+{{{.}}}
+{{/example}}

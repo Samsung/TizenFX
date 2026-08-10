@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class MotionTransformIndex
- </title>
+    <title>Class MotionTransformIndex </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class MotionTransformIndex
- ">
+    <meta name="title" content="Class MotionTransformIndex ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API13">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Scene3D.MotionTransformIndex">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 MotionTransformIndex
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L44" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L44" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,14 +60,14 @@ MotionTransformIndex
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Scene3D.html">Scene3D</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Scene3D.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Specialized <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> to control transform.
+  <div class="markdown level0 summary"><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">Specialized <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> to control transform.
 It will be used when app developer doesn't care about Property index list,
 but want to change the transform properties anyway fast enough.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MotionTransformIndex : MotionIndex, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang- hljs">public class MotionTransformIndex : MotionIndex, INotifyPropertyChanged, IDisposable</code></pre>
   </div>
 
 
@@ -76,9 +75,9 @@ but want to change the transform properties anyway fast enough.</p>
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+        <div class="pdl"><span class="xref">BindableObject</span></div>
+        <div class="pdl"><span class="xref">Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a></div>
         <div><span class="xref">MotionTransformIndex</span></div>
@@ -91,20 +90,20 @@ but want to change the transform properties anyway fast enough.</p>
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
 
   <h5 id="Tizen_NUI_Scene3D_MotionTransformIndex_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>Each TransformTypes has their own matched <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a> type.</p>
+  <div class="markdown level0 remarks"><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">Each TransformTypes has their own matched <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a> type.</p>
 </div>
   <h5 id="Tizen_NUI_Scene3D_MotionTransformIndex_examples"><strong>Examples</strong></h5>
-  <pre><code>MotionTransformIndex position = new MotionTransformIndex(new PropertyKey(&quot;nodeName&quot;), MotionTransformIndex.TransformTypes.Position);
+  <pre><code class="lang-csharp">MotionTransformIndex position = new MotionTransformIndex(new PropertyKey("nodeName"), MotionTransformIndex.TransformTypes.Position);
 
 // We can change the property later.
 MotionTransformIndex orientation = new MotionTransformIndex();
-orientation.ModelNodeId = new PropertyKey(&quot;nodeName&quot;);
+orientation.ModelNodeId = new PropertyKey("nodeName");
 orientation.TransformType = MotionTransformIndex.TransformTypes.Orientation;</code></pre>
 
 
@@ -114,40 +113,37 @@ orientation.TransformType = MotionTransformIndex.TransformTypes.Orientation;</co
   <a id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor_" data-uid="Tizen.NUI.Scene3D.MotionTransformIndex.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L117">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L117">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor" data-uid="Tizen.NUI.Scene3D.MotionTransformIndex.#ctor">MotionTransformIndex()</h4>
     <section>
-    <p>Create an initialized motion transform index.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">Create an initialized motion transform index.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MotionTransformIndex()</code></pre>
+    <pre><code class="lang- hljs">public MotionTransformIndex()</code></pre>
   </div>
-  <h5 id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Each TransformTypes has their own matched <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a> type.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor_" data-uid="Tizen.NUI.Scene3D.MotionTransformIndex.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L139">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L139">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor_System_String_Tizen_NUI_Scene3D_MotionTransformIndex_TransformTypes_" data-uid="Tizen.NUI.Scene3D.MotionTransformIndex.#ctor(System.String,Tizen.NUI.Scene3D.MotionTransformIndex.TransformTypes)">MotionTransformIndex(string, TransformTypes)</h4>
     <section>
-    <p>Create an initialized motion transform index with given node string ID, and transform type.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">Create an initialized motion transform index with given node string ID, and transform type.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MotionTransformIndex(string modelNodeName, MotionTransformIndex.TransformTypes transformType)</code></pre>
+    <pre><code class="lang- hljs">public MotionTransformIndex(string modelNodeName, MotionTransformIndex.TransformTypes transformType)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -160,40 +156,37 @@ orientation.TransformType = MotionTransformIndex.TransformTypes.Orientation;</co
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">modelNodeName</span></td>
-        <td><p>Node string ID for this motion index</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">Node string ID for this motion index</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a>.<a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.TransformTypes.html">TransformTypes</a></td>
         <td><span class="parametername">transformType</span></td>
-        <td><p>Transform property type for this motion index</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">Transform property type for this motion index</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor_System_String_Tizen_NUI_Scene3D_MotionTransformIndex_TransformTypes__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Each TransformTypes has their own matched <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a> type.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor_" data-uid="Tizen.NUI.Scene3D.MotionTransformIndex.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L128">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L128">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor_Tizen_NUI_PropertyKey_Tizen_NUI_Scene3D_MotionTransformIndex_TransformTypes_" data-uid="Tizen.NUI.Scene3D.MotionTransformIndex.#ctor(Tizen.NUI.PropertyKey,Tizen.NUI.Scene3D.MotionTransformIndex.TransformTypes)">MotionTransformIndex(PropertyKey, TransformTypes)</h4>
     <section>
-    <p>Create an initialized motion transform index with given node ID and transform type.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">Create an initialized motion transform index with given node ID and transform type.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MotionTransformIndex(PropertyKey modelNodeId, MotionTransformIndex.TransformTypes transformType)</code></pre>
+    <pre><code class="lang- hljs">public MotionTransformIndex(PropertyKey modelNodeId, MotionTransformIndex.TransformTypes transformType)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -208,38 +201,35 @@ orientation.TransformType = MotionTransformIndex.TransformTypes.Orientation;</co
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyKey.html">PropertyKey</a></td>
         <td><span class="parametername">modelNodeId</span></td>
-        <td><p>Node ID for this motion index</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">Node ID for this motion index</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a>.<a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.TransformTypes.html">TransformTypes</a></td>
         <td><span class="parametername">transformType</span></td>
-        <td><p>Transform property type for this motion index</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">Transform property type for this motion index</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor_Tizen_NUI_PropertyKey_Tizen_NUI_Scene3D_MotionTransformIndex_TransformTypes__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Each TransformTypes has their own matched <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a> type.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor_" data-uid="Tizen.NUI.Scene3D.MotionTransformIndex.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L149">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L149">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor_Tizen_NUI_Scene3D_MotionTransformIndex_" data-uid="Tizen.NUI.Scene3D.MotionTransformIndex.#ctor(Tizen.NUI.Scene3D.MotionTransformIndex)">MotionTransformIndex(MotionTransformIndex)</h4>
     <section>
-    <p>Copy constructor.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">Copy constructor.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MotionTransformIndex(MotionTransformIndex motionTransformIndex)</code></pre>
+    <pre><code class="lang- hljs">public MotionTransformIndex(MotionTransformIndex motionTransformIndex)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -254,14 +244,11 @@ orientation.TransformType = MotionTransformIndex.TransformTypes.Orientation;</co
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a></td>
         <td><span class="parametername">motionTransformIndex</span></td>
-        <td><p>Source object to copy.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">Source object to copy.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionTransformIndex__ctor_Tizen_NUI_Scene3D_MotionTransformIndex__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Each TransformTypes has their own matched <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a> type.</p>
-</div>
 
 
   <h2 id="properties">Properties
@@ -270,18 +257,18 @@ orientation.TransformType = MotionTransformIndex.TransformTypes.Orientation;</co
   <a id="Tizen_NUI_Scene3D_MotionTransformIndex_TransformType_" data-uid="Tizen.NUI.Scene3D.MotionTransformIndex.TransformType*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L229">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionTransformIndex.cs/#L229">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionTransformIndex_TransformType" data-uid="Tizen.NUI.Scene3D.MotionTransformIndex.TransformType">TransformType</h4>
     <section>
-    <p>The transform property type what this MotionIndex want to control.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionTransformIndex.yml" sourcestartlinenumber="1">The transform property type what this MotionIndex want to control.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MotionTransformIndex.TransformTypes TransformType { get; set; }</code></pre>
+    <pre><code class="lang- hljs">public MotionTransformIndex.TransformTypes TransformType { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -298,26 +285,24 @@ orientation.TransformType = MotionTransformIndex.TransformTypes.Orientation;</co
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionTransformIndex_TransformType_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Each TransformTypes has their own matched <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a> type.</p>
-</div>
 
 
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
   </div>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="PWM ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="internals">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -43,65 +43,66 @@
             <div id="printableArea" class="md-content-wrapper">
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="">
-<h1 id="pwm">PWM</h1>
+<h1 id="pwm" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="1">PWM</h1>
 
-<p><a href="https://en.wikipedia.org/wiki/Pulse-width_modulation">PWM</a> (Pulse-Width Modulation) is a programmable interface that allows you to, for example, control motor speed or change light brightness.</p>
-<p>Peripherals that support PWM are controlled by the current strength. To modulate the current, the voltage needs to be modulated. The voltage is proportional to the intensity of the current.</p>
-<p>To modulate the voltage, you must set the duty cycle and polarity:</p>
-<ul>
-<li>The period is a constant interval at which the pulse repeats.</li>
-<li>The duty cycle is the constant time within 1 period in which a signal is active.</li>
-<li>A &quot;polarity high&quot; signal starts high for the duration of the duty cycle and goes low for the remainder of the period. Conversely, a &quot;polarity low&quot; signal starts low for the duration of the duty cycle and goes high for the remainder of the period.</li>
-<li>The pulse repeats if repetition has been enabled.</li>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="3"><a href="https://en.wikipedia.org/wiki/Pulse-width_modulation" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="3">PWM</a> (Pulse-Width Modulation) is a programmable interface that allows you to, for example, control motor speed or change light brightness.</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="5">Peripherals that support PWM are controlled by the current strength. To modulate the current, the voltage needs to be modulated. The voltage is proportional to the intensity of the current.</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="7">To modulate the voltage, you must set the duty cycle and polarity:</p>
+<ul sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="9">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="9">The period is a constant interval at which the pulse repeats.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="10">The duty cycle is the constant time within 1 period in which a signal is active.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="11">A &quot;polarity high&quot; signal starts high for the duration of the duty cycle and goes low for the remainder of the period. Conversely, a &quot;polarity low&quot; signal starts low for the duration of the duty cycle and goes high for the remainder of the period.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="12">The pulse repeats if repetition has been enabled.</li>
 </ul>
-<p><strong>Figure: Duty cycle</strong></p>
-<p><img src="media/peri_api_duty_cycle.png" alt="Duty cycle"></p>
-<p>For example, if the period is 10,000,000 nanoseconds and the polarity high duty cycle is 7,000,000 nanoseconds, the average voltage is at 70%.</p>
-<p><strong>Figure: Average voltage per duty cycle</strong></p>
-<p><img src="media/peri_api_duty_cycle_voltage.png" alt="Average voltage per duty cycle"></p>
-<h2 id="opening-and-closing-a-handle">Opening and Closing a Handle</h2>
-<p>To open and close a handle:</p>
-<ol>
-<li><p>To open a PWM handle, create the <code>PwmPin()</code> object:</p>
-<pre><code class="lang-csharp">int chip = 0;
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="14"><strong sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="14">Figure: Duty cycle</strong></p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="16"><img src="media/peri_api_duty_cycle.png" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="16" alt="Duty cycle"></p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="18">For example, if the period is 10,000,000 nanoseconds and the polarity high duty cycle is 7,000,000 nanoseconds, the average voltage is at 70%.</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="20"><strong sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="20">Figure: Average voltage per duty cycle</strong></p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="22"><img src="media/peri_api_duty_cycle_voltage.png" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="22" alt="Average voltage per duty cycle"></p>
+<h2 id="opening-and-closing-a-handle" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="24">Opening and Closing a Handle</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="26">To open and close a handle:</p>
+<ol sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="28">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="28"><p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="28">To open a PWM handle, create the <code sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="28">PwmPin()</code> object:</p>
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="30">int chip = 0;
 int pin = 2;
 PwmPin pwm = new PwmPin(chip, pin);
 </code></pre>
-<blockquote>
-<p><strong>Note</strong></p>
-<p>For more information on the pin names and locations, see <a href="peripheral.html#protocol">Supported Protocols</a>.</p>
+<blockquote sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="36">
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="36"><strong sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="36">Note</strong></p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="38">For more information on the pin names and locations, see <a href="peripheral.html#protocol" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="38">Supported Protocols</a>.</p>
 </blockquote>
 </li>
-<li><p>To close a PWM handle that is no longer used, use the <code>PwmPin.Close()</code> method:</p>
-<pre><code class="lang-csharp">pwm.Close();
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="40"><p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="40">To close a PWM handle that is no longer used, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="40">PwmPin.Close()</code> method:</p>
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="42">pwm.Close();
 </code></pre>
 </li>
 </ol>
-<h2 id="setting-the-period">Setting the Period</h2>
-<p>To set the period, use the <code>PwmPin.Period</code> property.</p>
-<p>The following example sets the period to 20 milliseconds. The unit is nanoseconds.</p>
-<pre><code class="lang-csharp">uint period = 20000000;
+<h2 id="setting-the-period" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="46">Setting the Period</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="48">To set the period, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="48">PwmPin.Period</code> property.</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="50">The following example sets the period to 20 milliseconds. The unit is nanoseconds.</p>
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="52">uint period = 20000000;
 pwm.Period = period;
 </code></pre>
-<h2 id="setting-the-duty-cycle">Setting the Duty Cycle</h2>
-<p>To set the duty cycle, use the <code>PwmPin.DutyCycle</code> property.</p>
-<p>The following example sets the duty cycle to 2 milliseconds. The unit is nanoseconds.</p>
-<pre><code class="lang-csharp">uint duty_cycle = 2000000;
+<h2 id="setting-the-duty-cycle" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="57">Setting the Duty Cycle</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="59">To set the duty cycle, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="59">PwmPin.DutyCycle</code> property.</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="61">The following example sets the duty cycle to 2 milliseconds. The unit is nanoseconds.</p>
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="63">uint duty_cycle = 2000000;
 pwm.DutyCycle = duty_cycle;
 </code></pre>
-<h2 id="setting-the-polarity">Setting the Polarity</h2>
-<p>To set the polarity, use the <code>PwmPin.Polarity()</code> method with 1 of the following <code>PwmPulsePolarity</code> types:</p>
-<ul>
-<li><code>PwmPulsePolarity.ActiveHigh</code>: Polarity is high.</li>
-<li><code>PwmPulsePolarity.ActiveLow</code>: Polarity is low.</li>
+<h2 id="setting-the-polarity" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="68">Setting the Polarity</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="70">To set the polarity, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="70">PwmPin.Polarity()</code> method with 1 of the following <code sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="70">PwmPulsePolarity</code> types:</p>
+<ul sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="72">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="72"><code sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="72">PwmPulsePolarity.ActiveHigh</code>: Polarity is high.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="73"><code sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="73">PwmPulsePolarity.ActiveLow</code>: Polarity is low.</li>
 </ul>
-<pre><code class="lang-csharp">pwm.PwmPulsePolarity = PwmPulsePolarity.ActiveHigh;
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="75">pwm.PwmPulsePolarity = PwmPulsePolarity.ActiveHigh;
 </code></pre>
-<h2 id="enabling-repetition">Enabling Repetition</h2>
-<p>To enable repetition, use the <code>PwmPin.Enable()</code> method:</p>
-<pre><code class="lang-csharp">bool enable = true;
+<h2 id="enabling-repetition" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="79">Enabling Repetition</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="81">To enable repetition, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="81">PwmPin.Enable()</code> method:</p>
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-pwm.md" sourcestartlinenumber="83">bool enable = true;
 pwm.Enable = enable;
 </code></pre>
+
 </section>
             </div>
           </main>
@@ -109,7 +110,7 @@ pwm.Enable = enable;
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

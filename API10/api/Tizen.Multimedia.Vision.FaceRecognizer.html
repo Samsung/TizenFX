@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class FaceRecognizer
- </title>
+    <title>Class FaceRecognizer </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class FaceRecognizer
- ">
+    <meta name="title" content="Class FaceRecognizer ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API10">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Vision.FaceRecognizer">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 FaceRecognizer
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L28" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L28" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,12 +60,12 @@ FaceRecognizer
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Vision.html">Vision</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Vision.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides the ability to recognize faces, face expressions, and eye condition on image sources.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">Provides the ability to recognize faces, face expressions, and eye condition on image sources.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class FaceRecognizer</code></pre>
+    <pre><code class="lang- hljs">public static class FaceRecognizer</code></pre>
   </div>
 
 
@@ -74,7 +73,7 @@ FaceRecognizer
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">FaceRecognizer</span></div>
       </div>
     </dd>
@@ -90,11 +89,201 @@ FaceRecognizer
   <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L126">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L47">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_FaceRecognitionModel_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.FaceRecognitionModel)">RecognizeAsync(MediaVisionSource, FaceRecognitionModel)</h4>
+    <section>
+    <p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">Performs face recognition on the source with <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a>.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">public static Task&lt;FaceRecognitionResult&gt; RecognizeAsync(MediaVisionSource source, FaceRecognitionModel recognitionModel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a> of the media to recognize faces for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a></td>
+        <td><span class="parametername">recognitionModel</span></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a> to be used for recognition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionResult.html">FaceRecognitionResult</a>&gt;</td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">A task that represents the asynchronous recognition operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> is null.<br>
+-or-<br>
+<code class="paramref">recognitionModel</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">recognitionModel</code> is untrained model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L70">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_FaceRecognitionModel_Tizen_Multimedia_Rectangle_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.FaceRecognitionModel,Tizen.Multimedia.Rectangle)">RecognizeAsync(MediaVisionSource, FaceRecognitionModel, Rectangle)</h4>
+    <section>
+    <p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">Performs face recognition on the source with <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> and a bounding box.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">public static Task&lt;FaceRecognitionResult&gt; RecognizeAsync(MediaVisionSource source, FaceRecognitionModel recognitionModel, Rectangle bound)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a> of the media to recognize faces for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a></td>
+        <td><span class="parametername">recognitionModel</span></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> to be used for recognition.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">bound</span></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">Rectangular box bounding face image on the source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionResult.html">FaceRecognitionResult</a>&gt;</td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">A task that represents the asynchronous recognition operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> is null.<br>
+-or-<br>
+<code class="paramref">recognitionModel</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">recognitionModel</code> is untrained model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L126">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_FaceRecognitionModel_Tizen_Multimedia_Rectangle_Tizen_Multimedia_Vision_FaceRecognitionConfiguration_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.FaceRecognitionModel,Tizen.Multimedia.Rectangle,Tizen.Multimedia.Vision.FaceRecognitionConfiguration)">RecognizeAsync(MediaVisionSource, FaceRecognitionModel, Rectangle, FaceRecognitionConfiguration)</h4>
     <section>
-    <p>Performs face recognition on the source with <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a>, <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a>
+    <p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">Performs face recognition on the source with <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a>, <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a>
 and a bounding box.</p>
 
     </section>
@@ -102,7 +291,7 @@ and a bounding box.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;FaceRecognitionResult&gt; RecognizeAsync(MediaVisionSource source, FaceRecognitionModel recognitionModel, Rectangle bound, FaceRecognitionConfiguration config)</code></pre>
+    <pre><code class="lang- hljs">public static Task&lt;FaceRecognitionResult&gt; RecognizeAsync(MediaVisionSource source, FaceRecognitionModel recognitionModel, Rectangle bound, FaceRecognitionConfiguration config)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -117,25 +306,25 @@ and a bounding box.</p>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
         <td><span class="parametername">source</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a> of the media to recognize faces for.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a> of the media to recognize faces for.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a></td>
         <td><span class="parametername">recognitionModel</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> to be used for recognition.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> to be used for recognition.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
         <td><span class="parametername">bound</span></td>
-        <td><p>Rectangular box bounding face image on the source.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">Rectangular box bounding face image on the source.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a></td>
         <td><span class="parametername">config</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a> used for recognition. This value can be null.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a> used for recognition. This value can be null.</p>
 </td>
       </tr>
     </tbody>
@@ -150,8 +339,8 @@ and a bounding box.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionResult.html">FaceRecognitionResult</a>&gt;</td>
-        <td><p>A task that represents the asynchronous recognition operation.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionResult.html">FaceRecognitionResult</a>&gt;</td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">A task that represents the asynchronous recognition operation.</p>
 </td>
       </tr>
     </tbody>
@@ -166,27 +355,27 @@ and a bounding box.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.<br>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> is null.<br>
 -or-<br>
-<code data-dev-comment-type="paramref" class="paramref">recognitionModel</code> is null.</p>
+<code class="paramref">recognitionModel</code> is null.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The feature is not supported.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.<br>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> has already been disposed of.<br>
 -or-<br>
-<code data-dev-comment-type="paramref" class="paramref">config</code> has already been disposed of.</p>
+<code class="paramref">config</code> has already been disposed of.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">recognitionModel</code> is untrained model.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">recognitionModel</code> is untrained model.</p>
 </td>
       </tr>
     </tbody>
@@ -197,116 +386,18 @@ and a bounding box.</p>
   <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L70">View Source</a>
-    </span>
-    <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_FaceRecognitionModel_Tizen_Multimedia_Rectangle_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.FaceRecognitionModel,Tizen.Multimedia.Rectangle)">RecognizeAsync(MediaVisionSource, FaceRecognitionModel, Rectangle)</h4>
-    <section>
-    <p>Performs face recognition on the source with <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> and a bounding box.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;FaceRecognitionResult&gt; RecognizeAsync(MediaVisionSource source, FaceRecognitionModel recognitionModel, Rectangle bound)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
-        <td><span class="parametername">source</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a> of the media to recognize faces for.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a></td>
-        <td><span class="parametername">recognitionModel</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> to be used for recognition.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
-        <td><span class="parametername">bound</span></td>
-        <td><p>Rectangular box bounding face image on the source.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionResult.html">FaceRecognitionResult</a>&gt;</td>
-        <td><p>A task that represents the asynchronous recognition operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">recognitionModel</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">recognitionModel</code> is untrained model.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L97">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L97">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_FaceRecognitionModel_Tizen_Multimedia_Vision_FaceRecognitionConfiguration_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.FaceRecognitionModel,Tizen.Multimedia.Vision.FaceRecognitionConfiguration)">RecognizeAsync(MediaVisionSource, FaceRecognitionModel, FaceRecognitionConfiguration)</h4>
     <section>
-    <p>Performs face recognition on the source with <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> and <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a>.</p>
+    <p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">Performs face recognition on the source with <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> and <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a>.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;FaceRecognitionResult&gt; RecognizeAsync(MediaVisionSource source, FaceRecognitionModel recognitionModel, FaceRecognitionConfiguration config)</code></pre>
+    <pre><code class="lang- hljs">public static Task&lt;FaceRecognitionResult&gt; RecognizeAsync(MediaVisionSource source, FaceRecognitionModel recognitionModel, FaceRecognitionConfiguration config)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -321,19 +412,19 @@ and a bounding box.</p>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
         <td><span class="parametername">source</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a> of the media to recognize faces for.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a> of the media to recognize faces for.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a></td>
         <td><span class="parametername">recognitionModel</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> to be used for recognition.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> to be used for recognition.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a></td>
         <td><span class="parametername">config</span></td>
-        <td><p>The configuration used for recognition. This value can be null.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The configuration used for recognition. This value can be null.</p>
 </td>
       </tr>
     </tbody>
@@ -348,8 +439,8 @@ and a bounding box.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionResult.html">FaceRecognitionResult</a>&gt;</td>
-        <td><p>A task that represents the asynchronous recognition operation.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionResult.html">FaceRecognitionResult</a>&gt;</td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">A task that represents the asynchronous recognition operation.</p>
 </td>
       </tr>
     </tbody>
@@ -364,119 +455,27 @@ and a bounding box.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.<br>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> is null.<br>
 -or-<br>
-<code data-dev-comment-type="paramref" class="paramref">recognitionModel</code> is null.</p>
+<code class="paramref">recognitionModel</code> is null.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The feature is not supported.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.<br>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> has already been disposed of.<br>
 -or-<br>
-<code data-dev-comment-type="paramref" class="paramref">config</code> has already been disposed of.</p>
+<code class="paramref">config</code> has already been disposed of.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">recognitionModel</code> is untrained model.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L47">View Source</a>
-    </span>
-    <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_FaceRecognitionModel_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.FaceRecognitionModel)">RecognizeAsync(MediaVisionSource, FaceRecognitionModel)</h4>
-    <section>
-    <p>Performs face recognition on the source with <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a>.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;FaceRecognitionResult&gt; RecognizeAsync(MediaVisionSource source, FaceRecognitionModel recognitionModel)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
-        <td><span class="parametername">source</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a> of the media to recognize faces for.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a></td>
-        <td><span class="parametername">recognitionModel</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a> to be used for recognition.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionResult.html">FaceRecognitionResult</a>&gt;</td>
-        <td><p>A task that represents the asynchronous recognition operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">recognitionModel</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">recognitionModel</code> is untrained model.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">recognitionModel</code> is untrained model.</p>
 </td>
       </tr>
     </tbody>
@@ -487,111 +486,18 @@ and a bounding box.</p>
   <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeEyeConditionAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeEyeConditionAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L241">View Source</a>
-    </span>
-    <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeEyeConditionAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Rectangle_Tizen_Multimedia_Vision_FaceRecognitionConfiguration_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeEyeConditionAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Rectangle,Tizen.Multimedia.Vision.FaceRecognitionConfiguration)">RecognizeEyeConditionAsync(MediaVisionSource, Rectangle, FaceRecognitionConfiguration)</h4>
-    <section>
-    <p>Determines eye-blink condition on the media source.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;EyeCondition&gt; RecognizeEyeConditionAsync(MediaVisionSource source, Rectangle bound, FaceRecognitionConfiguration config)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
-        <td><span class="parametername">source</span></td>
-        <td><p>The source of the media to recognize eye-blink condition for.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
-        <td><span class="parametername">bound</span></td>
-        <td><p>The bounding the face at the source.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a></td>
-        <td><span class="parametername">config</span></td>
-        <td><p>The configuration used for eye-blink condition recognition. This value can be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.EyeCondition.html">EyeCondition</a>&gt;</td>
-        <td><p>A task that represents the asynchronous recognition operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">config</code> has already been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeEyeConditionAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeEyeConditionAsync*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L219">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L219">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeEyeConditionAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Rectangle_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeEyeConditionAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Rectangle)">RecognizeEyeConditionAsync(MediaVisionSource, Rectangle)</h4>
     <section>
-    <p>Determines eye-blink condition on media source.</p>
+    <p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">Determines eye-blink condition on media source.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;EyeCondition&gt; RecognizeEyeConditionAsync(MediaVisionSource source, Rectangle bound)</code></pre>
+    <pre><code class="lang- hljs">public static Task&lt;EyeCondition&gt; RecognizeEyeConditionAsync(MediaVisionSource source, Rectangle bound)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -606,13 +512,13 @@ and a bounding box.</p>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
         <td><span class="parametername">source</span></td>
-        <td><p>The source of the media to recognize eye-blink condition for.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The source of the media to recognize eye-blink condition for.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
         <td><span class="parametername">bound</span></td>
-        <td><p>The bounding the face at the source.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The bounding the face at the source.</p>
 </td>
       </tr>
     </tbody>
@@ -627,8 +533,8 @@ and a bounding box.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.EyeCondition.html">EyeCondition</a>&gt;</td>
-        <td><p>A task that represents the asynchronous recognition operation.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.EyeCondition.html">EyeCondition</a>&gt;</td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">A task that represents the asynchronous recognition operation.</p>
 </td>
       </tr>
     </tbody>
@@ -643,18 +549,18 @@ and a bounding box.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> is null.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> has already been disposed of.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -662,21 +568,21 @@ and a bounding box.</p>
 
 
 
-  <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeFacialExpressionAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeFacialExpressionAsync*"></a>
+  <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeEyeConditionAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeEyeConditionAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L303">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L241">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeFacialExpressionAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Rectangle_Tizen_Multimedia_Vision_FaceRecognitionConfiguration_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeFacialExpressionAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Rectangle,Tizen.Multimedia.Vision.FaceRecognitionConfiguration)">RecognizeFacialExpressionAsync(MediaVisionSource, Rectangle, FaceRecognitionConfiguration)</h4>
+    <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeEyeConditionAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Rectangle_Tizen_Multimedia_Vision_FaceRecognitionConfiguration_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeEyeConditionAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Rectangle,Tizen.Multimedia.Vision.FaceRecognitionConfiguration)">RecognizeEyeConditionAsync(MediaVisionSource, Rectangle, FaceRecognitionConfiguration)</h4>
     <section>
-    <p>Determines facial expression on media source.</p>
+    <p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">Determines eye-blink condition on the media source.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;FacialExpression&gt; RecognizeFacialExpressionAsync(MediaVisionSource source, Rectangle bound, FaceRecognitionConfiguration config)</code></pre>
+    <pre><code class="lang- hljs">public static Task&lt;EyeCondition&gt; RecognizeEyeConditionAsync(MediaVisionSource source, Rectangle bound, FaceRecognitionConfiguration config)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -691,19 +597,19 @@ and a bounding box.</p>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
         <td><span class="parametername">source</span></td>
-        <td><p>The source of the media to recognize facial expression for.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The source of the media to recognize eye-blink condition for.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
         <td><span class="parametername">bound</span></td>
-        <td><p>The location bounding the face at the source.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The bounding the face at the source.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a></td>
         <td><span class="parametername">config</span></td>
-        <td><p>The configuration used for expression recognition. This value can be null.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The configuration used for eye-blink condition recognition. This value can be null.</p>
 </td>
       </tr>
     </tbody>
@@ -718,8 +624,8 @@ and a bounding box.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FacialExpression.html">FacialExpression</a>&gt;</td>
-        <td><p>A task that represents the asynchronous recognition operation.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.EyeCondition.html">EyeCondition</a>&gt;</td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">A task that represents the asynchronous recognition operation.</p>
 </td>
       </tr>
     </tbody>
@@ -734,20 +640,20 @@ and a bounding box.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> is null.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.<br>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> has already been disposed of.<br>
 -or-<br>
-<code data-dev-comment-type="paramref" class="paramref">config</code> has already been disposed of.</p>
+<code class="paramref">config</code> has already been disposed of.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -758,18 +664,18 @@ and a bounding box.</p>
   <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeFacialExpressionAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeFacialExpressionAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L281">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L281">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeFacialExpressionAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Rectangle_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeFacialExpressionAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Rectangle)">RecognizeFacialExpressionAsync(MediaVisionSource, Rectangle)</h4>
     <section>
-    <p>Determines facial expression on media source.</p>
+    <p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">Determines facial expression on media source.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;FacialExpression&gt; RecognizeFacialExpressionAsync(MediaVisionSource source, Rectangle bound)</code></pre>
+    <pre><code class="lang- hljs">public static Task&lt;FacialExpression&gt; RecognizeFacialExpressionAsync(MediaVisionSource source, Rectangle bound)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -784,13 +690,13 @@ and a bounding box.</p>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
         <td><span class="parametername">source</span></td>
-        <td><p>The source of the media to recognize facial expression for.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The source of the media to recognize facial expression for.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
         <td><span class="parametername">bound</span></td>
-        <td><p>The location bounding the face at the source.</p>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The location bounding the face at the source.</p>
 </td>
       </tr>
     </tbody>
@@ -805,8 +711,8 @@ and a bounding box.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FacialExpression.html">FacialExpression</a>&gt;</td>
-        <td><p>A task that represents the asynchronous recognition operation.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FacialExpression.html">FacialExpression</a>&gt;</td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">A task that represents the asynchronous recognition operation.</p>
 </td>
       </tr>
     </tbody>
@@ -821,32 +727,126 @@ and a bounding box.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> is null.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> has already been disposed of.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The feature is not supported.</p>
 </td>
       </tr>
     </tbody>
   </table>
 
 
-  </div></section>
+
+  <a id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeFacialExpressionAsync_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeFacialExpressionAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/FaceRecognizer.cs/#L303">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Vision_FaceRecognizer_RecognizeFacialExpressionAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Rectangle_Tizen_Multimedia_Vision_FaceRecognitionConfiguration_" data-uid="Tizen.Multimedia.Vision.FaceRecognizer.RecognizeFacialExpressionAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Rectangle,Tizen.Multimedia.Vision.FaceRecognitionConfiguration)">RecognizeFacialExpressionAsync(MediaVisionSource, Rectangle, FaceRecognitionConfiguration)</h4>
+    <section>
+    <p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">Determines facial expression on media source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">public static Task&lt;FacialExpression&gt; RecognizeFacialExpressionAsync(MediaVisionSource source, Rectangle bound, FaceRecognitionConfiguration config)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The source of the media to recognize facial expression for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">bound</span></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The location bounding the face at the source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionConfiguration.html">FaceRecognitionConfiguration</a></td>
+        <td><span class="parametername">config</span></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The configuration used for expression recognition. This value can be null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FacialExpression.html">FacialExpression</a>&gt;</td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">A task that represents the asynchronous recognition operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1"><code class="paramref">source</code> has already been disposed of.<br>
+-or-<br>
+<code class="paramref">config</code> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API10/api/Tizen.Multimedia.Vision.FaceRecognizer.yml" sourcestartlinenumber="1">The feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

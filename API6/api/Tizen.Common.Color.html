@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Struct Color
- </title>
+    <title>Struct Color </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Struct Color
- ">
+    <meta name="title" content="Struct Color ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API6">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Common.Color">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 Color
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L25" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L25" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,19 +60,19 @@ Color
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Common.html">Common</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Structure that represents a color as RGBA.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Structure that represents a color as RGBA.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct Color : IEquatable&lt;Color&gt;</code></pre>
+    <pre><code class="lang- hljs">public struct Color : IEquatable&lt;Color&gt;</code></pre>
   </div>
 
 
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IEquatable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Common.Color.html">Color</a>&gt;</div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Tizen.Common.Color.html">Color</a>&gt;</div>
     </dd>
   </dl>
 
@@ -84,18 +83,18 @@ Color
   <a id="Tizen_Common_Color__ctor_" data-uid="Tizen.Common.Color.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L151">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L172">View Source</a>
     </span>
-    <h4 id="Tizen_Common_Color__ctor_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Common.Color.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">Color(int, int, int, int)</h4>
+    <h4 id="Tizen_Common_Color__ctor_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Common.Color.#ctor(System.Int32,System.Int32,System.Int32)">Color(int, int, int)</h4>
     <section>
-    <p>Initiates the new color with R,G,B,A components.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Initiates the new color with R,G,B components. The Alpha value will be 255 as default.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Color(int r, int g, int b, int a)</code></pre>
+    <pre><code class="lang- hljs">public Color(int r, int g, int b)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -108,27 +107,21 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">r</span></td>
-        <td><p>Red (0 ~ 255).</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Red (0 ~ 255).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">g</span></td>
-        <td><p>Green (0 ~ 255).</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Green (0 ~ 255).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">b</span></td>
-        <td><p>Blue (0 ~ 255).</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">a</span></td>
-        <td><p>Alpha (0 ~ 255).</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Blue (0 ~ 255).</p>
 </td>
       </tr>
     </tbody>
@@ -139,18 +132,18 @@ Color
   <a id="Tizen_Common_Color__ctor_" data-uid="Tizen.Common.Color.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L172">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L151">View Source</a>
     </span>
-    <h4 id="Tizen_Common_Color__ctor_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Common.Color.#ctor(System.Int32,System.Int32,System.Int32)">Color(int, int, int)</h4>
+    <h4 id="Tizen_Common_Color__ctor_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Common.Color.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">Color(int, int, int, int)</h4>
     <section>
-    <p>Initiates the new color with R,G,B components. The Alpha value will be 255 as default.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Initiates the new color with R,G,B,A components.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Color(int r, int g, int b)</code></pre>
+    <pre><code class="lang- hljs">public Color(int r, int g, int b, int a)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -163,21 +156,27 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">r</span></td>
-        <td><p>Red (0 ~ 255).</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Red (0 ~ 255).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">g</span></td>
-        <td><p>Green (0 ~ 255).</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Green (0 ~ 255).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">b</span></td>
-        <td><p>Blue (0 ~ 255).</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Blue (0 ~ 255).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Alpha (0 ~ 255).</p>
 </td>
       </tr>
     </tbody>
@@ -189,18 +188,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L43">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L43">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Aqua" data-uid="Tizen.Common.Color.Aqua">Aqua</h4>
     <section>
-    <p>Aqua color instance. Its RGB value is (0, 255, 255).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Aqua color instance. Its RGB value is (0, 255, 255).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Aqua</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Aqua</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -222,18 +221,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L49">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L49">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Black" data-uid="Tizen.Common.Color.Black">Black</h4>
     <section>
-    <p>Black color instance. Its RGB value is (0, 0, 0).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Black color instance. Its RGB value is (0, 0, 0).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Black</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Black</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -255,18 +254,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L55">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L55">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Blue" data-uid="Tizen.Common.Color.Blue">Blue</h4>
     <section>
-    <p>Blue color instance. Its RGB value is (0, 0, 255).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Blue color instance. Its RGB value is (0, 0, 255).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Blue</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Blue</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -288,18 +287,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L31">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L31">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Empty" data-uid="Tizen.Common.Color.Empty">Empty</h4>
     <section>
-    <p>Empty color instance. All components are 0.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Empty color instance. All components are 0.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Empty</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Empty</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -321,18 +320,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L61">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L61">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Fuchsia" data-uid="Tizen.Common.Color.Fuchsia">Fuchsia</h4>
     <section>
-    <p>Fuchsia color instance. Its RGB value is (255, 0, 255).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Fuchsia color instance. Its RGB value is (255, 0, 255).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Fuchsia</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Fuchsia</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -354,18 +353,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L67">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L67">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Gray" data-uid="Tizen.Common.Color.Gray">Gray</h4>
     <section>
-    <p>Gray color instance. Its RGB value is (128, 128, 128).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Gray color instance. Its RGB value is (128, 128, 128).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Gray</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Gray</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -387,18 +386,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L73">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L73">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Green" data-uid="Tizen.Common.Color.Green">Green</h4>
     <section>
-    <p>Green color instance. Its RGB value is (0, 128, 0).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Green color instance. Its RGB value is (0, 128, 0).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Green</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Green</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -420,18 +419,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L79">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L79">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Lime" data-uid="Tizen.Common.Color.Lime">Lime</h4>
     <section>
-    <p>Lime color instance. Its RGB value is (0, 255, 0).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Lime color instance. Its RGB value is (0, 255, 0).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Lime</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Lime</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -453,18 +452,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L85">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L85">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Maroon" data-uid="Tizen.Common.Color.Maroon">Maroon</h4>
     <section>
-    <p>Maroon color instance. Its RGB value is (128, 0, 0).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Maroon color instance. Its RGB value is (128, 0, 0).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Maroon</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Maroon</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -486,18 +485,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L91">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L91">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Navy" data-uid="Tizen.Common.Color.Navy">Navy</h4>
     <section>
-    <p>Navy color instance. Its RGB value is (0, 0, 128).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Navy color instance. Its RGB value is (0, 0, 128).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Navy</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Navy</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -519,18 +518,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L97">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L97">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Olive" data-uid="Tizen.Common.Color.Olive">Olive</h4>
     <section>
-    <p>Olive color instance. Its RGB value is (128, 128, 0).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Olive color instance. Its RGB value is (128, 128, 0).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Olive</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Olive</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -552,18 +551,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L109">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L109">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Pink" data-uid="Tizen.Common.Color.Pink">Pink</h4>
     <section>
-    <p>Pink color instance. Its RGB value is (255, 102, 255).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Pink color instance. Its RGB value is (255, 102, 255).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Pink</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Pink</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -585,18 +584,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L103">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L103">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Purple" data-uid="Tizen.Common.Color.Purple">Purple</h4>
     <section>
-    <p>Purple color instance. Its RGB value is (128, 0, 128).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Purple color instance. Its RGB value is (128, 0, 128).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Purple</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Purple</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -618,18 +617,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L115">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L115">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Red" data-uid="Tizen.Common.Color.Red">Red</h4>
     <section>
-    <p>Red color instance. Its RGB value is (255, 0, 0).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Red color instance. Its RGB value is (255, 0, 0).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Red</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Red</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -651,18 +650,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L121">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L121">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Silver" data-uid="Tizen.Common.Color.Silver">Silver</h4>
     <section>
-    <p>Silver color instance. Its RGB value is (192, 192, 192).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Silver color instance. Its RGB value is (192, 192, 192).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Silver</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Silver</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -684,18 +683,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L127">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L127">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Teal" data-uid="Tizen.Common.Color.Teal">Teal</h4>
     <section>
-    <p>Teal color instance. Its RGB value is (0, 128, 128).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Teal color instance. Its RGB value is (0, 128, 128).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Teal</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Teal</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -717,18 +716,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L37">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L37">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Transparent" data-uid="Tizen.Common.Color.Transparent">Transparent</h4>
     <section>
-    <p>Transparent color instance. All components are 0.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Transparent color instance. All components are 0.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Transparent</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Transparent</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -750,18 +749,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L133">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L133">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_White" data-uid="Tizen.Common.Color.White">White</h4>
     <section>
-    <p>White color instance. Its RGB value is (255, 255, 255).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">White color instance. Its RGB value is (255, 255, 255).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color White</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color White</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -783,18 +782,18 @@ Color
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L139">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L139">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Yellow" data-uid="Tizen.Common.Color.Yellow">Yellow</h4>
     <section>
-    <p>Yellow color instance. Its RGB value is (255, 255, 0).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Yellow color instance. Its RGB value is (255, 255, 0).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Color Yellow</code></pre>
+    <pre><code class="lang- hljs">public static readonly Color Yellow</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -819,18 +818,18 @@ Color
   <a id="Tizen_Common_Color_A_" data-uid="Tizen.Common.Color.A*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L209">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L209">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_A" data-uid="Tizen.Common.Color.A">A</h4>
     <section>
-    <p>Gets the Alpha component of the color.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Gets the Alpha component of the color.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int A { get; }</code></pre>
+    <pre><code class="lang- hljs">public int A { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -842,7 +841,7 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -853,18 +852,18 @@ Color
   <a id="Tizen_Common_Color_B_" data-uid="Tizen.Common.Color.B*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L200">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L200">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_B" data-uid="Tizen.Common.Color.B">B</h4>
     <section>
-    <p>Gets the Blue component of the color.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Gets the Blue component of the color.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int B { get; }</code></pre>
+    <pre><code class="lang- hljs">public int B { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -876,7 +875,7 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -887,18 +886,18 @@ Color
   <a id="Tizen_Common_Color_G_" data-uid="Tizen.Common.Color.G*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L191">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L191">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_G" data-uid="Tizen.Common.Color.G">G</h4>
     <section>
-    <p>Gets the Green component of the color.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Gets the Green component of the color.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int G { get; }</code></pre>
+    <pre><code class="lang- hljs">public int G { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -910,7 +909,7 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -921,18 +920,18 @@ Color
   <a id="Tizen_Common_Color_R_" data-uid="Tizen.Common.Color.R*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L182">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L182">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_R" data-uid="Tizen.Common.Color.R">R</h4>
     <section>
-    <p>Gets the Red component of the color.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Gets the Red component of the color.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int R { get; }</code></pre>
+    <pre><code class="lang- hljs">public int R { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -944,7 +943,7 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -957,18 +956,18 @@ Color
   <a id="Tizen_Common_Color_Equals_" data-uid="Tizen.Common.Color.Equals*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L356">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L356">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Equals_System_Object_" data-uid="Tizen.Common.Color.Equals(System.Object)">Equals(object)</h4>
     <section>
-    <p>Returns a boolean indicating whether the given object is equal to this Color instance.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Returns a boolean indicating whether the given object is equal to this Color instance.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+    <pre><code class="lang- hljs">public override bool Equals(object obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -981,9 +980,9 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">object</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td><span class="parametername">obj</span></td>
-        <td><p>The object to compare against.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The object to compare against.</p>
 </td>
       </tr>
     </tbody>
@@ -998,32 +997,32 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>True if the object is equal to this color; False otherwise.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">True if the object is equal to this color; False otherwise.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.ValueType.Equals(object)</span></div>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a></div>
 
 
 
   <a id="Tizen_Common_Color_Equals_" data-uid="Tizen.Common.Color.Equals*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L345">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L345">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_Equals_Tizen_Common_Color_" data-uid="Tizen.Common.Color.Equals(Tizen.Common.Color)">Equals(Color)</h4>
     <section>
-    <p>Returns a boolean indicating whether the given color is equal to this Color instance.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Returns a boolean indicating whether the given color is equal to this Color instance.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals(Color other)</code></pre>
+    <pre><code class="lang- hljs">public bool Equals(Color other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1038,7 +1037,7 @@ Color
       <tr>
         <td><a class="xref" href="Tizen.Common.Color.html">Color</a></td>
         <td><span class="parametername">other</span></td>
-        <td><p>The color to compare this instance to.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The color to compare this instance to.</p>
 </td>
       </tr>
     </tbody>
@@ -1053,8 +1052,8 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>True if the other color is equal to this instance; False otherwise.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">True if the other color is equal to this instance; False otherwise.</p>
 </td>
       </tr>
     </tbody>
@@ -1065,18 +1064,18 @@ Color
   <a id="Tizen_Common_Color_FromHex_" data-uid="Tizen.Common.Color.FromHex*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L275">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L275">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_FromHex_System_String_" data-uid="Tizen.Common.Color.FromHex(System.String)">FromHex(string)</h4>
     <section>
-    <p>Returns a new RGB color instance with the requested Red, Green, and Blue channels. The Alpha channel is set if hex contains one.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Returns a new RGB color instance with the requested Red, Green, and Blue channels. The Alpha channel is set if hex contains one.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Color FromHex(string hex)</code></pre>
+    <pre><code class="lang- hljs">public static Color FromHex(string hex)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1089,9 +1088,9 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">hex</span></td>
-        <td><p>A string that contains the hexadecimal RGB(A) color representation.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">A string that contains the hexadecimal RGB(A) color representation.</p>
 </td>
       </tr>
     </tbody>
@@ -1107,7 +1106,7 @@ Color
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Common.Color.html">Color</a></td>
-        <td><p>The RGBA color instance.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The RGBA color instance.</p>
 </td>
       </tr>
     </tbody>
@@ -1118,18 +1117,18 @@ Color
   <a id="Tizen_Common_Color_FromRgb_" data-uid="Tizen.Common.Color.FromRgb*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L250">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L250">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_FromRgb_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Common.Color.FromRgb(System.Int32,System.Int32,System.Int32)">FromRgb(int, int, int)</h4>
     <section>
-    <p>Returns a new RGB color instance.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Returns a new RGB color instance.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Color FromRgb(int r, int g, int b)</code></pre>
+    <pre><code class="lang- hljs">public static Color FromRgb(int r, int g, int b)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1142,21 +1141,21 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">r</span></td>
-        <td><p>The Red component of the color.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The Red component of the color.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">g</span></td>
-        <td><p>The Green component of the color.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The Green component of the color.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">b</span></td>
-        <td><p>The Blue component of the color.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The Blue component of the color.</p>
 </td>
       </tr>
     </tbody>
@@ -1182,18 +1181,18 @@ Color
   <a id="Tizen_Common_Color_FromRgba_" data-uid="Tizen.Common.Color.FromRgba*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L264">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L264">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_FromRgba_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Common.Color.FromRgba(System.Int32,System.Int32,System.Int32,System.Int32)">FromRgba(int, int, int, int)</h4>
     <section>
-    <p>Returns a new RGBA color instance.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Returns a new RGBA color instance.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Color FromRgba(int r, int g, int b, int a)</code></pre>
+    <pre><code class="lang- hljs">public static Color FromRgba(int r, int g, int b, int a)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1206,27 +1205,27 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">r</span></td>
-        <td><p>The Red component of the color.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The Red component of the color.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">g</span></td>
-        <td><p>The Green component of the color.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The Green component of the color.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">b</span></td>
-        <td><p>The Blue component of the color.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The Blue component of the color.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">a</span></td>
-        <td><p>The Alpha component of the color.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The Alpha component of the color.</p>
 </td>
       </tr>
     </tbody>
@@ -1242,7 +1241,7 @@ Color
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Common.Color.html">Color</a></td>
-        <td><p>The RGBA color instance.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The RGBA color instance.</p>
 </td>
       </tr>
     </tbody>
@@ -1253,18 +1252,18 @@ Color
   <a id="Tizen_Common_Color_GetArgb_" data-uid="Tizen.Common.Color.GetArgb*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L324">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L324">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_GetArgb" data-uid="Tizen.Common.Color.GetArgb">GetArgb()</h4>
     <section>
-    <p>Gets the 32-bits ARGB value of the color.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Gets the 32-bits ARGB value of the color.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int GetArgb()</code></pre>
+    <pre><code class="lang- hljs">public int GetArgb()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -1276,7 +1275,7 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1287,18 +1286,18 @@ Color
   <a id="Tizen_Common_Color_GetHashCode_" data-uid="Tizen.Common.Color.GetHashCode*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L380">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L380">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_GetHashCode" data-uid="Tizen.Common.Color.GetHashCode">GetHashCode()</h4>
     <section>
-    <p>Returns the hash code for this instance.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Returns the hash code for this instance.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+    <pre><code class="lang- hljs">public override int GetHashCode()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -1310,32 +1309,32 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
-        <td><p>The hash code.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The hash code.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.ValueType.GetHashCode()</span></div>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a></div>
 
 
 
   <a id="Tizen_Common_Color_GetRgba_" data-uid="Tizen.Common.Color.GetRgba*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L315">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L315">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_GetRgba" data-uid="Tizen.Common.Color.GetRgba">GetRgba()</h4>
     <section>
-    <p>Gets the 32-bits RGBA value of the color.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Gets the 32-bits RGBA value of the color.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int GetRgba()</code></pre>
+    <pre><code class="lang- hljs">public int GetRgba()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -1347,7 +1346,7 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1358,18 +1357,18 @@ Color
   <a id="Tizen_Common_Color_ToHex_" data-uid="Tizen.Common.Color.ToHex*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L334">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L334">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_ToHex" data-uid="Tizen.Common.Color.ToHex">ToHex()</h4>
     <section>
-    <p>Returns a string representation in Hex (For example: #FFFFFFFF in RGBA order).</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Returns a string representation in Hex (For example: #FFFFFFFF in RGBA order).</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ToHex()</code></pre>
+    <pre><code class="lang- hljs">public string ToHex()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -1381,8 +1380,8 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
-        <td><p>The string representation in Hex.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The string representation in Hex.</p>
 </td>
       </tr>
     </tbody>
@@ -1393,18 +1392,18 @@ Color
   <a id="Tizen_Common_Color_ToString_" data-uid="Tizen.Common.Color.ToString*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L370">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L370">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_ToString" data-uid="Tizen.Common.Color.ToString">ToString()</h4>
     <section>
-    <p>Returns a string representation of the color.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Returns a string representation of the color.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+    <pre><code class="lang- hljs">public override string ToString()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -1416,14 +1415,14 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
-        <td><p>The string representation.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The string representation.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.ValueType.ToString()</span></div>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a></div>
 
 
   <h2 id="operators">Operators
@@ -1432,18 +1431,18 @@ Color
   <a id="Tizen_Common_Color_op_Equality_" data-uid="Tizen.Common.Color.op_Equality*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L225">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L225">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_op_Equality_Tizen_Common_Color_Tizen_Common_Color_" data-uid="Tizen.Common.Color.op_Equality(Tizen.Common.Color,Tizen.Common.Color)">operator ==(Color, Color)</h4>
     <section>
-    <p>Returns a boolean indicating whether the two given colors are equal.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Returns a boolean indicating whether the two given colors are equal.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator ==(Color color1, Color color2)</code></pre>
+    <pre><code class="lang- hljs">public static bool operator ==(Color color1, Color color2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1458,13 +1457,13 @@ Color
       <tr>
         <td><a class="xref" href="Tizen.Common.Color.html">Color</a></td>
         <td><span class="parametername">color1</span></td>
-        <td><p>The first color to compare.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The first color to compare.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Common.Color.html">Color</a></td>
         <td><span class="parametername">color2</span></td>
-        <td><p>The second color to compare.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The second color to compare.</p>
 </td>
       </tr>
     </tbody>
@@ -1479,8 +1478,8 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>True if the colors are equal; False otherwise.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">True if the colors are equal; False otherwise.</p>
 </td>
       </tr>
     </tbody>
@@ -1491,18 +1490,18 @@ Color
   <a id="Tizen_Common_Color_op_Inequality_" data-uid="Tizen.Common.Color.op_Inequality*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen/Tizen.Common/Color.cs/#L237">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen/Tizen.Common/Color.cs/#L237">View Source</a>
     </span>
     <h4 id="Tizen_Common_Color_op_Inequality_Tizen_Common_Color_Tizen_Common_Color_" data-uid="Tizen.Common.Color.op_Inequality(Tizen.Common.Color,Tizen.Common.Color)">operator !=(Color, Color)</h4>
     <section>
-    <p>Returns a boolean indicating whether the two given colors are not equal.</p>
+    <p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">Returns a boolean indicating whether the two given colors are not equal.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator !=(Color color1, Color color2)</code></pre>
+    <pre><code class="lang- hljs">public static bool operator !=(Color color1, Color color2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1517,13 +1516,13 @@ Color
       <tr>
         <td><a class="xref" href="Tizen.Common.Color.html">Color</a></td>
         <td><span class="parametername">color1</span></td>
-        <td><p>The first color to compare.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The first color to compare.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Common.Color.html">Color</a></td>
         <td><span class="parametername">color2</span></td>
-        <td><p>The second color to compare.</p>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">The second color to compare.</p>
 </td>
       </tr>
     </tbody>
@@ -1538,8 +1537,8 @@ Color
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>True if the colors are not equal; False if they are equal.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Common.Color.yml" sourcestartlinenumber="1">True if the colors are not equal; False if they are equal.</p>
 </td>
       </tr>
     </tbody>
@@ -1548,16 +1547,17 @@ Color
 
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">System.IEquatable&lt;T&gt;</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

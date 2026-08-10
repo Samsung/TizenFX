@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class SceneView
- </title>
+    <title>Class SceneView </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class SceneView
- ">
+    <meta name="title" content="Class SceneView ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Scene3D.SceneView">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 SceneView
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L72" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L72" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,41 +60,41 @@ SceneView
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Scene3D.html">Scene3D</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Scene3D.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>SceneView is a Class to show multiple 3D objects in a single 2D screen.
+  <div class="markdown level0 summary"><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">SceneView is a Class to show multiple 3D objects in a single 2D screen.
 Each SceneView has its own 3D space, and 3D objects added to SceneView are positioned in the space.
 SceneView uses left-handed coordinate system same as NUI. X as right, Y as down, and Z as forward.</p>
-<p>SceneView has internal root container to control inner rendering process like depth test.
+<p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="5">SceneView has internal root container to control inner rendering process like depth test.
 When a View is added to the SceneView with <a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_Add_Tizen_NUI_BaseComponents_View_">Add(View)</a> method, it is actually added on the root container.
 Therefore, the added Views exist in the sub tree of SceneView, but are not direct children.
 The sub tree of Views will be rendered with the SceneView's own Camera.</p>
-<p>SceneView has one built-in camera by default.
+<p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="10">SceneView has one built-in camera by default.
 The default Camera is not removed by using <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_RemoveCamera_Tizen_NUI_Scene3D_Camera_">RemoveCamera(Camera)</a> method.
 <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_GetCamera_System_UInt32_">GetCamera(uint)</a> method with index &quot;0&quot; returns the default camera,
 and the minimum value returned by <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_GetCameraCount">GetCameraCount()</a> method is 1.</p>
-<p>SceneView also provides multiple Camera and one of them can be used to render multiple objects.
+<p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="15">SceneView also provides multiple Camera and one of them can be used to render multiple objects.
 <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_AddCamera_Tizen_NUI_Scene3D_Camera_">AddCamera(Camera)</a>, <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_RemoveCamera_Tizen_NUI_Scene3D_Camera_">RemoveCamera(Camera)</a>, <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_GetCamera_System_UInt32_">GetCamera(uint)</a>,
 and <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SelectCamera_System_UInt32_">SelectCamera(uint)</a> are methods to manage Cameras of the SceneView.
 User can place multiple cameras in a scene to display the entire scene or to display individual objects.
 User can use the <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SelectCamera_System_UInt32_">SelectCamera(uint)</a> method to select the currently required camera.</p>
-<p>When the SceneView's size changes, some camera properties that depend on its size may also change.
+<p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="21">When the SceneView's size changes, some camera properties that depend on its size may also change.
 The changing properties are as follows: AspectRatio, LeftPlaneDistance, RightPlaneDistance, TopPlaneDistance, and BottomPlaneDistance.
 The Camera's FieldOfView is vertical fov. The horizontal fov is updated internally according to the SceneView size.</p>
-<p>The <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SetImageBasedLightSource_System_String_System_String_System_Single_">SetImageBasedLightSource(string, string, float)</a> method sets the same IBL to all Model objects added to the SceneView.
+<p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="25">The <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SetImageBasedLightSource_System_String_System_String_System_Single_">SetImageBasedLightSource(string, string, float)</a> method sets the same IBL to all Model objects added to the SceneView.
 For the IBL, two cube map textures(diffuse and specular) are required.
 SceneView supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
 And also, ktx format with cube map is supported.
 If a model already has an IBL, it is batch overridden with the IBL of the SceneView.
 If the SceneView has IBL, the IBL of newly added models is also overridden.</p>
-<p>The IBL textures start to be loaded asynchronously when <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SetImageBasedLightSource_System_String_System_String_System_Single_">SetImageBasedLightSource(string, string, float)</a> method is called.
+<p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="32">The IBL textures start to be loaded asynchronously when <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SetImageBasedLightSource_System_String_System_String_System_Single_">SetImageBasedLightSource(string, string, float)</a> method is called.
 ResourcesLoaded signal notifies that the loading of the IBL resources have been completed.</p>
-<p>If FBO is used, the rendering result of SceneView is drawn on the FBO and it is mapped on the plane of the SceneView.
+<p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="35">If FBO is used, the rendering result of SceneView is drawn on the FBO and it is mapped on the plane of the SceneView.
 It could decreases performance slightly, but it is useful to show SceneView according to the rendering order with other Views.</p>
-<p>And since SceneView is a View, it can be placed together with other 2D UI components in the NUI window.</p>
+<p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="38">And since SceneView is a View, it can be placed together with other 2D UI components in the NUI window.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SceneView : View, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang- hljs">public class SceneView : View, INotifyPropertyChanged, IDisposable</code></pre>
   </div>
 
 
@@ -103,9 +102,9 @@ It could decreases performance slightly, but it is useful to show SceneView acco
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><span class="xref">Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -120,8 +119,8 @@ It could decreases performance slightly, but it is useful to show SceneView acco
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
 
@@ -132,18 +131,18 @@ It could decreases performance slightly, but it is useful to show SceneView acco
   <a id="Tizen_NUI_Scene3D_SceneView__ctor_" data-uid="Tizen.NUI.Scene3D.SceneView.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L138">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L138">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView__ctor" data-uid="Tizen.NUI.Scene3D.SceneView.#ctor">SceneView()</h4>
     <section>
-    <p>Create an initialized SceneView.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Create an initialized SceneView.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SceneView()</code></pre>
+    <pre><code class="lang- hljs">public SceneView()</code></pre>
   </div>
 
 
@@ -151,18 +150,18 @@ It could decreases performance slightly, but it is useful to show SceneView acco
   <a id="Tizen_NUI_Scene3D_SceneView__ctor_" data-uid="Tizen.NUI.Scene3D.SceneView.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L148">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L148">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView__ctor_Tizen_NUI_Scene3D_SceneView_" data-uid="Tizen.NUI.Scene3D.SceneView.#ctor(Tizen.NUI.Scene3D.SceneView)">SceneView(SceneView)</h4>
     <section>
-    <p>Copy constructor.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Copy constructor.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SceneView(SceneView sceneView)</code></pre>
+    <pre><code class="lang- hljs">public SceneView(SceneView sceneView)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -177,7 +176,7 @@ It could decreases performance slightly, but it is useful to show SceneView acco
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.SceneView.html">SceneView</a></td>
         <td><span class="parametername">sceneView</span></td>
-        <td><p>The source object.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">The source object.</p>
 </td>
       </tr>
     </tbody>
@@ -190,11 +189,11 @@ It could decreases performance slightly, but it is useful to show SceneView acco
   <a id="Tizen_NUI_Scene3D_SceneView_ImageBasedLightScaleFactor_" data-uid="Tizen.NUI.Scene3D.SceneView.ImageBasedLightScaleFactor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L258">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L258">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_ImageBasedLightScaleFactor" data-uid="Tizen.NUI.Scene3D.SceneView.ImageBasedLightScaleFactor">ImageBasedLightScaleFactor</h4>
     <section>
-    <p>Set/Get the ImageBasedLight ScaleFactor.
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Set/Get the ImageBasedLight ScaleFactor.
 Scale factor controls light source intensity in [0.0f, 1.0f]</p>
 
     </section>
@@ -202,7 +201,7 @@ Scale factor controls light source intensity in [0.0f, 1.0f]</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float ImageBasedLightScaleFactor { get; set; }</code></pre>
+    <pre><code class="lang- hljs">public float ImageBasedLightScaleFactor { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -214,7 +213,7 @@ Scale factor controls light source intensity in [0.0f, 1.0f]</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">float</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -227,11 +226,11 @@ Scale factor controls light source intensity in [0.0f, 1.0f]</p>
   <a id="Tizen_NUI_Scene3D_SceneView_AddCamera_" data-uid="Tizen.NUI.Scene3D.SceneView.AddCamera*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L388">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L388">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_AddCamera_Tizen_NUI_Scene3D_Camera_" data-uid="Tizen.NUI.Scene3D.SceneView.AddCamera(Tizen.NUI.Scene3D.Camera)">AddCamera(Camera)</h4>
     <section>
-    <p>Adds a Camera to the SceneView at the end of the camera list of SceneView.
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Adds a Camera to the SceneView at the end of the camera list of SceneView.
 The Camera can be used as a selected camera to render the scene by using <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SelectCamera_System_UInt32_">SelectCamera(uint)</a> or <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SelectCamera_System_String_">SelectCamera(string)</a></p>
 
     </section>
@@ -239,7 +238,7 @@ The Camera can be used as a selected camera to render the scene by using <a clas
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AddCamera(Camera camera)</code></pre>
+    <pre><code class="lang- hljs">public void AddCamera(Camera camera)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -254,16 +253,16 @@ The Camera can be used as a selected camera to render the scene by using <a clas
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.Camera.html">Camera</a></td>
         <td><span class="parametername">camera</span></td>
-        <td><p>Camera added on this SceneView.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Camera added on this SceneView.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_Scene3D_SceneView_AddCamera_Tizen_NUI_Scene3D_Camera__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Some properties of the Camera will be change depending on the Size of this SceneView.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Some properties of the Camera will be change depending on the Size of this SceneView.
 Those properties are as follows:
 AspectRatio, LeftPlaneDistance, RightPlaneDistance, TopPlaneDistance, and BottomPlaneDistance.</p>
-<p>The FieldOfView of Camera is for vertical fov.
+<p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="5">The FieldOfView of Camera is for vertical fov.
 When the size of the SceneView is changed, the vertical fov is maintained
 and the horizontal fov is automatically calculated according to the SceneView's AspectRatio.</p>
 </div>
@@ -273,11 +272,11 @@ and the horizontal fov is automatically calculated according to the SceneView's 
   <a id="Tizen_NUI_Scene3D_SceneView_CameraTransition_" data-uid="Tizen.NUI.Scene3D.SceneView.CameraTransition*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L542">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L542">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_CameraTransition_System_String_System_Int32_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.Scene3D.SceneView.CameraTransition(System.String,System.Int32,Tizen.NUI.AlphaFunction)">CameraTransition(string, int, AlphaFunction)</h4>
     <section>
-    <p>Starts camera transition from currently selected camera to a camera of input name.
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Starts camera transition from currently selected camera to a camera of input name.
 Camera Position, Orientation and FieldOfView are smoothly animated.</p>
 
     </section>
@@ -285,7 +284,8 @@ Camera Position, Orientation and FieldOfView are smoothly animated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void CameraTransition(string name, int durationMilliSeconds, AlphaFunction alphaFunction = null)</code></pre>
+    <pre><code class="lang- hljs">[SuppressMessage(&quot;Microsoft.Design&quot;, &quot;CA2000: Dispose objects before losing scope&quot;, Justification = &quot;The ownership of camera object is not owned by this class.&quot;)]
+public void CameraTransition(string name, int durationMilliSeconds, AlphaFunction alphaFunction = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -298,27 +298,27 @@ Camera Position, Orientation and FieldOfView are smoothly animated.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">name</span></td>
-        <td><p>string keyword of destination Camera of Camera transition.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">string keyword of destination Camera of Camera transition.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">durationMilliSeconds</span></td>
-        <td><p>The duration in milliseconds.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">The duration in milliseconds.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
         <td><span class="parametername">alphaFunction</span></td>
-        <td><p>The alpha function to apply.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">The alpha function to apply.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_Scene3D_SceneView_CameraTransition_System_String_System_Int32_Tizen_NUI_AlphaFunction__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The selected camera is switched to the Camera of the input name when the transition is finished.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">The selected camera is switched to the Camera of the input name when the transition is finished.
 During camera transition, Selected Camera should not be changed by using SelectCamera() or CameraTransition() method.
 During camera transition, Camera properties of Selected Camera should not be changed.</p>
 </div>
@@ -328,11 +328,11 @@ During camera transition, Camera properties of Selected Camera should not be cha
   <a id="Tizen_NUI_Scene3D_SceneView_CameraTransition_" data-uid="Tizen.NUI.Scene3D.SceneView.CameraTransition*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L517">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L517">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_CameraTransition_System_UInt32_System_Int32_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.Scene3D.SceneView.CameraTransition(System.UInt32,System.Int32,Tizen.NUI.AlphaFunction)">CameraTransition(uint, int, AlphaFunction)</h4>
     <section>
-    <p>Starts camera transition from currently selected camera to a camera of index.
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Starts camera transition from currently selected camera to a camera of index.
 Camera Position, Orientation and FieldOfView are smoothly animated.</p>
 
     </section>
@@ -340,7 +340,8 @@ Camera Position, Orientation and FieldOfView are smoothly animated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void CameraTransition(uint index, int durationMilliSeconds, AlphaFunction alphaFunction = null)</code></pre>
+    <pre><code class="lang- hljs">[SuppressMessage(&quot;Microsoft.Design&quot;, &quot;CA2000: Dispose objects before losing scope&quot;, Justification = &quot;The ownership of camera object is not owned by this class.&quot;)]
+public void CameraTransition(uint index, int durationMilliSeconds, AlphaFunction alphaFunction = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -353,27 +354,27 @@ Camera Position, Orientation and FieldOfView are smoothly animated.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">uint</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>Index of destination Camera of Camera transition.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Index of destination Camera of Camera transition.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">durationMilliSeconds</span></td>
-        <td><p>The duration in milliseconds.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">The duration in milliseconds.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
         <td><span class="parametername">alphaFunction</span></td>
-        <td><p>The alpha function to apply.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">The alpha function to apply.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_Scene3D_SceneView_CameraTransition_System_UInt32_System_Int32_Tizen_NUI_AlphaFunction__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The selected camera is switched to the Camera of the index when the transition is finished.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">The selected camera is switched to the Camera of the index when the transition is finished.
 During camera transition, Selected Camera should not be changed by using SelectCamera() or CameraTransition() method.
 During camera transition, Camera properties of Selected Camera should not be changed.</p>
 </div>
@@ -383,18 +384,18 @@ During camera transition, Camera properties of Selected Camera should not be cha
   <a id="Tizen_NUI_Scene3D_SceneView_GetCamera_" data-uid="Tizen.NUI.Scene3D.SceneView.GetCamera*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L462">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L462">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_GetCamera_System_String_" data-uid="Tizen.NUI.Scene3D.SceneView.GetCamera(System.String)">GetCamera(string)</h4>
     <section>
-    <p>Retrieves a Camera of the input name.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Retrieves a Camera of the input name.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Camera GetCamera(string name)</code></pre>
+    <pre><code class="lang- hljs">public Camera GetCamera(string name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -407,9 +408,9 @@ During camera transition, Camera properties of Selected Camera should not be cha
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">name</span></td>
-        <td><p>string keyword of Camera to be retrieved.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">string keyword of Camera to be retrieved.</p>
 </td>
       </tr>
     </tbody>
@@ -425,7 +426,7 @@ During camera transition, Camera properties of Selected Camera should not be cha
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.Camera.html">Camera</a></td>
-        <td><p>Camera that has the name as a View.Name property</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Camera that has the name as a View.Name property</p>
 </td>
       </tr>
     </tbody>
@@ -436,18 +437,18 @@ During camera transition, Camera properties of Selected Camera should not be cha
   <a id="Tizen_NUI_Scene3D_SceneView_GetCamera_" data-uid="Tizen.NUI.Scene3D.SceneView.GetCamera*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L436">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L436">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_GetCamera_System_UInt32_" data-uid="Tizen.NUI.Scene3D.SceneView.GetCamera(System.UInt32)">GetCamera(uint)</h4>
     <section>
-    <p>Retrieves a Camera of the index.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Retrieves a Camera of the index.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Camera GetCamera(uint index)</code></pre>
+    <pre><code class="lang- hljs">public Camera GetCamera(uint index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -460,9 +461,9 @@ During camera transition, Camera properties of Selected Camera should not be cha
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">uint</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>Index of Camera to be retrieved.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Index of Camera to be retrieved.</p>
 </td>
       </tr>
     </tbody>
@@ -478,7 +479,7 @@ During camera transition, Camera properties of Selected Camera should not be cha
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.Camera.html">Camera</a></td>
-        <td><p>Camera of the index.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Camera of the index.</p>
 </td>
       </tr>
     </tbody>
@@ -489,18 +490,18 @@ During camera transition, Camera properties of Selected Camera should not be cha
   <a id="Tizen_NUI_Scene3D_SceneView_GetCameraCount_" data-uid="Tizen.NUI.Scene3D.SceneView.GetCameraCount*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L423">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L423">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_GetCameraCount" data-uid="Tizen.NUI.Scene3D.SceneView.GetCameraCount">GetCameraCount()</h4>
     <section>
-    <p>Retrieves the number of cameras.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Retrieves the number of cameras.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint GetCameraCount()</code></pre>
+    <pre><code class="lang- hljs">public uint GetCameraCount()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -512,8 +513,8 @@ During camera transition, Camera properties of Selected Camera should not be cha
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">uint</span></td>
-        <td><p>The number of Cameras.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">The number of Cameras.</p>
 </td>
       </tr>
     </tbody>
@@ -524,18 +525,18 @@ During camera transition, Camera properties of Selected Camera should not be cha
   <a id="Tizen_NUI_Scene3D_SceneView_GetSelectedCamera_" data-uid="Tizen.NUI.Scene3D.SceneView.GetSelectedCamera*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L559">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L559">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_GetSelectedCamera" data-uid="Tizen.NUI.Scene3D.SceneView.GetSelectedCamera">GetSelectedCamera()</h4>
     <section>
-    <p>Retrieves selected Camera.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Retrieves selected Camera.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Camera GetSelectedCamera()</code></pre>
+    <pre><code class="lang- hljs">public Camera GetSelectedCamera()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -548,7 +549,7 @@ During camera transition, Camera properties of Selected Camera should not be cha
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.Camera.html">Camera</a></td>
-        <td><p>Camera currently used in SceneView as a selected Camera.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Camera currently used in SceneView as a selected Camera.</p>
 </td>
       </tr>
     </tbody>
@@ -559,11 +560,11 @@ During camera transition, Camera properties of Selected Camera should not be cha
   <a id="Tizen_NUI_Scene3D_SceneView_RemoveCamera_" data-uid="Tizen.NUI.Scene3D.SceneView.RemoveCamera*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L409">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L409">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_RemoveCamera_Tizen_NUI_Scene3D_Camera_" data-uid="Tizen.NUI.Scene3D.SceneView.RemoveCamera(Tizen.NUI.Scene3D.Camera)">RemoveCamera(Camera)</h4>
     <section>
-    <p>Removes a Camera from this SceneView.
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Removes a Camera from this SceneView.
 If removed Camera is selected Camera,
 first camera in the list becomes the selected Camera.</p>
 
@@ -572,7 +573,7 @@ first camera in the list becomes the selected Camera.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void RemoveCamera(Camera camera)</code></pre>
+    <pre><code class="lang- hljs">public void RemoveCamera(Camera camera)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -587,13 +588,13 @@ first camera in the list becomes the selected Camera.</p>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.Camera.html">Camera</a></td>
         <td><span class="parametername">camera</span></td>
-        <td><p>camera Camera to be removed from this Camera.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">camera Camera to be removed from this Camera.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_Scene3D_SceneView_RemoveCamera_Tizen_NUI_Scene3D_Camera__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>When Camera.Dispose() is called, the NUI object is disposed, but camera information is maintained internally.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">When Camera.Dispose() is called, the NUI object is disposed, but camera information is maintained internally.
 Therefore, even if Camera.Dispose() is called, RemoveCamera() or RemoveCamera() methods can be used.
 If RemoveCamera() is called too, all information is deleted together.</p>
 </div>
@@ -603,18 +604,18 @@ If RemoveCamera() is called too, all information is deleted together.</p>
   <a id="Tizen_NUI_Scene3D_SceneView_SelectCamera_" data-uid="Tizen.NUI.Scene3D.SceneView.SelectCamera*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L498">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L498">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_SelectCamera_System_String_" data-uid="Tizen.NUI.Scene3D.SceneView.SelectCamera(System.String)">SelectCamera(string)</h4>
     <section>
-    <p>Makes SceneView use a Camera of a name as a selected camera.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Makes SceneView use a Camera of a name as a selected camera.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SelectCamera(string name)</code></pre>
+    <pre><code class="lang- hljs">public void SelectCamera(string name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -627,9 +628,9 @@ If RemoveCamera() is called too, all information is deleted together.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">name</span></td>
-        <td><p>string keyword of Camera to be used as a selected camera.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">string keyword of Camera to be used as a selected camera.</p>
 </td>
       </tr>
     </tbody>
@@ -640,18 +641,18 @@ If RemoveCamera() is called too, all information is deleted together.</p>
   <a id="Tizen_NUI_Scene3D_SceneView_SelectCamera_" data-uid="Tizen.NUI.Scene3D.SceneView.SelectCamera*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L487">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L487">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_SelectCamera_System_UInt32_" data-uid="Tizen.NUI.Scene3D.SceneView.SelectCamera(System.UInt32)">SelectCamera(uint)</h4>
     <section>
-    <p>Makes SceneView use a Camera of index as a selected camera.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Makes SceneView use a Camera of index as a selected camera.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SelectCamera(uint index)</code></pre>
+    <pre><code class="lang- hljs">public void SelectCamera(uint index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -664,9 +665,9 @@ If RemoveCamera() is called too, all information is deleted together.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">uint</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>Index of Camera to be used as a selected camera.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Index of Camera to be used as a selected camera.</p>
 </td>
       </tr>
     </tbody>
@@ -677,18 +678,18 @@ If RemoveCamera() is called too, all information is deleted together.</p>
   <a id="Tizen_NUI_Scene3D_SceneView_SetImageBasedLightSource_" data-uid="Tizen.NUI.Scene3D.SceneView.SetImageBasedLightSource*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L590">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/Controls/SceneView.cs/#L590">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_SceneView_SetImageBasedLightSource_System_String_System_String_System_Single_" data-uid="Tizen.NUI.Scene3D.SceneView.SetImageBasedLightSource(System.String,System.String,System.Single)">SetImageBasedLightSource(string, string, float)</h4>
     <section>
-    <p>Changes Image Based Light as the input textures.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Changes Image Based Light as the input textures.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetImageBasedLightSource(string diffuseUrl, string specularUrl, float scaleFactor = 1)</code></pre>
+    <pre><code class="lang- hljs">public void SetImageBasedLightSource(string diffuseUrl, string specularUrl, float scaleFactor = 1)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -701,46 +702,47 @@ If RemoveCamera() is called too, all information is deleted together.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">diffuseUrl</span></td>
-        <td><p>The path of Cube map image that can be used as a diffuse IBL source.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">The path of Cube map image that can be used as a diffuse IBL source.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">specularUrl</span></td>
-        <td><p>The path of Cube map image that can be used as a specular IBL source.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">The path of Cube map image that can be used as a specular IBL source.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">float</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
         <td><span class="parametername">scaleFactor</span></td>
-        <td><p>Scale factor that controls light source intensity in [0.0f, 1.0f]. Default value is 1.0f.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">Scale factor that controls light source intensity in [0.0f, 1.0f]. Default value is 1.0f.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_Scene3D_SceneView_SetImageBasedLightSource_System_String_System_String_System_Single__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p><a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> for local files in media storage.
-<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> for local files in external storage.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1"><a href="http://tizen.org/privilege/mediastorage" sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="1">http://tizen.org/privilege/mediastorage</a> for local files in media storage.
+<a href="http://tizen.org/privilege/externalstorage" sourcefile="obj/API12/api/Tizen.NUI.Scene3D.SceneView.yml" sourcestartlinenumber="2">http://tizen.org/privilege/externalstorage</a> for local files in external storage.</p>
 </div>
 
 
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
   </div>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

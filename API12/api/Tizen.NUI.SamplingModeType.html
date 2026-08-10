@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Enum SamplingModeType
- </title>
+    <title>Enum SamplingModeType </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Enum SamplingModeType
- ">
+    <meta name="title" content="Enum SamplingModeType ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,8 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.SamplingModeType">
 
+
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +53,7 @@
 SamplingModeType
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L171" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L171" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,7 +61,7 @@ SamplingModeType
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>This specifies sampling mode types. Filtering options are used when resizing images to sample original pixels.<br>
+  <div class="markdown level0 summary"><p sourcefile="obj/API12/api/Tizen.NUI.SamplingModeType.yml" sourcestartlinenumber="1">This specifies sampling mode types. Filtering options are used when resizing images to sample original pixels.<br>
 A SamplingMode controls how pixels in an input image are sampled and combined to generate each pixel of a destination image during scaling.<br>
 NoFilter and Box modes do not guarantee that the output pixel array exactly matches the rectangle specified by the desired dimensions and the FittingMode,<br>
 but all other filter modes do if the desired dimensions are not more than the raw dimensions of the input image file.<br></p>
@@ -69,7 +69,7 @@ but all other filter modes do if the desired dimensions are not more than the ra
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum SamplingModeType</code></pre>
+    <pre><code class="lang- hljs">public enum SamplingModeType</code></pre>
   </div>
 
 
@@ -82,46 +82,46 @@ but all other filter modes do if the desired dimensions are not more than the ra
         <th>Description</th>
       </tr>
     <thead>
-    <tbody>
+    </thead></thead><tbody>
       <tr>
         <td id="Tizen_NUI_SamplingModeType_Box">Box</td>
-        <td><p>Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc. width and height and approximately the desired size. <br>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.SamplingModeType.yml" sourcestartlinenumber="1">Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc. width and height and approximately the desired size. <br>
 This is the default.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_NUI_SamplingModeType_BoxThenLinear">BoxThenLinear</td>
-        <td><p>Iteratively box filter to almost the right size, then for each output pixel, read four pixels from the last level of box filtering and write their weighted average.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.SamplingModeType.yml" sourcestartlinenumber="1">Iteratively box filter to almost the right size, then for each output pixel, read four pixels from the last level of box filtering and write their weighted average.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_NUI_SamplingModeType_BoxThenNearest">BoxThenNearest</td>
-        <td><p>Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc. width and height and approximately the desired size, <br>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.SamplingModeType.yml" sourcestartlinenumber="1">Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc. width and height and approximately the desired size, <br>
 then for each output pixel, read one pixel from the last level of box filtering.<br></p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_NUI_SamplingModeType_DontCare">DontCare</td>
-        <td><p>For caching algorithms where a client strongly prefers a cache-hit to reuse a cached image.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.SamplingModeType.yml" sourcestartlinenumber="1">For caching algorithms where a client strongly prefers a cache-hit to reuse a cached image.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_NUI_SamplingModeType_Linear">Linear</td>
-        <td><p>For each output pixel, read a quad of four input pixels and write a weighted average of them.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.SamplingModeType.yml" sourcestartlinenumber="1">For each output pixel, read a quad of four input pixels and write a weighted average of them.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_NUI_SamplingModeType_Nearest">Nearest</td>
-        <td><p>For each output pixel, read one input pixel.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.SamplingModeType.yml" sourcestartlinenumber="1">For each output pixel, read one input pixel.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_NUI_SamplingModeType_NoFilter">NoFilter</td>
-        <td><p>No filtering is performed. If the SCALE_TO_FILL scaling mode is enabled, the borders of the image may be trimmed to match the aspect ratio of the desired dimensions.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.SamplingModeType.yml" sourcestartlinenumber="1">No filtering is performed. If the SCALE_TO_FILL scaling mode is enabled, the borders of the image may be trimmed to match the aspect ratio of the desired dimensions.</p>
 </td>
       </tr>
     </tbody>
-  </thead></thead></table>
+  </table>
 </div></section>
             </div>
           </main>
@@ -129,7 +129,7 @@ then for each output pixel, read one pixel from the last level of box filtering.
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

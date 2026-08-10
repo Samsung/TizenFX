@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Channel
- </title>
+    <title>Class Channel </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Channel
- ">
+    <meta name="title" content="Class Channel ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API13">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Core.Channel">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 Channel
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Core/Tizen.Core/Channel.cs/#L32" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/Channel.cs/#L32" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,12 +60,12 @@ Channel
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Core.html">Core</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Core.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The class for managing communication channels between tasks of Tizen Core.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">The class for managing communication channels between tasks of Tizen Core.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Channel : IDisposable</code></pre>
+    <pre><code class="lang- hljs">public class Channel : IDisposable</code></pre>
   </div>
 
 
@@ -74,7 +73,7 @@ Channel
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">Channel</span></div>
       </div>
     </dd>
@@ -85,12 +84,12 @@ Channel
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
 
   <h5 id="Tizen_Core_Channel_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>Channels are essential in inter-task communications because they provide a reliable way to exchange messages and data.
+  <div class="markdown level0 remarks"><p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">Channels are essential in inter-task communications because they provide a reliable way to exchange messages and data.
 By creating a channel, you can establish a connection between two tasks that need to communicate with each other.
 Once created, both tasks can send and receive messages through the channel.
 It's important to note that channels have a limited capacity, so make sure to handle message overflows appropriately.
@@ -103,33 +102,33 @@ Additionally, remember to close the channel once it's no longer needed to avoid 
   <a id="Tizen_Core_Channel__ctor_" data-uid="Tizen.Core.Channel.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Core/Tizen.Core/Channel.cs/#L60">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/Channel.cs/#L60">View Source</a>
     </span>
     <h4 id="Tizen_Core_Channel__ctor" data-uid="Tizen.Core.Channel.#ctor">Channel()</h4>
     <section>
-    <p>Creates a new channel with a sender and a receiver.</p>
+    <p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">Creates a new channel with a sender and a receiver.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Channel()</code></pre>
+    <pre><code class="lang- hljs">public Channel()</code></pre>
   </div>
   <h5 id="Tizen_Core_Channel__ctor_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This constructor initializes a new channel that enables communication between a sender and a receiver.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">This constructor initializes a new channel that enables communication between a sender and a receiver.
 It throws exceptions if any errors occur during initialization due to insufficient memory or invalid operations.</p>
 </div>
   <h5 id="Tizen_Core_Channel__ctor_examples">Examples</h5>
-  <p>In the following code snippet, we attempt to initialize a new channel by calling the constructor.
+  <p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">In the following code snippet, we attempt to initialize a new channel by calling the constructor.
 However, if there is not enough memory available, an OutOfMemoryException is thrown. We handle this exception by displaying a message in the console.</p>
-<pre><code>try
+<pre><code class="lang-csharp">try
 {
    var channel = new Channel();
 }
 catch (OutOfMemoryException)
 {
-   Console.WriteLine(&quot;Exception occurs&quot;);
+   Console.WriteLine("Exception occurs");
 }</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
@@ -142,13 +141,13 @@ catch (OutOfMemoryException)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">Thrown when out of memory.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">Thrown when failed because of an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -161,18 +160,18 @@ catch (OutOfMemoryException)
   <a id="Tizen_Core_Channel_Receiver_" data-uid="Tizen.Core.Channel.Receiver*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Core/Tizen.Core/Channel.cs/#L95">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/Channel.cs/#L95">View Source</a>
     </span>
     <h4 id="Tizen_Core_Channel_Receiver" data-uid="Tizen.Core.Channel.Receiver">Receiver</h4>
     <section>
-    <p>Gets the channel receiver instance.</p>
+    <p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">Gets the channel receiver instance.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ChannelReceiver Receiver { get; }</code></pre>
+    <pre><code class="lang- hljs">public ChannelReceiver Receiver { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -190,7 +189,7 @@ catch (OutOfMemoryException)
     </tbody>
   </table>
   <h5 id="Tizen_Core_Channel_Receiver_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This property provides access to the channel receiver instance that handles incoming messages from other applications.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">This property provides access to the channel receiver instance that handles incoming messages from other applications.
 By utilizing this instance, you can subscribe to specific channels and receive notifications accordingly.
 It is crucial to understand the concept of channels in order to effectively utilize this feature. For more details on channels, refer to the official documentation.</p>
 </div>
@@ -200,18 +199,18 @@ It is crucial to understand the concept of channels in order to effectively util
   <a id="Tizen_Core_Channel_Sender_" data-uid="Tizen.Core.Channel.Sender*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Core/Tizen.Core/Channel.cs/#L84">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/Channel.cs/#L84">View Source</a>
     </span>
     <h4 id="Tizen_Core_Channel_Sender" data-uid="Tizen.Core.Channel.Sender">Sender</h4>
     <section>
-    <p>Gets the channel sender instance.</p>
+    <p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">Gets the channel sender instance.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ChannelSender Sender { get; }</code></pre>
+    <pre><code class="lang- hljs">public ChannelSender Sender { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -229,7 +228,7 @@ It is crucial to understand the concept of channels in order to effectively util
     </tbody>
   </table>
   <h5 id="Tizen_Core_Channel_Sender_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This property provides access to the channel sender instance that can be used to send messages through the specified channel.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">This property provides access to the channel sender instance that can be used to send messages through the specified channel.
 It ensures that only one sender instance per channel exists in order to avoid any conflicts during message transmission.</p>
 </div>
 
@@ -240,44 +239,37 @@ It ensures that only one sender instance per channel exists in order to avoid an
   <a id="Tizen_Core_Channel_Dispose_" data-uid="Tizen.Core.Channel.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Core/Tizen.Core/Channel.cs/#L120">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/Channel.cs/#L120">View Source</a>
     </span>
     <h4 id="Tizen_Core_Channel_Dispose" data-uid="Tizen.Core.Channel.Dispose">Dispose()</h4>
     <section>
-    <p>Release any unmanaged resources used by this object.</p>
+    <p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">Release any unmanaged resources used by this object.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang- hljs">public void Dispose()</code></pre>
   </div>
-  <h5 id="Tizen_Core_Channel_Dispose_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Channels are essential in inter-task communications because they provide a reliable way to exchange messages and data.
-By creating a channel, you can establish a connection between two tasks that need to communicate with each other.
-Once created, both tasks can send and receive messages through the channel.
-It's important to note that channels have a limited capacity, so make sure to handle message overflows appropriately.
-Additionally, remember to close the channel once it's no longer needed to avoid resource leaks.</p>
-</div>
 
 
 
   <a id="Tizen_Core_Channel_Dispose_" data-uid="Tizen.Core.Channel.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Core/Tizen.Core/Channel.cs/#L102">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/Channel.cs/#L102">View Source</a>
     </span>
     <h4 id="Tizen_Core_Channel_Dispose_System_Boolean_" data-uid="Tizen.Core.Channel.Dispose(System.Boolean)">Dispose(bool)</h4>
     <section>
-    <p>Release any unmanaged resources used by this object.</p>
+    <p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">Release any unmanaged resources used by this object.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang- hljs">protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -290,60 +282,47 @@ Additionally, remember to close the channel once it's no longer needed to avoid 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">disposing</span></td>
-        <td><p>If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Core_Channel_Dispose_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Channels are essential in inter-task communications because they provide a reliable way to exchange messages and data.
-By creating a channel, you can establish a connection between two tasks that need to communicate with each other.
-Once created, both tasks can send and receive messages through the channel.
-It's important to note that channels have a limited capacity, so make sure to handle message overflows appropriately.
-Additionally, remember to close the channel once it's no longer needed to avoid resource leaks.</p>
-</div>
 
 
 
   <a id="Tizen_Core_Channel_Finalize_" data-uid="Tizen.Core.Channel.Finalize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Core/Tizen.Core/Channel.cs/#L71">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/Channel.cs/#L71">View Source</a>
     </span>
     <h4 id="Tizen_Core_Channel_Finalize" data-uid="Tizen.Core.Channel.Finalize">~Channel()</h4>
     <section>
-    <p>Finalizes an instance of the Channel class.</p>
+    <p sourcefile="obj/API13/api/Tizen.Core.Channel.yml" sourcestartlinenumber="1">Finalizes an instance of the Channel class.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected ~Channel()</code></pre>
+    <pre><code class="lang- hljs">protected ~Channel()</code></pre>
   </div>
-  <h5 id="Tizen_Core_Channel_Finalize_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Channels are essential in inter-task communications because they provide a reliable way to exchange messages and data.
-By creating a channel, you can establish a connection between two tasks that need to communicate with each other.
-Once created, both tasks can send and receive messages through the channel.
-It's important to note that channels have a limited capacity, so make sure to handle message overflows appropriately.
-Additionally, remember to close the channel once it's no longer needed to avoid resource leaks.</p>
-</div>
 
 
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

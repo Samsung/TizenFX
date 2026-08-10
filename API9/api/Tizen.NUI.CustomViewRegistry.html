@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class CustomViewRegistry
- </title>
+    <title>Class CustomViewRegistry </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class CustomViewRegistry
- ">
+    <meta name="title" content="Class CustomViewRegistry ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API9">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.CustomViewRegistry">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 CustomViewRegistry
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/CustomView/CustomViewRegistry.cs/#L162" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/CustomView/CustomViewRegistry.cs/#L162" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,34 +60,34 @@ CustomViewRegistry
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>View the Registry singleton.
+  <div class="markdown level0 summary"><p sourcefile="obj/API9/api/Tizen.NUI.CustomViewRegistry.yml" sourcestartlinenumber="1">View the Registry singleton.
 Used for registering controls and any scriptable properties they have (see ScriptableProperty).</p>
-<p>Internal Design from C# to C++</p>
-<ul>
-<li>Each custom C# view should have it's static constructor called before any JSON file is loaded.
+<p sourcefile="obj/API9/api/Tizen.NUI.CustomViewRegistry.yml" sourcestartlinenumber="4">Internal Design from C# to C++</p>
+<ul sourcefile="obj/API9/api/Tizen.NUI.CustomViewRegistry.yml" sourcestartlinenumber="6">
+<li sourcefile="obj/API9/api/Tizen.NUI.CustomViewRegistry.yml" sourcestartlinenumber="6">Each custom C# view should have it's static constructor called before any JSON file is loaded.
 Static constructors for a class will only run once ( they are run per control type, not per instance).
 Example of running a static constructor:
 System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor (typeof(Spin).TypeHandle);
 Inside the static constructor the control should register it's type with the ViewRegistry
 For example:</li>
 </ul>
-<p>static Spin()
+<p sourcefile="obj/API9/api/Tizen.NUI.CustomViewRegistry.yml" sourcestartlinenumber="13">static Spin()
 {
 ViewRegistry.Instance.Register(CreateInstance, typeof(Spin) );
 }</p>
-<p>The control should also provide a CreateInstance function, which gets passed to the ViewRegistry.
+<p sourcefile="obj/API9/api/Tizen.NUI.CustomViewRegistry.yml" sourcestartlinenumber="18">The control should also provide a CreateInstance function, which gets passed to the ViewRegistry.
 // Eventually it will be called if DALi Builderfinds a Spin control in a JSON file.
 static CustomView CreateInstance()
 {
 return new Spin();
 }</p>
-<p>The DALi C++ equivalent of this is</p>
-<p>TypeRegistration mType( typeid(Toolkit::Spin), typeid(Toolkit::Control), CreateInstance );</p>
+<p sourcefile="obj/API9/api/Tizen.NUI.CustomViewRegistry.yml" sourcestartlinenumber="27">The DALi C++ equivalent of this is</p>
+<p sourcefile="obj/API9/api/Tizen.NUI.CustomViewRegistry.yml" sourcestartlinenumber="29">TypeRegistration mType( typeid(Toolkit::Spin), typeid(Toolkit::Control), CreateInstance );</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class CustomViewRegistry</code></pre>
+    <pre><code class="lang- hljs">public sealed class CustomViewRegistry</code></pre>
   </div>
 
 
@@ -96,7 +95,7 @@ return new Spin();
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">CustomViewRegistry</span></div>
       </div>
     </dd>
@@ -112,7 +111,7 @@ return new Spin();
   <a id="Tizen_NUI_CustomViewRegistry_Instance_" data-uid="Tizen.NUI.CustomViewRegistry.Instance*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/CustomView/CustomViewRegistry.cs/#L224">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/CustomView/CustomViewRegistry.cs/#L224">View Source</a>
     </span>
     <h4 id="Tizen_NUI_CustomViewRegistry_Instance" data-uid="Tizen.NUI.CustomViewRegistry.Instance">Instance</h4>
     <section>
@@ -122,7 +121,7 @@ return new Spin();
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static CustomViewRegistry Instance { get; }</code></pre>
+    <pre><code class="lang- hljs">public static CustomViewRegistry Instance { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -147,13 +146,13 @@ return new Spin();
   <a id="Tizen_NUI_CustomViewRegistry_Register_" data-uid="Tizen.NUI.CustomViewRegistry.Register*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/CustomView/CustomViewRegistry.cs/#L253">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/CustomView/CustomViewRegistry.cs/#L253">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_CustomViewRegistry_Register_System_Func_Tizen_NUI_BaseComponents_CustomView__Tizen_System_Type_" data-uid="Tizen.NUI.CustomViewRegistry.Register(System.Func{Tizen.NUI.BaseComponents.CustomView},Tizen.System.Type)">Register(Func&lt;CustomView&gt;, Type)</h4>
+    <h4 id="Tizen_NUI_CustomViewRegistry_Register_System_Func_Tizen_NUI_BaseComponents_CustomView__System_Type_" data-uid="Tizen.NUI.CustomViewRegistry.Register(System.Func{Tizen.NUI.BaseComponents.CustomView},System.Type)">Register(Func&lt;CustomView&gt;, Type)</h4>
     <section>
-    <p>The function which registers a view and all it's scriptable properties with DALi's type registry.
+    <p sourcefile="obj/API9/api/Tizen.NUI.CustomViewRegistry.yml" sourcestartlinenumber="1">The function which registers a view and all it's scriptable properties with DALi's type registry.
 Means the view can be created or configured from a JSON script.</p>
-<p>The function uses introspection to scan a views C# properties, then selects the ones with
+<p sourcefile="obj/API9/api/Tizen.NUI.CustomViewRegistry.yml" sourcestartlinenumber="4">The function uses introspection to scan a views C# properties, then selects the ones with
 [ScriptableProperty] attribute to be registered.
 Example of a Spin view registering itself:
 static Spin()
@@ -168,7 +167,7 @@ ViewRegistry.Instance.Register(CreateInstance, typeof(Spin) );
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Register(Func&lt;CustomView&gt; createFunction, Type viewType)</code></pre>
+    <pre><code class="lang- hljs">public void Register(Func&lt;CustomView&gt; createFunction, Type viewType)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -181,12 +180,12 @@ ViewRegistry.Instance.Register(CreateInstance, typeof(Spin) );
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Func&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a>&gt;</td>
         <td><span class="parametername">createFunction</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">Tizen.System.Type</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">viewType</span></td>
         <td></td>
       </tr>
@@ -202,22 +201,23 @@ ViewRegistry.Instance.Register(CreateInstance, typeof(Spin) );
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when viewType is null.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API9/api/Tizen.NUI.CustomViewRegistry.yml" sourcestartlinenumber="1">Thrown when viewType is null.</p>
 </td>
       </tr>
     </tbody>
   </table>
 
 
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

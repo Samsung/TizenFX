@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace Tizen.Data.Tdbc
- </title>
+    <title>Namespace Tizen.Data.Tdbc </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace Tizen.Data.Tdbc
- ">
+    <meta name="title" content="Namespace Tizen.Data.Tdbc ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API14">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,103 +44,106 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Data.Tdbc">
   <div class="entity entity-namespace">
-  <h1 id="Tizen_Data_Tdbc" data-uid="Tizen.Data.Tdbc" class="mt-0 text-break"><span class="entity-type">Namespace</span>
-<span id="namespace">Tizen.Data.Tdbc</span>
-</h1>
+  <h1 id="Tizen_Data_Tdbc" data-uid="Tizen.Data.Tdbc" class="mt-0 text-break"></h1>
 
   <h3 class="hidden-anchor m-0 d-none" id="description"><a href="#description"></a>Description</h3>
-  <div class="markdown level0 summary"><p>TDBC provides a uniform interface for accessing various database systems in Tizen applications.</p>
+  <div class="markdown level0 summary"><p sourcefile="repos/API14/src/Tizen.Data.Tdbc/doc/api/Tizen.Data.Tdbc.md" sourcestartlinenumber="1">TDBC provides a uniform interface for accessing various database systems in Tizen applications.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"><h2 id="overview">Overview</h2>
-<p>Tizen.Data.Tdbc provides developers with access to the Tizen Database Connectivity (TDBC) layer. The TDBC layer provides a uniform interface for accessing various database systems in Tizen. With Tizen.Data.Tdbc, developers can easily connect to and perform operations on different database systems without having to learn each system's specific API.</p>
-<h2 id="connecting-to-database">Connecting to database</h2>
-<p>To use a variant database driver with Tdbc, you'll need to register the driver before using the Tizen.Data.Tdbc.DriverManager.RegisterDriver() method. This method registers a driver with TDBC, making it available for use in connecting to specific databases.</p>
-<p>Here's an example of how to connect to Sqlite database:</p>
-<pre><code class="lang-cs">using Tizen.Data.Tdbc;
+  <div class="markdown level0 remarks"><h2 id="overview" sourcefile="repos/API14/src/Tizen.Data.Tdbc/doc/api/Tizen.Data.Tdbc.md" sourcestartlinenumber="6">Overview</h2>
+<p sourcefile="repos/API14/src/Tizen.Data.Tdbc/doc/api/Tizen.Data.Tdbc.md" sourcestartlinenumber="7">Tizen.Data.Tdbc provides developers with access to the Tizen Database Connectivity (TDBC) layer. The TDBC layer provides a uniform interface for accessing various database systems in Tizen. With Tizen.Data.Tdbc, developers can easily connect to and perform operations on different database systems without having to learn each system's specific API.</p>
+<h2 id="connecting-to-database" sourcefile="repos/API14/src/Tizen.Data.Tdbc/doc/api/Tizen.Data.Tdbc.md" sourcestartlinenumber="9">Connecting to database</h2>
+<p sourcefile="repos/API14/src/Tizen.Data.Tdbc/doc/api/Tizen.Data.Tdbc.md" sourcestartlinenumber="10">To use a variant database driver with Tdbc, you'll need to register the driver before using the Tizen.Data.Tdbc.DriverManager.RegisterDriver() method. This method registers a driver with TDBC, making it available for use in connecting to specific databases.</p>
+<p sourcefile="repos/API14/src/Tizen.Data.Tdbc/doc/api/Tizen.Data.Tdbc.md" sourcestartlinenumber="12">Here's an example of how to connect to Sqlite database:</p>
+<pre><code class="lang-cs" sourcefile="repos/API14/src/Tizen.Data.Tdbc/doc/api/Tizen.Data.Tdbc.md" sourcestartlinenumber="13">using Tizen.Data.Tdbc;
 // ...
 
 DriverManager.RegisterDriver(&quot;Tizen.Data.Tdbc.Driver.Sqlite&quot;);
 var conn = DriverManager.GetConnection(new Uri(&quot;tdbc://localhost/sqlite_test.db?mode=rwc&quot;));
 </code></pre>
 </div>
-    <h2 id="classes">Classes
+    <h2 id="classes">
+Classes
 </h2>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Data.Tdbc.ConnectionUriBuilder.html">ConnectionUriBuilder</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>Provides a simple way to create and manage the contents of connection uri used by the Connection class.</p>
+        <section class="col col-12 col-md-8"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.ConnectionUriBuilder.yml" sourcestartlinenumber="1">Provides a simple way to create and manage the contents of connection uri used by the Connection class.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Data.Tdbc.DriverManager.html">DriverManager</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>DriverManager loads TDBC drivers and gets connections to databases.</p>
+        <section class="col col-12 col-md-8"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.DriverManager.yml" sourcestartlinenumber="1">DriverManager loads TDBC drivers and gets connections to databases.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Data.Tdbc.RecordChangedEventArgs.html">RecordChangedEventArgs</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>RecordChangedEventArgs class. This class is an event arguments of the RecordChanged events.</p>
+        <section class="col col-12 col-md-8"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.RecordChangedEventArgs.yml" sourcestartlinenumber="1">RecordChangedEventArgs class. This class is an event arguments of the RecordChanged events.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Data.Tdbc.Sql.html">Sql</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>Represents a SQL query string.</p>
+        <section class="col col-12 col-md-8"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.Sql.yml" sourcestartlinenumber="1">Represents a SQL query string.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Data.Tdbc.TransactionGuard.html">TransactionGuard</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>This class helps the operation of the statement in a transacted way.</p>
+        <section class="col col-12 col-md-8"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.TransactionGuard.yml" sourcestartlinenumber="1">This class helps the operation of the statement in a transacted way.</p>
 </section>
       </div>
-    <h2 id="interfaces">Interfaces
+    <h2 id="interfaces">
+Interfaces
 </h2>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Data.Tdbc.IConnection.html">IConnection</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>TDBC Interface for connecting with a database.</p>
+        <section class="col col-12 col-md-8"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.IConnection.yml" sourcestartlinenumber="1">TDBC Interface for connecting with a database.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Data.Tdbc.IRecord.html">IRecord</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>Record class. This class provides the result of query.</p>
+        <section class="col col-12 col-md-8"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.IRecord.yml" sourcestartlinenumber="1">Record class. This class provides the result of query.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Data.Tdbc.IResultSet.html">IResultSet</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>TDBC interface for a collection of IRecord items.</p>
+        <section class="col col-12 col-md-8"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.IResultSet.yml" sourcestartlinenumber="1">TDBC interface for a collection of IRecord items.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Data.Tdbc.IStatement.html">IStatement</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>TDBC interface for representing statement.</p>
+        <section class="col col-12 col-md-8"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.IStatement.yml" sourcestartlinenumber="1">TDBC interface for representing statement.</p>
 </section>
       </div>
-    <h2 id="enums">Enums
+    <h2 id="enums">
+Enums
 </h2>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Data.Tdbc.OperationType.html">OperationType</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>Enumeration for the database operation type.</p>
+        <section class="col col-12 col-md-8"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.OperationType.yml" sourcestartlinenumber="1">Enumeration for the database operation type.</p>
 </section>
       </div>
   </div>
+
+
 </section>
             </div>
           </main>
@@ -150,7 +151,7 @@ var conn = DriverManager.GetConnection(new Uri(&quot;tdbc://localhost/sqlite_tes
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

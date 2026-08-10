@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class MotionData
- </title>
+    <title>Class MotionData </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class MotionData
- ">
+    <meta name="title" content="Class MotionData ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API13">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Scene3D.MotionData">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 MotionData
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L89" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L89" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,7 +60,7 @@ MotionData
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Scene3D.html">Scene3D</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Scene3D.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>List of model motion definitions.
+  <div class="markdown level0 summary"><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">List of model motion definitions.
 Each motion has pair of <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> and <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a>.
 MotionIndex is abstract class that specify the target of motion.
 MotionValue is destination value of target for the motion. It can be expressed with <a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a> or <a class="xref" href="Tizen.NUI.KeyFrames.html">KeyFrames</a>.</p>
@@ -69,7 +68,7 @@ MotionValue is destination value of target for the motion. It can be expressed w
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MotionData : BaseHandle, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang- hljs">public class MotionData : BaseHandle, INotifyPropertyChanged, IDisposable</code></pre>
   </div>
 
 
@@ -77,9 +76,9 @@ MotionValue is destination value of target for the motion. It can be expressed w
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+        <div class="pdl"><span class="xref">BindableObject</span></div>
+        <div class="pdl"><span class="xref">Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div><span class="xref">MotionData</span></div>
       </div>
@@ -91,39 +90,39 @@ MotionValue is destination value of target for the motion. It can be expressed w
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
 
   <h5 id="Tizen_NUI_Scene3D_MotionData_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>We don't check duplicated MotionIndex internally.
+  <div class="markdown level0 remarks"><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">We don't check duplicated MotionIndex internally.
 We don't check MotionValue type is matched with MotionIndex.</p>
 </div>
   <h5 id="Tizen_NUI_Scene3D_MotionData_examples"><strong>Examples</strong></h5>
-  <p>We can generate list of motions by MotionIndex and MotionValue classes.</p>
-<pre><code>MotionData motionData = new MotionData(3.0f);
+  <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">We can generate list of motions by MotionIndex and MotionValue classes.</p>
+<pre><code class="lang-csharp">MotionData motionData = new MotionData(3.0f);
 
 // Make MotionIndex with MotionPropertyIndex
 // Make MotionValue with PropertyValue
-motionData.Add(new MotionPropertyIndex(new PropertyKey(&quot;nodeName&quot;), new PropertyKey(&quot;color&quot;)), new MotionValue(new PropertyValue(Color.Red)));
+motionData.Add(new MotionPropertyIndex(new PropertyKey("nodeName"), new PropertyKey("color")), new MotionValue(new PropertyValue(Color.Red)));
 
 // Make MotionIndex with MotionTransformIndex
 // Make MotionValue with Dali::KeyFrames
 KeyFrames keyFrames = new KeyFrames();
 keyFrames.Add(0.0f, 0.0f);
 keyFrames.Add(0.0f, 1.0f);
-motionData.Add(new MotionTransformIndex(new PropertyKey(&quot;nodeName&quot;), MotionTransformIndex.TransformType.PositionX), new MotionValue(keyFrames));
+motionData.Add(new MotionTransformIndex(new PropertyKey("nodeName"), MotionTransformIndex.TransformType.PositionX), new MotionValue(keyFrames));
 
 // Make MotionIndex with BlendShapeIndex
-motionData.Add(new BlendShapeIndex(new PropertyKey(&quot;nodeName&quot;), new PropertyKey(&quot;blendShapeName&quot;)), motionData.GetValue(1u));</code></pre>
+motionData.Add(new BlendShapeIndex(new PropertyKey("nodeName"), new PropertyKey("blendShapeName")), motionData.GetValue(1u));</code></pre>
 
-  <p>We can request to load MotionData from file or buffer asynchronously.
+  <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">We can request to load MotionData from file or buffer asynchronously.
 If load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.
 If we try to load before LoadCompleted event invoked, previous load request cancel and only latest request loaded.</p>
-<pre><code>MotionData motionData = new MotionData();
+<pre><code class="lang-csharp">MotionData motionData = new MotionData();
 motionData.LoadCompleted += OnLoadCompleted;
-motionData.LoadBvh(&quot;bvhFilename.bvh&quot;, Vector3.One);
+motionData.LoadBvh("bvhFilename.bvh", Vector3.One);
 
 ...
 
@@ -133,9 +132,9 @@ void OnLoadCompleted(object o, event e)
     /// Do something.
 }</code></pre>
 
-  <p>We can generate animation of Scene3D.Model from MotionData class.
+  <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">We can generate animation of Scene3D.Model from MotionData class.
 Or, just set values.</p>
-<pre><code>// Generate animation from loaded Model
+<pre><code class="lang-csharp">// Generate animation from loaded Model
 Animation animation = model.GenerateMotionDataAnimation(motionData);
 animation.Play();
 
@@ -149,41 +148,37 @@ model2.SetMotionData(motionData);</code></pre>
   <a id="Tizen_NUI_Scene3D_MotionData__ctor_" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L100">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L100">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData__ctor" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor">MotionData()</h4>
     <section>
-    <p>Create an initialized, empty motion data.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Create an initialized, empty motion data.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MotionData()</code></pre>
+    <pre><code class="lang- hljs">public MotionData()</code></pre>
   </div>
-  <h5 id="Tizen_NUI_Scene3D_MotionData__ctor_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionData__ctor_" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L110">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L110">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData__ctor_System_Int32_" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor(System.Int32)">MotionData(int)</h4>
     <section>
-    <p>Create an initialized motion data with duration.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Create an initialized motion data with duration.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MotionData(int durationMilliseconds)</code></pre>
+    <pre><code class="lang- hljs">public MotionData(int durationMilliseconds)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -196,35 +191,31 @@ We don't check MotionValue type is matched with MotionIndex.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">durationMilliseconds</span></td>
-        <td><p>Duration of an Animation generated from this motion data, in milliseconds.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Duration of an Animation generated from this motion data, in milliseconds.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionData__ctor_System_Int32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionData__ctor_" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L120">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L120">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData__ctor_Tizen_NUI_Scene3D_MotionData_" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor(Tizen.NUI.Scene3D.MotionData)">MotionData(MotionData)</h4>
     <section>
-    <p>Copy constructor.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Copy constructor.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MotionData(MotionData motionData)</code></pre>
+    <pre><code class="lang- hljs">public MotionData(MotionData motionData)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -239,15 +230,11 @@ We don't check MotionValue type is matched with MotionIndex.</p>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></td>
         <td><span class="parametername">motionData</span></td>
-        <td><p>Source object to copy.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Source object to copy.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionData__ctor_Tizen_NUI_Scene3D_MotionData__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
   <h2 id="properties">Properties
@@ -256,18 +243,18 @@ We don't check MotionValue type is matched with MotionIndex.</p>
   <a id="Tizen_NUI_Scene3D_MotionData_Duration_" data-uid="Tizen.NUI.Scene3D.MotionData.Duration*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L149">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L149">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_Duration" data-uid="Tizen.NUI.Scene3D.MotionData.Duration">Duration</h4>
     <section>
-    <p>Get or set the duration of this motion data in milliseconds.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Get or set the duration of this motion data in milliseconds.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Duration { get; set; }</code></pre>
+    <pre><code class="lang- hljs">public int Duration { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -279,15 +266,11 @@ We don't check MotionValue type is matched with MotionIndex.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionData_Duration_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
   <h2 id="methods">Methods
@@ -296,18 +279,18 @@ We don't check MotionValue type is matched with MotionIndex.</p>
   <a id="Tizen_NUI_Scene3D_MotionData_Add_" data-uid="Tizen.NUI.Scene3D.MotionData.Add*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L179">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L179">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_Add_Tizen_NUI_Scene3D_MotionIndex_Tizen_NUI_Scene3D_MotionValue_" data-uid="Tizen.NUI.Scene3D.MotionData.Add(Tizen.NUI.Scene3D.MotionIndex,Tizen.NUI.Scene3D.MotionValue)">Add(MotionIndex, MotionValue)</h4>
     <section>
-    <p>Append pair of MotionIndex and MotionValue to the list.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Append pair of MotionIndex and MotionValue to the list.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Add(MotionIndex index, MotionValue value)</code></pre>
+    <pre><code class="lang- hljs">public void Add(MotionIndex index, MotionValue value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -322,62 +305,54 @@ We don't check MotionValue type is matched with MotionIndex.</p>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>MotionIndex to be added</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">MotionIndex to be added</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a></td>
         <td><span class="parametername">value</span></td>
-        <td><p>MotionValue to be added</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">MotionValue to be added</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionData_Add_Tizen_NUI_Scene3D_MotionIndex_Tizen_NUI_Scene3D_MotionValue__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionData_Clear_" data-uid="Tizen.NUI.Scene3D.MotionData.Clear*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L390">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L390">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_Clear" data-uid="Tizen.NUI.Scene3D.MotionData.Clear">Clear()</h4>
     <section>
-    <p>Removes all stored motions.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Removes all stored motions.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+    <pre><code class="lang- hljs">public void Clear()</code></pre>
   </div>
-  <h5 id="Tizen_NUI_Scene3D_MotionData_Clear_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionData_GetIndex_" data-uid="Tizen.NUI.Scene3D.MotionData.GetIndex*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L191">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L191">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_GetIndex_System_UInt32_" data-uid="Tizen.NUI.Scene3D.MotionData.GetIndex(System.UInt32)">GetIndex(uint)</h4>
     <section>
-    <p>Get MotionIndex at position, or null if invalid index was given.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Get MotionIndex at position, or null if invalid index was given.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MotionIndex GetIndex(uint index)</code></pre>
+    <pre><code class="lang- hljs">public MotionIndex GetIndex(uint index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -390,9 +365,9 @@ We don't check MotionValue type is matched with MotionIndex.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">uint</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>The index of motion data list</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">The index of motion data list</p>
 </td>
       </tr>
     </tbody>
@@ -408,33 +383,29 @@ We don't check MotionValue type is matched with MotionIndex.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a></td>
-        <td><p>The MotionIndex at position. Or null.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">The MotionIndex at position. Or null.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionData_GetIndex_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionData_GetMotionCount_" data-uid="Tizen.NUI.Scene3D.MotionData.GetMotionCount*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L166">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L166">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_GetMotionCount" data-uid="Tizen.NUI.Scene3D.MotionData.GetMotionCount">GetMotionCount()</h4>
     <section>
-    <p>Get the number of contained MotionIndex / MotionValue pair what this hold.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Get the number of contained MotionIndex / MotionValue pair what this hold.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint GetMotionCount()</code></pre>
+    <pre><code class="lang- hljs">public uint GetMotionCount()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -446,34 +417,30 @@ We don't check MotionValue type is matched with MotionIndex.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">uint</span></td>
-        <td><p>The number of contained motions.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">The number of contained motions.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionData_GetMotionCount_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionData_GetValue_" data-uid="Tizen.NUI.Scene3D.MotionData.GetValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L215">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L215">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_GetValue_System_UInt32_" data-uid="Tizen.NUI.Scene3D.MotionData.GetValue(System.UInt32)">GetValue(uint)</h4>
     <section>
-    <p>Get MotionValue at position, or null if invalid index was given.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Get MotionValue at position, or null if invalid index was given.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MotionValue GetValue(uint index)</code></pre>
+    <pre><code class="lang- hljs">public MotionValue GetValue(uint index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -486,9 +453,9 @@ We don't check MotionValue type is matched with MotionIndex.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">uint</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>The index of motion data list</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">The index of motion data list</p>
 </td>
       </tr>
     </tbody>
@@ -504,26 +471,22 @@ We don't check MotionValue type is matched with MotionIndex.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a></td>
-        <td><p>The MotionValue at position. Or null.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">The MotionValue at position. Or null.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionData_GetValue_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionData_LoadBlendShapeAnimation_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadBlendShapeAnimation*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L330">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L330">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_LoadBlendShapeAnimation_System_String_System_Boolean_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadBlendShapeAnimation(System.String,System.Boolean)">LoadBlendShapeAnimation(string, bool)</h4>
     <section>
-    <p>Load blendshape animation from json file.
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Load blendshape animation from json file.
 After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.</p>
 
     </section>
@@ -531,7 +494,7 @@ After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void LoadBlendShapeAnimation(string blendShapeFilename, bool synchronousLoad = false)</code></pre>
+    <pre><code class="lang- hljs">public void LoadBlendShapeAnimation(string blendShapeFilename, bool synchronousLoad = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -544,34 +507,30 @@ After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">blendShapeFilename</span></td>
-        <td><p>Name of json format file what we predefined.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Name of json format file what we predefined.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">synchronousLoad</span></td>
-        <td><p>Load synchronously or not. Default is async load.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Load synchronously or not. Default is async load.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionData_LoadBlendShapeAnimation_System_String_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionData_LoadBlendShapeAnimationFromBuffer_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadBlendShapeAnimationFromBuffer*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L343">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L343">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_LoadBlendShapeAnimationFromBuffer_System_String_System_Boolean_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadBlendShapeAnimationFromBuffer(System.String,System.Boolean)">LoadBlendShapeAnimationFromBuffer(string, bool)</h4>
     <section>
-    <p>Load morphing animation from json string.
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Load morphing animation from json string.
 After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.</p>
 
     </section>
@@ -579,7 +538,7 @@ After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void LoadBlendShapeAnimationFromBuffer(string blendShapeBuffer, bool synchronousLoad = false)</code></pre>
+    <pre><code class="lang- hljs">public void LoadBlendShapeAnimationFromBuffer(string blendShapeBuffer, bool synchronousLoad = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -592,34 +551,30 @@ After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">blendShapeBuffer</span></td>
-        <td><p>Contents of json format file what we predefined.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Contents of json format file what we predefined.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">synchronousLoad</span></td>
-        <td><p>Load synchronously or not. Default is async load.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Load synchronously or not. Default is async load.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionData_LoadBlendShapeAnimationFromBuffer_System_String_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
 
   <a id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimation_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadMotionCaptureAnimation*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L255">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L255">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimation_System_String_Tizen_NUI_Vector3_System_Boolean_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadMotionCaptureAnimation(System.String,Tizen.NUI.Vector3,System.Boolean)">LoadMotionCaptureAnimation(string, Vector3, bool)</h4>
     <section>
-    <p>Load motion capture animation.
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Load motion capture animation.
 We support bvh format.
 After load completes, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.</p>
 
@@ -628,7 +583,7 @@ After load completes, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void LoadMotionCaptureAnimation(string motionCaptureFilename, Vector3 scale = null, bool synchronousLoad = false)</code></pre>
+    <pre><code class="lang- hljs">public void LoadMotionCaptureAnimation(string motionCaptureFilename, Vector3 scale = null, bool synchronousLoad = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -641,27 +596,27 @@ After load completes, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">motionCaptureFilename</span></td>
-        <td><p>Name of motion capture format file.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Name of motion capture format file.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
         <td><span class="parametername">scale</span></td>
-        <td><p>Scale value of motion capture animation match with model.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Scale value of motion capture animation match with model.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">synchronousLoad</span></td>
-        <td><p>Load synchronously or not. Default is async load.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Load synchronously or not. Default is async load.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimation_System_String_Tizen_NUI_Vector3_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Scale is additional scale factor of motion capture animation. It is possible that
+  <div class="markdown level1 remarks"><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Scale is additional scale factor of motion capture animation. It is possible that
 Model's scale may not match with motion capture animation scale.
 If scale is null, default value will be used: <cref name="Vector3.ONE"></cref></p>
 </div>
@@ -671,11 +626,11 @@ If scale is null, default value will be used: <cref name="Vector3.ONE"></cref></
   <a id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimationFromBuffer_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadMotionCaptureAnimationFromBuffer*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L296">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L296">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimationFromBuffer_System_String_Tizen_NUI_Vector3_System_Boolean_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadMotionCaptureAnimationFromBuffer(System.String,Tizen.NUI.Vector3,System.Boolean)">LoadMotionCaptureAnimationFromBuffer(string, Vector3, bool)</h4>
     <section>
-    <p>Load motion capture animation from string.
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Load motion capture animation from string.
 We support bvh format.
 After load completes, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.</p>
 
@@ -684,7 +639,7 @@ After load completes, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void LoadMotionCaptureAnimationFromBuffer(string motionCaptureBuffer, Vector3 scale = null, bool synchronousLoad = false)</code></pre>
+    <pre><code class="lang- hljs">public void LoadMotionCaptureAnimationFromBuffer(string motionCaptureBuffer, Vector3 scale = null, bool synchronousLoad = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -697,27 +652,27 @@ After load completes, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">motionCaptureBuffer</span></td>
-        <td><p>Contents of motion capture format string.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Contents of motion capture format string.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
         <td><span class="parametername">scale</span></td>
-        <td><p>Scale value of motion capture animation match with model.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Scale value of motion capture animation match with model.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">synchronousLoad</span></td>
-        <td><p>Load synchronously or not. Default is async load.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Load synchronously or not. Default is async load.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimationFromBuffer_System_String_Tizen_NUI_Vector3_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Scale is additional scale factor of motion capture animation. It is possible that
+  <div class="markdown level1 remarks"><p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">Scale is additional scale factor of motion capture animation. It is possible that
 Model's scale may not match with motion capture animation scale.
 If scale is null, default value will be used: <cref name="Vector3.ONE"></cref></p>
 </div>
@@ -728,11 +683,11 @@ If scale is null, default value will be used: <cref name="Vector3.ONE"></cref></
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L354">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L354">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_LoadCompleted" data-uid="Tizen.NUI.Scene3D.MotionData.LoadCompleted">LoadCompleted</h4>
     <section>
-    <p>LoadCompleted event.
+    <p sourcefile="obj/API14/api/Tizen.NUI.Scene3D.MotionData.yml" sourcestartlinenumber="1">LoadCompleted event.
 It will be invoked only for latest load request.</p>
 
     </section>
@@ -740,7 +695,7 @@ It will be invoked only for latest load request.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler LoadCompleted</code></pre>
+    <pre><code class="lang- hljs">public event EventHandler LoadCompleted</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -752,32 +707,29 @@ It will be invoked only for latest load request.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_NUI_Scene3D_MotionData_LoadCompleted_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>We don't check duplicated MotionIndex internally.
-We don't check MotionValue type is matched with MotionIndex.</p>
-</div>
 
 
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
   </div>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

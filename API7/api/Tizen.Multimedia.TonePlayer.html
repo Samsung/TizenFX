@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class TonePlayer
- </title>
+    <title>Class TonePlayer </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class TonePlayer
- ">
+    <meta name="title" content="Class TonePlayer ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API7">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.TonePlayer">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 TonePlayer
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/TonePlayer/TonePlayer.cs/#L28" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.AudioIO/TonePlayer/TonePlayer.cs/#L28" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,12 +60,12 @@ TonePlayer
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.AudioIO.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides the ability to play a tone.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">Provides the ability to play a tone.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class TonePlayer</code></pre>
+    <pre><code class="lang- hljs">public static class TonePlayer</code></pre>
   </div>
 
 
@@ -74,7 +73,7 @@ TonePlayer
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">TonePlayer</span></div>
       </div>
     </dd>
@@ -90,18 +89,18 @@ TonePlayer
   <a id="Tizen_Multimedia_TonePlayer_StartAsync_" data-uid="Tizen.Multimedia.TonePlayer.StartAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/TonePlayer/TonePlayer.cs/#L65">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.AudioIO/TonePlayer/TonePlayer.cs/#L44">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_TonePlayer_StartAsync_Tizen_Multimedia_ToneType_Tizen_Multimedia_AudioStreamPolicy_System_Int32_System_Threading_CancellationToken_" data-uid="Tizen.Multimedia.TonePlayer.StartAsync(Tizen.Multimedia.ToneType,Tizen.Multimedia.AudioStreamPolicy,System.Int32,System.Threading.CancellationToken)">StartAsync(ToneType, AudioStreamPolicy, int, CancellationToken)</h4>
+    <h4 id="Tizen_Multimedia_TonePlayer_StartAsync_Tizen_Multimedia_ToneType_Tizen_Multimedia_AudioStreamPolicy_System_Int32_" data-uid="Tizen.Multimedia.TonePlayer.StartAsync(Tizen.Multimedia.ToneType,Tizen.Multimedia.AudioStreamPolicy,System.Int32)">StartAsync(ToneType, AudioStreamPolicy, int)</h4>
     <section>
-    <p>Plays a tone, asynchronously.</p>
+    <p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">Plays a tone, asynchronously.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task StartAsync(ToneType tone, AudioStreamPolicy streamPolicy, int durationMilliseconds, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang- hljs">public static Task StartAsync(ToneType tone, AudioStreamPolicy streamPolicy, int durationMilliseconds)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -116,25 +115,19 @@ TonePlayer
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.ToneType.html">ToneType</a></td>
         <td><span class="parametername">tone</span></td>
-        <td><p>A <a class="xref" href="Tizen.Multimedia.ToneType.html">ToneType</a> to play.</p>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">A <a class="xref" href="Tizen.Multimedia.ToneType.html">ToneType</a> to play.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a></td>
         <td><span class="parametername">streamPolicy</span></td>
-        <td><p>A <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a>.</p>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">A <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a>.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">durationMilliseconds</span></td>
-        <td><p>The tone duration in milliseconds. -1 indicates an infinite duration.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>The cancellation token which can be used to stop playing the tone.</p>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">The tone duration in milliseconds. -1 indicates an infinite duration.</p>
 </td>
       </tr>
     </tbody>
@@ -149,8 +142,8 @@ TonePlayer
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
-        <td><p>A task that represents the asynchronous operation.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">A task that represents the asynchronous operation.</p>
 </td>
       </tr>
     </tbody>
@@ -165,33 +158,33 @@ TonePlayer
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">tone</code> is invalid.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1"><code class="paramref">tone</code> is invalid.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> is null.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1"><code class="paramref">streamPolicy</code> is null.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">durationMilliseconds</code> is less than -1.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1"><code class="paramref">durationMilliseconds</code> is less than -1.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Any invalid operations occurred.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">Any invalid operations occurred.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">tone</code> is not a supported type.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1"><code class="paramref">tone</code> is not a supported type.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> has already been disposed of.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1"><code class="paramref">streamPolicy</code> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -202,18 +195,18 @@ TonePlayer
   <a id="Tizen_Multimedia_TonePlayer_StartAsync_" data-uid="Tizen.Multimedia.TonePlayer.StartAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/TonePlayer/TonePlayer.cs/#L44">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.AudioIO/TonePlayer/TonePlayer.cs/#L65">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_TonePlayer_StartAsync_Tizen_Multimedia_ToneType_Tizen_Multimedia_AudioStreamPolicy_System_Int32_" data-uid="Tizen.Multimedia.TonePlayer.StartAsync(Tizen.Multimedia.ToneType,Tizen.Multimedia.AudioStreamPolicy,System.Int32)">StartAsync(ToneType, AudioStreamPolicy, int)</h4>
+    <h4 id="Tizen_Multimedia_TonePlayer_StartAsync_Tizen_Multimedia_ToneType_Tizen_Multimedia_AudioStreamPolicy_System_Int32_System_Threading_CancellationToken_" data-uid="Tizen.Multimedia.TonePlayer.StartAsync(Tizen.Multimedia.ToneType,Tizen.Multimedia.AudioStreamPolicy,System.Int32,System.Threading.CancellationToken)">StartAsync(ToneType, AudioStreamPolicy, int, CancellationToken)</h4>
     <section>
-    <p>Plays a tone, asynchronously.</p>
+    <p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">Plays a tone, asynchronously.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task StartAsync(ToneType tone, AudioStreamPolicy streamPolicy, int durationMilliseconds)</code></pre>
+    <pre><code class="lang- hljs">public static Task StartAsync(ToneType tone, AudioStreamPolicy streamPolicy, int durationMilliseconds, CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -228,19 +221,25 @@ TonePlayer
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.ToneType.html">ToneType</a></td>
         <td><span class="parametername">tone</span></td>
-        <td><p>A <a class="xref" href="Tizen.Multimedia.ToneType.html">ToneType</a> to play.</p>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">A <a class="xref" href="Tizen.Multimedia.ToneType.html">ToneType</a> to play.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a></td>
         <td><span class="parametername">streamPolicy</span></td>
-        <td><p>A <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a>.</p>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">A <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a>.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">durationMilliseconds</span></td>
-        <td><p>The tone duration in milliseconds. -1 indicates an infinite duration.</p>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">The tone duration in milliseconds. -1 indicates an infinite duration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">The cancellation token which can be used to stop playing the tone.</p>
 </td>
       </tr>
     </tbody>
@@ -255,8 +254,8 @@ TonePlayer
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
-        <td><p>A task that represents the asynchronous operation.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">A task that represents the asynchronous operation.</p>
 </td>
       </tr>
     </tbody>
@@ -271,47 +270,48 @@ TonePlayer
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">tone</code> is invalid.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1"><code class="paramref">tone</code> is invalid.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> is null.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1"><code class="paramref">streamPolicy</code> is null.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">durationMilliseconds</code> is less than -1.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1"><code class="paramref">durationMilliseconds</code> is less than -1.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Any invalid operations occurred.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1">Any invalid operations occurred.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">tone</code> is not a supported type.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1"><code class="paramref">tone</code> is not a supported type.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> has already been disposed of.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API7/api/Tizen.Multimedia.TonePlayer.yml" sourcestartlinenumber="1"><code class="paramref">streamPolicy</code> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
   </table>
 
 
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

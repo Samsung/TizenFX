@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Animatable
- </title>
+    <title>Class Animatable </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Animatable
- ">
+    <meta name="title" content="Class Animatable ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API14">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Animatable">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 Animatable
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L65" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L65" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,7 +60,7 @@ Animatable
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The class that represents an object capable of animation is the parent class of the minimum unit of visual, View.
+  <div class="markdown level0 summary"><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The class that represents an object capable of animation is the parent class of the minimum unit of visual, View.
 When a property is an animatable property, it means that its value can change continuously as the target of an animation.
 In this case, if a property notification callback is set, you can receive the callback according to the changing values.
 Additionally, users can also add their own properties.</p>
@@ -69,7 +68,7 @@ Additionally, users can also add their own properties.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Animatable : BaseHandle, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang- hljs">public class Animatable : BaseHandle, INotifyPropertyChanged, IDisposable</code></pre>
   </div>
 
 
@@ -77,9 +76,9 @@ Additionally, users can also add their own properties.</p>
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+        <div class="pdl"><span class="xref">BindableObject</span></div>
+        <div class="pdl"><span class="xref">Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div><span class="xref">Animatable</span></div>
       </div>
@@ -90,7 +89,10 @@ Additionally, users can also add their own properties.</p>
     <dt>Derived</dt>
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Renderer.html">Renderer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Renderer.html">Renderer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Shader.html">Shader</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Shader.html">Shader</a></div>
     </dd>
   </dl>
@@ -99,45 +101,45 @@ Additionally, users can also add their own properties.</p>
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
 
   <h5 id="Tizen_NUI_Animatable_examples"><strong>Examples</strong></h5>
-  <pre><code>     View view = new View()
-     {
-         Size2D = new Size2D(100, 100),
-         Position2D = new Position2D(100, 100),
-         BackgroundColor = Color.Red,
-     };
+  <pre><code class="lang-csharp">View view = new View()
+{
+    Size2D = new Size2D(100, 100),
+    Position2D = new Position2D(100, 100),
+    BackgroundColor = Color.Red,
+};
 
-     Window.Default.Add(view);
-     Animation animation = new Animation();
-     const float destinationValue = 300.0f;
-     const int startTime = 0; // animation starts at 0 second point. no delay.
-     const int endTime = 5000; // animation ends at 5 second point.
-     animation.AnimateTo(view, &quot;PositionX&quot;, destinationValue, startTime, endTime, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInSine));
-     animation.Play();
+Window.Default.Add(view);
+Animation animation = new Animation();
+const float destinationValue = 300.0f;
+const int startTime = 0; // animation starts at 0 second point. no delay.
+const int endTime = 5000; // animation ends at 5 second point.
+animation.AnimateTo(view, "PositionX", destinationValue, startTime, endTime, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInSine));
+animation.Play();
 
-     PropertyNotification propertyNotification = view.AddPropertyNotification(&quot;position&quot;, PropertyCondition.Step(10.0f));
-     propertyNotification.Notified += (object source, PropertyNotification.NotifyEventArgs args) =>
-     {
-         Animatable target = args.PropertyNotification.GetTarget();
-         if (target is View viewTarget)
-         {
-             Tizen.Log.Debug(&quot;NUI&quot;, $&quot;postion changed! ({viewTarget.CurrentPosition.X},{viewTarget.CurrentPosition.Y})&quot;);
-         }
-     };
+PropertyNotification propertyNotification = view.AddPropertyNotification("position", PropertyCondition.Step(10.0f));
+propertyNotification.Notified += (object source, PropertyNotification.NotifyEventArgs args) =&gt;
+{
+    Animatable target = args.PropertyNotification.GetTarget();
+    if (target is View viewTarget)
+    {
+        Tizen.Log.Debug("NUI", $"postion changed! ({viewTarget.CurrentPosition.X},{viewTarget.CurrentPosition.Y})");
+    }
+};
 
-     Animatable animatable = new Animatable();
-     int myPropertyIndex = animatable.RegisterProperty(&quot;myProperty&quot;, new PropertyValue(100), PropertyAccessMode.ReadWrite);
-     animatable.GetProperty(myPropertyIndex).Get(out int aValue);
-     Tizen.Log.Debug(&quot;NUI&quot;, $&quot;myProperty value : {aValue} (should be 100)&quot;);
+Animatable animatable = new Animatable();
+int myPropertyIndex = animatable.RegisterProperty("myProperty", new PropertyValue(100), PropertyAccessMode.ReadWrite);
+animatable.GetProperty(myPropertyIndex).Get(out int aValue);
+Tizen.Log.Debug("NUI", $"myProperty value : {aValue} (should be 100)");
 
-     animatable.SetProperty(myPropertyIndex, new PropertyValue(200));
-     animatable.GetProperty(myPropertyIndex).Get(out aValue);
-     Tizen.Log.Debug(&quot;NUI&quot;, $&quot;myProperty value : {aValue} (should be 200)&quot;);</code></pre>
+animatable.SetProperty(myPropertyIndex, new PropertyValue(200));
+animatable.GetProperty(myPropertyIndex).Get(out aValue);
+Tizen.Log.Debug("NUI", $"myProperty value : {aValue} (should be 200)");</code></pre>
 
 
   <h2 id="constructors">Constructors
@@ -146,18 +148,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable__ctor_" data-uid="Tizen.NUI.Animatable.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L77">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L77">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Animatable__ctor" data-uid="Tizen.NUI.Animatable.#ctor">Animatable()</h4>
     <section>
-    <p>Create an instance of animatable.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Create an instance of animatable.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Animatable()</code></pre>
+    <pre><code class="lang- hljs">public Animatable()</code></pre>
   </div>
 
 
@@ -167,18 +169,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable_AddPropertyNotification_" data-uid="Tizen.NUI.Animatable.AddPropertyNotification*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L294">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L294">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Animatable_AddPropertyNotification_System_String_Tizen_NUI_PropertyCondition_" data-uid="Tizen.NUI.Animatable.AddPropertyNotification(System.String,Tizen.NUI.PropertyCondition)">AddPropertyNotification(string, PropertyCondition)</h4>
     <section>
-    <p>Adds a property notification to this object.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Adds a property notification to this object.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PropertyNotification AddPropertyNotification(string property, PropertyCondition condition)</code></pre>
+    <pre><code class="lang- hljs">public PropertyNotification AddPropertyNotification(string property, PropertyCondition condition)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -191,15 +193,15 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">property</span></td>
-        <td><p>The name of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The name of the property.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyCondition.html">PropertyCondition</a></td>
         <td><span class="parametername">condition</span></td>
-        <td><p>The notification will be triggered when this condition is satisfied.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The notification will be triggered when this condition is satisfied.</p>
 </td>
       </tr>
     </tbody>
@@ -215,7 +217,7 @@ Additionally, users can also add their own properties.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyNotification.html">PropertyNotification</a></td>
-        <td><p>A handle to the newly created PropertyNotification.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">A handle to the newly created PropertyNotification.</p>
 </td>
       </tr>
     </tbody>
@@ -226,18 +228,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable_GetProperty_" data-uid="Tizen.NUI.Animatable.GetProperty*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L269">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L269">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Animatable_GetProperty_System_Int32_" data-uid="Tizen.NUI.Animatable.GetProperty(System.Int32)">GetProperty(int)</h4>
     <section>
-    <p>Retrieves a property value.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Retrieves a property value.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PropertyValue GetProperty(int index)</code></pre>
+    <pre><code class="lang- hljs">public PropertyValue GetProperty(int index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -250,9 +252,9 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>The index of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The index of the property.</p>
 </td>
       </tr>
     </tbody>
@@ -268,7 +270,7 @@ Additionally, users can also add their own properties.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a></td>
-        <td><p>The property value.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The property value.</p>
 </td>
       </tr>
     </tbody>
@@ -279,18 +281,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable_GetPropertyIndex_" data-uid="Tizen.NUI.Animatable.GetPropertyIndex*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L125">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L125">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Animatable_GetPropertyIndex_System_String_" data-uid="Tizen.NUI.Animatable.GetPropertyIndex(System.String)">GetPropertyIndex(string)</h4>
     <section>
-    <p>Queries the index of a property.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Queries the index of a property.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int GetPropertyIndex(string name)</code></pre>
+    <pre><code class="lang- hljs">public int GetPropertyIndex(string name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -303,9 +305,9 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">name</span></td>
-        <td><p>The name of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The name of the property.</p>
 </td>
       </tr>
     </tbody>
@@ -320,8 +322,8 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
-        <td><p>The index of the property.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The index of the property.</p>
 </td>
       </tr>
     </tbody>
@@ -332,18 +334,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable_GetPropertyName_" data-uid="Tizen.NUI.Animatable.GetPropertyName*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L112">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L112">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Animatable_GetPropertyName_System_Int32_" data-uid="Tizen.NUI.Animatable.GetPropertyName(System.Int32)">GetPropertyName(int)</h4>
     <section>
-    <p>Queries the name of a property.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Queries the name of a property.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string GetPropertyName(int index)</code></pre>
+    <pre><code class="lang- hljs">public string GetPropertyName(int index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -356,9 +358,9 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>The index of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The index of the property.</p>
 </td>
       </tr>
     </tbody>
@@ -373,8 +375,8 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
-        <td><p>The name of the property.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The name of the property.</p>
 </td>
       </tr>
     </tbody>
@@ -385,18 +387,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable_GetPropertyType_" data-uid="Tizen.NUI.Animatable.GetPropertyType*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L181">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L181">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Animatable_GetPropertyType_System_Int32_" data-uid="Tizen.NUI.Animatable.GetPropertyType(System.Int32)">GetPropertyType(int)</h4>
     <section>
-    <p>Queries the type of a property.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Queries the type of a property.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PropertyType GetPropertyType(int index)</code></pre>
+    <pre><code class="lang- hljs">public PropertyType GetPropertyType(int index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -409,9 +411,9 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>The index of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The index of the property.</p>
 </td>
       </tr>
     </tbody>
@@ -427,7 +429,7 @@ Additionally, users can also add their own properties.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyType.html">PropertyType</a></td>
-        <td><p>The type of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The type of the property.</p>
 </td>
       </tr>
     </tbody>
@@ -438,18 +440,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable_IsPropertyAnimatable_" data-uid="Tizen.NUI.Animatable.IsPropertyAnimatable*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L155">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L155">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Animatable_IsPropertyAnimatable_System_Int32_" data-uid="Tizen.NUI.Animatable.IsPropertyAnimatable(System.Int32)">IsPropertyAnimatable(int)</h4>
     <section>
-    <p>whether a writable property can be the target of an animation.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">whether a writable property can be the target of an animation.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsPropertyAnimatable(int index)</code></pre>
+    <pre><code class="lang- hljs">public bool IsPropertyAnimatable(int index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -462,9 +464,9 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>The index of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The index of the property.</p>
 </td>
       </tr>
     </tbody>
@@ -479,8 +481,8 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>True if the property is animatable.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">True if the property is animatable.</p>
 </td>
       </tr>
     </tbody>
@@ -491,18 +493,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable_IsPropertyWritable_" data-uid="Tizen.NUI.Animatable.IsPropertyWritable*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L142">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L142">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Animatable_IsPropertyWritable_System_Int32_" data-uid="Tizen.NUI.Animatable.IsPropertyWritable(System.Int32)">IsPropertyWritable(int)</h4>
     <section>
-    <p>Queries whether a property can be writable.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Queries whether a property can be writable.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsPropertyWritable(int index)</code></pre>
+    <pre><code class="lang- hljs">public bool IsPropertyWritable(int index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -515,9 +517,9 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>The index of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The index of the property.</p>
 </td>
       </tr>
     </tbody>
@@ -532,8 +534,8 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>True if the property is writable.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">True if the property is writable.</p>
 </td>
       </tr>
     </tbody>
@@ -544,18 +546,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable_RegisterProperty_" data-uid="Tizen.NUI.Animatable.RegisterProperty*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L256">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L241">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Animatable_RegisterProperty_System_String_Tizen_NUI_PropertyValue_Tizen_NUI_PropertyAccessMode_" data-uid="Tizen.NUI.Animatable.RegisterProperty(System.String,Tizen.NUI.PropertyValue,Tizen.NUI.PropertyAccessMode)">RegisterProperty(string, PropertyValue, PropertyAccessMode)</h4>
+    <h4 id="Tizen_NUI_Animatable_RegisterProperty_System_String_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.Animatable.RegisterProperty(System.String,Tizen.NUI.PropertyValue)">RegisterProperty(string, PropertyValue)</h4>
     <section>
-    <p>Registers a new animatable property.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Registers a new animatable property.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int RegisterProperty(string name, PropertyValue propertyValue, PropertyAccessMode accessMode)</code></pre>
+    <pre><code class="lang- hljs">public int RegisterProperty(string name, PropertyValue propertyValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -568,21 +570,80 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">name</span></td>
-        <td><p>The name of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The name of the property.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a></td>
         <td><span class="parametername">propertyValue</span></td>
-        <td><p>The new value of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The new value of the property.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The type of the property.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Animatable_RegisterProperty_" data-uid="Tizen.NUI.Animatable.RegisterProperty*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L256">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Animatable_RegisterProperty_System_String_Tizen_NUI_PropertyValue_Tizen_NUI_PropertyAccessMode_" data-uid="Tizen.NUI.Animatable.RegisterProperty(System.String,Tizen.NUI.PropertyValue,Tizen.NUI.PropertyAccessMode)">RegisterProperty(string, PropertyValue, PropertyAccessMode)</h4>
+    <section>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Registers a new animatable property.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">public int RegisterProperty(string name, PropertyValue propertyValue, PropertyAccessMode accessMode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">name</span></td>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The name of the property.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a></td>
+        <td><span class="parametername">propertyValue</span></td>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The new value of the property.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyAccessMode.html">PropertyAccessMode</a></td>
         <td><span class="parametername">accessMode</span></td>
-        <td><p>The property access mode (writable, animatable etc).</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The property access mode (writable, animatable etc).</p>
 </td>
       </tr>
     </tbody>
@@ -597,67 +658,8 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
-        <td><p>The type of the property.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_NUI_Animatable_RegisterProperty_" data-uid="Tizen.NUI.Animatable.RegisterProperty*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L241">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Animatable_RegisterProperty_System_String_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.Animatable.RegisterProperty(System.String,Tizen.NUI.PropertyValue)">RegisterProperty(string, PropertyValue)</h4>
-    <section>
-    <p>Registers a new animatable property.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int RegisterProperty(string name, PropertyValue propertyValue)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">name</span></td>
-        <td><p>The name of the property.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a></td>
-        <td><span class="parametername">propertyValue</span></td>
-        <td><p>The new value of the property.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">int</span></td>
-        <td><p>The type of the property.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The type of the property.</p>
 </td>
       </tr>
     </tbody>
@@ -668,18 +670,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable_RemovePropertyNotification_" data-uid="Tizen.NUI.Animatable.RemovePropertyNotification*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L308">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L308">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Animatable_RemovePropertyNotification_Tizen_NUI_PropertyNotification_" data-uid="Tizen.NUI.Animatable.RemovePropertyNotification(Tizen.NUI.PropertyNotification)">RemovePropertyNotification(PropertyNotification)</h4>
     <section>
-    <p>Removes a property notification from this object.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Removes a property notification from this object.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void RemovePropertyNotification(PropertyNotification propertyNotification)</code></pre>
+    <pre><code class="lang- hljs">public void RemovePropertyNotification(PropertyNotification propertyNotification)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -694,7 +696,7 @@ Additionally, users can also add their own properties.</p>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyNotification.html">PropertyNotification</a></td>
         <td><span class="parametername">propertyNotification</span></td>
-        <td><p>The propertyNotification to be removed.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The propertyNotification to be removed.</p>
 </td>
       </tr>
     </tbody>
@@ -705,18 +707,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable_RemovePropertyNotifications_" data-uid="Tizen.NUI.Animatable.RemovePropertyNotifications*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L318">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L318">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Animatable_RemovePropertyNotifications" data-uid="Tizen.NUI.Animatable.RemovePropertyNotifications">RemovePropertyNotifications()</h4>
     <section>
-    <p>Removes a property notification from this object.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Removes a property notification from this object.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void RemovePropertyNotifications()</code></pre>
+    <pre><code class="lang- hljs">public void RemovePropertyNotifications()</code></pre>
   </div>
 
 
@@ -724,18 +726,18 @@ Additionally, users can also add their own properties.</p>
   <a id="Tizen_NUI_Animatable_SetProperty_" data-uid="Tizen.NUI.Animatable.SetProperty*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L194">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L194">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Animatable_SetProperty_System_Int32_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.Animatable.SetProperty(System.Int32,Tizen.NUI.PropertyValue)">SetProperty(int, PropertyValue)</h4>
     <section>
-    <p>Sets the value of an existing property.</p>
+    <p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">Sets the value of an existing property.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetProperty(int index, PropertyValue propertyValue)</code></pre>
+    <pre><code class="lang- hljs">public void SetProperty(int index, PropertyValue propertyValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -748,15 +750,15 @@ Additionally, users can also add their own properties.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>The index of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The index of the property.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a></td>
         <td><span class="parametername">propertyValue</span></td>
-        <td><p>The new value of the property.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.NUI.Animatable.yml" sourcestartlinenumber="1">The new value of the property.</p>
 </td>
       </tr>
     </tbody>
@@ -765,19 +767,20 @@ Additionally, users can also add their own properties.</p>
 
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
   </div>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

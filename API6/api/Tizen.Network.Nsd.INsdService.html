@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface INsdService
- </title>
+    <title>Interface INsdService </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface INsdService
- ">
+    <meta name="title" content="Interface INsdService ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API6">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Network.Nsd.INsdService">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,20 +52,20 @@
 INsdService
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Network.Nsd/Tizen.Network.Nsd/INsdService.cs/#L25" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Network.Nsd/Tizen.Network.Nsd/INsdService.cs/#L25" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Network</span>.<a class="xref" href="Tizen.Network.Nsd.html">Nsd</a></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Network.html">Network</a>.<a class="xref" href="Tizen.Network.Nsd.html">Nsd</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Network.Nsd.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>This interface is used for managing the local service registration using DNS-SD/SSDP.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API6/api/Tizen.Network.Nsd.INsdService.yml" sourcestartlinenumber="1">This interface is used for managing the local service registration using DNS-SD/SSDP.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface INsdService : IDisposable</code></pre>
+    <pre><code class="lang- hljs">public interface INsdService : IDisposable</code></pre>
   </div>
 
 
@@ -78,21 +77,21 @@ INsdService
   <a id="Tizen_Network_Nsd_INsdService_DeregisterService_" data-uid="Tizen.Network.Nsd.INsdService.DeregisterService*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Network.Nsd/Tizen.Network.Nsd/INsdService.cs/#L53">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Network.Nsd/Tizen.Network.Nsd/INsdService.cs/#L53">View Source</a>
     </span>
     <h4 id="Tizen_Network_Nsd_INsdService_DeregisterService" data-uid="Tizen.Network.Nsd.INsdService.DeregisterService">DeregisterService()</h4>
     <section>
-    <p>Deregisters the DNS-SD/SSDP local service.</p>
+    <p sourcefile="obj/API6/api/Tizen.Network.Nsd.INsdService.yml" sourcestartlinenumber="1">Deregisters the DNS-SD/SSDP local service.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void DeregisterService()</code></pre>
+    <pre><code class="lang- hljs">void DeregisterService()</code></pre>
   </div>
   <h5 id="Tizen_Network_Nsd_INsdService_DeregisterService_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>A local service that is registered using RegisterService() must be passed.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API6/api/Tizen.Network.Nsd.INsdService.yml" sourcestartlinenumber="1">A local service that is registered using RegisterService() must be passed.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -104,13 +103,13 @@ INsdService
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when any other error occurred.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Network.Nsd.INsdService.yml" sourcestartlinenumber="1">Thrown when any other error occurred.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when DNS-SD/SSDP is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Network.Nsd.INsdService.yml" sourcestartlinenumber="1">Thrown when DNS-SD/SSDP is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -121,21 +120,21 @@ INsdService
   <a id="Tizen_Network_Nsd_INsdService_RegisterService_" data-uid="Tizen.Network.Nsd.INsdService.RegisterService*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Network.Nsd/Tizen.Network.Nsd/INsdService.cs/#L40">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Network.Nsd/Tizen.Network.Nsd/INsdService.cs/#L40">View Source</a>
     </span>
     <h4 id="Tizen_Network_Nsd_INsdService_RegisterService" data-uid="Tizen.Network.Nsd.INsdService.RegisterService">RegisterService()</h4>
     <section>
-    <p>Registers the DNS-SD/SSDP local service for publishing.</p>
+    <p sourcefile="obj/API6/api/Tizen.Network.Nsd.INsdService.yml" sourcestartlinenumber="1">Registers the DNS-SD/SSDP local service for publishing.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void RegisterService()</code></pre>
+    <pre><code class="lang- hljs">void RegisterService()</code></pre>
   </div>
   <h5 id="Tizen_Network_Nsd_INsdService_RegisterService_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>A service that is created locally must be passed.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API6/api/Tizen.Network.Nsd.INsdService.yml" sourcestartlinenumber="1">A service that is created locally must be passed.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -147,32 +146,33 @@ INsdService
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when any other error occurred.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Network.Nsd.INsdService.yml" sourcestartlinenumber="1">Thrown when any other error occurred.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when DNS-SD/SSDP is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Network.Nsd.INsdService.yml" sourcestartlinenumber="1">Thrown when DNS-SD/SSDP is not supported.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when the permission is denied.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p sourcefile="obj/API6/api/Tizen.Network.Nsd.INsdService.yml" sourcestartlinenumber="1">Thrown when the permission is denied.</p>
 </td>
       </tr>
     </tbody>
   </table>
 
 
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

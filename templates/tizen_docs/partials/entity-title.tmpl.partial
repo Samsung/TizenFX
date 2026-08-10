@@ -1,0 +1,65 @@
+{{!Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE file in the project root for full license information.}}
+{{#inPackage}}
+<span class="entity-type">Package</span>
+{{name.0.value}}
+{{/inPackage}}
+{{#inNamespace}}
+<span class="entity-type">Namespace</span>
+<span id="namespace">{{name.0.value}}</span>
+{{/inNamespace}}
+{{#inClass}}
+<span class="entity-type">Class</span>
+{{name.0.value}}
+{{/inClass}}
+{{#inStruct}}
+<span class="entity-type">Struct</span>
+{{name.0.value}}
+{{/inStruct}}
+{{#inInterface}}
+<span class="entity-type">Interface</span>
+{{name.0.value}}
+{{/inInterface}}
+{{#inEnum}}
+<span class="entity-type">Enum</span>
+{{name.0.value}}
+{{/inEnum}}
+{{#inDelegate}}
+<span class="entity-type">Delegate</span>
+{{name.0.value}}
+{{/inDelegate}}
+{{#inConstructor}}
+<span class="entity-type">Constructor</span>
+{{name.0.value}}
+{{/inConstructor}}
+{{#inField}}
+<span class="entity-type">Field</span>
+{{name.0.value}}
+{{/inField}}
+{{#inProperty}}
+<span class="entity-type">Property</span>
+{{name.0.value}}
+{{/inProperty}}
+{{#inMethod}}
+<span class="entity-type">Method </span>
+{{name.0.value}}
+{{/inMethod}}
+{{#inEvent}}
+<span class="entity-type">Event</span>
+{{name.0.value}}
+{{/inEvent}}
+{{#inOperator}}
+<span class="entity-type">Operator</span>
+{{name.0.value}}
+{{/inOperator}}
+{{#inEii}}
+<span class="entity-type">Explict Interface Implementation </span>
+{{name.0.value}}
+{{/inEii}}
+{{#inVariable}}
+<span class="entity-type">Variable</span>
+{{name.0.value}}
+{{/inVariable}}
+{{#inTypeAlias}}
+<span class="entity-type">Type Alias</span>
+{{name.0.value}}
+{{/inTypeAlias}}

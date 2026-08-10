@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class EventObject
- </title>
+    <title>Class EventObject </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class EventObject
- ">
+    <meta name="title" content="Class EventObject ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API14">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Core.EventObject">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 EventObject
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/EventObject.cs/#L26" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/EventObject.cs/#L26" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,12 +60,12 @@ EventObject
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Core.html">Core</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Core.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Represents an event object used for broadcasting the event.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">Represents an event object used for broadcasting the event.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class EventObject : IDisposable</code></pre>
+    <pre><code class="lang- hljs">public class EventObject : IDisposable</code></pre>
   </div>
 
 
@@ -74,7 +73,7 @@ EventObject
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">EventObject</span></div>
       </div>
     </dd>
@@ -85,7 +84,7 @@ EventObject
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
 
@@ -96,18 +95,18 @@ EventObject
   <a id="Tizen_Core_EventObject__ctor_" data-uid="Tizen.Core.EventObject.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/EventObject.cs/#L52">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/EventObject.cs/#L52">View Source</a>
     </span>
     <h4 id="Tizen_Core_EventObject__ctor_System_Int32_System_Object_" data-uid="Tizen.Core.EventObject.#ctor(System.Int32,System.Object)">EventObject(int, object)</h4>
     <section>
-    <p>Constructor for creating a new event object with specified ID and data.</p>
+    <p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">Constructor for creating a new event object with specified ID and data.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EventObject(int id, object data)</code></pre>
+    <pre><code class="lang- hljs">public EventObject(int id, object data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -120,22 +119,22 @@ EventObject
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">id</span></td>
-        <td><p>The ID.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">The ID.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">object</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td><span class="parametername">data</span></td>
-        <td><p>The data object.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">The data object.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Core_EventObject__ctor_System_Int32_System_Object__examples">Examples</h5>
-  <pre><code>int id = 0;
-string message = &quot;Test event&quot;;
+  <pre><code class="lang-csharp">int id = 0;
+string message = "Test event";
 var eventObject = new EventObject(id++, message);</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
@@ -148,13 +147,13 @@ var eventObject = new EventObject(id++, message);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">Thrown when out of memory.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">Thrown when failed because of an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -167,18 +166,18 @@ var eventObject = new EventObject(id++, message);</code></pre>
   <a id="Tizen_Core_EventObject_Data_" data-uid="Tizen.Core.EventObject.Data*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/EventObject.cs/#L95">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/EventObject.cs/#L95">View Source</a>
     </span>
     <h4 id="Tizen_Core_EventObject_Data" data-uid="Tizen.Core.EventObject.Data">Data</h4>
     <section>
-    <p>Gets the Data of the event object.</p>
+    <p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">Gets the Data of the event object.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object Data { get; }</code></pre>
+    <pre><code class="lang- hljs">public object Data { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -190,7 +189,7 @@ var eventObject = new EventObject(id++, message);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">object</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -201,18 +200,18 @@ var eventObject = new EventObject(id++, message);</code></pre>
   <a id="Tizen_Core_EventObject_Id_" data-uid="Tizen.Core.EventObject.Id*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/EventObject.cs/#L83">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/EventObject.cs/#L83">View Source</a>
     </span>
     <h4 id="Tizen_Core_EventObject_Id" data-uid="Tizen.Core.EventObject.Id">Id</h4>
     <section>
-    <p>Gets the ID of the event object.</p>
+    <p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">Gets the ID of the event object.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Id { get; }</code></pre>
+    <pre><code class="lang- hljs">public int Id { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -224,7 +223,7 @@ var eventObject = new EventObject(id++, message);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -237,18 +236,18 @@ var eventObject = new EventObject(id++, message);</code></pre>
   <a id="Tizen_Core_EventObject_Dispose_" data-uid="Tizen.Core.EventObject.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/EventObject.cs/#L137">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/EventObject.cs/#L137">View Source</a>
     </span>
     <h4 id="Tizen_Core_EventObject_Dispose" data-uid="Tizen.Core.EventObject.Dispose">Dispose()</h4>
     <section>
-    <p>Release any unmanaged resources used by this object.</p>
+    <p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">Release any unmanaged resources used by this object.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang- hljs">public void Dispose()</code></pre>
   </div>
 
 
@@ -256,18 +255,18 @@ var eventObject = new EventObject(id++, message);</code></pre>
   <a id="Tizen_Core_EventObject_Dispose_" data-uid="Tizen.Core.EventObject.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/EventObject.cs/#L116">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/EventObject.cs/#L116">View Source</a>
     </span>
     <h4 id="Tizen_Core_EventObject_Dispose_System_Boolean_" data-uid="Tizen.Core.EventObject.Dispose(System.Boolean)">Dispose(bool)</h4>
     <section>
-    <p>Release any unmanaged resources used by this object.</p>
+    <p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">Release any unmanaged resources used by this object.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang- hljs">protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -280,9 +279,9 @@ var eventObject = new EventObject(id++, message);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">disposing</span></td>
-        <td><p>If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
 </td>
       </tr>
     </tbody>
@@ -293,33 +292,34 @@ var eventObject = new EventObject(id++, message);</code></pre>
   <a id="Tizen_Core_EventObject_Finalize_" data-uid="Tizen.Core.EventObject.Finalize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/EventObject.cs/#L75">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Core/Tizen.Core/EventObject.cs/#L75">View Source</a>
     </span>
     <h4 id="Tizen_Core_EventObject_Finalize" data-uid="Tizen.Core.EventObject.Finalize">~EventObject()</h4>
     <section>
-    <p>Finalizes an instance of the EventObject class.</p>
+    <p sourcefile="obj/API14/api/Tizen.Core.EventObject.yml" sourcestartlinenumber="1">Finalizes an instance of the EventObject class.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected ~EventObject()</code></pre>
+    <pre><code class="lang- hljs">protected ~EventObject()</code></pre>
   </div>
 
 
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

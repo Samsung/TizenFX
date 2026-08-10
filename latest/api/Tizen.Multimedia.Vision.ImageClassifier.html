@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ImageClassifier
- </title>
+    <title>Class ImageClassifier </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ImageClassifier
- ">
+    <meta name="title" content="Class ImageClassifier ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API13">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Vision.ImageClassifier">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 ImageClassifier
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Multimedia.Vision/MediaVision/ImageClassifier.cs/#L30" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/ImageClassifier.cs/#L30" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,12 +60,12 @@ ImageClassifier
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Vision.html">Vision</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Vision.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides the ability to classify image objects on image source using inference engine.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageClassifier.yml" sourcestartlinenumber="1">Provides the ability to classify image objects on image source using inference engine.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
 public static class ImageClassifier</code></pre>
   </div>
 
@@ -75,7 +74,7 @@ public static class ImageClassifier</code></pre>
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">ImageClassifier</span></div>
       </div>
     </dd>
@@ -91,11 +90,11 @@ public static class ImageClassifier</code></pre>
   <a id="Tizen_Multimedia_Vision_ImageClassifier_ClassifyAsync_" data-uid="Tizen.Multimedia.Vision.ImageClassifier.ClassifyAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Multimedia.Vision/MediaVision/ImageClassifier.cs/#L51">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/ImageClassifier.cs/#L51">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Vision_ImageClassifier_ClassifyAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_InferenceModelConfiguration_" data-uid="Tizen.Multimedia.Vision.ImageClassifier.ClassifyAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.InferenceModelConfiguration)">ClassifyAsync(MediaVisionSource, InferenceModelConfiguration)</h4>
     <section>
-    <p>Classifies image objects on the source image using inference engine set in <code data-dev-comment-type="paramref" class="paramref">config</code>.<br>
+    <p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageClassifier.yml" sourcestartlinenumber="1">Classifies image objects on the source image using inference engine set in <code class="paramref">config</code>.<br>
 Each time when DetectAsync is called, a set of the detected faces at the media source are received asynchronously.</p>
 
     </section>
@@ -103,7 +102,7 @@ Each time when DetectAsync is called, a set of the detected faces at the media s
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
 public static Task&lt;IEnumerable&lt;ImageClassificationResult&gt;&gt; ClassifyAsync(MediaVisionSource source, InferenceModelConfiguration config)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -119,13 +118,13 @@ public static Task&lt;IEnumerable&lt;ImageClassificationResult&gt;&gt; ClassifyA
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
         <td><span class="parametername">source</span></td>
-        <td><p>The source of the media where faces will be detected.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageClassifier.yml" sourcestartlinenumber="1">The source of the media where faces will be detected.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.InferenceModelConfiguration.html">InferenceModelConfiguration</a></td>
         <td><span class="parametername">config</span></td>
-        <td><p>The engine's configuration that will be used for classifying.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageClassifier.yml" sourcestartlinenumber="1">The engine's configuration that will be used for classifying.</p>
 </td>
       </tr>
     </tbody>
@@ -140,8 +139,8 @@ public static Task&lt;IEnumerable&lt;ImageClassificationResult&gt;&gt; ClassifyA
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.ImageClassificationResult.html">ImageClassificationResult</a>&gt;&gt;</td>
-        <td><p>A task that represents the asynchronous classify operation.<br>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.ImageClassificationResult.html">ImageClassificationResult</a>&gt;&gt;</td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageClassifier.yml" sourcestartlinenumber="1">A task that represents the asynchronous classify operation.<br>
 If there's no classified image object, empty collection will be returned.</p>
 </td>
       </tr>
@@ -157,23 +156,23 @@ If there's no classified image object, empty collection will be returned.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> or <code data-dev-comment-type="paramref" class="paramref">config</code> is null.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageClassifier.yml" sourcestartlinenumber="1"><code class="paramref">source</code> or <code class="paramref">config</code> is null.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Internal error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageClassifier.yml" sourcestartlinenumber="1">Internal error.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageClassifier.yml" sourcestartlinenumber="1">The feature is not supported.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller has no required privilege.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageClassifier.yml" sourcestartlinenumber="1">The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -184,14 +183,15 @@ If there's no classified image object, empty collection will be returned.</p>
   </div>
 
 
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

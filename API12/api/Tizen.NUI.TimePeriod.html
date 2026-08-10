@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class TimePeriod
- </title>
+    <title>Class TimePeriod </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class TimePeriod
- ">
+    <meta name="title" content="Class TimePeriod ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.TimePeriod">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 TimePeriod
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/TimePeriod.cs/#L28" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Common/TimePeriod.cs/#L28" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,13 +60,13 @@ TimePeriod
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>TimePeriod is used to define delay and duration of a process such as <a class="xref" href="Tizen.NUI.Transition.html">Transition</a>.
+  <div class="markdown level0 summary"><p sourcefile="obj/API12/api/Tizen.NUI.TimePeriod.yml" sourcestartlinenumber="1">TimePeriod is used to define delay and duration of a process such as <a class="xref" href="Tizen.NUI.Transition.html">Transition</a>.
 TimePeriod is composed of Delay and Duration in milliseconds</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TimePeriod : Disposable, IDisposable</code></pre>
+    <pre><code class="lang- hljs">public class TimePeriod : Disposable, IDisposable</code></pre>
   </div>
 
 
@@ -75,7 +74,7 @@ TimePeriod is composed of Delay and Duration in milliseconds</p>
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Disposable.html">Disposable</a></div>
         <div><span class="xref">TimePeriod</span></div>
       </div>
@@ -87,7 +86,7 @@ TimePeriod is composed of Delay and Duration in milliseconds</p>
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
 
@@ -98,11 +97,11 @@ TimePeriod is composed of Delay and Duration in milliseconds</p>
   <a id="Tizen_NUI_TimePeriod__ctor_" data-uid="Tizen.NUI.TimePeriod.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/TimePeriod.cs/#L49">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Common/TimePeriod.cs/#L39">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_TimePeriod__ctor_System_Int32_System_Int32_" data-uid="Tizen.NUI.TimePeriod.#ctor(System.Int32,System.Int32)">TimePeriod(int, int)</h4>
+    <h4 id="Tizen_NUI_TimePeriod__ctor_System_Int32_" data-uid="Tizen.NUI.TimePeriod.#ctor(System.Int32)">TimePeriod(int)</h4>
     <section>
-    <p>The constructor.
+    <p sourcefile="obj/API12/api/Tizen.NUI.TimePeriod.yml" sourcestartlinenumber="1">The constructor.
 Creates an time period object with the user-defined alpha function.</p>
 
     </section>
@@ -110,7 +109,7 @@ Creates an time period object with the user-defined alpha function.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TimePeriod(int delayMilliSeconds, int durationMilliSeconds)</code></pre>
+    <pre><code class="lang- hljs">public TimePeriod(int durationMilliSeconds)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -123,12 +122,7 @@ Creates an time period object with the user-defined alpha function.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">delayMilliSeconds</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">durationMilliSeconds</span></td>
         <td></td>
       </tr>
@@ -140,11 +134,11 @@ Creates an time period object with the user-defined alpha function.</p>
   <a id="Tizen_NUI_TimePeriod__ctor_" data-uid="Tizen.NUI.TimePeriod.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/TimePeriod.cs/#L39">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Common/TimePeriod.cs/#L49">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_TimePeriod__ctor_System_Int32_" data-uid="Tizen.NUI.TimePeriod.#ctor(System.Int32)">TimePeriod(int)</h4>
+    <h4 id="Tizen_NUI_TimePeriod__ctor_System_Int32_System_Int32_" data-uid="Tizen.NUI.TimePeriod.#ctor(System.Int32,System.Int32)">TimePeriod(int, int)</h4>
     <section>
-    <p>The constructor.
+    <p sourcefile="obj/API12/api/Tizen.NUI.TimePeriod.yml" sourcestartlinenumber="1">The constructor.
 Creates an time period object with the user-defined alpha function.</p>
 
     </section>
@@ -152,7 +146,7 @@ Creates an time period object with the user-defined alpha function.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TimePeriod(int durationMilliSeconds)</code></pre>
+    <pre><code class="lang- hljs">public TimePeriod(int delayMilliSeconds, int durationMilliSeconds)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -165,7 +159,12 @@ Creates an time period object with the user-defined alpha function.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">delayMilliSeconds</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">durationMilliSeconds</span></td>
         <td></td>
       </tr>
@@ -179,18 +178,19 @@ Creates an time period object with the user-defined alpha function.</p>
   <a id="Tizen_NUI_TimePeriod_DelayMilliseconds_" data-uid="Tizen.NUI.TimePeriod.DelayMilliseconds*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/TimePeriod.cs/#L58">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Common/TimePeriod.cs/#L58">View Source</a>
     </span>
     <h4 id="Tizen_NUI_TimePeriod_DelayMilliseconds" data-uid="Tizen.NUI.TimePeriod.DelayMilliseconds">DelayMilliseconds</h4>
     <section>
-    <p>A delay before the time period in milliseconds</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.TimePeriod.yml" sourcestartlinenumber="1">A delay before the time period in milliseconds</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int DelayMilliseconds { get; set; }</code></pre>
+    <pre><code class="lang- hljs">[SuppressMessage(&quot;Design&quot;, &quot;CA1065: Do not raise exceptions in unexpected locations&quot;)]
+public int DelayMilliseconds { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -202,7 +202,7 @@ Creates an time period object with the user-defined alpha function.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -213,18 +213,19 @@ Creates an time period object with the user-defined alpha function.</p>
   <a id="Tizen_NUI_TimePeriod_DurationMilliseconds_" data-uid="Tizen.NUI.TimePeriod.DurationMilliseconds*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/TimePeriod.cs/#L78">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Common/TimePeriod.cs/#L78">View Source</a>
     </span>
     <h4 id="Tizen_NUI_TimePeriod_DurationMilliseconds" data-uid="Tizen.NUI.TimePeriod.DurationMilliseconds">DurationMilliseconds</h4>
     <section>
-    <p>The duration of the time period in milliseconds</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.TimePeriod.yml" sourcestartlinenumber="1">The duration of the time period in milliseconds</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int DurationMilliseconds { get; set; }</code></pre>
+    <pre><code class="lang- hljs">[SuppressMessage(&quot;Design&quot;, &quot;CA1065: Do not raise exceptions in unexpected locations&quot;)]
+public int DurationMilliseconds { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -236,7 +237,7 @@ Creates an time period object with the user-defined alpha function.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -245,16 +246,17 @@ Creates an time period object with the user-defined alpha function.</p>
 
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

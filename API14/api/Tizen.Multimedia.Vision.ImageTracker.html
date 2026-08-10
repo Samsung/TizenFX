@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ImageTracker
- </title>
+    <title>Class ImageTracker </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ImageTracker
- ">
+    <meta name="title" content="Class ImageTracker ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API14">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Vision.ImageTracker">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 ImageTracker
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Vision/MediaVision/ImageTracker.cs/#L28" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/ImageTracker.cs/#L28" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,12 +60,12 @@ ImageTracker
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Vision.html">Vision</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Vision.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides the ability to track images on image sources.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">Provides the ability to track images on image sources.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
 public static class ImageTracker</code></pre>
   </div>
 
@@ -75,7 +74,7 @@ public static class ImageTracker</code></pre>
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">ImageTracker</span></div>
       </div>
     </dd>
@@ -91,125 +90,18 @@ public static class ImageTracker</code></pre>
   <a id="Tizen_Multimedia_Vision_ImageTracker_TrackAsync_" data-uid="Tizen.Multimedia.Vision.ImageTracker.TrackAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Vision/MediaVision/ImageTracker.cs/#L83">View Source</a>
-    </span>
-    <h4 id="Tizen_Multimedia_Vision_ImageTracker_TrackAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_ImageTrackingModel_Tizen_Multimedia_Vision_ImageTrackingConfiguration_" data-uid="Tizen.Multimedia.Vision.ImageTracker.TrackAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.ImageTrackingModel,Tizen.Multimedia.Vision.ImageTrackingConfiguration)">TrackAsync(MediaVisionSource, ImageTrackingModel, ImageTrackingConfiguration)</h4>
-    <section>
-    <p>Tracks the given image tracking model on the current frame and <a class="xref" href="Tizen.Multimedia.Vision.ImageTrackingConfiguration.html">ImageTrackingConfiguration</a>.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
-public static Task&lt;Quadrangle&gt; TrackAsync(MediaVisionSource source, ImageTrackingModel trackingModel, ImageTrackingConfiguration config)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
-        <td><span class="parametername">source</span></td>
-        <td><p>The current image of sequence where the image tracking model will be tracked.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Vision.ImageTrackingModel.html">ImageTrackingModel</a></td>
-        <td><span class="parametername">trackingModel</span></td>
-        <td><p>The image tracking model which processed as target of tracking.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.Vision.ImageTrackingConfiguration.html">ImageTrackingConfiguration</a></td>
-        <td><span class="parametername">config</span></td>
-        <td><p>The configuration used for tracking. This value can be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.Quadrangle.html">Quadrangle</a>&gt;</td>
-        <td><p>A task that represents the asynchronous tracking operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">trackingModel</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">trackingModel</code> has already been disposed of.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">config</code> has already been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">trackingModel</code> has no target.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="seealso">
-    <h5 id="Tizen_Multimedia_Vision_ImageTracker_TrackAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_ImageTrackingModel_Tizen_Multimedia_Vision_ImageTrackingConfiguration__seealso">See Also</h5>
-      <div><a class="xref" href="Tizen.Multimedia.Vision.ImageTrackingModel.html#Tizen_Multimedia_Vision_ImageTrackingModel_SetTarget_Tizen_Multimedia_Vision_ImageObject_">SetTarget(ImageObject)</a></div>
-  </div>
-
-
-
-  <a id="Tizen_Multimedia_Vision_ImageTracker_TrackAsync_" data-uid="Tizen.Multimedia.Vision.ImageTracker.TrackAsync*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Vision/MediaVision/ImageTracker.cs/#L52">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/ImageTracker.cs/#L52">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Vision_ImageTracker_TrackAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_ImageTrackingModel_" data-uid="Tizen.Multimedia.Vision.ImageTracker.TrackAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.ImageTrackingModel)">TrackAsync(MediaVisionSource, ImageTrackingModel)</h4>
     <section>
-    <p>Tracks the given image tracking model on the current frame.</p>
+    <p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">Tracks the given image tracking model on the current frame.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
 public static Task&lt;Quadrangle&gt; TrackAsync(MediaVisionSource source, ImageTrackingModel trackingModel)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -225,13 +117,13 @@ public static Task&lt;Quadrangle&gt; TrackAsync(MediaVisionSource source, ImageT
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
         <td><span class="parametername">source</span></td>
-        <td><p>The current image of sequence where the image tracking model will be tracked.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">The current image of sequence where the image tracking model will be tracked.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.ImageTrackingModel.html">ImageTrackingModel</a></td>
         <td><span class="parametername">trackingModel</span></td>
-        <td><p>The image tracking model which processed as target of tracking.</p>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">The image tracking model which processed as target of tracking.</p>
 </td>
       </tr>
     </tbody>
@@ -246,8 +138,8 @@ public static Task&lt;Quadrangle&gt; TrackAsync(MediaVisionSource source, ImageT
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.Quadrangle.html">Quadrangle</a>&gt;</td>
-        <td><p>A task that represents the asynchronous tracking operation.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.Quadrangle.html">Quadrangle</a>&gt;</td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">A task that represents the asynchronous tracking operation.</p>
 </td>
       </tr>
     </tbody>
@@ -262,45 +154,153 @@ public static Task&lt;Quadrangle&gt; TrackAsync(MediaVisionSource source, ImageT
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.<br>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1"><code class="paramref">source</code> is null.<br>
 -or-<br>
-<code data-dev-comment-type="paramref" class="paramref">trackingModel</code> is null.</p>
+<code class="paramref">trackingModel</code> is null.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">The feature is not supported.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.<br>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1"><code class="paramref">source</code> has already been disposed of.<br>
 -or-<br>
-<code data-dev-comment-type="paramref" class="paramref">trackingModel</code> has already been disposed of.</p>
+<code class="paramref">trackingModel</code> has already been disposed of.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">trackingModel</code> has no target.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1"><code class="paramref">trackingModel</code> has no target.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Vision_ImageTracker_TrackAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_ImageTrackingModel__seealso">See Also</h5>
-      <div><a class="xref" href="Tizen.Multimedia.Vision.ImageTrackingModel.html#Tizen_Multimedia_Vision_ImageTrackingModel_SetTarget_Tizen_Multimedia_Vision_ImageObject_">SetTarget(ImageObject)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Vision.ImageTrackingModel.html#Tizen_Multimedia_Vision_ImageTrackingModel_SetTarget_Tizen_Multimedia_Vision_ImageObject_">SetTarget</a>(<a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html">ImageObject</a>)</div>
   </div>
 
 
-  </div></section>
+
+  <a id="Tizen_Multimedia_Vision_ImageTracker_TrackAsync_" data-uid="Tizen.Multimedia.Vision.ImageTracker.TrackAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.Vision/MediaVision/ImageTracker.cs/#L83">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Vision_ImageTracker_TrackAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_ImageTrackingModel_Tizen_Multimedia_Vision_ImageTrackingConfiguration_" data-uid="Tizen.Multimedia.Vision.ImageTracker.TrackAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.ImageTrackingModel,Tizen.Multimedia.Vision.ImageTrackingConfiguration)">TrackAsync(MediaVisionSource, ImageTrackingModel, ImageTrackingConfiguration)</h4>
+    <section>
+    <p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">Tracks the given image tracking model on the current frame and <a class="xref" href="Tizen.Multimedia.Vision.ImageTrackingConfiguration.html">ImageTrackingConfiguration</a>.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+public static Task&lt;Quadrangle&gt; TrackAsync(MediaVisionSource source, ImageTrackingModel trackingModel, ImageTrackingConfiguration config)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">The current image of sequence where the image tracking model will be tracked.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Vision.ImageTrackingModel.html">ImageTrackingModel</a></td>
+        <td><span class="parametername">trackingModel</span></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">The image tracking model which processed as target of tracking.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Vision.ImageTrackingConfiguration.html">ImageTrackingConfiguration</a></td>
+        <td><span class="parametername">config</span></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">The configuration used for tracking. This value can be null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.Quadrangle.html">Quadrangle</a>&gt;</td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">A task that represents the asynchronous tracking operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1"><code class="paramref">source</code> is null.<br>
+-or-<br>
+<code class="paramref">trackingModel</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1">The feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1"><code class="paramref">source</code> has already been disposed of.<br>
+-or-<br>
+<code class="paramref">trackingModel</code> has already been disposed of.<br>
+-or-<br>
+<code class="paramref">config</code> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.Vision.ImageTracker.yml" sourcestartlinenumber="1"><code class="paramref">trackingModel</code> has no target.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Vision_ImageTracker_TrackAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_ImageTrackingModel_Tizen_Multimedia_Vision_ImageTrackingConfiguration__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Vision.ImageTrackingModel.html#Tizen_Multimedia_Vision_ImageTrackingModel_SetTarget_Tizen_Multimedia_Vision_ImageObject_">SetTarget</a>(<a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html">ImageObject</a>)</div>
+  </div>
+
+
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

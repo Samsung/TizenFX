@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class TransactionGuard
- </title>
+    <title>Class TransactionGuard </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class TransactionGuard
- ">
+    <meta name="title" content="Class TransactionGuard ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API13">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Data.Tdbc.TransactionGuard">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,20 +52,20 @@
 TransactionGuard
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/TransactionGuard.cs/#L34" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/TransactionGuard.cs/#L34" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Data</span>.<a class="xref" href="Tizen.Data.Tdbc.html">Tdbc</a></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Data.html">Data</a>.<a class="xref" href="Tizen.Data.Tdbc.html">Tdbc</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Data.Tdbc.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>This class helps the operation of the statement in a transacted way.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.TransactionGuard.yml" sourcestartlinenumber="1">This class helps the operation of the statement in a transacted way.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TransactionGuard : IDisposable</code></pre>
+    <pre><code class="lang- hljs">public class TransactionGuard : IDisposable</code></pre>
   </div>
 
 
@@ -74,7 +73,7 @@ TransactionGuard
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">TransactionGuard</span></div>
       </div>
     </dd>
@@ -85,18 +84,18 @@ TransactionGuard
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
 
   <h5 id="Tizen_Data_Tdbc_TransactionGuard_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>To finish the transaction, either call Commit() to apply database operations or Dispose() to rollback the transaction.</p>
+  <div class="markdown level0 remarks"><p sourcefile="obj/API14/api/Tizen.Data.Tdbc.TransactionGuard.yml" sourcestartlinenumber="1">To finish the transaction, either call Commit() to apply database operations or Dispose() to rollback the transaction.</p>
 </div>
   <h5 id="Tizen_Data_Tdbc_TransactionGuard_examples"><strong>Examples</strong></h5>
-  <p>Usage:</p>
-<pre><code>using (var transaction = new TransationGuard(statement)) {
-    ...
-    transaction.Commit();
+  <p sourcefile="obj/API14/api/Tizen.Data.Tdbc.TransactionGuard.yml" sourcestartlinenumber="1">Usage:
+<pre><code class="lang-csharp">using (var transaction = new TransationGuard(statement)) {
+...
+transaction.Commit();
 }</code></pre>
 
 
@@ -106,18 +105,18 @@ TransactionGuard
   <a id="Tizen_Data_Tdbc_TransactionGuard__ctor_" data-uid="Tizen.Data.Tdbc.TransactionGuard.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/TransactionGuard.cs/#L51">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/TransactionGuard.cs/#L51">View Source</a>
     </span>
     <h4 id="Tizen_Data_Tdbc_TransactionGuard__ctor_Tizen_Data_Tdbc_IStatement_System_Boolean_" data-uid="Tizen.Data.Tdbc.TransactionGuard.#ctor(Tizen.Data.Tdbc.IStatement,System.Boolean)">TransactionGuard(IStatement, bool)</h4>
     <section>
-    <p>The constructor of TransactionGuard class.</p>
+    <p sourcefile="obj/API14/api/Tizen.Data.Tdbc.TransactionGuard.yml" sourcestartlinenumber="1">The constructor of TransactionGuard class.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TransactionGuard(IStatement statement, bool isEnabled = true)</code></pre>
+    <pre><code class="lang- hljs">public TransactionGuard(IStatement statement, bool isEnabled = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -135,15 +134,12 @@ TransactionGuard
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">isEnabled</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Data_Tdbc_TransactionGuard__ctor_Tizen_Data_Tdbc_IStatement_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>To finish the transaction, either call Commit() to apply database operations or Dispose() to rollback the transaction.</p>
-</div>
 
 
   <h2 id="properties">Properties
@@ -152,18 +148,18 @@ TransactionGuard
   <a id="Tizen_Data_Tdbc_TransactionGuard_IsEnabled_" data-uid="Tizen.Data.Tdbc.TransactionGuard.IsEnabled*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/TransactionGuard.cs/#L43">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/TransactionGuard.cs/#L43">View Source</a>
     </span>
     <h4 id="Tizen_Data_Tdbc_TransactionGuard_IsEnabled" data-uid="Tizen.Data.Tdbc.TransactionGuard.IsEnabled">IsEnabled</h4>
     <section>
-    <p>The flag representing whether the TransactionGuard is enabled.</p>
+    <p sourcefile="obj/API14/api/Tizen.Data.Tdbc.TransactionGuard.yml" sourcestartlinenumber="1">The flag representing whether the TransactionGuard is enabled.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsEnabled { get; set; }</code></pre>
+    <pre><code class="lang- hljs">public bool IsEnabled { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -175,14 +171,11 @@ TransactionGuard
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Data_Tdbc_TransactionGuard_IsEnabled_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>To finish the transaction, either call Commit() to apply database operations or Dispose() to rollback the transaction.</p>
-</div>
 
 
   <h2 id="methods">Methods
@@ -191,58 +184,53 @@ TransactionGuard
   <a id="Tizen_Data_Tdbc_TransactionGuard_Commit_" data-uid="Tizen.Data.Tdbc.TransactionGuard.Commit*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/TransactionGuard.cs/#L77">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/TransactionGuard.cs/#L77">View Source</a>
     </span>
     <h4 id="Tizen_Data_Tdbc_TransactionGuard_Commit" data-uid="Tizen.Data.Tdbc.TransactionGuard.Commit">Commit()</h4>
     <section>
-    <p>Commit the transaction.</p>
+    <p sourcefile="obj/API14/api/Tizen.Data.Tdbc.TransactionGuard.yml" sourcestartlinenumber="1">Commit the transaction.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Commit()</code></pre>
+    <pre><code class="lang- hljs">public void Commit()</code></pre>
   </div>
-  <h5 id="Tizen_Data_Tdbc_TransactionGuard_Commit_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>To finish the transaction, either call Commit() to apply database operations or Dispose() to rollback the transaction.</p>
-</div>
 
 
 
   <a id="Tizen_Data_Tdbc_TransactionGuard_Dispose_" data-uid="Tizen.Data.Tdbc.TransactionGuard.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/TransactionGuard.cs/#L64">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/TransactionGuard.cs/#L64">View Source</a>
     </span>
     <h4 id="Tizen_Data_Tdbc_TransactionGuard_Dispose" data-uid="Tizen.Data.Tdbc.TransactionGuard.Dispose">Dispose()</h4>
     <section>
-    <p>Dispose the object. Rollback the transaction.</p>
+    <p sourcefile="obj/API14/api/Tizen.Data.Tdbc.TransactionGuard.yml" sourcestartlinenumber="1">Dispose the object. Rollback the transaction.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang- hljs">public void Dispose()</code></pre>
   </div>
-  <h5 id="Tizen_Data_Tdbc_TransactionGuard_Dispose_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>To finish the transaction, either call Commit() to apply database operations or Dispose() to rollback the transaction.</p>
-</div>
 
 
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

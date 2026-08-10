@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Preference
- </title>
+    <title>Class Preference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Preference
- ">
+    <meta name="title" content="Class Preference ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.Preference">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 Preference
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L28" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L28" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,13 +60,13 @@ Preference
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Preference.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The Preference class provides methods to store and retrieve application specific data/preferences. Preferences are stored in the form of key-value pairs.
+  <div class="markdown level0 summary"><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">The Preference class provides methods to store and retrieve application specific data/preferences. Preferences are stored in the form of key-value pairs.
 Key names must be text strings while values can be integers, doubles, strings, or booleans.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class Preference</code></pre>
+    <pre><code class="lang- hljs">public static class Preference</code></pre>
   </div>
 
 
@@ -75,7 +74,7 @@ Key names must be text strings while values can be integers, doubles, strings, o
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">Preference</span></div>
       </div>
     </dd>
@@ -91,18 +90,18 @@ Key names must be text strings while values can be integers, doubles, strings, o
   <a id="Tizen_Applications_Preference_Keys_" data-uid="Tizen.Applications.Preference.Keys*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L68">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L68">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Preference_Keys" data-uid="Tizen.Applications.Preference.Keys">Keys</h4>
     <section>
-    <p>Retrieves all keys of the application preferences.</p>
+    <p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Retrieves all keys of the application preferences.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;string&gt; Keys { get; }</code></pre>
+    <pre><code class="lang- hljs">public static IEnumerable&lt;string&gt; Keys { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -114,21 +113,21 @@ Key names must be text strings while values can be integers, doubles, strings, o
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
-        <td><p>The list of keys.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">The list of keys.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_Preference_Keys_examples">Examples</h5>
-  <pre><code>    Preference.Set(&quot;Option_enabled&quot;, true);
-    Preference.Set(&quot;active_user&quot;, &quot;Joe&quot;);
-    Preference.Set(&quot;default_volume&quot;, 10);
-    Preference.Set(&quot;brightness&quot;, &quot;0.6&quot;);
-    foreach(string key in Preference.Keys)
-    {
-        Console.WriteLine(&quot;key {0}&quot;, key);
-    }</code></pre>
+  <pre><code class="lang-csharp">Preference.Set("Option_enabled", true);
+Preference.Set("active_user", "Joe");
+Preference.Set("default_volume", 10);
+Preference.Set("brightness", "0.6");
+foreach(string key in Preference.Keys)
+{
+    Console.WriteLine("key {0}", key);
+}</code></pre>
 
 
 
@@ -138,18 +137,18 @@ Key names must be text strings while values can be integers, doubles, strings, o
   <a id="Tizen_Applications_Preference_Contains_" data-uid="Tizen.Applications.Preference.Contains*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L154">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L154">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Preference_Contains_System_String_" data-uid="Tizen.Applications.Preference.Contains(System.String)">Contains(string)</h4>
     <section>
-    <p>Checks whether the given key exists in the preference.</p>
+    <p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Checks whether the given key exists in the preference.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool Contains(string key)</code></pre>
+    <pre><code class="lang- hljs">public static bool Contains(string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -162,9 +161,9 @@ Key names must be text strings while values can be integers, doubles, strings, o
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">key</span></td>
-        <td><p>The name of the key to check.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">The name of the key to check.</p>
 </td>
       </tr>
     </tbody>
@@ -179,23 +178,23 @@ Key names must be text strings while values can be integers, doubles, strings, o
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>True if the key exists in the preference, otherwise false.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">True if the key exists in the preference, otherwise false.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_Preference_Contains_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This method checks if the specified key exists in the preferences. It returns true if the key exists, and false if not. The key argument should be a valid parameter. An ArgumentException will be thrown if the key is invalid. Additionally, an IOException may be thrown if the method fails due to an internal input/output error.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">This method checks if the specified key exists in the preferences. It returns true if the key exists, and false if not. The key argument should be a valid parameter. An ArgumentException will be thrown if the key is invalid. Additionally, an IOException may be thrown if the method fails due to an internal input/output error.</p>
 </div>
   <h5 id="Tizen_Applications_Preference_Contains_System_String__examples">Examples</h5>
-  <pre><code>    Preference.Set(&quot;active_user&quot;, &quot;Joe&quot;);
-    bool exists = Preference.Contains(&quot;active_user&quot;);
-    if (exists)
-    {
-        string value = Preference.Get&lt;istring>(&quot;active_user&quot;);
-        Console.WriteLine(&quot;user {0}&quot;, value);
-    }</code></pre>
+  <pre><code class="lang-csharp">Preference.Set("active_user", "Joe");
+bool exists = Preference.Contains("active_user");
+if (exists)
+{
+    string value = Preference.Get&lt;istring&gt;("active_user");
+    Console.WriteLine("user {0}", value);
+}</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -207,13 +206,13 @@ Key names must be text strings while values can be integers, doubles, strings, o
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown if the key is an invalid parameter.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown if the key is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown when the method failed due to an internal I/O error.</p>
 </td>
       </tr>
     </tbody>
@@ -221,22 +220,21 @@ Key names must be text strings while values can be integers, doubles, strings, o
 
 
 
-  <a id="Tizen_Applications_Preference_Get_" data-uid="Tizen.Applications.Preference.Get*"></a>
+  <a id="Tizen_Applications_Preference_GetEventContext_" data-uid="Tizen.Applications.Preference.GetEventContext*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L254">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L115">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_Preference_Get__1_System_String_" data-uid="Tizen.Applications.Preference.Get``1(System.String)">Get&lt;T&gt;(string)</h4>
+    <h4 id="Tizen_Applications_Preference_GetEventContext_System_String_" data-uid="Tizen.Applications.Preference.GetEventContext(System.String)">GetEventContext(string)</h4>
     <section>
-    <p>Gets the value of a preference item with the specified key.
-Note that this is a generic method.</p>
+    <p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Gets the event context for the given key.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T Get&lt;T&gt;(string key)</code></pre>
+    <pre><code class="lang- hljs">public static WeakReference&lt;Preference.EventContext&gt; GetEventContext(string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -249,9 +247,109 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">key</span></td>
-        <td><p>The key of the preference.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">The preference key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.weakreference-1">WeakReference</a>&lt;<a class="xref" href="Tizen.Applications.Preference.html">Preference</a>.<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a>&gt;</td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">The event context of respective key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Preference_GetEventContext_System_String__examples">Examples</h5>
+  <pre><code class="lang-csharp">private static void Preference_PreferenceChanged(object sender, PreferenceChangedEventArgs e)
+{
+    Console.WriteLine("key {0}", e.Key);
+}
+
+Preference.EventContext context = null;
+Preference.GetEventContext("active_user").TryGetTarget(out context);
+if(context != null)
+{
+    context.Changed += Preference_PreferenceChanged;
+}
+
+Preference.Set("active_user", "Poe");
+
+Preference.GetEventContext("active_user").TryGetTarget(out context);
+if (context != null)
+{
+    context.Changed -= Preference_PreferenceChanged;
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception">KeyNotFoundException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown if the key is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown if the key is invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Applications_Preference_GetEventContext_System_String__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Applications.Preference.html">Preference</a>.<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Applications_Preference_Get_" data-uid="Tizen.Applications.Preference.Get*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L254">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Preference_Get__1_System_String_" data-uid="Tizen.Applications.Preference.Get``1(System.String)">Get&lt;T&gt;(string)</h4>
+    <section>
+    <p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Gets the value of a preference item with the specified key.
+Note that this is a generic method.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">public static T Get&lt;T&gt;(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">The key of the preference.</p>
 </td>
       </tr>
     </tbody>
@@ -267,7 +365,7 @@ Note that this is a generic method.</p>
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td><p>The value of the preference item if it is of the specified generic type.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">The value of the preference item if it is of the specified generic type.</p>
 </td>
       </tr>
     </tbody>
@@ -283,18 +381,18 @@ Note that this is a generic method.</p>
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td><p>The generic type to return.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">The generic type to return.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_Preference_Get__1_System_String__examples">Examples</h5>
-  <pre><code>    bool exists = Preference.Contains(&quot;active_user&quot;);
-    if (exists)
-    {
-        string value = Preference.Get&lt;string>(&quot;active_user&quot;);
-        Console.WriteLine(&quot;user {0}&quot;, value);
-    }</code></pre>
+  <pre><code class="lang-csharp">bool exists = Preference.Contains("active_user");
+if (exists)
+{
+    string value = Preference.Get&lt;string&gt;("active_user");
+    Console.WriteLine("user {0}", value);
+}</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -306,139 +404,40 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
-        <td><p>Thrown if the key is not found.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception">KeyNotFoundException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown if the key is not found.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown if the key is an invalid parameter.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown if the key is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Applications_Preference_GetEventContext_" data-uid="Tizen.Applications.Preference.GetEventContext*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L115">View Source</a>
-    </span>
-    <h4 id="Tizen_Applications_Preference_GetEventContext_System_String_" data-uid="Tizen.Applications.Preference.GetEventContext(System.String)">GetEventContext(string)</h4>
-    <section>
-    <p>Gets the event context for the given key.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static WeakReference&lt;Preference.EventContext&gt; GetEventContext(string key)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">key</span></td>
-        <td><p>The preference key.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown when the method failed due to an internal I/O error.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.WeakReference&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Preference.html">Preference</a>.<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a>&gt;</td>
-        <td><p>The event context of respective key.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Applications_Preference_GetEventContext_System_String__examples">Examples</h5>
-  <pre><code>    private static void Preference_PreferenceChanged(object sender, PreferenceChangedEventArgs e)
-    {
-        Console.WriteLine(&quot;key {0}&quot;, e.Key);
-    }
-
-    Preference.EventContext context = null;
-    Preference.GetEventContext(&quot;active_user&quot;).TryGetTarget(out context);
-    if(context != null)
-    {
-        context.Changed += Preference_PreferenceChanged;
-    }
-
-    Preference.Set(&quot;active_user&quot;, &quot;Poe&quot;);
-
-    Preference.GetEventContext(&quot;active_user&quot;).TryGetTarget(out context);
-    if (context != null)
-    {
-        context.Changed -= Preference_PreferenceChanged;
-    }</code></pre>
-
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
-        <td><p>Thrown if the key is not found.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown if the key is invalid parameter.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="seealso">
-    <h5 id="Tizen_Applications_Preference_GetEventContext_System_String__seealso">See Also</h5>
-      <div><a class="xref" href="Tizen.Applications.Preference.html">Preference</a>.<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a></div>
-  </div>
 
 
 
   <a id="Tizen_Applications_Preference_Remove_" data-uid="Tizen.Applications.Preference.Remove*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L313">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L313">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Preference_Remove_System_String_" data-uid="Tizen.Applications.Preference.Remove(System.String)">Remove(string)</h4>
     <section>
-    <p>Removes any preference value with the given key.</p>
+    <p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Removes any preference value with the given key.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Remove(string key)</code></pre>
+    <pre><code class="lang- hljs">public static void Remove(string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -451,19 +450,19 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">key</span></td>
-        <td><p>The key to remove.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">The key to remove.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_Preference_Remove_System_String__examples">Examples</h5>
-  <pre><code>    bool exists = Preference.Contains(&quot;active_user&quot;);
-    if (exists)
-    {
-        string value = Preference.Remove(&quot;active_user&quot;);
-    }</code></pre>
+  <pre><code class="lang-csharp">bool exists = Preference.Contains("active_user");
+if (exists)
+{
+    string value = Preference.Remove("active_user");
+}</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -475,13 +474,13 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
-        <td><p>Thrown if the key is not found.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception">KeyNotFoundException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown if the key is not found.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown when the method failed due to an internal I/O error.</p>
 </td>
       </tr>
     </tbody>
@@ -492,25 +491,25 @@ Note that this is a generic method.</p>
   <a id="Tizen_Applications_Preference_RemoveAll_" data-uid="Tizen.Applications.Preference.RemoveAll*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L337">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L337">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Preference_RemoveAll" data-uid="Tizen.Applications.Preference.RemoveAll">RemoveAll()</h4>
     <section>
-    <p>Removes all the key-value pairs from the preference.</p>
+    <p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Removes all the key-value pairs from the preference.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void RemoveAll()</code></pre>
+    <pre><code class="lang- hljs">public static void RemoveAll()</code></pre>
   </div>
   <h5 id="Tizen_Applications_Preference_RemoveAll_examples">Examples</h5>
-  <pre><code>    Preference.Set(&quot;Option_enabled&quot;, true);
-    Preference.Set(&quot;active_user&quot;, &quot;Joe&quot;);
-    Preference.Set(&quot;default_volume&quot;, 10);
-    Preference.Set(&quot;brightness&quot;, &quot;0.6&quot;);
-    Preference.RemoveAll();</code></pre>
+  <pre><code class="lang-csharp">Preference.Set("Option_enabled", true);
+Preference.Set("active_user", "Joe");
+Preference.Set("default_volume", 10);
+Preference.Set("brightness", "0.6");
+Preference.RemoveAll();</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -522,8 +521,8 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown when the method failed due to an internal I/O error.</p>
 </td>
       </tr>
     </tbody>
@@ -534,18 +533,18 @@ Note that this is a generic method.</p>
   <a id="Tizen_Applications_Preference_Set_" data-uid="Tizen.Applications.Preference.Set*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L187">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L187">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Preference_Set_System_String_System_Object_" data-uid="Tizen.Applications.Preference.Set(System.String,System.Object)">Set(string, object)</h4>
     <section>
-    <p>Sets a key-value pair representing the preference.</p>
+    <p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Sets a key-value pair representing the preference.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Set(string key, object value)</code></pre>
+    <pre><code class="lang- hljs">public static void Set(string key, object value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -558,28 +557,28 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">key</span></td>
-        <td><p>The name of the key to create/modify.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">The name of the key to create/modify.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">object</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td><span class="parametername">value</span></td>
-        <td><p>The value corresponding to the key.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">The value corresponding to the key.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_Preference_Set_System_String_System_Object__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If the key already exists in the preference, the old value will be overwritten with a new value.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">If the key already exists in the preference, the old value will be overwritten with a new value.
 Supported value data types include integers, doubles, strings, and booleans.</p>
 </div>
   <h5 id="Tizen_Applications_Preference_Set_System_String_System_Object__examples">Examples</h5>
-  <pre><code>    Preference.Set(&quot;Option_enabled&quot;, true);
-    Preference.Set(&quot;active_user&quot;, &quot;Joe&quot;);
-    Preference.Set(&quot;default_volume&quot;, 10);
-    Preference.Set(&quot;brightness&quot;, 0.6);</code></pre>
+  <pre><code class="lang-csharp">Preference.Set("Option_enabled", true);
+Preference.Set("active_user", "Joe");
+Preference.Set("default_volume", 10);
+Preference.Set("brightness", 0.6);</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -591,27 +590,28 @@ Supported value data types include integers, doubles, strings, and booleans.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown if the key is an invalid parameter.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown if the key is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method fails due to an internal I/O error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.Applications.Preference.yml" sourcestartlinenumber="1">Thrown when the method fails due to an internal I/O error.</p>
 </td>
       </tr>
     </tbody>
   </table>
 
 
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

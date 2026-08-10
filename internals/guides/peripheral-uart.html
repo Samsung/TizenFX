@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="UART ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="internals">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -43,138 +43,139 @@
             <div id="printableArea" class="md-content-wrapper">
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="">
-<h1 id="uart">UART</h1>
+<h1 id="uart" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="1">UART</h1>
 
-<p><a href="https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter">UART</a> (Universal Asynchronous Receiver-Transmitter) is a programmable interface that allows you to communicate 1:1 with a UART peripheral.</p>
-<p><strong>Figure: UART interface diagram</strong></p>
-<p><img src="media/peri_api_uart_diagram.png" alt="UART interface diagram"></p>
-<p>UART is an interface for exchanging data with peripherals. It is an asynchronous method that transmits data without a clock line, and consists of only 2 data lines: transmit (Tx) and receive (Rx). UART performs 1:1 communication.</p>
-<p><strong>Figure: UART data frame</strong></p>
-<p><img src="media/peri_api_uart_data.png" alt="UART data frame"></p>
-<p>The UART data frame consists of start (1 bit), data (5~8 bit), parity (1 bit) and stop (1 bit):</p>
-<ul>
-<li><p>Start bit</p>
-<p>Indicates the start of the communication before sending data and holds it for a bit time length.</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="3"><a href="https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="3">UART</a> (Universal Asynchronous Receiver-Transmitter) is a programmable interface that allows you to communicate 1:1 with a UART peripheral.</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="5"><strong sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="5">Figure: UART interface diagram</strong></p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="7"><img src="media/peri_api_uart_diagram.png" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="7" alt="UART interface diagram"></p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="9">UART is an interface for exchanging data with peripherals. It is an asynchronous method that transmits data without a clock line, and consists of only 2 data lines: transmit (Tx) and receive (Rx). UART performs 1:1 communication.</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="11"><strong sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="11">Figure: UART data frame</strong></p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="13"><img src="media/peri_api_uart_data.png" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="13" alt="UART data frame"></p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="15">The UART data frame consists of start (1 bit), data (5~8 bit), parity (1 bit) and stop (1 bit):</p>
+<ul sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="17">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="17"><p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="17">Start bit</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="19">Indicates the start of the communication before sending data and holds it for a bit time length.</p>
 </li>
-<li><p>Data</p>
-<p>Transmits 5 to 8 bits of data.</p>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="21"><p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="21">Data</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="23">Transmits 5 to 8 bits of data.</p>
 </li>
-<li><p>Parity bit</p>
-<p>Generates and transmits a parity value for error verification, and determines a receiving side error. The following options are available: <code>None</code>, <code>Even</code>, and <code>Odd</code> parity. Selecting <code>None</code> removes this bit.</p>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="25"><p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="25">Parity bit</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="27">Generates and transmits a parity value for error verification, and determines a receiving side error. The following options are available: <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="27">None</code>, <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="27">Even</code>, and <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="27">Odd</code> parity. Selecting <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="27">None</code> removes this bit.</p>
 </li>
-<li><p>Stop bit</p>
-<p>Indicates the termination of the communication and holds 1 or 2 bits.</p>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="29"><p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="29">Stop bit</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="31">Indicates the termination of the communication and holds 1 or 2 bits.</p>
 </li>
-<li><p>Baud rate</p>
-<p>Asynchronous transmission/receiving speeds must be matched to the peripheral. For this purpose, the number of signals transmitted per second can be synchronized with a peripheral. It is called the Baud.</p>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="33"><p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="33">Baud rate</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="35">Asynchronous transmission/receiving speeds must be matched to the peripheral. For this purpose, the number of signals transmitted per second can be synchronized with a peripheral. It is called the Baud.</p>
 </li>
 </ul>
-<p>If a device supports a 5-wire UART port, hardware flow control can be used to increase the reliability of the data transmission. Software flow control can also be used to increase reliability.</p>
-<h2 id="opening-and-closing-a-handle">Opening and Closing a Handle</h2>
-<p>To open and close a handle:</p>
-<ol>
-<li><p>To open a UART handle, create the <code>SerialPort()</code> object:</p>
-<pre><code class="lang-csharp">int port = 0;
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="37">If a device supports a 5-wire UART port, hardware flow control can be used to increase the reliability of the data transmission. Software flow control can also be used to increase reliability.</p>
+<h2 id="opening-and-closing-a-handle" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="39">Opening and Closing a Handle</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="41">To open and close a handle:</p>
+<ol sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="43">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="43"><p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="43">To open a UART handle, create the <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="43">SerialPort()</code> object:</p>
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="45">int port = 0;
 SerialPort uart = new SerialPort(port);
 </code></pre>
-<p>The <code>port</code> parameter required for this function must be set according to the following tables.</p>
-<p><strong>Table: Raspberry Pi 3 and Raspberry Pi 4</strong></p>
-<table>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="50">The <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="50">port</code> parameter required for this function must be set according to the following tables.</p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="52"><strong sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="52">Table: Raspberry Pi 3 and Raspberry Pi 4</strong></p>
+<table sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="54">
 <thead>
-<tr>
-<th>Pin name</th>
-<th></th>
-<th>Port (parameter 1)</th>
+<tr sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="54">
+<th sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="54">Pin name</th>
+<th sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="54"></th>
+<th sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="54">Port (parameter 1)</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>UART0_RX</td>
-<td>UART0_TX</td>
-<td>0</td>
+<tr sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="56">
+<td sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="56">UART0_RX</td>
+<td sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="56">UART0_TX</td>
+<td sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="56">0</td>
 </tr>
-<tr>
-<td>UART1_RX</td>
-<td>UART1_TX</td>
-<td>1</td>
+<tr sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="57">
+<td sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="57">UART1_RX</td>
+<td sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="57">UART1_TX</td>
+<td sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="57">1</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p><strong>Note</strong></p>
-<p>For more information on the pin names and locations, see <a href="peripheral.html#protocol">Supported Protocols</a>.</p>
+<blockquote sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="60">
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="60"><strong sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="60">Note</strong></p>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="62">For more information on the pin names and locations, see <a href="peripheral.html#protocol" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="62">Supported Protocols</a>.</p>
 </blockquote>
 </li>
-<li><p>To close a UART handle that is no longer used, use the <code>SerialPort.Close()</code> method:</p>
-<pre><code class="lang-csharp">uart.Close();
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="64"><p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="64">To close a UART handle that is no longer used, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="64">SerialPort.Close()</code> method:</p>
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="66">uart.Close();
 </code></pre>
 </li>
 </ol>
-<h2 id="setting-the-baud-rate">Setting the Baud Rate</h2>
-<p>To set the baud rate, use the <code>SerialPort.BaudRate</code> property with a <code>BaudRate</code> value:</p>
-<ul>
-<li><code>BaudRate.Rate0</code> ~ <code>BaudRate.Rate230400</code></li>
+<h2 id="setting-the-baud-rate" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="70">Setting the Baud Rate</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="72">To set the baud rate, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="72">SerialPort.BaudRate</code> property with a <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="72">BaudRate</code> value:</p>
+<ul sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="74">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="74"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="74">BaudRate.Rate0</code> ~ <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="74">BaudRate.Rate230400</code></li>
 </ul>
-<pre><code class="lang-csharp">uart.BaudRate = BaudRate.Rate9600;
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="76">uart.BaudRate = BaudRate.Rate9600;
 </code></pre>
-<h2 id="setting-the-byte-size">Setting the Byte Size</h2>
-<p>To set the byte size, use the <code>SerialPort.DataBits</code> property with 1 of the following <code>DataBits</code> types:</p>
-<ul>
-<li><code>DataBits.Size5Bit</code>: Byte size is 5 bits.</li>
-<li><code>DataBits.Size6Bit</code>: Byte size is 6 bits.</li>
-<li><code>DataBits.Size7Bit</code>: Byte size is 7 bits.</li>
-<li><code>DataBits.Size8Bit</code>: Byte size is 8 bits.</li>
+<h2 id="setting-the-byte-size" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="80">Setting the Byte Size</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="82">To set the byte size, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="82">SerialPort.DataBits</code> property with 1 of the following <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="82">DataBits</code> types:</p>
+<ul sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="84">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="84"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="84">DataBits.Size5Bit</code>: Byte size is 5 bits.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="85"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="85">DataBits.Size6Bit</code>: Byte size is 6 bits.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="86"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="86">DataBits.Size7Bit</code>: Byte size is 7 bits.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="87"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="87">DataBits.Size8Bit</code>: Byte size is 8 bits.</li>
 </ul>
-<pre><code class="lang-csharp">uart.DataBits = DataBits.Size7Bit;
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="89">uart.DataBits = DataBits.Size7Bit;
 </code></pre>
-<h2 id="setting-the-parity-bit">Setting the Parity Bit</h2>
-<p>To set the parity bit, use the <code>SerialPort.Parity</code> property with 1 of the following <code>Parity</code> types:</p>
-<ul>
-<li><code>Parity.None</code>: No parity bit.</li>
-<li><code>Parity.Even</code>: Parity bit is even.</li>
-<li><code>Parity.Odd</code>: Parity bit is odd.</li>
+<h2 id="setting-the-parity-bit" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="93">Setting the Parity Bit</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="95">To set the parity bit, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="95">SerialPort.Parity</code> property with 1 of the following <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="95">Parity</code> types:</p>
+<ul sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="97">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="97"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="97">Parity.None</code>: No parity bit.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="98"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="98">Parity.Even</code>: Parity bit is even.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="99"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="99">Parity.Odd</code>: Parity bit is odd.</li>
 </ul>
-<pre><code class="lang-csharp">uart.Parity = Parity.Even;
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="101">uart.Parity = Parity.Even;
 </code></pre>
-<h2 id="setting-the-stop-bits">Setting the Stop Bits</h2>
-<p>To set the stop bits, use the <code>SerialPort.StopBits</code> property with 1 of the following <code>StopBits</code> types:</p>
-<ul>
-<li><code>StopBits.One</code>: 1 bit is used for stop bits.</li>
-<li><code>StopBits.Two</code>: 2 bit is used for stop bits.</li>
+<h2 id="setting-the-stop-bits" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="105">Setting the Stop Bits</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="107">To set the stop bits, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="107">SerialPort.StopBits</code> property with 1 of the following <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="107">StopBits</code> types:</p>
+<ul sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="109">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="109"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="109">StopBits.One</code>: 1 bit is used for stop bits.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="110"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="110">StopBits.Two</code>: 2 bit is used for stop bits.</li>
 </ul>
-<pre><code class="lang-csharp">uart.StopBits = StopBits.Two;
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="112">uart.StopBits = StopBits.Two;
 </code></pre>
-<h2 id="setting-the-flow-control">Setting the Flow Control</h2>
-<p>To set the software flow control, use the <code>SerialPort.SoftwareFlowControl</code> property with 1 of the following <code>SoftwareFlowControl</code> types:</p>
-<ul>
-<li><code>SoftwareFlowControl.None</code>: No software flow control.</li>
-<li><code>SoftwareFlowControl.XonXoff</code>: Software flow control uses XONXOFF.</li>
+<h2 id="setting-the-flow-control" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="116">Setting the Flow Control</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="118">To set the software flow control, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="118">SerialPort.SoftwareFlowControl</code> property with 1 of the following <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="118">SoftwareFlowControl</code> types:</p>
+<ul sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="120">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="120"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="120">SoftwareFlowControl.None</code>: No software flow control.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="121"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="121">SoftwareFlowControl.XonXoff</code>: Software flow control uses XONXOFF.</li>
 </ul>
-<pre><code class="lang-csharp">uart.SoftwareFlowControl(SoftwareFlowControl.XonXoff);
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="123">uart.SoftwareFlowControl(SoftwareFlowControl.XonXoff);
 </code></pre>
-<p>To set the hardware flow control, use the <code>SerialPort.HardwareFlowControl</code> property with 1 of the following <code>HardwareFlowControl</code> types:</p>
-<ul>
-<li><code>HardwareFlowControl.None</code>: No hardware flow control.</li>
-<li><code>HardwareFlowControl.AutoRtsCts</code>: Hardware flow control uses RTSCTS.</li>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="127">To set the hardware flow control, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="127">SerialPort.HardwareFlowControl</code> property with 1 of the following <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="127">HardwareFlowControl</code> types:</p>
+<ul sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="128">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="128"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="128">HardwareFlowControl.None</code>: No hardware flow control.</li>
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="129"><code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="129">HardwareFlowControl.AutoRtsCts</code>: Hardware flow control uses RTSCTS.</li>
 </ul>
-<pre><code class="lang-csharp">uart.HardwareFlowControl(HardwareFlowControl.AutoRtsCts);
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="131">uart.HardwareFlowControl(HardwareFlowControl.AutoRtsCts);
 </code></pre>
-<h2 id="reading-and-writing-data">Reading and Writing Data</h2>
-<p>To read and write data:</p>
-<ul>
-<li><p>To write data to a slave device, use the <code>SerialPort.Write()</code> method:</p>
-<pre><code class="lang-csharp">byte[] data = {0x06, 0x01};
+<h2 id="reading-and-writing-data" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="135">Reading and Writing Data</h2>
+<p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="137">To read and write data:</p>
+<ul sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="139">
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="139"><p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="139">To write data to a slave device, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="139">SerialPort.Write()</code> method:</p>
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="141">byte[] data = {0x06, 0x01};
 int offset = 0;
 SerialPort.Write(data, offset, data.Length);
 </code></pre>
 </li>
-<li><p>To read data from a slave device, use the <code>SerialPort.Read()</code> method:</p>
-<pre><code class="lang-csharp">byte[] data = new byte[2];
+<li sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="147"><p sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="147">To read data from a slave device, use the <code sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="147">SerialPort.Read()</code> method:</p>
+<pre><code class="lang-csharp" sourcefile="repos/API15/internals/docs/guides/peripheral-uart.md" sourcestartlinenumber="149">byte[] data = new byte[2];
 int offset = 0;
 SerialPort.Read(data, offset, data.Length);
 </code></pre>
 </li>
 </ul>
+
 </section>
             </div>
           </main>
@@ -182,7 +183,7 @@ SerialPort.Read(data, offset, data.Length);
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

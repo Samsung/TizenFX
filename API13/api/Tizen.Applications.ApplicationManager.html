@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ApplicationManager
- </title>
+    <title>Class ApplicationManager </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ApplicationManager
- ">
+    <meta name="title" content="Class ApplicationManager ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API13">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.ApplicationManager">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 ApplicationManager
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L29" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L74" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,12 +60,12 @@ ApplicationManager
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Common.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>This class has the methods and events of the ApplicationManager.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">This class has the methods and events of the ApplicationManager.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class ApplicationManager</code></pre>
+    <pre><code class="lang- hljs">public static class ApplicationManager</code></pre>
   </div>
 
 
@@ -74,7 +73,7 @@ ApplicationManager
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">ApplicationManager</span></div>
       </div>
     </dd>
@@ -90,18 +89,18 @@ ApplicationManager
   <a id="Tizen_Applications_ApplicationManager_GetAllRunningApplicationsAsync_" data-uid="Tizen.Applications.ApplicationManager.GetAllRunningApplicationsAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L469">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L518">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_GetAllRunningApplicationsAsync" data-uid="Tizen.Applications.ApplicationManager.GetAllRunningApplicationsAsync">GetAllRunningApplicationsAsync()</h4>
     <section>
-    <p>Asynchronously retrieves the information about all currently running applications, including subapps.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Asynchronously retrieves the information about all currently running applications, including subapps.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;IEnumerable&lt;ApplicationRunningContext&gt;&gt; GetAllRunningApplicationsAsync()</code></pre>
+    <pre><code class="lang- hljs">public static Task&lt;IEnumerable&lt;ApplicationRunningContext&gt;&gt; GetAllRunningApplicationsAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -113,25 +112,25 @@ ApplicationManager
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationRunningContext.html">ApplicationRunningContext</a>&gt;&gt;</td>
-        <td><p>An enumerable list containing details about the running applications.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Applications.ApplicationRunningContext.html">ApplicationRunningContext</a>&gt;&gt;</td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">An enumerable list containing details about the running applications.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_GetAllRunningApplicationsAsync_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This method provides access to the current state of all active applications on the device, allowing you to gather information such as their IDs, types, and states.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">This method provides access to the current state of all active applications on the device, allowing you to gather information such as their IDs, types, and states.
 By utilizing this functionality, developers can gain insights into the overall system activity and make informed decisions based on the available data.</p>
 </div>
   <h5 id="Tizen_Applications_ApplicationManager_GetAllRunningApplicationsAsync_examples">Examples</h5>
-  <p>Here is an example that demonstrates how to utilize the GetAllRunningApplicationsAsync method in order to obtain information about the currently running applications:</p>
-<pre><code>// Initiate the call to get all running applications
-IEnumerable&lt;ApplicationRunningContext> runningApps = await GetAllRunningApplicationsAsync();
+  <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Here is an example that demonstrates how to utilize the GetAllRunningApplicationsAsync method in order to obtain information about the currently running applications:</p>
+<pre><code class="lang-csharp">// Initiate the call to get all running applications
+IEnumerable&lt;ApplicationRunningContext&gt; runningApps = await GetAllRunningApplicationsAsync();
 
 // Iterate through the obtained list of running apps
 foreach (var app in runningApps)
 {
-    Console.WriteLine($&quot;Id: {app.ApplicationId}&quot;);
+    Console.WriteLine($"Id: {app.ApplicationId}");
 }</code></pre>
 
 
@@ -140,18 +139,18 @@ foreach (var app in runningApps)
   <a id="Tizen_Applications_ApplicationManager_GetAppId_" data-uid="Tizen.Applications.ApplicationManager.GetAppId*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L589">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L638">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_GetAppId_System_Int32_" data-uid="Tizen.Applications.ApplicationManager.GetAppId(System.Int32)">GetAppId(int)</h4>
     <section>
-    <p>Retrieves the application ID based on the specified process ID.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Retrieves the application ID based on the specified process ID.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string GetAppId(int processId)</code></pre>
+    <pre><code class="lang- hljs">public static string GetAppId(int processId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -164,9 +163,9 @@ foreach (var app in runningApps)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">processId</span></td>
-        <td><p>The process ID of the target application.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">The process ID of the target application.</p>
 </td>
       </tr>
     </tbody>
@@ -181,21 +180,21 @@ foreach (var app in runningApps)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
-        <td><p>The application ID associated with the given process ID.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">The application ID associated with the given process ID.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_GetAppId_System_Int32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>By providing the process ID as input, this function enables you to obtain the corresponding application ID.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">By providing the process ID as input, this function enables you to obtain the corresponding application ID.
 It ensures that the correct application is identified even if multiple applications are running simultaneously.</p>
 </div>
   <h5 id="Tizen_Applications_ApplicationManager_GetAppId_System_Int32__examples">Examples</h5>
-  <p>The following code snippet demonstrates how to retrieve the application ID by calling the GetAppId() function:</p>
-<pre><code>int processId = 12345; // Replace with actual process ID
+  <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">The following code snippet demonstrates how to retrieve the application ID by calling the GetAppId() function:</p>
+<pre><code class="lang-csharp">int processId = 12345; // Replace with actual process ID
 string appId = GetAppId(processId);
-Console.WriteLine($&quot;Application ID: {appId}&quot;);</code></pre>
+Console.WriteLine($"Application ID: {appId}");</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -207,8 +206,8 @@ Console.WriteLine($&quot;Application ID: {appId}&quot;);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>If the argument passed in is not valid.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">If the argument passed in is not valid.</p>
 </td>
       </tr>
     </tbody>
@@ -219,18 +218,18 @@ Console.WriteLine($&quot;Application ID: {appId}&quot;);</code></pre>
   <a id="Tizen_Applications_ApplicationManager_GetInstalledApplication_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplication*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L524">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L573">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_GetInstalledApplication_System_String_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplication(System.String)">GetInstalledApplication(string)</h4>
     <section>
-    <p>Retrieves the information of the specified application by its application ID.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Retrieves the information of the specified application by its application ID.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ApplicationInfo GetInstalledApplication(string applicationId)</code></pre>
+    <pre><code class="lang- hljs">public static ApplicationInfo GetInstalledApplication(string applicationId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -243,9 +242,9 @@ Console.WriteLine($&quot;Application ID: {appId}&quot;);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">applicationId</span></td>
-        <td><p>The ID of the target application.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">The ID of the target application.</p>
 </td>
       </tr>
     </tbody>
@@ -261,23 +260,23 @@ Console.WriteLine($&quot;Application ID: {appId}&quot;);</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a></td>
-        <td><p>An object containing detailed information about the requested application.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">An object containing detailed information about the requested application.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_GetInstalledApplication_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This function enables you to obtain specific information about an application based on its application ID.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">This function enables you to obtain specific information about an application based on its application ID.
 It returns an object that contains various attributes such as the package name, version, icon URL, etc., which are associated with the identified application.
 If the specified application does not exist in the system, an error message will be thrown indicating that the requested application could not be found.</p>
 </div>
   <h5 id="Tizen_Applications_ApplicationManager_GetInstalledApplication_System_String__examples">Examples</h5>
-  <p>The following code snippet demonstrates how to retrieve the details of an application with the ID &quot;org.example.app&quot;:</p>
-<pre><code>// Retrieve the application details
-ApplicationInfo appInfo = ApplicationManager.GetInstalledApplication(&quot;org.example.app&quot;);
+  <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">The following code snippet demonstrates how to retrieve the details of an application with the ID &quot;org.example.app&quot;:</p>
+<pre><code class="lang-csharp">// Retrieve the application details
+ApplicationInfo appInfo = ApplicationManager.GetInstalledApplication("org.example.app");
 
 // Print the package ID of the retrieved application
-Console.WriteLine($&quot;Package ID: {appInfo.PackageId}&quot;);</code></pre>
+Console.WriteLine($"Package ID: {appInfo.PackageId}");</code></pre>
 
 
 
@@ -285,18 +284,18 @@ Console.WriteLine($&quot;Package ID: {appInfo.PackageId}&quot;);</code></pre>
   <a id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L201">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L250">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync">GetInstalledApplicationsAsync()</h4>
     <section>
-    <p>Asynchronously retrieves information about the installed applications.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Asynchronously retrieves information about the installed applications.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;IEnumerable&lt;ApplicationInfo&gt;&gt; GetInstalledApplicationsAsync()</code></pre>
+    <pre><code class="lang- hljs">public static Task&lt;IEnumerable&lt;ApplicationInfo&gt;&gt; GetInstalledApplicationsAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -308,19 +307,19 @@ Console.WriteLine($&quot;Package ID: {appInfo.PackageId}&quot;);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
-        <td><p>An asynchronous task that returns a list containing information about the installed applications.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">An asynchronous task that returns a list containing information about the installed applications.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>By calling this method, you can retrieve details about all the applications currently installed on the device. The returned list contains ApplicationInfo objects, which provide various properties such as package ID, version, and icon.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">By calling this method, you can retrieve details about all the applications currently installed on the device. The returned list contains ApplicationInfo objects, which provide various properties such as package ID, version, and icon.</p>
 </div>
   <h5 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_examples">Examples</h5>
-  <p>To get the information of the installed applications, you can call the following code snippet:</p>
-<pre><code>var listApp = await ApplicationManager.GetInstalledApplicationsAsync();
-Assert.IsNotEmpty(_listApp, &quot;The list of installed app should not be empty.&quot;);
+  <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">To get the information of the installed applications, you can call the following code snippet:</p>
+<pre><code class="lang-csharp">var listApp = await ApplicationManager.GetInstalledApplicationsAsync();
+Assert.IsNotEmpty(_listApp, "The list of installed app should not be empty.");
 foreach (ApplicationInfo instapp in _listApp)
 {
     Console.WriteLine(instapp.ApplicationId);
@@ -332,18 +331,18 @@ foreach (ApplicationInfo instapp in _listApp)
   <a id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L290">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L339">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_Tizen_Applications_ApplicationInfoFilter_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync(Tizen.Applications.ApplicationInfoFilter)">GetInstalledApplicationsAsync(ApplicationInfoFilter)</h4>
     <section>
-    <p>Retrieves the information about installed applications that match the specified filter criteria in an asynchronous manner.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Retrieves the information about installed applications that match the specified filter criteria in an asynchronous manner.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;IEnumerable&lt;ApplicationInfo&gt;&gt; GetInstalledApplicationsAsync(ApplicationInfoFilter filter)</code></pre>
+    <pre><code class="lang- hljs">public static Task&lt;IEnumerable&lt;ApplicationInfo&gt;&gt; GetInstalledApplicationsAsync(ApplicationInfoFilter filter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -358,7 +357,7 @@ foreach (ApplicationInfo instapp in _listApp)
       <tr>
         <td><a class="xref" href="Tizen.Applications.ApplicationInfoFilter.html">ApplicationInfoFilter</a></td>
         <td><span class="parametername">filter</span></td>
-        <td><p>An ApplicationInfoFilter containing the desired filter criteria.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">An ApplicationInfoFilter containing the desired filter criteria.</p>
 </td>
       </tr>
     </tbody>
@@ -373,19 +372,19 @@ foreach (ApplicationInfo instapp in _listApp)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
-        <td><p>An IEnumerable&lt;ApplicationInfo&gt; containing the information of the installed applications that match the specified filter.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">An IEnumerable&lt;ApplicationInfo&gt; containing the information of the installed applications that match the specified filter.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_Tizen_Applications_ApplicationInfoFilter__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>By specifying the desired filter criteria through the <code data-dev-comment-type="paramref" class="paramref">filter</code> argument, you can retrieve only those applications that meet these conditions. The returned result will contain a list of ApplicationInfo objects representing the matched applications.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">By specifying the desired filter criteria through the <code class="paramref">filter</code> argument, you can retrieve only those applications that meet these conditions. The returned result will contain a list of ApplicationInfo objects representing the matched applications.</p>
 </div>
   <h5 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_Tizen_Applications_ApplicationInfoFilter__examples">Examples</h5>
-  <p>The following code snippet demonstrates how to obtain the information of all installed applications:</p>
-<pre><code>var filter = new ApplicationInfoFilter();
-filter.Filter.Add(ApplicationInfoFilter.Keys.Id, &quot;org.exmaple.hello&quot;);
+  <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">The following code snippet demonstrates how to obtain the information of all installed applications:</p>
+<pre><code class="lang-csharp">var filter = new ApplicationInfoFilter();
+filter.Filter.Add(ApplicationInfoFilter.Keys.Id, "org.exmaple.hello");
 var apps = await GetInstalledApplicationsAsync(filter);
 foreach (var app in apps)
 {
@@ -398,18 +397,18 @@ foreach (var app in apps)
   <a id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L354">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L403">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_Tizen_Applications_ApplicationInfoMetadataFilter_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync(Tizen.Applications.ApplicationInfoMetadataFilter)">GetInstalledApplicationsAsync(ApplicationInfoMetadataFilter)</h4>
     <section>
-    <p>Asynchronously retrieves the information about installed applications filtered by the specified criteria in the form of ApplicationInfoMetadataFilter.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Asynchronously retrieves the information about installed applications filtered by the specified criteria in the form of ApplicationInfoMetadataFilter.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;IEnumerable&lt;ApplicationInfo&gt;&gt; GetInstalledApplicationsAsync(ApplicationInfoMetadataFilter filter)</code></pre>
+    <pre><code class="lang- hljs">public static Task&lt;IEnumerable&lt;ApplicationInfo&gt;&gt; GetInstalledApplicationsAsync(ApplicationInfoMetadataFilter filter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -424,7 +423,7 @@ foreach (var app in apps)
       <tr>
         <td><a class="xref" href="Tizen.Applications.ApplicationInfoMetadataFilter.html">ApplicationInfoMetadataFilter</a></td>
         <td><span class="parametername">filter</span></td>
-        <td><p>A dictionary of key-value pairs used to define the specific filtering criteria.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">A dictionary of key-value pairs used to define the specific filtering criteria.</p>
 </td>
       </tr>
     </tbody>
@@ -439,20 +438,20 @@ foreach (var app in apps)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
-        <td><p>An enumerable collection of ApplicationInfo objects representing the installed applications that meet the specified filtering criteria.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">An enumerable collection of ApplicationInfo objects representing the installed applications that meet the specified filtering criteria.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_Tizen_Applications_ApplicationInfoMetadataFilter__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>By providing the filter argument, you can specify various conditions such as package names, types, visibility status, etc., which will help narrow down the search results to only those that match the desired criteria.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">By providing the filter argument, you can specify various conditions such as package names, types, visibility status, etc., which will help narrow down the search results to only those that match the desired criteria.
 The returned result is a list of ApplicationInfo objects containing detailed information about each matched application.</p>
 </div>
   <h5 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_Tizen_Applications_ApplicationInfoMetadataFilter__examples">Examples</h5>
-  <p>To retrieve all visible applications:</p>
-<pre><code>var filter = new ApplicationInfoMetadataFilter();
-filter.Filter.Add(&quot;http://tizen.org/metadata/test-id&quot;, &quot;org.exmaple.hello&quot;);
+  <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">To retrieve all visible applications:</p>
+<pre><code class="lang-csharp">var filter = new ApplicationInfoMetadataFilter();
+filter.Filter.Add("http://tizen.org/metadata/test-id", "org.exmaple.hello");
 var apps = await GetInstalledApplicationsAsync(filter);
 foreach (var app in apps)
 {
@@ -465,18 +464,18 @@ foreach (var app in apps)
   <a id="Tizen_Applications_ApplicationManager_GetRunningApplicationsAsync_" data-uid="Tizen.Applications.ApplicationManager.GetRunningApplicationsAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L413">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L462">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_GetRunningApplicationsAsync" data-uid="Tizen.Applications.ApplicationManager.GetRunningApplicationsAsync">GetRunningApplicationsAsync()</h4>
     <section>
-    <p>Asynchronously retrieves the information about currently running applications.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Asynchronously retrieves the information about currently running applications.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;IEnumerable&lt;ApplicationRunningContext&gt;&gt; GetRunningApplicationsAsync()</code></pre>
+    <pre><code class="lang- hljs">public static Task&lt;IEnumerable&lt;ApplicationRunningContext&gt;&gt; GetRunningApplicationsAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -488,18 +487,18 @@ foreach (var app in apps)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationRunningContext.html">ApplicationRunningContext</a>&gt;&gt;</td>
-        <td><p>An enumerable list containing details about the running applications.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Applications.ApplicationRunningContext.html">ApplicationRunningContext</a>&gt;&gt;</td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">An enumerable list containing details about the running applications.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_GetRunningApplicationsAsync_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This method provides an efficient way to gather information about all the active apps on the device without blocking the current thread. It returns a task which can be awaited in order to obtain the desired result.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">This method provides an efficient way to gather information about all the active apps on the device without blocking the current thread. It returns a task which can be awaited in order to obtain the desired result.</p>
 </div>
   <h5 id="Tizen_Applications_ApplicationManager_GetRunningApplicationsAsync_examples">Examples</h5>
-  <p>Here's an example demonstrating how to retrieve the running applications and display their IDs:</p>
-<pre><code>await ApplicationManager.GetRunningApplicationsAsync().ContinueWith((task) => {
+  <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Here's an example demonstrating how to retrieve the running applications and display their IDs:</p>
+<pre><code class="lang-csharp">await ApplicationManager.GetRunningApplicationsAsync().ContinueWith((task) =&gt; {
     foreach (var app in task.Result) {
         Console.WriteLine(app.ApplicationId);
     }
@@ -511,18 +510,18 @@ foreach (var app in apps)
   <a id="Tizen_Applications_ApplicationManager_IsRunning_" data-uid="Tizen.Applications.ApplicationManager.IsRunning*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L558">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L607">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_IsRunning_System_String_" data-uid="Tizen.Applications.ApplicationManager.IsRunning(System.String)">IsRunning(string)</h4>
     <section>
-    <p>Determines whether the specified application is currently running.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Determines whether the specified application is currently running.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsRunning(string applicationId)</code></pre>
+    <pre><code class="lang- hljs">public static bool IsRunning(string applicationId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -535,9 +534,9 @@ foreach (var app in apps)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">applicationId</span></td>
-        <td><p>The unique identifier of the application to check.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">The unique identifier of the application to check.</p>
 </td>
       </tr>
     </tbody>
@@ -552,22 +551,22 @@ foreach (var app in apps)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>True if the application identified by the given ID is currently running, otherwise False.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">True if the application identified by the given ID is currently running, otherwise False.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_IsRunning_System_String__examples">Examples</h5>
-  <p>The following code snippet demonstrates how to determine if a specific application is currently running:</p>
-<pre><code>string applicationId = &quot;org.example.app&quot;;
+  <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">The following code snippet demonstrates how to determine if a specific application is currently running:</p>
+<pre><code class="lang-csharp">string applicationId = "org.example.app";
 if (ApplicationManager.IsRunning(applicationId))
 {
-    Console.WriteLine(&quot;The application with ID &apos;{0}&apos; is currently running.&quot;, applicationId);
+    Console.WriteLine("The application with ID '{0}' is currently running.", applicationId);
 }
 else
 {
-    Console.WriteLine(&quot;The application with ID &apos;{0}&apos; is not currently running.&quot;, applicationId);
+    Console.WriteLine("The application with ID '{0}' is not currently running.", applicationId);
 }</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
@@ -580,8 +579,8 @@ else
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the provided argument is invalid or missing.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Thrown when the provided argument is invalid or missing.</p>
 </td>
       </tr>
     </tbody>
@@ -592,18 +591,18 @@ else
   <a id="Tizen_Applications_ApplicationManager_TerminateBackgroundApplication_" data-uid="Tizen.Applications.ApplicationManager.TerminateBackgroundApplication*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L247">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L296">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_TerminateBackgroundApplication_Tizen_Applications_ApplicationRunningContext_" data-uid="Tizen.Applications.ApplicationManager.TerminateBackgroundApplication(Tizen.Applications.ApplicationRunningContext)">TerminateBackgroundApplication(ApplicationRunningContext)</h4>
     <section>
-    <p>Terminates the application if it is running on background.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Terminates the application if it is running on background.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void TerminateBackgroundApplication(ApplicationRunningContext app)</code></pre>
+    <pre><code class="lang- hljs">public static void TerminateBackgroundApplication(ApplicationRunningContext app)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -618,13 +617,13 @@ else
       <tr>
         <td><a class="xref" href="Tizen.Applications.ApplicationRunningContext.html">ApplicationRunningContext</a></td>
         <td><span class="parametername">app</span></td>
-        <td><p>ApplicationRunningContext object</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">ApplicationRunningContext object</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_TerminateBackgroundApplication_Tizen_Applications_ApplicationRunningContext__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This function returns after it just sends a request for terminating a background application.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">This function returns after it just sends a request for terminating a background application.
 Platform will decide if the target application could be terminated or not according to the state of the target application.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
@@ -637,18 +636,18 @@ Platform will decide if the target application could be terminated or not accord
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when failed of invalid argument.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Thrown when failed of invalid argument.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when failed because of permission denied.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Thrown when failed because of permission denied.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of system error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Thrown when failed because of system error.</p>
 </td>
       </tr>
     </tbody>
@@ -660,18 +659,18 @@ Platform will decide if the target application could be terminated or not accord
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L84">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L133">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_ApplicationDisabled" data-uid="Tizen.Applications.ApplicationManager.ApplicationDisabled">ApplicationDisabled</h4>
     <section>
-    <p>Occurs whenever the installed application is disabled.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Occurs whenever the installed application is disabled.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;ApplicationDisabledEventArgs&gt; ApplicationDisabled</code></pre>
+    <pre><code class="lang- hljs">public static event EventHandler&lt;ApplicationDisabledEventArgs&gt; ApplicationDisabled</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -683,13 +682,13 @@ Platform will decide if the target application could be terminated or not accord
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationDisabledEventArgs.html">ApplicationDisabledEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.ApplicationDisabledEventArgs.html">ApplicationDisabledEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_ApplicationDisabled_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This event is raised whenever the user disables an installed application through the Settings menu.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">This event is raised whenever the user disables an installed application through the Settings menu.
 The event handler receives an argument of type ApplicationDisabledEventArgs which contains information about the disabled application.</p>
 </div>
 
@@ -697,18 +696,18 @@ The event handler receives an argument of type ApplicationDisabledEventArgs whic
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L49">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L98">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_ApplicationEnabled" data-uid="Tizen.Applications.ApplicationManager.ApplicationEnabled">ApplicationEnabled</h4>
     <section>
-    <p>Occurs whenever the installed application is enabled.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Occurs whenever the installed application is enabled.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;ApplicationEnabledEventArgs&gt; ApplicationEnabled</code></pre>
+    <pre><code class="lang- hljs">public static event EventHandler&lt;ApplicationEnabledEventArgs&gt; ApplicationEnabled</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -720,31 +719,31 @@ The event handler receives an argument of type ApplicationDisabledEventArgs whic
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationEnabledEventArgs.html">ApplicationEnabledEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.ApplicationEnabledEventArgs.html">ApplicationEnabledEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_ApplicationEnabled_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This event is raised whenever the installed application is enabled. It provides information about the application that was enabled through the arguments passed in the event handler.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">This event is raised whenever the installed application is enabled. It provides information about the application that was enabled through the arguments passed in the event handler.</p>
 </div>
 
 
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L119">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L168">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_ApplicationLaunched" data-uid="Tizen.Applications.ApplicationManager.ApplicationLaunched">ApplicationLaunched</h4>
     <section>
-    <p>Occurs whenever the installed applications get launched.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Occurs whenever the installed applications get launched.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;ApplicationLaunchedEventArgs&gt; ApplicationLaunched</code></pre>
+    <pre><code class="lang- hljs">public static event EventHandler&lt;ApplicationLaunchedEventArgs&gt; ApplicationLaunched</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -756,13 +755,13 @@ The event handler receives an argument of type ApplicationDisabledEventArgs whic
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationLaunchedEventArgs.html">ApplicationLaunchedEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.ApplicationLaunchedEventArgs.html">ApplicationLaunchedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_ApplicationLaunched_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This event provides information about the application that was just launched, including its package ID, version, and other details.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">This event provides information about the application that was just launched, including its package ID, version, and other details.
 It is useful for tracking and monitoring application launches in order to gather statistics or perform certain actions based on specific conditions.</p>
 </div>
 
@@ -770,18 +769,18 @@ It is useful for tracking and monitoring application launches in order to gather
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L154">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L203">View Source</a>
     </span>
     <h4 id="Tizen_Applications_ApplicationManager_ApplicationTerminated" data-uid="Tizen.Applications.ApplicationManager.ApplicationTerminated">ApplicationTerminated</h4>
     <section>
-    <p>Occurs whenever the installed applications get terminated.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">Occurs whenever the installed applications get terminated.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;ApplicationTerminatedEventArgs&gt; ApplicationTerminated</code></pre>
+    <pre><code class="lang- hljs">public static event EventHandler&lt;ApplicationTerminatedEventArgs&gt; ApplicationTerminated</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -793,24 +792,25 @@ It is useful for tracking and monitoring application launches in order to gather
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationTerminatedEventArgs.html">ApplicationTerminatedEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.ApplicationTerminatedEventArgs.html">ApplicationTerminatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ApplicationManager_ApplicationTerminated_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This event is raised whenever any application gets terminated on the device. It provides information about the terminated application through the arguments passed in the event handler.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.ApplicationManager.yml" sourcestartlinenumber="1">This event is raised whenever any application gets terminated on the device. It provides information about the terminated application through the arguments passed in the event handler.</p>
 </div>
 
 
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

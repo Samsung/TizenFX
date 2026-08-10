@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Feedback
- </title>
+    <title>Class Feedback </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Feedback
- ">
+    <meta name="title" content="Class Feedback ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API13">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.System.Feedback">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 Feedback
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L81" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L81" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,7 +60,7 @@ Feedback
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.System.html">System</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.System.Feedback.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The Feedback API provides functions to control haptic and sound.
+  <div class="markdown level0 summary"><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">The Feedback API provides functions to control haptic and sound.
 The Feedback API provides the way to play and stop feedback, and get the information whether a specific pattern is supported.
 Below is the supported pattern string:
 Tap
@@ -107,7 +106,7 @@ VolumeKeyPressed</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Feedback</code></pre>
+    <pre><code class="lang- hljs">public class Feedback</code></pre>
   </div>
 
 
@@ -115,7 +114,7 @@ VolumeKeyPressed</p>
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">Feedback</span></div>
       </div>
     </dd>
@@ -125,8 +124,8 @@ VolumeKeyPressed</p>
 
 
   <h5 id="Tizen_System_Feedback_examples"><strong>Examples</strong></h5>
-  <pre><code>Feedback feedback = new Feedback();
-bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);</code></pre>
+  <pre><code class="lang-csharp">Feedback feedback = new Feedback();
+bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, "Tap");</code></pre>
 
 
   <h2 id="constructors">Constructors
@@ -135,25 +134,25 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
   <a id="Tizen_System_Feedback__ctor_" data-uid="Tizen.System.Feedback.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L364">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L364">View Source</a>
     </span>
     <h4 id="Tizen_System_Feedback__ctor" data-uid="Tizen.System.Feedback.#ctor">Feedback()</h4>
     <section>
-    <p>Constructor of Feedback class</p>
+    <p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Constructor of Feedback class</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Feedback()</code></pre>
+    <pre><code class="lang- hljs">public Feedback()</code></pre>
   </div>
   <h5 id="Tizen_System_Feedback__ctor_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Initializes a new instance of the Feedback class and prepares the feedback system for use.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Initializes a new instance of the Feedback class and prepares the feedback system for use.
 This constructor initializes the underlying feedback system. It must be called before using any other Feedback methods.</p>
 </div>
   <h5 id="Tizen_System_Feedback__ctor_examples">Examples</h5>
-  <pre><code>Feedback feedback = new Feedback();</code></pre>
+  <pre><code class="lang-csharp">Feedback feedback = new Feedback();</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -165,13 +164,13 @@ This constructor initializes the underlying feedback system. It must be called b
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when failed because the devices (vibration and sound) are not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because the devices (vibration and sound) are not supported.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of a system error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because of a system error.</p>
 </td>
       </tr>
     </tbody>
@@ -184,21 +183,21 @@ This constructor initializes the underlying feedback system. It must be called b
   <a id="Tizen_System_Feedback_Finalize_" data-uid="Tizen.System.Feedback.Finalize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L387">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L387">View Source</a>
     </span>
     <h4 id="Tizen_System_Feedback_Finalize" data-uid="Tizen.System.Feedback.Finalize">~Feedback()</h4>
     <section>
-    <p>Finalizes an instance of the Feedback class.</p>
+    <p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Finalizes an instance of the Feedback class.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected ~Feedback()</code></pre>
+    <pre><code class="lang- hljs">protected ~Feedback()</code></pre>
   </div>
   <h5 id="Tizen_System_Feedback_Finalize_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Finalizes an instance of the Feedback class and releases associated resources.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Finalizes an instance of the Feedback class and releases associated resources.
 This destructor ensures proper cleanup of the feedback system resources when the Feedback object is no longer needed.</p>
 </div>
 
@@ -207,18 +206,18 @@ This destructor ensures proper cleanup of the feedback system resources when the
   <a id="Tizen_System_Feedback_IsSupportedPattern_" data-uid="Tizen.System.Feedback.IsSupportedPattern*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L425">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L425">View Source</a>
     </span>
     <h4 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_System_String_" data-uid="Tizen.System.Feedback.IsSupportedPattern(Tizen.System.FeedbackType,System.String)">IsSupportedPattern(FeedbackType, string)</h4>
     <section>
-    <p>Gets the supported information about a specific feedback type and pattern.</p>
+    <p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Gets the supported information about a specific feedback type and pattern.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsSupportedPattern(FeedbackType type, string pattern)</code></pre>
+    <pre><code class="lang- hljs">public bool IsSupportedPattern(FeedbackType type, string pattern)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -233,13 +232,13 @@ This destructor ensures proper cleanup of the feedback system resources when the
       <tr>
         <td><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></td>
         <td><span class="parametername">type</span></td>
-        <td><p>The feedback type.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">The feedback type.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">pattern</span></td>
-        <td><p>The feedback pattern string.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">The feedback pattern string.</p>
 </td>
       </tr>
     </tbody>
@@ -254,21 +253,21 @@ This destructor ensures proper cleanup of the feedback system resources when the
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>Information whether a pattern is supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Information whether a pattern is supported.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Now, IsSupportedPattern is not working for FeedbackType.All.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Now, IsSupportedPattern is not working for FeedbackType.All.
 This API is working for FeedbackType.Sound and FeedbackType.Vibration only.
 If you use FeedbackType.All for type parameter, this API will throw ArgumentException.
-To get the supported information for Vibration type, the application should have <a href="http://tizen.org/privilege/haptic">http://tizen.org/privilege/haptic</a> privilege.</p>
+To get the supported information for Vibration type, the application should have <a href="http://tizen.org/privilege/haptic" sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="4">http://tizen.org/privilege/haptic</a> privilege.</p>
 </div>
   <h5 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_System_String__examples">Examples</h5>
-  <pre><code>Feedback feedback = new Feedback();
-bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);</code></pre>
+  <pre><code class="lang-csharp">Feedback feedback = new Feedback();
+bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, "Tap");</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -280,28 +279,28 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Exception</span></td>
-        <td><p>Thrown when failed because the feedback is not initialized.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because the feedback is not initialized.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when failed because of an invalid argument.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because of an invalid argument.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when failed because the device (haptic, sound) is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because the device (haptic, sound) is not supported.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when failed because the access is not granted (No privilege).</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because the access is not granted (No privilege).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of a system error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because of a system error.</p>
 </td>
       </tr>
     </tbody>
@@ -316,18 +315,18 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
   <a id="Tizen_System_Feedback_Play_" data-uid="Tizen.System.Feedback.Play*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L484">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L484">View Source</a>
     </span>
     <h4 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_System_String_" data-uid="Tizen.System.Feedback.Play(Tizen.System.FeedbackType,System.String)">Play(FeedbackType, string)</h4>
     <section>
-    <p>Plays specific type of reactions that are pre-defined feedback pattern.</p>
+    <p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Plays specific type of reactions that are pre-defined feedback pattern.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Play(FeedbackType type, string pattern)</code></pre>
+    <pre><code class="lang- hljs">public void Play(FeedbackType type, string pattern)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -342,24 +341,24 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
       <tr>
         <td><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></td>
         <td><span class="parametername">type</span></td>
-        <td><p>The feedback type.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">The feedback type.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">pattern</span></td>
-        <td><p>The feedback pattern string.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">The feedback pattern string.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>To play Vibration type, app should have <a href="http://tizen.org/privilege/haptic">http://tizen.org/privilege/haptic</a> privilege.
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">To play Vibration type, app should have <a href="http://tizen.org/privilege/haptic" sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">http://tizen.org/privilege/haptic</a> privilege.
 The pattern must be one of the predefined patterns and supported.</p>
 </div>
   <h5 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_System_String__examples">Examples</h5>
-  <pre><code>Feedback feedback = new Feedback();
-feedback.Play(FeedbackType.All, &quot;Tap&quot;);</code></pre>
+  <pre><code class="lang-csharp">Feedback feedback = new Feedback();
+feedback.Play(FeedbackType.All, "Tap");</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -371,28 +370,28 @@ feedback.Play(FeedbackType.All, &quot;Tap&quot;);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Exception</span></td>
-        <td><p>Thrown when failed because feedback is not initialized.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because feedback is not initialized.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when failed because of an invalid arguament.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because of an invalid arguament.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when failed because the access is not granted(No privilege)</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because the access is not granted(No privilege)</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of a system error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because of a system error.</p>
 </td>
       </tr>
     </tbody>
@@ -408,24 +407,24 @@ feedback.Play(FeedbackType.All, &quot;Tap&quot;);</code></pre>
   <a id="Tizen_System_Feedback_Stop_" data-uid="Tizen.System.Feedback.Stop*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L540">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L540">View Source</a>
     </span>
     <h4 id="Tizen_System_Feedback_Stop" data-uid="Tizen.System.Feedback.Stop">Stop()</h4>
     <section>
-    <p>Stops various types of reactions from the feedback module.</p>
+    <p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Stops various types of reactions from the feedback module.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
+    <pre><code class="lang- hljs">public void Stop()</code></pre>
   </div>
   <h5 id="Tizen_System_Feedback_Stop_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>To stop vibration, the application should have <a href="http://tizen.org/privilege/haptic">http://tizen.org/privilege/haptic</a> privilege.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">To stop vibration, the application should have <a href="http://tizen.org/privilege/haptic" sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">http://tizen.org/privilege/haptic</a> privilege.</p>
 </div>
   <h5 id="Tizen_System_Feedback_Stop_examples">Examples</h5>
-  <pre><code>Feedback Feedback1 = new Feedback();
+  <pre><code class="lang-csharp">Feedback Feedback1 = new Feedback();
 Feedback1.Stop();</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
@@ -438,28 +437,28 @@ Feedback1.Stop();</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Exception</span></td>
-        <td><p>Thrown when failed because the feedback is not initialized.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because the feedback is not initialized.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when failed because of an invalid arguament</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because of an invalid arguament</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when failed because the access is not granted (No privilege).</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because the access is not granted (No privilege).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of a system error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.System.Feedback.yml" sourcestartlinenumber="1">Thrown when failed because of a system error.</p>
 </td>
       </tr>
     </tbody>
@@ -470,14 +469,15 @@ Feedback1.Stop();</code></pre>
   </div>
 
 
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

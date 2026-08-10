@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class MessagePort
- </title>
+    <title>Class MessagePort </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class MessagePort
- ">
+    <meta name="title" content="Class MessagePort ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API13">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.Messages.MessagePort">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 MessagePort
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L32" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L32" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,12 +60,12 @@ MessagePort
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.Messages.html">Messages</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.MessagePort.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The message port API provides functions to send and receive messages between applications.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">The message port API provides functions to send and receive messages between applications.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MessagePort : IDisposable</code></pre>
+    <pre><code class="lang- hljs">public class MessagePort : IDisposable</code></pre>
   </div>
 
 
@@ -74,7 +73,7 @@ MessagePort
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">MessagePort</span></div>
       </div>
     </dd>
@@ -85,12 +84,12 @@ MessagePort
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
 
   <h5 id="Tizen_Applications_Messages_MessagePort_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
+  <div class="markdown level0 remarks"><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
 If a remote application sends a message, the registered callback function of the local port is called.
 The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
 </div>
@@ -101,18 +100,18 @@ The trusted message-port API allows communications between applications that are
   <a id="Tizen_Applications_Messages_MessagePort__ctor_" data-uid="Tizen.Applications.Messages.MessagePort.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L64">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L64">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Messages_MessagePort__ctor_System_String_System_Boolean_" data-uid="Tizen.Applications.Messages.MessagePort.#ctor(System.String,System.Boolean)">MessagePort(string, bool)</h4>
     <section>
-    <p>Initializes the instance of the MessagePort class.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Initializes the instance of the MessagePort class.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MessagePort(string portName, bool trusted)</code></pre>
+    <pre><code class="lang- hljs">public MessagePort(string portName, bool trusted)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -125,26 +124,21 @@ The trusted message-port API allows communications between applications that are
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">portName</span></td>
-        <td><p>The name of the local message port.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">The name of the local message port.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">trusted</span></td>
-        <td><p>If true, it is the trusted message port of application, otherwise false.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">If true, it is the trusted message port of application, otherwise false.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_Messages_MessagePort__ctor_System_String_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
   <h5 id="Tizen_Applications_Messages_MessagePort__ctor_System_String_System_Boolean__examples">Examples</h5>
-  <pre><code>MessagePort messagePort = new MessagePort(&quot;SenderPort&quot;, true);</code></pre>
+  <pre><code class="lang-csharp">MessagePort messagePort = new MessagePort("SenderPort", true);</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -156,8 +150,8 @@ The trusted message-port API allows communications between applications that are
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when portName is null or empty.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when portName is null or empty.</p>
 </td>
       </tr>
     </tbody>
@@ -170,18 +164,18 @@ The trusted message-port API allows communications between applications that are
   <a id="Tizen_Applications_Messages_MessagePort_Listening_" data-uid="Tizen.Applications.Messages.MessagePort.Listening*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L128">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L128">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Messages_MessagePort_Listening" data-uid="Tizen.Applications.Messages.MessagePort.Listening">Listening</h4>
     <section>
-    <p>If true, the message port is listening, otherwise false.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">If true, the message port is listening, otherwise false.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Listening { get; }</code></pre>
+    <pre><code class="lang- hljs">public bool Listening { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -193,34 +187,29 @@ The trusted message-port API allows communications between applications that are
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_Messages_MessagePort_Listening_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
 
 
 
   <a id="Tizen_Applications_Messages_MessagePort_PortName_" data-uid="Tizen.Applications.Messages.MessagePort.PortName*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L105">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L105">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Messages_MessagePort_PortName" data-uid="Tizen.Applications.Messages.MessagePort.PortName">PortName</h4>
     <section>
-    <p>The name of the local message port.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">The name of the local message port.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string PortName { get; }</code></pre>
+    <pre><code class="lang- hljs">public string PortName { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -232,34 +221,29 @@ The trusted message-port API allows communications between applications that are
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_Messages_MessagePort_PortName_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
 
 
 
   <a id="Tizen_Applications_Messages_MessagePort_Trusted_" data-uid="Tizen.Applications.Messages.MessagePort.Trusted*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L116">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L116">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Messages_MessagePort_Trusted" data-uid="Tizen.Applications.Messages.MessagePort.Trusted">Trusted</h4>
     <section>
-    <p>If true, the message port is a trusted port, otherwise false.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">If true, the message port is a trusted port, otherwise false.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Trusted { get; }</code></pre>
+    <pre><code class="lang- hljs">public bool Trusted { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -271,16 +255,11 @@ The trusted message-port API allows communications between applications that are
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_Messages_MessagePort_Trusted_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
 
 
   <h2 id="methods">Methods
@@ -289,42 +268,37 @@ The trusted message-port API allows communications between applications that are
   <a id="Tizen_Applications_Messages_MessagePort_Dispose_" data-uid="Tizen.Applications.Messages.MessagePort.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L343">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L343">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Messages_MessagePort_Dispose" data-uid="Tizen.Applications.Messages.MessagePort.Dispose">Dispose()</h4>
     <section>
-    <p>Releases all resources used by the MessagePort class.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Releases all resources used by the MessagePort class.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang- hljs">public void Dispose()</code></pre>
   </div>
-  <h5 id="Tizen_Applications_Messages_MessagePort_Dispose_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
 
 
 
   <a id="Tizen_Applications_Messages_MessagePort_Dispose_" data-uid="Tizen.Applications.Messages.MessagePort.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L324">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L324">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Messages_MessagePort_Dispose_System_Boolean_" data-uid="Tizen.Applications.Messages.MessagePort.Dispose(System.Boolean)">Dispose(bool)</h4>
     <section>
-    <p>Releases the unmanaged resources used by the MessagePort class specifying whether to perform a normal dispose operation.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Releases the unmanaged resources used by the MessagePort class specifying whether to perform a normal dispose operation.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang- hljs">protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -337,68 +311,53 @@ The trusted message-port API allows communications between applications that are
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">disposing</span></td>
-        <td><p>true for a normal dispose operation; false to finalize the handle.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">true for a normal dispose operation; false to finalize the handle.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_Messages_MessagePort_Dispose_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
 
 
 
   <a id="Tizen_Applications_Messages_MessagePort_Finalize_" data-uid="Tizen.Applications.Messages.MessagePort.Finalize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L77">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L77">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Messages_MessagePort_Finalize" data-uid="Tizen.Applications.Messages.MessagePort.Finalize">~MessagePort()</h4>
     <section>
-    <p>Destructor of the MessagePort class.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Destructor of the MessagePort class.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected ~MessagePort()</code></pre>
+    <pre><code class="lang- hljs">protected ~MessagePort()</code></pre>
   </div>
-  <h5 id="Tizen_Applications_Messages_MessagePort_Finalize_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
 
 
 
   <a id="Tizen_Applications_Messages_MessagePort_Listen_" data-uid="Tizen.Applications.Messages.MessagePort.Listen*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L150">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L150">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Messages_MessagePort_Listen" data-uid="Tizen.Applications.Messages.MessagePort.Listen">Listen()</h4>
     <section>
-    <p>Register the local message port.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Register the local message port.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Listen()</code></pre>
+    <pre><code class="lang- hljs">public void Listen()</code></pre>
   </div>
-  <h5 id="Tizen_Applications_Messages_MessagePort_Listen_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
   <h5 id="Tizen_Applications_Messages_MessagePort_Listen_examples">Examples</h5>
-  <pre><code>MessagePort messagePort = new MessagePort(&quot;SenderPort&quot;, true);
+  <pre><code class="lang-csharp">MessagePort messagePort = new MessagePort("SenderPort", true);
 messagePort.MessageReceived += MessageReceivedCallback;
 messagePort.Listen();</code></pre>
 
@@ -412,124 +371,18 @@ messagePort.Listen();</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when portName is already used, when there is an I/O error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when portName is already used, when there is an I/O error.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when there is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Applications_Messages_MessagePort_Send_" data-uid="Tizen.Applications.Messages.MessagePort.Send*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L295">View Source</a>
-    </span>
-    <h4 id="Tizen_Applications_Messages_MessagePort_Send_Tizen_Applications_Bundle_System_String_System_String_System_Boolean_" data-uid="Tizen.Applications.Messages.MessagePort.Send(Tizen.Applications.Bundle,System.String,System.String,System.Boolean)">Send(Bundle, string, string, bool)</h4>
-    <section>
-    <p>Sends a message to the message port of a remote application.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Send(Bundle message, string remoteAppId, string remotePortName, bool trusted)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
-        <td><span class="parametername">message</span></td>
-        <td><p>The message to be passed to the remote application, the recommended message size is under 4KB.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">remoteAppId</span></td>
-        <td><p>The ID of the remote application.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">remotePortName</span></td>
-        <td><p>The name of the remote message port.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">bool</span></td>
-        <td><span class="parametername">trusted</span></td>
-        <td><p>If true, it is the trusted message port of remote application, otherwise false.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Applications_Messages_MessagePort_Send_Tizen_Applications_Bundle_System_String_System_String_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
-  <h5 id="Tizen_Applications_Messages_MessagePort_Send_Tizen_Applications_Bundle_System_String_System_String_System_Boolean__examples">Examples</h5>
-  <pre><code>MessagePort messagePort = new MessagePort(&quot;SenderPort&quot;, true);
-messagePort.MessageReceived += MessageReceivedCallback;
-messagePort.Listen();
-using (var message = new Tizen.Application.Bundle())
-{
-    message.AddItem(&quot;message&quot;, &quot;a_string&quot;);
-    messagePort.Send(message, &quot;ReceiverAppID&quot;, &quot;ReceiverPort&quot;, true);
-}</code></pre>
-
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when there is an I/O error, when the port is not found.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>Thrown when message has exceeded the maximum limit(4KB).</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when the remote application is not signed with the same certificate.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when out of memory.</p>
 </td>
       </tr>
     </tbody>
@@ -540,18 +393,18 @@ using (var message = new Tizen.Application.Bundle())
   <a id="Tizen_Applications_Messages_MessagePort_Send_" data-uid="Tizen.Applications.Messages.MessagePort.Send*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L265">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L265">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Messages_MessagePort_Send_Tizen_Applications_Bundle_System_String_System_String_" data-uid="Tizen.Applications.Messages.MessagePort.Send(Tizen.Applications.Bundle,System.String,System.String)">Send(Bundle, string, string)</h4>
     <section>
-    <p>Sends an untrusted message to the message port of a remote application.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Sends an untrusted message to the message port of a remote application.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Send(Bundle message, string remoteAppId, string remotePortName)</code></pre>
+    <pre><code class="lang- hljs">public void Send(Bundle message, string remoteAppId, string remotePortName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -566,36 +419,31 @@ using (var message = new Tizen.Application.Bundle())
       <tr>
         <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
         <td><span class="parametername">message</span></td>
-        <td><p>The message to be passed to the remote application, the recommended message size is under 4KB.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">The message to be passed to the remote application, the recommended message size is under 4KB.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">remoteAppId</span></td>
-        <td><p>The ID of the remote application.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">The ID of the remote application.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">remotePortName</span></td>
-        <td><p>The name of the remote message port.</p>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">The name of the remote message port.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_Messages_MessagePort_Send_Tizen_Applications_Bundle_System_String_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
   <h5 id="Tizen_Applications_Messages_MessagePort_Send_Tizen_Applications_Bundle_System_String_System_String__examples">Examples</h5>
-  <pre><code>MessagePort messagePort = new MessagePort(&quot;SenderPort&quot;, true);
+  <pre><code class="lang-csharp">MessagePort messagePort = new MessagePort("SenderPort", true);
 messagePort.MessageReceived += MessageReceivedCallback;
 messagePort.Listen();
 using (var message = new Tizen.Application.Bundle())
 {
-    message.AddItem(&quot;message&quot;, &quot;a_string&quot;);
-    messagePort.Send(message, &quot;ReceiverAppID&quot;, &quot;ReceiverPort&quot;);
+    message.AddItem("message", "a_string");
+    messagePort.Send(message, "ReceiverAppID", "ReceiverPort");
 }</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
@@ -608,23 +456,124 @@ using (var message = new Tizen.Application.Bundle())
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when there is an I/O error, when the port is not found.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when there is an I/O error, when the port is not found.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when there is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when out of memory.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>Thrown when message has exceeded the maximum limit(4KB).</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when message has exceeded the maximum limit(4KB).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Messages_MessagePort_Send_" data-uid="Tizen.Applications.Messages.MessagePort.Send*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L295">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Messages_MessagePort_Send_Tizen_Applications_Bundle_System_String_System_String_System_Boolean_" data-uid="Tizen.Applications.Messages.MessagePort.Send(Tizen.Applications.Bundle,System.String,System.String,System.Boolean)">Send(Bundle, string, string, bool)</h4>
+    <section>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Sends a message to the message port of a remote application.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">public void Send(Bundle message, string remoteAppId, string remotePortName, bool trusted)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">The message to be passed to the remote application, the recommended message size is under 4KB.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">remoteAppId</span></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">The ID of the remote application.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">remotePortName</span></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">The name of the remote message port.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">trusted</span></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">If true, it is the trusted message port of remote application, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Messages_MessagePort_Send_Tizen_Applications_Bundle_System_String_System_String_System_Boolean__examples">Examples</h5>
+  <pre><code class="lang-csharp">MessagePort messagePort = new MessagePort("SenderPort", true);
+messagePort.MessageReceived += MessageReceivedCallback;
+messagePort.Listen();
+using (var message = new Tizen.Application.Bundle())
+{
+    message.AddItem("message", "a_string");
+    messagePort.Send(message, "ReceiverAppID", "ReceiverPort", true);
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when there is an I/O error, when the port is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when message has exceeded the maximum limit(4KB).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when the remote application is not signed with the same certificate.</p>
 </td>
       </tr>
     </tbody>
@@ -635,32 +584,27 @@ using (var message = new Tizen.Application.Bundle())
   <a id="Tizen_Applications_Messages_MessagePort_StopListening_" data-uid="Tizen.Applications.Messages.MessagePort.StopListening*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L218">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L218">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Messages_MessagePort_StopListening" data-uid="Tizen.Applications.Messages.MessagePort.StopListening">StopListening()</h4>
     <section>
-    <p>Unregisters the local message port.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Unregisters the local message port.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void StopListening()</code></pre>
+    <pre><code class="lang- hljs">public void StopListening()</code></pre>
   </div>
-  <h5 id="Tizen_Applications_Messages_MessagePort_StopListening_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
   <h5 id="Tizen_Applications_Messages_MessagePort_StopListening_examples">Examples</h5>
-  <pre><code>MessagePort messagePort = new MessagePort(&quot;SenderPort&quot;, true);
+  <pre><code class="lang-csharp">MessagePort messagePort = new MessagePort("SenderPort", true);
 messagePort.MessageReceived += MessageReceivedCallback;
 messagePort.Listen();
 using (var message = new Tizen.Application.Bundle())
 {
-    message.AddItem(&quot;message&quot;, &quot;a_string&quot;);
-    messagePort.Send(message, &quot;ReceiverAppID&quot;, &quot;ReceiverPort&quot;);
+    message.AddItem("message", "a_string");
+    messagePort.Send(message, "ReceiverAppID", "ReceiverPort");
 }
 messagePort.StopListening();</code></pre>
 
@@ -674,18 +618,18 @@ messagePort.StopListening();</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when messageport is already stopped, when there is an I/O error, when the port is not found.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when messageport is already stopped, when there is an I/O error, when the port is not found.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when there is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Thrown when out of memory.</p>
 </td>
       </tr>
     </tbody>
@@ -697,18 +641,18 @@ messagePort.StopListening();</code></pre>
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L99">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Applications.MessagePort/Tizen.Applications.Messages/MessagePort.cs/#L99">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Messages_MessagePort_MessageReceived" data-uid="Tizen.Applications.Messages.MessagePort.MessageReceived">MessageReceived</h4>
     <section>
-    <p>Called when a message is received.</p>
+    <p sourcefile="obj/API13/api/Tizen.Applications.Messages.MessagePort.yml" sourcestartlinenumber="1">Called when a message is received.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MessageReceivedEventArgs&gt; MessageReceived</code></pre>
+    <pre><code class="lang- hljs">public event EventHandler&lt;MessageReceivedEventArgs&gt; MessageReceived</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -720,24 +664,19 @@ messagePort.StopListening();</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Messages.MessageReceivedEventArgs.html">MessageReceivedEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.Messages.MessageReceivedEventArgs.html">MessageReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_Messages_MessagePort_MessageReceived_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
-If a remote application sends a message, the registered callback function of the local port is called.
-The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.</p>
-</div>
   <h5 id="Tizen_Applications_Messages_MessagePort_MessageReceived_examples">Examples</h5>
-  <pre><code>MessagePort messagePort = new MessagePort(&quot;SenderPort&quot;, true);
+  <pre><code class="lang-csharp">MessagePort messagePort = new MessagePort("SenderPort", true);
 messagePort.MessageReceived += MessageReceivedCallback;
 static void MessageReceivedCallback(object sender, MessageReceivedEventArgs e)
 {
-    Console.WriteLine(&quot;Message Received &quot;);
+    Console.WriteLine("Message Received ");
     if (e.Remote.AppId != null) {
-        Console.WriteLine(&quot;from :&quot;+e.Remote.AppId);
+        Console.WriteLine("from :"+e.Remote.AppId);
     }
 }</code></pre>
 
@@ -745,16 +684,17 @@ static void MessageReceivedCallback(object sender, MessageReceivedEventArgs e)
 
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

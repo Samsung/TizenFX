@@ -1,0 +1,31 @@
+{{!Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE file in the project root for full license information.}}
+
+<div id="sidetoggle">
+  <div>
+    {{^_disableSideFilter}}
+    <div class="sidefilter">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle shadow-none" type="button" id="dropdownApiButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TizenFX API</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownApiButton" id="dropdownApiMenu">
+          <a class="dropdown-item" href="#">TizenFX API</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle shadow-none" type="button" id="dropdownApiVersionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        <div class="dropdown-menu" aria-labelledby="dropdownApiVersionButton" id="dropdownApiVersionMenu"></div>
+      </div>
+      <form class="toc-filter">
+        <input type="text" id="toc_filter_input" placeholder="add filter" onkeypress="if(event.keyCode==13) {return false;}">
+      </form>
+      <div class="sidefilter-separator"></div>
+    </div>
+    {{/_disableSideFilter}}
+    <div class="sidetoc">
+      <div class="toc" id="toc">
+        {{^leaf}}
+          {{>partials/li}}
+        {{/leaf}}
+      </div>
+    </div>
+  </div>
+</div>

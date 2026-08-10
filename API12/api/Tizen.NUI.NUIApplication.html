@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class NUIApplication
- </title>
+    <title>Class NUIApplication </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class NUIApplication
- ">
+    <meta name="title" content="Class NUIApplication ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.NUIApplication">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 NUIApplication
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L34" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L34" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,12 +60,12 @@ NUIApplication
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Represents an application that have a UI screen. The NUIApplication class has a default stage.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">Represents an application that have a UI screen. The NUIApplication class has a default stage.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class NUIApplication : CoreApplication, IDisposable</code></pre>
+    <pre><code class="lang- hljs">public class NUIApplication : CoreApplication, IDisposable</code></pre>
   </div>
 
 
@@ -74,7 +73,7 @@ NUIApplication
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div class="pdl"><a class="xref" href="Tizen.Applications.Application.html">Application</a></div>
         <div class="pdl"><a class="xref" href="Tizen.Applications.CoreApplication.html">CoreApplication</a></div>
         <div><span class="xref">NUIApplication</span></div>
@@ -87,7 +86,7 @@ NUIApplication
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
 
@@ -98,11 +97,11 @@ NUIApplication
   <a id="Tizen_NUI_NUIApplication__ctor_" data-uid="Tizen.NUI.NUIApplication.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L77">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L77">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication__ctor" data-uid="Tizen.NUI.NUIApplication.#ctor">NUIApplication()</h4>
     <section>
-    <p>Initializes a new instance of the <a class="xref" href="Tizen.NUI.NUIApplication.html">NUIApplication</a> class.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">Initializes a new instance of the <a class="xref" href="Tizen.NUI.NUIApplication.html">NUIApplication</a> class.
 This is the default constructor that initializes the NUI application using the NUICoreBackend.</p>
 
     </section>
@@ -110,7 +109,8 @@ This is the default constructor that initializes the NUI application using the N
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NUIApplication()</code></pre>
+    <pre><code class="lang- hljs">[SuppressMessage(&quot;Microsoft.Design&quot;, &quot;CA2000: Dispose objects before losing scope&quot;, Justification = &quot;NUICoreBackend is disposed in the base class when the application is terminated&quot;)]
+public NUIApplication()</code></pre>
   </div>
 
 
@@ -118,105 +118,11 @@ This is the default constructor that initializes the NUI application using the N
   <a id="Tizen_NUI_NUIApplication__ctor_" data-uid="Tizen.NUI.NUIApplication.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L203">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_NUIApplication__ctor_System_String_Tizen_NUI_NUIApplication_WindowMode_Tizen_NUI_WindowType_" data-uid="Tizen.NUI.NUIApplication.#ctor(System.String,Tizen.NUI.NUIApplication.WindowMode,Tizen.NUI.WindowType)">NUIApplication(string, WindowMode, WindowType)</h4>
-    <section>
-    <p>The constructor with a stylesheet, window mode and default window type.
-It is the only way to create an IME window.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NUIApplication(string styleSheet, NUIApplication.WindowMode windowMode, WindowType type)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">styleSheet</span></td>
-        <td><p>The styleSheet URL.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.NUIApplication.html">NUIApplication</a>.<a class="xref" href="Tizen.NUI.NUIApplication.WindowMode.html">WindowMode</a></td>
-        <td><span class="parametername">windowMode</span></td>
-        <td><p>The windowMode.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.WindowType.html">WindowType</a></td>
-        <td><span class="parametername">type</span></td>
-        <td><p>The default window type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_NUI_NUIApplication__ctor_" data-uid="Tizen.NUI.NUIApplication.#ctor*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L129">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_NUIApplication__ctor_System_String_Tizen_NUI_NUIApplication_WindowMode_" data-uid="Tizen.NUI.NUIApplication.#ctor(System.String,Tizen.NUI.NUIApplication.WindowMode)">NUIApplication(string, WindowMode)</h4>
-    <section>
-    <p>The constructor with a stylesheet and window mode.
-This constructor initializes the NUIApplication with a specified stylesheet and window mode.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NUIApplication(string styleSheet, NUIApplication.WindowMode windowMode)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">styleSheet</span></td>
-        <td><p>The styleSheet url.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.NUIApplication.html">NUIApplication</a>.<a class="xref" href="Tizen.NUI.NUIApplication.WindowMode.html">WindowMode</a></td>
-        <td><span class="parametername">windowMode</span></td>
-        <td><p>The windowMode.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_NUI_NUIApplication__ctor_" data-uid="Tizen.NUI.NUIApplication.#ctor*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L102">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L102">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication__ctor_System_String_" data-uid="Tizen.NUI.NUIApplication.#ctor(System.String)">NUIApplication(string)</h4>
     <section>
-    <p>The constructor with a stylesheet.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The constructor with a stylesheet.
 This constructor initializes a new instance of the Tizen.NUI.NUIApplication class with the specified stylesheet.</p>
 
     </section>
@@ -224,7 +130,8 @@ This constructor initializes a new instance of the Tizen.NUI.NUIApplication clas
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NUIApplication(string styleSheet)</code></pre>
+    <pre><code class="lang- hljs">[SuppressMessage(&quot;Microsoft.Design&quot;, &quot;CA2000: Dispose objects before losing scope&quot;, Justification = &quot;NUICoreBackend is disposed in the base class when the application is terminated&quot;)]
+public NUIApplication(string styleSheet)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -237,9 +144,105 @@ This constructor initializes a new instance of the Tizen.NUI.NUIApplication clas
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">styleSheet</span></td>
-        <td><p>The URL of the stylesheet to apply to the application.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The URL of the stylesheet to apply to the application.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_NUIApplication__ctor_" data-uid="Tizen.NUI.NUIApplication.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L129">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_NUIApplication__ctor_System_String_Tizen_NUI_NUIApplication_WindowMode_" data-uid="Tizen.NUI.NUIApplication.#ctor(System.String,Tizen.NUI.NUIApplication.WindowMode)">NUIApplication(string, WindowMode)</h4>
+    <section>
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The constructor with a stylesheet and window mode.
+This constructor initializes the NUIApplication with a specified stylesheet and window mode.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">[SuppressMessage(&quot;Microsoft.Design&quot;, &quot;CA2000: Dispose objects before losing scope&quot;, Justification = &quot;NUICoreBackend is disposed in the base class when the application is terminated&quot;)]
+public NUIApplication(string styleSheet, NUIApplication.WindowMode windowMode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">styleSheet</span></td>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The styleSheet url.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.NUIApplication.html">NUIApplication</a>.<a class="xref" href="Tizen.NUI.NUIApplication.WindowMode.html">WindowMode</a></td>
+        <td><span class="parametername">windowMode</span></td>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The windowMode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_NUIApplication__ctor_" data-uid="Tizen.NUI.NUIApplication.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L203">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_NUIApplication__ctor_System_String_Tizen_NUI_NUIApplication_WindowMode_Tizen_NUI_WindowType_" data-uid="Tizen.NUI.NUIApplication.#ctor(System.String,Tizen.NUI.NUIApplication.WindowMode,Tizen.NUI.WindowType)">NUIApplication(string, WindowMode, WindowType)</h4>
+    <section>
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The constructor with a stylesheet, window mode and default window type.
+It is the only way to create an IME window.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">[SuppressMessage(&quot;Microsoft.Design&quot;, &quot;CA2000: Dispose objects before losing scope&quot;, Justification = &quot;NUICoreBackend is disposed in the base class when the application is terminated&quot;)]
+public NUIApplication(string styleSheet, NUIApplication.WindowMode windowMode, WindowType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">styleSheet</span></td>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The styleSheet URL.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.NUIApplication.html">NUIApplication</a>.<a class="xref" href="Tizen.NUI.NUIApplication.WindowMode.html">WindowMode</a></td>
+        <td><span class="parametername">windowMode</span></td>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The windowMode.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.WindowType.html">WindowType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The default window type.</p>
 </td>
       </tr>
     </tbody>
@@ -252,18 +255,18 @@ This constructor initializes a new instance of the Tizen.NUI.NUIApplication clas
   <a id="Tizen_NUI_NUIApplication_MultilingualResourceManager_" data-uid="Tizen.NUI.NUIApplication.MultilingualResourceManager*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L424">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L424">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_MultilingualResourceManager" data-uid="Tizen.NUI.NUIApplication.MultilingualResourceManager">MultilingualResourceManager</h4>
     <section>
-    <p>The MultilingualResourceManager property provides access to a System.Resources.ResourceManager instance that can be used to manage resources for different languages.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The MultilingualResourceManager property provides access to a System.Resources.ResourceManager instance that can be used to manage resources for different languages.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Resources.ResourceManager MultilingualResourceManager { get; set; }</code></pre>
+    <pre><code class="lang- hljs">public static ResourceManager MultilingualResourceManager { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -275,7 +278,7 @@ This constructor initializes a new instance of the Tizen.NUI.NUIApplication clas
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.System.Resources.ResourceManager</span></td>
+        <td><span class="xref">ResourceManager</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -288,18 +291,18 @@ This constructor initializes a new instance of the Tizen.NUI.NUIApplication clas
   <a id="Tizen_NUI_NUIApplication_AddIdle_" data-uid="Tizen.NUI.NUIApplication.AddIdle*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L559">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L559">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_NUIApplication_AddIdle_Tizen_System_Delegate_" data-uid="Tizen.NUI.NUIApplication.AddIdle(Tizen.System.Delegate)">AddIdle(Delegate)</h4>
+    <h4 id="Tizen_NUI_NUIApplication_AddIdle_System_Delegate_" data-uid="Tizen.NUI.NUIApplication.AddIdle(System.Delegate)">AddIdle(Delegate)</h4>
     <section>
-    <p>Ensures that the function passed in is called from the main loop when it is idle.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">Ensures that the function passed in is called from the main loop when it is idle.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool AddIdle(Delegate func)</code></pre>
+    <pre><code class="lang- hljs">public bool AddIdle(Delegate func)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -312,9 +315,9 @@ This constructor initializes a new instance of the Tizen.NUI.NUIApplication clas
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.System.Delegate</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.delegate">Delegate</a></td>
         <td><span class="parametername">func</span></td>
-        <td><p>The function to call</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The function to call</p>
 </td>
       </tr>
     </tbody>
@@ -329,8 +332,8 @@ This constructor initializes a new instance of the Tizen.NUI.NUIApplication clas
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>true if added successfully, false otherwise</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">true if added successfully, false otherwise</p>
 </td>
       </tr>
     </tbody>
@@ -341,11 +344,11 @@ This constructor initializes a new instance of the Tizen.NUI.NUIApplication clas
   <a id="Tizen_NUI_NUIApplication_Exit_" data-uid="Tizen.NUI.NUIApplication.Exit*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L548">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L548">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_Exit" data-uid="Tizen.NUI.NUIApplication.Exit">Exit()</h4>
     <section>
-    <p>Exits the NUIApplication.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">Exits the NUIApplication.
 This method causes the application to terminate gracefully.</p>
 
     </section>
@@ -353,7 +356,7 @@ This method causes the application to terminate gracefully.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Exit()</code></pre>
+    <pre><code class="lang- hljs">public override void Exit()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.CoreApplication.html#Tizen_Applications_CoreApplication_Exit">CoreApplication.Exit()</a></div>
@@ -363,18 +366,18 @@ This method causes the application to terminate gracefully.</p>
   <a id="Tizen_NUI_NUIApplication_OnAppControlReceived_" data-uid="Tizen.NUI.NUIApplication.OnAppControlReceived*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L769">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L769">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnAppControlReceived_Tizen_Applications_AppControlReceivedEventArgs_" data-uid="Tizen.NUI.NUIApplication.OnAppControlReceived(Tizen.Applications.AppControlReceivedEventArgs)">OnAppControlReceived(AppControlReceivedEventArgs)</h4>
     <section>
-    <p>This method is overridden to handle the application control event received.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">This method is overridden to handle the application control event received.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnAppControlReceived(AppControlReceivedEventArgs e)</code></pre>
+    <pre><code class="lang- hljs">protected override void OnAppControlReceived(AppControlReceivedEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -389,7 +392,7 @@ This method causes the application to terminate gracefully.</p>
       <tr>
         <td><a class="xref" href="Tizen.Applications.AppControlReceivedEventArgs.html">AppControlReceivedEventArgs</a></td>
         <td><span class="parametername">e</span></td>
-        <td><p>The event arguments containing the received application control.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The event arguments containing the received application control.</p>
 </td>
       </tr>
     </tbody>
@@ -402,11 +405,11 @@ This method causes the application to terminate gracefully.</p>
   <a id="Tizen_NUI_NUIApplication_OnCreate_" data-uid="Tizen.NUI.NUIApplication.OnCreate*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L785">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L785">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnCreate" data-uid="Tizen.NUI.NUIApplication.OnCreate">OnCreate()</h4>
     <section>
-    <p>The OnCreate method of NUIApplication class.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The OnCreate method of NUIApplication class.
 This method is called when the application is created.
 Override this method to handle custom initialization logic.</p>
 
@@ -415,7 +418,7 @@ Override this method to handle custom initialization logic.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnCreate()</code></pre>
+    <pre><code class="lang- hljs">protected override void OnCreate()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.CoreApplication.html#Tizen_Applications_CoreApplication_OnCreate">CoreApplication.OnCreate()</a></div>
@@ -425,11 +428,11 @@ Override this method to handle custom initialization logic.</p>
   <a id="Tizen_NUI_NUIApplication_OnLocaleChanged_" data-uid="Tizen.NUI.NUIApplication.OnLocaleChanged*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L664">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L664">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnLocaleChanged_Tizen_Applications_LocaleChangedEventArgs_" data-uid="Tizen.NUI.NUIApplication.OnLocaleChanged(Tizen.Applications.LocaleChangedEventArgs)">OnLocaleChanged(LocaleChangedEventArgs)</h4>
     <section>
-    <p>The OnLocaleChanged method is called when the system locale settings have changed.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The OnLocaleChanged method is called when the system locale settings have changed.
 Overrides this method if you want to handle behavior.</p>
 
     </section>
@@ -437,7 +440,7 @@ Overrides this method if you want to handle behavior.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnLocaleChanged(LocaleChangedEventArgs e)</code></pre>
+    <pre><code class="lang- hljs">protected override void OnLocaleChanged(LocaleChangedEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -452,7 +455,7 @@ Overrides this method if you want to handle behavior.</p>
       <tr>
         <td><a class="xref" href="Tizen.Applications.LocaleChangedEventArgs.html">LocaleChangedEventArgs</a></td>
         <td><span class="parametername">e</span></td>
-        <td><p>The event arguments containing the new locale information.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The event arguments containing the new locale information.</p>
 </td>
       </tr>
     </tbody>
@@ -465,11 +468,11 @@ Overrides this method if you want to handle behavior.</p>
   <a id="Tizen_NUI_NUIApplication_OnLowBattery_" data-uid="Tizen.NUI.NUIApplication.OnLowBattery*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L675">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L675">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnLowBattery_Tizen_Applications_LowBatteryEventArgs_" data-uid="Tizen.NUI.NUIApplication.OnLowBattery(Tizen.Applications.LowBatteryEventArgs)">OnLowBattery(LowBatteryEventArgs)</h4>
     <section>
-    <p>The OnLowBattery method is called when the system is under Low Battery status.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The OnLowBattery method is called when the system is under Low Battery status.
 Overrides this method if you want to handle behavior.</p>
 
     </section>
@@ -477,7 +480,7 @@ Overrides this method if you want to handle behavior.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnLowBattery(LowBatteryEventArgs e)</code></pre>
+    <pre><code class="lang- hljs">protected override void OnLowBattery(LowBatteryEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -492,7 +495,7 @@ Overrides this method if you want to handle behavior.</p>
       <tr>
         <td><a class="xref" href="Tizen.Applications.LowBatteryEventArgs.html">LowBatteryEventArgs</a></td>
         <td><span class="parametername">e</span></td>
-        <td><p>The event arguments containing the battery status.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The event arguments containing the battery status.</p>
 </td>
       </tr>
     </tbody>
@@ -505,11 +508,11 @@ Overrides this method if you want to handle behavior.</p>
   <a id="Tizen_NUI_NUIApplication_OnLowMemory_" data-uid="Tizen.NUI.NUIApplication.OnLowMemory*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L686">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L686">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnLowMemory_Tizen_Applications_LowMemoryEventArgs_" data-uid="Tizen.NUI.NUIApplication.OnLowMemory(Tizen.Applications.LowMemoryEventArgs)">OnLowMemory(LowMemoryEventArgs)</h4>
     <section>
-    <p>The OnLowMemory method is called when the system is under Low Memory status.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The OnLowMemory method is called when the system is under Low Memory status.
 Overrides this method if you want to handle behavior.</p>
 
     </section>
@@ -517,7 +520,7 @@ Overrides this method if you want to handle behavior.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnLowMemory(LowMemoryEventArgs e)</code></pre>
+    <pre><code class="lang- hljs">protected override void OnLowMemory(LowMemoryEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -532,7 +535,7 @@ Overrides this method if you want to handle behavior.</p>
       <tr>
         <td><a class="xref" href="Tizen.Applications.LowMemoryEventArgs.html">LowMemoryEventArgs</a></td>
         <td><span class="parametername">e</span></td>
-        <td><p>The event arguments containing low memory status information.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The event arguments containing low memory status information.</p>
 </td>
       </tr>
     </tbody>
@@ -545,18 +548,18 @@ Overrides this method if you want to handle behavior.</p>
   <a id="Tizen_NUI_NUIApplication_OnPause_" data-uid="Tizen.NUI.NUIApplication.OnPause*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L731">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L731">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnPause" data-uid="Tizen.NUI.NUIApplication.OnPause">OnPause()</h4>
     <section>
-    <p>Overrides this method if you want to handle behavior when the application is paused.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">Overrides this method if you want to handle behavior when the application is paused.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnPause()</code></pre>
+    <pre><code class="lang- hljs">protected virtual void OnPause()</code></pre>
   </div>
 
 
@@ -564,11 +567,11 @@ Overrides this method if you want to handle behavior.</p>
   <a id="Tizen_NUI_NUIApplication_OnPreCreate_" data-uid="Tizen.NUI.NUIApplication.OnPreCreate*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L752">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L752">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnPreCreate" data-uid="Tizen.NUI.NUIApplication.OnPreCreate">OnPreCreate()</h4>
     <section>
-    <p>Overrides this method if you want to handle behavior before the application is created.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">Overrides this method if you want to handle behavior before the application is created.
 This method is guaranteed to be called before <a class="xref" href="Tizen.NUI.NUIApplication.html#Tizen_NUI_NUIApplication_OnCreate">OnCreate()</a> is called.</p>
 
     </section>
@@ -576,7 +579,7 @@ This method is guaranteed to be called before <a class="xref" href="Tizen.NUI.NU
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnPreCreate()</code></pre>
+    <pre><code class="lang- hljs">protected virtual void OnPreCreate()</code></pre>
   </div>
 
 
@@ -584,11 +587,11 @@ This method is guaranteed to be called before <a class="xref" href="Tizen.NUI.NU
   <a id="Tizen_NUI_NUIApplication_OnRegionFormatChanged_" data-uid="Tizen.NUI.NUIApplication.OnRegionFormatChanged*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L698">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L698">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnRegionFormatChanged_Tizen_Applications_RegionFormatChangedEventArgs_" data-uid="Tizen.NUI.NUIApplication.OnRegionFormatChanged(Tizen.Applications.RegionFormatChangedEventArgs)">OnRegionFormatChanged(RegionFormatChangedEventArgs)</h4>
     <section>
-    <p>This method is called when the system's region format settings have changed.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">This method is called when the system's region format settings have changed.
 It provides an opportunity to handle any necessary adjustments or updates based on the new region format.
 Overrides this method if you want to handle behavior.</p>
 
@@ -597,7 +600,7 @@ Overrides this method if you want to handle behavior.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)</code></pre>
+    <pre><code class="lang- hljs">protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -612,7 +615,7 @@ Overrides this method if you want to handle behavior.</p>
       <tr>
         <td><a class="xref" href="Tizen.Applications.RegionFormatChangedEventArgs.html">RegionFormatChangedEventArgs</a></td>
         <td><span class="parametername">e</span></td>
-        <td><p>The event arguments containing information about the region format change.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The event arguments containing information about the region format change.</p>
 </td>
       </tr>
     </tbody>
@@ -625,18 +628,18 @@ Overrides this method if you want to handle behavior.</p>
   <a id="Tizen_NUI_NUIApplication_OnResume_" data-uid="Tizen.NUI.NUIApplication.OnResume*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L741">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L741">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnResume" data-uid="Tizen.NUI.NUIApplication.OnResume">OnResume()</h4>
     <section>
-    <p>Overrides this method if you want to handle behavior when the application is resumed.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">Overrides this method if you want to handle behavior when the application is resumed.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnResume()</code></pre>
+    <pre><code class="lang- hljs">protected virtual void OnResume()</code></pre>
   </div>
 
 
@@ -644,11 +647,11 @@ Overrides this method if you want to handle behavior.</p>
   <a id="Tizen_NUI_NUIApplication_OnTerminate_" data-uid="Tizen.NUI.NUIApplication.OnTerminate*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L721">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L721">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnTerminate" data-uid="Tizen.NUI.NUIApplication.OnTerminate">OnTerminate()</h4>
     <section>
-    <p>This method is called when the application is terminated.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">This method is called when the application is terminated.
 Overrides this method if you want to handle behavior.</p>
 
     </section>
@@ -656,7 +659,7 @@ Overrides this method if you want to handle behavior.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnTerminate()</code></pre>
+    <pre><code class="lang- hljs">protected override void OnTerminate()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.CoreApplication.html#Tizen_Applications_CoreApplication_OnTerminate">CoreApplication.OnTerminate()</a></div>
@@ -666,18 +669,18 @@ Overrides this method if you want to handle behavior.</p>
   <a id="Tizen_NUI_NUIApplication_RegisterAssembly_" data-uid="Tizen.NUI.NUIApplication.RegisterAssembly*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L516">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L516">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_RegisterAssembly_System_Reflection_Assembly_" data-uid="Tizen.NUI.NUIApplication.RegisterAssembly(System.Reflection.Assembly)">RegisterAssembly(Assembly)</h4>
     <section>
-    <p>Registers the specified assembly to XAML, allowing types within the assembly to be used in XAML files.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">Registers the specified assembly to XAML, allowing types within the assembly to be used in XAML files.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void RegisterAssembly(Assembly assembly)</code></pre>
+    <pre><code class="lang- hljs">public static void RegisterAssembly(Assembly assembly)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -690,9 +693,9 @@ Overrides this method if you want to handle behavior.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Reflection.Assembly</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a></td>
         <td><span class="parametername">assembly</span></td>
-        <td><p>The assembly to register.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The assembly to register.</p>
 </td>
       </tr>
     </tbody>
@@ -703,18 +706,18 @@ Overrides this method if you want to handle behavior.</p>
   <a id="Tizen_NUI_NUIApplication_Run_" data-uid="Tizen.NUI.NUIApplication.Run*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L535">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L535">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_Run_System_String___" data-uid="Tizen.NUI.NUIApplication.Run(System.String[])">Run(string[])</h4>
     <section>
-    <p>This method starts the main loop of the application, allowing it to receive events and run its lifecycle.</p>
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">This method starts the main loop of the application, allowing it to receive events and run its lifecycle.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Run(string[] args)</code></pre>
+    <pre><code class="lang- hljs">public override void Run(string[] args)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -727,9 +730,9 @@ Overrides this method if you want to handle behavior.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span>[]</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
         <td><span class="parametername">args</span></td>
-        <td><p>Arguments from commandline. These arguments can be used to customize the application behavior at startup.</p>
+        <td><p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">Arguments from commandline. These arguments can be used to customize the application behavior at startup.</p>
 </td>
       </tr>
     </tbody>
@@ -737,7 +740,7 @@ Overrides this method if you want to handle behavior.</p>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.CoreApplication.html#Tizen_Applications_CoreApplication_Run_System_String___">CoreApplication.Run(string[])</a></div>
   <h5 id="Tizen_NUI_NUIApplication_Run_System_String____examples">Examples</h5>
-  <pre><code>static void Main(string[] args)
+  <pre><code class="lang-csharp">static void Main(string[] args)
 {
     NUIApplication app = new NUIApplication();
     app.Run(args);
@@ -750,11 +753,11 @@ Overrides this method if you want to handle behavior.</p>
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L346">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L346">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_Paused" data-uid="Tizen.NUI.NUIApplication.Paused">Paused</h4>
     <section>
-    <p>The event handler that gets called when the application is paused.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The event handler that gets called when the application is paused.
 This event is triggered when the application transitions to a paused state.</p>
 
     </section>
@@ -762,7 +765,7 @@ This event is triggered when the application transitions to a paused state.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler Paused</code></pre>
+    <pre><code class="lang- hljs">public event EventHandler Paused</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -774,13 +777,13 @@ This event is triggered when the application transitions to a paused state.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_NUIApplication_Paused_examples">Examples</h5>
-  <pre><code>NUIApplication app = new NUIApplication();
+  <pre><code class="lang-csharp">NUIApplication app = new NUIApplication();
 app.Paused += OnAppPaused;
 
 void OnAppPaused(object sender, EventArgs e)
@@ -793,11 +796,11 @@ void OnAppPaused(object sender, EventArgs e)
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L328">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L328">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_Resumed" data-uid="Tizen.NUI.NUIApplication.Resumed">Resumed</h4>
     <section>
-    <p>The Resumed event handler.
+    <p sourcefile="obj/API12/api/Tizen.NUI.NUIApplication.yml" sourcestartlinenumber="1">The Resumed event handler.
 This event is triggered when the application resumes from being paused or stopped.
 It can be used to perform actions that need to be executed when the application becomes active again.</p>
 
@@ -806,7 +809,7 @@ It can be used to perform actions that need to be executed when the application 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler Resumed</code></pre>
+    <pre><code class="lang- hljs">public event EventHandler Resumed</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -818,13 +821,13 @@ It can be used to perform actions that need to be executed when the application 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_NUIApplication_Resumed_examples">Examples</h5>
-  <pre><code>NUIApplication app = new NUIApplication();
+  <pre><code class="lang-csharp">NUIApplication app = new NUIApplication();
 app.Resumed += OnAppResumed;
 
 void OnAppResumed(object sender, EventArgs e)
@@ -836,16 +839,17 @@ void OnAppResumed(object sender, EventArgs e)
 
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>

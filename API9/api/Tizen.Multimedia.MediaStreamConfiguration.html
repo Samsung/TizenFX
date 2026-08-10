@@ -1,19 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class MediaStreamConfiguration
- </title>
+    <title>Class MediaStreamConfiguration </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class MediaStreamConfiguration
- ">
+    <meta name="title" content="Class MediaStreamConfiguration ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API9">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
@@ -46,6 +44,7 @@
 
               <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.MediaStreamConfiguration">
 
+
   <div class="entity">
 
   <div class="entity-header w-100 d-flex justify-content-between">
@@ -53,7 +52,7 @@
 MediaStreamConfiguration
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.MediaPlayer/Player/MediaStreamConfiguration.cs/#L28" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.MediaPlayer/Player/MediaStreamConfiguration.cs/#L28" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,12 +60,12 @@ MediaStreamConfiguration
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.MediaPlayer.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides a means to configure properties and handle events for <a class="xref" href="Tizen.Multimedia.MediaStreamSource.html">MediaStreamSource</a>.</p>
+  <div class="markdown level0 summary"><p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">Provides a means to configure properties and handle events for <a class="xref" href="Tizen.Multimedia.MediaStreamSource.html">MediaStreamSource</a>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MediaStreamConfiguration</code></pre>
+    <pre><code class="lang- hljs">public class MediaStreamConfiguration</code></pre>
   </div>
 
 
@@ -74,7 +73,7 @@ MediaStreamConfiguration
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">MediaStreamConfiguration</span></div>
       </div>
     </dd>
@@ -90,18 +89,18 @@ MediaStreamConfiguration
   <a id="Tizen_Multimedia_MediaStreamConfiguration_BufferMaxSize_" data-uid="Tizen.Multimedia.MediaStreamConfiguration.BufferMaxSize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.MediaPlayer/Player/MediaStreamConfiguration.cs/#L70">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.MediaPlayer/Player/MediaStreamConfiguration.cs/#L70">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_MediaStreamConfiguration_BufferMaxSize" data-uid="Tizen.Multimedia.MediaStreamConfiguration.BufferMaxSize">BufferMaxSize</h4>
     <section>
-    <p>Gets or sets the max size of the buffer.</p>
+    <p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">Gets or sets the max size of the buffer.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ulong BufferMaxSize { get; set; }</code></pre>
+    <pre><code class="lang- hljs">public ulong BufferMaxSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -113,14 +112,14 @@ MediaStreamConfiguration
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ulong</span></td>
-        <td><p>The max size of the buffer. The default is 200000.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
+        <td><p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">The max size of the buffer. The default is 200000.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_MediaStreamConfiguration_BufferMaxSize_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If the buffer level overflows the max size, <a class="xref" href="Tizen.Multimedia.MediaStreamConfiguration.html#Tizen_Multimedia_MediaStreamConfiguration_BufferStatusChanged">BufferStatusChanged</a> will be raised with <a class="xref" href="Tizen.Multimedia.MediaStreamBufferStatus.html#Tizen_Multimedia_MediaStreamBufferStatus_Overflow">Overflow</a>.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">If the buffer level overflows the max size, <a class="xref" href="Tizen.Multimedia.MediaStreamConfiguration.html#Tizen_Multimedia_MediaStreamConfiguration_BufferStatusChanged">BufferStatusChanged</a> will be raised with <a class="xref" href="Tizen.Multimedia.MediaStreamBufferStatus.html#Tizen_Multimedia_MediaStreamBufferStatus_Overflow">Overflow</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -132,13 +131,13 @@ MediaStreamConfiguration
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.MediaStreamSource.html">MediaStreamSource</a> is not assigned to a player.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Multimedia.MediaStreamSource.html">MediaStreamSource</a> is not assigned to a player.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is zero.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1"><code class="paramref">value</code> is zero.</p>
 </td>
       </tr>
     </tbody>
@@ -153,18 +152,18 @@ MediaStreamConfiguration
   <a id="Tizen_Multimedia_MediaStreamConfiguration_BufferMinThreshold_" data-uid="Tizen.Multimedia.MediaStreamConfiguration.BufferMinThreshold*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.MediaPlayer/Player/MediaStreamConfiguration.cs/#L106">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.MediaPlayer/Player/MediaStreamConfiguration.cs/#L106">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_MediaStreamConfiguration_BufferMinThreshold" data-uid="Tizen.Multimedia.MediaStreamConfiguration.BufferMinThreshold">BufferMinThreshold</h4>
     <section>
-    <p>Gets or sets the minimum threshold of the buffer.</p>
+    <p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">Gets or sets the minimum threshold of the buffer.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint BufferMinThreshold { get; set; }</code></pre>
+    <pre><code class="lang- hljs">public uint BufferMinThreshold { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -176,14 +175,14 @@ MediaStreamConfiguration
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">uint</span></td>
-        <td><p>The minimum threshold of the buffer in percentage. The default is zero.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
+        <td><p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">The minimum threshold of the buffer in percentage. The default is zero.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_MediaStreamConfiguration_BufferMinThreshold_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If the buffer level drops below the threshold value, <a class="xref" href="Tizen.Multimedia.MediaStreamConfiguration.html#Tizen_Multimedia_MediaStreamConfiguration_BufferStatusChanged">BufferStatusChanged</a> will be raised with <a class="xref" href="Tizen.Multimedia.MediaStreamBufferStatus.html#Tizen_Multimedia_MediaStreamBufferStatus_Underrun">Underrun</a>.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">If the buffer level drops below the threshold value, <a class="xref" href="Tizen.Multimedia.MediaStreamConfiguration.html#Tizen_Multimedia_MediaStreamConfiguration_BufferStatusChanged">BufferStatusChanged</a> will be raised with <a class="xref" href="Tizen.Multimedia.MediaStreamBufferStatus.html#Tizen_Multimedia_MediaStreamBufferStatus_Underrun">Underrun</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -195,13 +194,13 @@ MediaStreamConfiguration
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.MediaStreamSource.html">MediaStreamSource</a> is not assigned to a player.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Multimedia.MediaStreamSource.html">MediaStreamSource</a> is not assigned to a player.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is greater than 100.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1"><code class="paramref">value</code> is greater than 100.</p>
 </td>
       </tr>
     </tbody>
@@ -217,18 +216,18 @@ MediaStreamConfiguration
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.MediaPlayer/Player/MediaStreamConfiguration.cs/#L52">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.MediaPlayer/Player/MediaStreamConfiguration.cs/#L52">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_MediaStreamConfiguration_BufferStatusChanged" data-uid="Tizen.Multimedia.MediaStreamConfiguration.BufferStatusChanged">BufferStatusChanged</h4>
     <section>
-    <p>Occurs when the buffer underruns or overflows.</p>
+    <p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">Occurs when the buffer underruns or overflows.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MediaStreamBufferStatusChangedEventArgs&gt; BufferStatusChanged</code></pre>
+    <pre><code class="lang- hljs">public event EventHandler&lt;MediaStreamBufferStatusChangedEventArgs&gt; BufferStatusChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -240,13 +239,13 @@ MediaStreamConfiguration
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaStreamBufferStatusChangedEventArgs.html">MediaStreamBufferStatusChangedEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.MediaStreamBufferStatusChangedEventArgs.html">MediaStreamBufferStatusChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_MediaStreamConfiguration_BufferStatusChanged_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The event handler will be executed on an internal thread.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">The event handler will be executed on an internal thread.</p>
 </div>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_MediaStreamConfiguration_BufferStatusChanged_seealso">See Also</h5>
@@ -258,18 +257,18 @@ MediaStreamConfiguration
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.MediaPlayer/Player/MediaStreamConfiguration.cs/#L59">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/fix/docs-workflows/src/Tizen.Multimedia.MediaPlayer/Player/MediaStreamConfiguration.cs/#L59">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_MediaStreamConfiguration_SeekingOccurred" data-uid="Tizen.Multimedia.MediaStreamConfiguration.SeekingOccurred">SeekingOccurred</h4>
     <section>
-    <p>Occurs when the seeking is requested.</p>
+    <p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">Occurs when the seeking is requested.</p>
 
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MediaStreamSeekingOccurredEventArgs&gt; SeekingOccurred</code></pre>
+    <pre><code class="lang- hljs">public event EventHandler&lt;MediaStreamSeekingOccurredEventArgs&gt; SeekingOccurred</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -281,32 +280,29 @@ MediaStreamConfiguration
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaStreamSeekingOccurredEventArgs.html">MediaStreamSeekingOccurredEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.MediaStreamSeekingOccurredEventArgs.html">MediaStreamSeekingOccurredEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_MediaStreamConfiguration_SeekingOccurred_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The event handler will be executed on an internal thread.</p>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API9/api/Tizen.Multimedia.MediaStreamConfiguration.yml" sourcestartlinenumber="1">The event handler will be executed on an internal thread.</p>
 </div>
-  <div class="seealso">
-    <h5 id="Tizen_Multimedia_MediaStreamConfiguration_SeekingOccurred_seealso">See Also</h5>
-      <div><a class="xref" href="Tizen.Multimedia.MediaStreamSource.html">MediaStreamSource</a></div>
-  </div>
 
 
   <h3 id="seealso">See Also</h3>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.MediaStreamSource.html">MediaStreamSource</a></div>
   </div>
-  </div></section>
+  </div>
+</section>
             </div>
           </main>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>
