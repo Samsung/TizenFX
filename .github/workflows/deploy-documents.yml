@@ -61,7 +61,7 @@ jobs:
         path: |
           _site
           obj
-        key: docfx-gh-pages-site-v5-${{ steps.info.outputs.heads }}-${{ hashFiles('docfx.json', 'filterConfig.yml', 'build.sh', 'build-index2.js') }}
+        key: docfx-gh-pages-site-v5-${{ steps.info.outputs.heads }}-${{ hashFiles('docfx.json', 'filterConfig.yml', 'build.sh', 'build-index2.js', 'templates/**', 'csproj/**') }}
 
     - name: Free disk space
       if: steps.cache-site.outputs.cache-hit != 'true'
