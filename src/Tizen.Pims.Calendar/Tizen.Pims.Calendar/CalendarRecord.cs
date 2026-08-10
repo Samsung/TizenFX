@@ -166,7 +166,7 @@ namespace Tizen.Pims.Calendar
 
             if ((int)CalendarTime.Type.Utc == value._type)
             {
-                Interop.Record.SetCalTimeUtime(caltime, (value.UtcTime.Ticks - DateTime.UnixEpoch.Ticks) / 10_000_000);
+                Interop.Record.SetCalTimeUtime(caltime, (value.UtcTime.Ticks - DateTime.UnixEpoch.Ticks) / TimeSpan.TicksPerSecond);
             }
             else
             {
@@ -185,7 +185,7 @@ namespace Tizen.Pims.Calendar
             CalendarTime value;
             if ((int)CalendarTime.Type.Utc == Interop.Record.GetCalTimeType(caltime))
             {
-                value = new CalendarTime(Interop.Record.GetCalTimeUtime(caltime) * 10_000_000 + DateTime.UnixEpoch.Ticks);
+                value = new CalendarTime(Interop.Record.GetCalTimeUtime(caltime) * TimeSpan.TicksPerSecond + DateTime.UnixEpoch.Ticks);
             }
             else
             {
