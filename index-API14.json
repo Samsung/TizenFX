@@ -10337,7 +10337,7 @@
   "API14/api/Tizen.Security.CheckResult.html": {
     "href": "API14/api/Tizen.Security.CheckResult.html",
     "title": "Enum CheckResult",
-    "summary": "Enum CheckResult Definition Namespace: Tizen.Security Assembly: Tizen.Security.PrivacyPrivilegeManager.dll Enumeration for the result of a permission check. public enum CheckResult Fields Name Description Allow The access to privilege is allowed permanently. Ask The access to privilege must be resolved by the user. Deny The access to privilege is denied permanently."
+    "summary": "Enum CheckResult Definition Namespace: Tizen.Security Assembly: Tizen.Security.PrivacyPrivilegeManager.dll Enumeration for the result of a permission check. public enum CheckResult Fields Name Description Allow The access to privilege is allowed permanently. AllowInUse The access to privilege is allowed only while the application is in foreground. AllowSession The access to privilege is allowed for the current session only. Ask The access to privilege must be resolved by the user. Deny The access to privilege is denied permanently. DenySession The access to privilege is denied for the current session only."
   },
   "API14/api/Tizen.Security.DevicePolicyManager.BluetoothPolicy.html": {
     "href": "API14/api/Tizen.Security.DevicePolicyManager.BluetoothPolicy.html",
@@ -10447,7 +10447,7 @@
   "API14/api/Tizen.Security.RequestResult.html": {
     "href": "API14/api/Tizen.Security.RequestResult.html",
     "title": "Enum RequestResult",
-    "summary": "Enum RequestResult Definition Namespace: Tizen.Security Assembly: Tizen.Security.PrivacyPrivilegeManager.dll Enumeration for the result of a permission request. public enum RequestResult Fields Name Description AllowForever The privilege is allowed permanently. DenyForever The privilege is denied permanently. DenyOnce The privilege is denied temporarily."
+    "summary": "Enum RequestResult Definition Namespace: Tizen.Security Assembly: Tizen.Security.PrivacyPrivilegeManager.dll Enumeration for the result of a permission request. public enum RequestResult Fields Name Description AllowForever The privilege is allowed permanently. AllowInUse The privilege is granted only while the application is in foreground. AllowSession The privilege is granted for the current session only. DenyForever The privilege is denied permanently. DenyOnce The privilege is denied temporarily. DenySession The privilege is denied for the current session only."
   },
   "API14/api/Tizen.Security.SecureRepository.Certificate.html": {
     "href": "API14/api/Tizen.Security.SecureRepository.Certificate.html",
