@@ -48,11 +48,12 @@ jobs:
     - name: Install DocFX
       run: dotnet tool install -g docfx --version 2.78.4
 
-    - name: Get TizenFX branch heads
+    - name: Get build cache key inputs
       id: info
       run: |
         HEADS=$(git ls-remote https://github.com/Samsung/TizenFX.git refs/heads/main "refs/heads/API[0-9]*" | sort | sha256sum | cut -d' ' -f1)
         echo "heads=$HEADS" >> $GITHUB_OUTPUT
+        echo "docs_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
     - name: Cache DocFX output
       id: cache-site
@@ -61,7 +62,7 @@ jobs:
         path: |
           _site
           obj
-        key: docfx-gh-pages-site-v5-${{ steps.info.outputs.heads }}-${{ hashFiles('docfx.json', 'filterConfig.yml', 'build.sh', 'build-index2.js', 'templates/**', 'csproj/**') }}
+        key: docfx-gh-pages-site-v5-${{ steps.info.outputs.docs_sha }}-${{ steps.info.outputs.heads }}
 
     - name: Free disk space
       if: steps.cache-site.outputs.cache-hit != 'true'
