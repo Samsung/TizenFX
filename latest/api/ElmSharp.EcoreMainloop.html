@@ -142,7 +142,7 @@ public static bool IsMainThread { get; }</code></pre>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang- hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
-public static IntPtr AddTimer(double interval, Func&lt;bool&gt; handler)</code></pre>
+public static nint AddTimer(double interval, Func&lt;bool&gt; handler)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -178,7 +178,7 @@ public static IntPtr AddTimer(double interval, Func&lt;bool&gt; handler)</code><
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">nint</a></td>
         <td><p sourcefile="obj/API14/api/ElmSharp.EcoreMainloop.yml" sourcestartlinenumber="1">A timer object handler on success, or null on failure.</p>
 </td>
       </tr>
@@ -308,7 +308,7 @@ public static void Quit()</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L133">View Source</a>
     </span>
-    <h4 id="ElmSharp_EcoreMainloop_RemoveTimer_System_IntPtr_" data-uid="ElmSharp.EcoreMainloop.RemoveTimer(System.IntPtr)">RemoveTimer(IntPtr)</h4>
+    <h4 id="ElmSharp_EcoreMainloop_RemoveTimer_System_IntPtr_" data-uid="ElmSharp.EcoreMainloop.RemoveTimer(System.IntPtr)">RemoveTimer(nint)</h4>
     <section>
     <p sourcefile="obj/API14/api/ElmSharp.EcoreMainloop.yml" sourcestartlinenumber="1">Removes the specified timer from the timer list.</p>
 
@@ -318,7 +318,7 @@ public static void Quit()</code></pre>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang- hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
-public static void RemoveTimer(IntPtr id)</code></pre>
+public static void RemoveTimer(nint id)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -331,7 +331,7 @@ public static void RemoveTimer(IntPtr id)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">nint</a></td>
         <td><span class="parametername">id</span></td>
         <td><p sourcefile="obj/API14/api/ElmSharp.EcoreMainloop.yml" sourcestartlinenumber="1">The specified timer handler</p>
 </td>

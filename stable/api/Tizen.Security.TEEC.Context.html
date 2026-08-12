@@ -665,7 +665,7 @@ There can be up to four parameter objects given in the <code class="paramref">pa
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Security.TEEC/Tizen.Security.TEEC/Libteec.cs/#L971">View Source</a>
     </span>
-    <h4 id="Tizen_Security_TEEC_Context_RegisterSharedMemory_System_IntPtr_System_UInt32_Tizen_Security_TEEC_SharedMemoryFlags_" data-uid="Tizen.Security.TEEC.Context.RegisterSharedMemory(System.IntPtr,System.UInt32,Tizen.Security.TEEC.SharedMemoryFlags)">RegisterSharedMemory(IntPtr, uint, SharedMemoryFlags)</h4>
+    <h4 id="Tizen_Security_TEEC_Context_RegisterSharedMemory_System_IntPtr_System_UInt32_Tizen_Security_TEEC_SharedMemoryFlags_" data-uid="Tizen.Security.TEEC.Context.RegisterSharedMemory(System.IntPtr,System.UInt32,Tizen.Security.TEEC.SharedMemoryFlags)">RegisterSharedMemory(nint, uint, SharedMemoryFlags)</h4>
     <section>
     <p sourcefile="obj/API14/api/Tizen.Security.TEEC.Context.yml" sourcestartlinenumber="1">This function registers a block of the existing client application memory as a block of shared memory within
 the scope of the specified context, in accordance with the parameters.
@@ -676,7 +676,7 @@ The input <code class="paramref">memaddr</code> must point to the shared memory 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang- hljs">public SharedMemory RegisterSharedMemory(IntPtr memaddr, uint size, SharedMemoryFlags flags)</code></pre>
+    <pre><code class="lang- hljs">public SharedMemory RegisterSharedMemory(nint memaddr, uint size, SharedMemoryFlags flags)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -689,7 +689,7 @@ The input <code class="paramref">memaddr</code> must point to the shared memory 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">nint</a></td>
         <td><span class="parametername">memaddr</span></td>
         <td><p sourcefile="obj/API14/api/Tizen.Security.TEEC.Context.yml" sourcestartlinenumber="1">The address of the shared memory.</p>
 </td>

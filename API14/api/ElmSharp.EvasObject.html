@@ -492,7 +492,7 @@ public Rect Geometry { get; set; }</code></pre>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang- hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
-public IntPtr Handle { get; protected set; }</code></pre>
+public nint Handle { get; protected set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -504,7 +504,7 @@ public IntPtr Handle { get; protected set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">nint</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -842,7 +842,7 @@ public bool PropagateEvents { get; set; }</code></pre>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang- hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
-public IntPtr RealHandle { get; protected set; }</code></pre>
+public nint RealHandle { get; protected set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -854,7 +854,7 @@ public IntPtr RealHandle { get; protected set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">nint</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1216,7 +1216,7 @@ public void Calculate()</code></pre>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang- hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
-protected abstract IntPtr CreateHandle(EvasObject parent)</code></pre>
+protected abstract nint CreateHandle(EvasObject parent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1246,7 +1246,7 @@ protected abstract IntPtr CreateHandle(EvasObject parent)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">nint</a></td>
         <td><p sourcefile="obj/API14/api/ElmSharp.EvasObject.yml" sourcestartlinenumber="1">Handle IntPtr.</p>
 </td>
       </tr>
@@ -2547,7 +2547,7 @@ public event EventHandler Shown</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/EvasObject.cs/#L1080">View Source</a>
     </span>
-    <h4 id="ElmSharp_EvasObject_op_Explicit_System_IntPtr__ElmSharp_EvasObject" data-uid="ElmSharp.EvasObject.op_Explicit(System.IntPtr)~ElmSharp.EvasObject">explicit operator EvasObject(IntPtr)</h4>
+    <h4 id="ElmSharp_EvasObject_op_Explicit_System_IntPtr__ElmSharp_EvasObject" data-uid="ElmSharp.EvasObject.op_Explicit(System.IntPtr)~ElmSharp.EvasObject">explicit operator EvasObject(nint)</h4>
     <section>
     <p sourcefile="obj/API14/api/ElmSharp.EvasObject.yml" sourcestartlinenumber="1">Define cast to EvasObject operator from IntPtr</p>
 
@@ -2557,7 +2557,7 @@ public event EventHandler Shown</code></pre>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang- hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
-public static explicit operator EvasObject(IntPtr handle)</code></pre>
+public static explicit operator EvasObject(nint handle)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -2570,7 +2570,7 @@ public static explicit operator EvasObject(IntPtr handle)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">nint</a></td>
         <td><span class="parametername">handle</span></td>
         <td><p sourcefile="obj/API14/api/ElmSharp.EvasObject.yml" sourcestartlinenumber="1">Native handle to EvasObject</p>
 </td>
@@ -2600,7 +2600,7 @@ public static explicit operator EvasObject(IntPtr handle)</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/EvasObject.cs/#L1067">View Source</a>
     </span>
-    <h4 id="ElmSharp_EvasObject_op_Implicit_ElmSharp_EvasObject__System_IntPtr" data-uid="ElmSharp.EvasObject.op_Implicit(ElmSharp.EvasObject)~System.IntPtr">implicit operator IntPtr(EvasObject)</h4>
+    <h4 id="ElmSharp_EvasObject_op_Implicit_ElmSharp_EvasObject__System_IntPtr" data-uid="ElmSharp.EvasObject.op_Implicit(ElmSharp.EvasObject)~System.IntPtr">implicit operator nint(EvasObject)</h4>
     <section>
     <p sourcefile="obj/API14/api/ElmSharp.EvasObject.yml" sourcestartlinenumber="1">Define the IntPtr operator.</p>
 
@@ -2610,7 +2610,7 @@ public static explicit operator EvasObject(IntPtr handle)</code></pre>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang- hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
-public static implicit operator IntPtr(EvasObject obj)</code></pre>
+public static implicit operator nint(EvasObject obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -2640,7 +2640,7 @@ public static implicit operator IntPtr(EvasObject obj)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">nint</a></td>
         <td></td>
       </tr>
     </tbody>
