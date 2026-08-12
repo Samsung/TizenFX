@@ -343,13 +343,13 @@ This function is the main function for operating the TTS engine.</p>
     <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L280">View Source</a>
   </span>
   <a id="Tizen_Uix_TtsEngine_Engine_ForEachSupportedVoices_" data-uid="Tizen.Uix.TtsEngine.Engine.ForEachSupportedVoices*"></a>
-  <h4 id="Tizen_Uix_TtsEngine_Engine_ForEachSupportedVoices_Tizen_Uix_TtsEngine_Engine_SupportedVoice_System_IntPtr_" data-uid="Tizen.Uix.TtsEngine.Engine.ForEachSupportedVoices(Tizen.Uix.TtsEngine.Engine.SupportedVoice,System.IntPtr)">ForEachSupportedVoices(SupportedVoice, IntPtr)</h4>
+  <h4 id="Tizen_Uix_TtsEngine_Engine_ForEachSupportedVoices_Tizen_Uix_TtsEngine_Engine_SupportedVoice_System_IntPtr_" data-uid="Tizen.Uix.TtsEngine.Engine.ForEachSupportedVoices(Tizen.Uix.TtsEngine.Engine.SupportedVoice,System.IntPtr)">ForEachSupportedVoices(SupportedVoice, nint)</h4>
   <div class="markdown level1 summary"><p>Called when the engine service user gets the whole supported voice list.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang- hljs">public abstract Error ForEachSupportedVoices(Engine.SupportedVoice callback, IntPtr userData)</code></pre>
+    <pre><code class="lang- hljs">public abstract Error ForEachSupportedVoices(Engine.SupportedVoice callback, nint userData)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -368,7 +368,7 @@ This function is the main function for operating the TTS engine.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">nint</a></td>
         <td><span class="parametername">userData</span></td>
         <td><p>The user data which must be passed to SupportedVoice().</p>
 </td>
@@ -887,13 +887,13 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
     <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L518">View Source</a>
   </span>
   <a id="Tizen_Uix_TtsEngine_Engine_SendResult_" data-uid="Tizen.Uix.TtsEngine.Engine.SendResult*"></a>
-  <h4 id="Tizen_Uix_TtsEngine_Engine_SendResult_Tizen_Uix_TtsEngine_ResultEvent_System_IntPtr_System_Int32_Tizen_Uix_TtsEngine_AudioType_System_Int32_" data-uid="Tizen.Uix.TtsEngine.Engine.SendResult(Tizen.Uix.TtsEngine.ResultEvent,System.IntPtr,System.Int32,Tizen.Uix.TtsEngine.AudioType,System.Int32)">SendResult(ResultEvent, IntPtr, int, AudioType, int)</h4>
+  <h4 id="Tizen_Uix_TtsEngine_Engine_SendResult_Tizen_Uix_TtsEngine_ResultEvent_System_IntPtr_System_Int32_Tizen_Uix_TtsEngine_AudioType_System_Int32_" data-uid="Tizen.Uix.TtsEngine.Engine.SendResult(Tizen.Uix.TtsEngine.ResultEvent,System.IntPtr,System.Int32,Tizen.Uix.TtsEngine.AudioType,System.Int32)">SendResult(ResultEvent, nint, int, AudioType, int)</h4>
   <div class="markdown level1 summary"><p>Sends the synthesized result to the engine service user.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang- hljs">public void SendResult(ResultEvent resultEvent, IntPtr data, int dataSize, AudioType audioType, int rate)</code></pre>
+    <pre><code class="lang- hljs">public void SendResult(ResultEvent resultEvent, nint data, int dataSize, AudioType audioType, int rate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -912,7 +912,7 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">nint</a></td>
         <td><span class="parametername">data</span></td>
         <td><p>The result data.</p>
 </td>
@@ -1171,13 +1171,13 @@ The following error codes can be returned:</p>
     <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L216">View Source</a>
   </span>
   <a id="Tizen_Uix_TtsEngine_Engine_StartSynthesis_" data-uid="Tizen.Uix.TtsEngine.Engine.StartSynthesis*"></a>
-  <h4 id="Tizen_Uix_TtsEngine_Engine_StartSynthesis_System_String_System_Int32_System_String_System_Int32_System_String_System_String_System_IntPtr_" data-uid="Tizen.Uix.TtsEngine.Engine.StartSynthesis(System.String,System.Int32,System.String,System.Int32,System.String,System.String,System.IntPtr)">StartSynthesis(string, int, string, int, string, string, IntPtr)</h4>
+  <h4 id="Tizen_Uix_TtsEngine_Engine_StartSynthesis_System_String_System_Int32_System_String_System_Int32_System_String_System_String_System_IntPtr_" data-uid="Tizen.Uix.TtsEngine.Engine.StartSynthesis(System.String,System.Int32,System.String,System.Int32,System.String,System.String,System.IntPtr)">StartSynthesis(string, int, string, int, string, string, nint)</h4>
   <div class="markdown level1 summary"><p>Called when the engine service user starts to synthesize a voice, asynchronously.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang- hljs">public abstract Error StartSynthesis(string language, int type, string text, int speed, string appid, string credential, IntPtr userData)</code></pre>
+    <pre><code class="lang- hljs">public abstract Error StartSynthesis(string language, int type, string text, int speed, string appid, string credential, nint userData)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1227,7 +1227,7 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">nint</a></td>
         <td><span class="parametername">userData</span></td>
         <td><p>The user data which must be passed to the SendResult() function.</p>
 </td>
