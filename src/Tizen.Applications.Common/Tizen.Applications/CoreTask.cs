@@ -152,8 +152,18 @@ namespace Tizen.Applications
                 throw new ArgumentNullException(nameof(runner));
             }
 
-            var task = new TaskCompletionSource<T>();
-            GSourceManager.Post(() => { task.SetResult(runner()); });
+            var task = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
+            GSourceManager.Post(() =>
+            {
+                try
+                {
+                    task.SetResult(runner());
+                }
+                catch (Exception ex)
+                {
+                    task.SetException(ex);
+                }
+            });
             return await task.Task.ConfigureAwait(false);
         }
     }
