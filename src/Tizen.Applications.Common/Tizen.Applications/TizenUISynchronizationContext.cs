@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-using System;
-using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Threading;
 
@@ -53,10 +51,7 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         public override void Post(SendOrPostCallback d, object state)
         {
-            GSourceManager.Post(() =>
-            {
-                d(state);
-            }, true);
+            SynchronizationContextDispatcher.Post(d, state, useTizenGlibContext: true);
         }
 
         /// <summary>
@@ -69,32 +64,7 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         public override void Send(SendOrPostCallback d, object state)
         {
-            using (var mre = new ManualResetEvent(false))
-            {
-                Exception err = null;
-                GSourceManager.Post(() =>
-                {
-#pragma warning disable CA1031
-                    try
-                    {
-                        d(state);
-                    }
-                    catch (Exception ex)
-                    {
-                        err = ex;
-                    }
-                    finally
-                    {
-                        mre.Set();
-                    }
-#pragma warning restore CA1031
-                }, true);
-                mre.WaitOne();
-                if (err != null)
-                {
-                    throw err;
-                }
-            }
+            SynchronizationContextDispatcher.Send(d, state, useTizenGlibContext: true);
         }
     }
 }
