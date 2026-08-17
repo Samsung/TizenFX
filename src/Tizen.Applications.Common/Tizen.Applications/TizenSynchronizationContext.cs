@@ -26,6 +26,10 @@ namespace Tizen.Applications
     /// <since_tizen> 3 </since_tizen>
     public class TizenSynchronizationContext : SynchronizationContext
     {
+        // Initialize() installs the context on the thread that runs the target main loop,
+        // so the constructing thread is the loop thread that dispatches posted callbacks.
+        private readonly int _loopThreadId = Environment.CurrentManagedThreadId;
+
         /// <summary>
         /// Initilizes a new TizenSynchronizationContext and install into the current thread.
         /// </summary>
@@ -64,7 +68,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public override void Send(SendOrPostCallback d, object state)
         {
-            SynchronizationContextDispatcher.Send(d, state, useTizenGlibContext: false);
+            SynchronizationContextDispatcher.Send(d, state, useTizenGlibContext: false, _loopThreadId);
         }
     }
 
@@ -78,8 +82,16 @@ namespace Tizen.Applications
             }, useTizenGlibContext);
         }
 
-        public static void Send(SendOrPostCallback d, object state, bool useTizenGlibContext)
+        public static void Send(SendOrPostCallback d, object state, bool useTizenGlibContext, int loopThreadId)
         {
+            if (Environment.CurrentManagedThreadId == loopThreadId)
+            {
+                // Already on the loop thread; run inline because blocking here would
+                // prevent the loop from ever dispatching the posted callback.
+                d(state);
+                return;
+            }
+
             using (var mre = new ManualResetEventSlim(false))
             {
                 ExceptionDispatchInfo edi = null;

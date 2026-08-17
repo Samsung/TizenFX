@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 using System.ComponentModel;
 using System.Threading;
 
@@ -26,6 +27,10 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TizenUISynchronizationContext : SynchronizationContext
     {
+        // Initialize() installs the context on the UI thread that runs the target main loop,
+        // so the constructing thread is the loop thread that dispatches posted callbacks.
+        private readonly int _loopThreadId = Environment.CurrentManagedThreadId;
+
         /// <summary>
         /// Initilizes a new TizenUISynchronizationContext and install into the current thread.
         /// </summary>
@@ -64,7 +69,7 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         public override void Send(SendOrPostCallback d, object state)
         {
-            SynchronizationContextDispatcher.Send(d, state, useTizenGlibContext: true);
+            SynchronizationContextDispatcher.Send(d, state, useTizenGlibContext: true, _loopThreadId);
         }
     }
 }
