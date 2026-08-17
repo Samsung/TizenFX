@@ -155,6 +155,7 @@ namespace Tizen.Applications
             var task = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
             GSourceManager.Post(() =>
             {
+#pragma warning disable CA1031
                 try
                 {
                     task.SetResult(runner());
@@ -163,6 +164,7 @@ namespace Tizen.Applications
                 {
                     task.SetException(ex);
                 }
+#pragma warning restore CA1031
             });
             return await task.Task.ConfigureAwait(false);
         }
