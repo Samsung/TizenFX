@@ -18,7 +18,6 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string MetadataEditor = "libcapi-media-metadata-editor.so";
         public const string MetadataExtractor = "libcapi-media-metadata-extractor.so";
     }
 }
