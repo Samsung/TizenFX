@@ -168,9 +168,6 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_display_language_changed_cb")]
         internal static extern ErrorCode ImeEventSetDisplayLanguageChangedCb(ImeDisplayLanguageChangedCb callbackFunction, IntPtr userData);
 
-        [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_rotation_degree_changed_cb")]
-        internal static extern ErrorCode ImeEventSetRotationChangedCb(ImeRotationChangedCb callbackFunction, IntPtr userData);
-
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_accessibility_state_changed_cb")]
         internal static extern ErrorCode ImeEventSetAccessibilityStateChangedCb(ImeAccessibilityStateChangedCb callbackFunction, IntPtr userData);
 
@@ -359,9 +356,6 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ImeDisplayLanguageChangedCb(IntPtr language, IntPtr userData);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ImeRotationChangedCb(int degree, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ImeAccessibilityStateChangedCb(bool state, IntPtr userData);
