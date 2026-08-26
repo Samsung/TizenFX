@@ -92,6 +92,12 @@ namespace Tizen.Multimedia
             {
                 ThrowIfBufferIsNotWritable();
 
+                if (index < 0 || index >= Length)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(index), index,
+                        $"Valid index range is [0, { nameof(Length) }).");
+                }
+
                 Marshal.WriteByte(DataHandle, index, value);
             }
         }
