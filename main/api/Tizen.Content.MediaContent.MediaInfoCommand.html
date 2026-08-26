@@ -150,7 +150,7 @@ MediaInfoCommand
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_Add_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.Add*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L542">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L384">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_Add_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.Add(System.String)">Add(string)</h4>
     <section>
@@ -269,7 +269,7 @@ If <a href="http://tizen.org/feature/content.scanning.others" sourcefile="obj/AP
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_AddAsync_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.AddAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L635">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L477">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_AddAsync_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.AddAsync(System.Collections.Generic.IEnumerable{System.String})">AddAsync(IEnumerable&lt;string&gt;)</h4>
     <section>
@@ -384,196 +384,10 @@ The number of <code class="paramref">paths</code> is 300 or more items.</p>
 
 
 
-  <a id="Tizen_Content_MediaContent_MediaInfoCommand_CountBookmark_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountBookmark*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L56">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CountBookmark_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountBookmark(System.String)">CountBookmark(string)</h4>
-    <section>
-    <p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">Retrieves the number of the bookmarks added to the media.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public int CountBookmark(string mediaId)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">mediaId</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The media ID to count the bookmarks added to the media.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The number of the bookmarks.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Content_MediaContent_MediaInfoCommand_CountBookmark_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountBookmark*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L74">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CountBookmark_System_String_Tizen_Content_MediaContent_CountArguments_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountBookmark(System.String,Tizen.Content.MediaContent.CountArguments)">CountBookmark(string, CountArguments)</h4>
-    <section>
-    <p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">Retrieves the number of the bookmarks added to the media with the <a class="xref" href="Tizen.Content.MediaContent.CountArguments.html">CountArguments</a>.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public int CountBookmark(string mediaId, CountArguments arguments)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">mediaId</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The media ID to count the bookmarks added to the media.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.CountArguments.html">CountArguments</a></td>
-        <td><span class="parametername">arguments</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The criteria to use to filter. This value can be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The number of the bookmarks.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_CountGroupBy_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountGroupBy*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L272">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L114">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CountGroupBy_Tizen_Content_MediaContent_MediaInfoColumnKey_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountGroupBy(Tizen.Content.MediaContent.MediaInfoColumnKey)">CountGroupBy(MediaInfoColumnKey)</h4>
     <section>
@@ -657,7 +471,7 @@ public int CountBookmark(string mediaId, CountArguments arguments)</code></pre>
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_CountGroupBy_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountGroupBy*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L288">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L130">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CountGroupBy_Tizen_Content_MediaContent_MediaInfoColumnKey_Tizen_Content_MediaContent_CountArguments_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountGroupBy(Tizen.Content.MediaContent.MediaInfoColumnKey,Tizen.Content.MediaContent.CountArguments)">CountGroupBy(MediaInfoColumnKey, CountArguments)</h4>
     <section>
@@ -747,7 +561,7 @@ public int CountBookmark(string mediaId, CountArguments arguments)</code></pre>
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_CountMedia_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountMedia*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L211">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L53">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CountMedia" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountMedia">CountMedia()</h4>
     <section>
@@ -808,7 +622,7 @@ public int CountBookmark(string mediaId, CountArguments arguments)</code></pre>
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_CountMedia_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountMedia*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L225">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L67">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CountMedia_Tizen_Content_MediaContent_CountArguments_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountMedia(Tizen.Content.MediaContent.CountArguments)">CountMedia(CountArguments)</h4>
     <section>
@@ -884,196 +698,10 @@ public int CountBookmark(string mediaId, CountArguments arguments)</code></pre>
 
 
 
-  <a id="Tizen_Content_MediaContent_MediaInfoCommand_CountTag_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountTag*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L135">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CountTag_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountTag(System.String)">CountTag(string)</h4>
-    <section>
-    <p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">Retrieves the number of tags that the media has.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public int CountTag(string mediaId)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">mediaId</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The media ID to count tags added to the media.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The number of tags.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Content_MediaContent_MediaInfoCommand_CountTag_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountTag*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L153">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CountTag_System_String_Tizen_Content_MediaContent_CountArguments_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CountTag(System.String,Tizen.Content.MediaContent.CountArguments)">CountTag(string, CountArguments)</h4>
-    <section>
-    <p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">Retrieves the number of tags that the media has with the <a class="xref" href="Tizen.Content.MediaContent.CountArguments.html">CountArguments</a>.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public int CountTag(string mediaId, CountArguments arguments)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">mediaId</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The media ID to count tags added to the media.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.CountArguments.html">CountArguments</a></td>
-        <td><span class="parametername">arguments</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The criteria to use to filter. This value can be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The number of tags.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_CreateThumbnail_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CreateThumbnail*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L814">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L609">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CreateThumbnail_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CreateThumbnail(System.String)">CreateThumbnail(string)</h4>
     <section>
@@ -1187,7 +815,7 @@ The media is in the external USB storage.</p>
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_Delete_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.Delete*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L478">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L320">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_Delete_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.Delete(System.String)">Delete(string)</h4>
     <section>
@@ -1288,7 +916,7 @@ The file related with the <code class="paramref">mediaId</code> in DB still exis
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_Move_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.Move*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L746">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L541">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_Move_System_String_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.Move(System.String,System.String)">Move(string, string)</h4>
     <section>
@@ -1404,196 +1032,10 @@ If you want to access external storage, you should add privilege <a href="http:/
 
 
 
-  <a id="Tizen_Content_MediaContent_MediaInfoCommand_SelectBookmark_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectBookmark*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L95">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_SelectBookmark_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectBookmark(System.String)">SelectBookmark(string)</h4>
-    <section>
-    <p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">Retrieves the bookmarks added to the media.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public MediaDataReader&lt;Bookmark&gt; SelectBookmark(string mediaId)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">mediaId</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The media ID to select the bookmarks added to the media.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDataReader-1.html">MediaDataReader</a>&lt;<a class="xref" href="Tizen.Content.MediaContent.Bookmark.html">Bookmark</a>&gt;</td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDataReader-1.html">MediaDataReader&lt;TRecord&gt;</a> containing the results.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Content_MediaContent_MediaInfoCommand_SelectBookmark_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectBookmark*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L113">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_SelectBookmark_System_String_Tizen_Content_MediaContent_SelectArguments_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectBookmark(System.String,Tizen.Content.MediaContent.SelectArguments)">SelectBookmark(string, SelectArguments)</h4>
-    <section>
-    <p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">Retrieves the bookmarks added to the media with the <a class="xref" href="Tizen.Content.MediaContent.SelectArguments.html">SelectArguments</a>.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public MediaDataReader&lt;Bookmark&gt; SelectBookmark(string mediaId, SelectArguments filter)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">mediaId</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The media ID to select the bookmarks added to the media.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.SelectArguments.html">SelectArguments</a></td>
-        <td><span class="parametername">filter</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The criteria to use to filter. This value can be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDataReader-1.html">MediaDataReader</a>&lt;<a class="xref" href="Tizen.Content.MediaContent.Bookmark.html">Bookmark</a>&gt;</td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDataReader-1.html">MediaDataReader&lt;TRecord&gt;</a> containing the results.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_SelectEbookPath_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectEbookPath*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L421">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L263">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_SelectEbookPath_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectEbookPath(System.String)">SelectEbookPath(string)</h4>
     <section>
@@ -1682,7 +1124,7 @@ public MediaDataReader&lt;Bookmark&gt; SelectBookmark(string mediaId, SelectArgu
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_SelectGroupBy_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectGroupBy*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L311">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L153">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_SelectGroupBy_Tizen_Content_MediaContent_MediaInfoColumnKey_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectGroupBy(Tizen.Content.MediaContent.MediaInfoColumnKey)">SelectGroupBy(MediaInfoColumnKey)</h4>
     <section>
@@ -1766,7 +1208,7 @@ public MediaDataReader&lt;Bookmark&gt; SelectBookmark(string mediaId, SelectArgu
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_SelectGroupBy_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectGroupBy*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L327">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L169">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_SelectGroupBy_Tizen_Content_MediaContent_MediaInfoColumnKey_Tizen_Content_MediaContent_SelectArguments_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectGroupBy(Tizen.Content.MediaContent.MediaInfoColumnKey,Tizen.Content.MediaContent.SelectArguments)">SelectGroupBy(MediaInfoColumnKey, SelectArguments)</h4>
     <section>
@@ -1856,7 +1298,7 @@ public MediaDataReader&lt;Bookmark&gt; SelectBookmark(string mediaId, SelectArgu
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_SelectMedia_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectMedia*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L356">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L198">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_SelectMedia" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectMedia">SelectMedia()</h4>
     <section>
@@ -1917,7 +1359,7 @@ public MediaDataReader&lt;Bookmark&gt; SelectBookmark(string mediaId, SelectArgu
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_SelectMedia_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectMedia*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L243">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L85">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_SelectMedia_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectMedia(System.String)">SelectMedia(string)</h4>
     <section>
@@ -2006,7 +1448,7 @@ public MediaDataReader&lt;Bookmark&gt; SelectBookmark(string mediaId, SelectArgu
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_SelectMedia_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectMedia*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L370">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L212">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_SelectMedia_Tizen_Content_MediaContent_SelectArguments_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectMedia(Tizen.Content.MediaContent.SelectArguments)">SelectMedia(SelectArguments)</h4>
     <section>
@@ -2075,293 +1517,6 @@ public MediaDataReader&lt;Bookmark&gt; SelectBookmark(string mediaId, SelectArgu
       <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">An error occurred while executing the command.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Content_MediaContent_MediaInfoCommand_SelectTag_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectTag*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L174">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_SelectTag_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectTag(System.String)">SelectTag(string)</h4>
-    <section>
-    <p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">Retrieves the tags that the media has.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public MediaDataReader&lt;Tag&gt; SelectTag(string mediaId)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">mediaId</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The media ID to select tags added to the media.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDataReader-1.html">MediaDataReader</a>&lt;<a class="xref" href="Tizen.Content.MediaContent.Tag.html">Tag</a>&gt;</td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDataReader-1.html">MediaDataReader&lt;TRecord&gt;</a> containing the results.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Content_MediaContent_MediaInfoCommand_SelectTag_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectTag*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L192">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_SelectTag_System_String_Tizen_Content_MediaContent_SelectArguments_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.SelectTag(System.String,Tizen.Content.MediaContent.SelectArguments)">SelectTag(string, SelectArguments)</h4>
-    <section>
-    <p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">Retrieves the tags that the media has with the <a class="xref" href="Tizen.Content.MediaContent.SelectArguments.html">SelectArguments</a>.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public MediaDataReader&lt;Tag&gt; SelectTag(string mediaId, SelectArguments filter)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">mediaId</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The media ID to select tags added to the media.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.SelectArguments.html">SelectArguments</a></td>
-        <td><span class="parametername">filter</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The criteria to use to filter. This value can be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDataReader-1.html">MediaDataReader</a>&lt;<a class="xref" href="Tizen.Content.MediaContent.Tag.html">Tag</a>&gt;</td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDataReader-1.html">MediaDataReader&lt;TRecord&gt;</a> containing the results.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Content_MediaContent_MediaInfoCommand_UpdateFavorite_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.UpdateFavorite*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L678">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_UpdateFavorite_System_String_System_Boolean_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.UpdateFavorite(System.String,System.Boolean)">UpdateFavorite(string, bool)</h4>
-    <section>
-    <p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">Updates the media with the favorite value.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang- hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public bool UpdateFavorite(string mediaId, bool value)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">mediaId</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The media ID to update.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">value</span></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The value indicating whether the media is favorite.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">true if the matched record was found and updated, otherwise false.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1"><code class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p sourcefile="obj/API15/api/Tizen.Content.MediaContent.MediaInfoCommand.yml" sourcestartlinenumber="1">The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
