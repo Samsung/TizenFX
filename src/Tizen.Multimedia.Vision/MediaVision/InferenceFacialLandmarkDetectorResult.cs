@@ -33,7 +33,7 @@ namespace Tizen.Multimedia.Vision
                 Validate("Failed to get result count.");
 
             RequestId = requestId;
-            var points = new List<Point>();
+            var points = new List<Point>((int)count);
 
             for (uint i = 0 ; i < count ; i++)
             {

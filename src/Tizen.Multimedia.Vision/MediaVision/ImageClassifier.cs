@@ -122,7 +122,7 @@ namespace Tizen.Multimedia.Vision
                 return Enumerable.Empty<ImageClassificationResult>();
             }
 
-            var results = new List<ImageClassificationResult>();
+            var results = new List<ImageClassificationResult>(number);
 
             for (int i = 0; i < number; i++)
             {
