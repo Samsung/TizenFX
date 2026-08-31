@@ -89,6 +89,7 @@ namespace Tizen.Multimedia
         #region Network configuration
         private string _cookie = "";
         private string _userAgent = "";
+        private string _authorizationToken = "";
         private const int MinBufferingTime = -1;
 
         /// <summary>
@@ -148,6 +149,44 @@ namespace Tizen.Multimedia
                     ThrowIfFailed(this, "Failed to set the user agent to the player");
 
                 _userAgent = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the authorization token for streaming playback.
+        /// </summary>
+        /// <remarks>
+        /// To set, the player must be in the <see cref="PlayerState.Idle"/> state.
+        /// The token must include the authentication scheme, such as "Bearer" or "Basic".
+        /// For example, pass "Bearer xxxxxx" for a bearer token, or "Basic xxxxxx" for a basic token.
+        /// The token is discarded once the streaming connection has been set up,
+        /// which means it has to be set again for each prepare cycle.
+        /// The token is sent only when the media is served over a secure connection.
+        /// A token of up to 2048 bytes is guaranteed to be accepted.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentNullException">The value to set is null or empty.</exception>
+        /// <since_tizen> 14 </since_tizen>
+        public string AuthorizationToken
+        {
+            get
+            {
+                return _authorizationToken;
+            }
+            set
+            {
+                ValidatePlayerState(PlayerState.Idle);
+
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException(nameof(value), "AuthorizationToken can't be null or empty.");
+                }
+
+                NativePlayer.SetStreamingAuthorizationToken(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the authorization token to the player");
+
+                _authorizationToken = value;
             }
         }
 
