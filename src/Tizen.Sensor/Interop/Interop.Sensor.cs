@@ -76,16 +76,8 @@ internal static partial class Interop
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_stop")]
         internal static extern int StopListener(IntPtr listenerHandle);
 
-        [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_set_event_cb")]
-        [Obsolete("Deprecated since API level 8. Please use the SetEventsCallback instead.")]
-        internal static extern int SetEventCallback(IntPtr listenerHandle, uint intervalMs, SensorEventCallback callback, IntPtr data);
-
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_set_events_cb")]
         internal static extern int SetEventsCallback(IntPtr listenerHandle, SensorEventsCallback callback, IntPtr data);
-
-        [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_unset_event_cb")]
-        [Obsolete("Deprecated since API level 8. Please use the UnsetEventsCallback instead.")]
-        internal static extern int UnsetEventCallback(IntPtr listernerHandle);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_unset_events_cb")]
         internal static extern int UnsetEventsCallback(IntPtr listernerHandle);
