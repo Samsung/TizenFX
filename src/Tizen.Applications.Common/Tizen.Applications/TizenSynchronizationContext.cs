@@ -15,7 +15,7 @@
  */
 
 using System;
-using System.Collections.Concurrent;
+using System.Runtime.ExceptionServices;
 using System.Threading;
 
 namespace Tizen.Applications
@@ -26,6 +26,10 @@ namespace Tizen.Applications
     /// <since_tizen> 3 </since_tizen>
     public class TizenSynchronizationContext : SynchronizationContext
     {
+        // Initialize() installs the context on the thread that runs the target main loop,
+        // so the constructing thread is the loop thread that dispatches posted callbacks.
+        private readonly int _loopThreadId = Environment.CurrentManagedThreadId;
+
         /// <summary>
         /// Initilizes a new TizenSynchronizationContext and install into the current thread.
         /// </summary>
@@ -51,10 +55,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public override void Post(SendOrPostCallback d, object state)
         {
-            GSourceManager.Post(() =>
-            {
-                d(state);
-            });
+            SynchronizationContextDispatcher.Post(d, state, useTizenGlibContext: false);
         }
 
         /// <summary>
@@ -67,9 +68,33 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public override void Send(SendOrPostCallback d, object state)
         {
-            using (var mre = new ManualResetEvent(false))
+            SynchronizationContextDispatcher.Send(d, state, useTizenGlibContext: false, _loopThreadId);
+        }
+    }
+
+    internal static class SynchronizationContextDispatcher
+    {
+        public static void Post(SendOrPostCallback d, object state, bool useTizenGlibContext)
+        {
+            GSourceManager.Post(() =>
             {
-                Exception err = null;
+                d(state);
+            }, useTizenGlibContext);
+        }
+
+        public static void Send(SendOrPostCallback d, object state, bool useTizenGlibContext, int loopThreadId)
+        {
+            if (Environment.CurrentManagedThreadId == loopThreadId)
+            {
+                // Already on the loop thread; run inline because blocking here would
+                // prevent the loop from ever dispatching the posted callback.
+                d(state);
+                return;
+            }
+
+            using (var mre = new ManualResetEventSlim(false))
+            {
+                ExceptionDispatchInfo edi = null;
                 GSourceManager.Post(() =>
                 {
 #pragma warning disable CA1031
@@ -79,19 +104,16 @@ namespace Tizen.Applications
                     }
                     catch (Exception ex)
                     {
-                        err = ex;
+                        edi = ExceptionDispatchInfo.Capture(ex);
                     }
                     finally
                     {
                         mre.Set();
                     }
 #pragma warning restore CA1031
-                });
-                mre.WaitOne();
-                if (err != null)
-                {
-                    throw err;
-                }
+                }, useTizenGlibContext);
+                mre.Wait();
+                edi?.Throw();
             }
         }
     }
