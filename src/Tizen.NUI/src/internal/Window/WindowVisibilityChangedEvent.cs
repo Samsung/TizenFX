@@ -33,14 +33,6 @@ namespace Tizen.NUI
             Interop.WindowVisibilityChangedSignal.DeleteSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.WindowVisibilityChangedSignal.Empty(SwigCPtr);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.WindowVisibilityChangedSignal.GetConnectionCount(SwigCPtr);
@@ -65,12 +57,6 @@ namespace Tizen.NUI
                 Interop.WindowVisibilityChangedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(Window window, bool visibility)
-        {
-            Interop.WindowVisibilityChangedSignal.Emit(SwigCPtr, Window.getCPtr(window), visibility);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }
