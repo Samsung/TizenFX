@@ -950,11 +950,11 @@
       "type": "Toc",
       "source_relative_path": "obj/internals/api/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "internals/api/toc.json"
-        },
         ".html": {
           "relative_path": "internals/api/toc.html"
+        },
+        ".json": {
+          "relative_path": "internals/api/toc.json"
         }
       },
       "version": ""
@@ -1043,11 +1043,11 @@
       "type": "Toc",
       "source_relative_path": "repos/API15/internals/docs/guides/toc.md",
       "output": {
-        ".json": {
-          "relative_path": "internals/guides/toc.json"
-        },
         ".html": {
           "relative_path": "internals/guides/toc.html"
+        },
+        ".json": {
+          "relative_path": "internals/guides/toc.json"
         }
       },
       "version": ""
@@ -1066,11 +1066,11 @@
       "type": "Toc",
       "source_relative_path": "repos/API15/internals/docs/toc.md",
       "output": {
-        ".json": {
-          "relative_path": "internals/toc.json"
-        },
         ".html": {
           "relative_path": "internals/toc.html"
+        },
+        ".json": {
+          "relative_path": "internals/toc.json"
         }
       },
       "version": ""
@@ -1469,11 +1469,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "toc.json"
-        },
         ".html": {
           "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
       "version": ""
