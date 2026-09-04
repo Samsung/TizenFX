@@ -791,7 +791,7 @@ namespace Tizen.NUI
             {
                 if (result == null)
                 {
-                    throw new ArgumentException("string property is invalid");
+                    throw new ArgumentException($"string property is invalid: '{property}' on {target?.GetType().Name ?? "null"}");
                 }
 
                 var current = result;
@@ -842,7 +842,7 @@ namespace Tizen.NUI
             {
                 if (result == null)
                 {
-                    throw new ArgumentException("string property is invalid");
+                    throw new ArgumentException($"string property is invalid: '{property}' on {target?.GetType().Name ?? "null"}");
                 }
 
                 var current = result;
@@ -924,7 +924,7 @@ namespace Tizen.NUI
             {
                 if (result == null)
                 {
-                    throw new ArgumentException("string property is invalid");
+                    throw new ArgumentException($"string property is invalid: '{property}' on {target?.GetType().Name ?? "null"}");
                 }
 
                 var current = result;
@@ -975,7 +975,7 @@ namespace Tizen.NUI
             {
                 if (result == null)
                 {
-                    throw new ArgumentException("string property is invalid");
+                    throw new ArgumentException($"string property is invalid: '{property}' on {target?.GetType().Name ?? "null"}");
                 }
 
                 var current = result;
@@ -1124,7 +1124,7 @@ namespace Tizen.NUI
             {
                 if (result == null)
                 {
-                    throw new ArgumentException("string property is invalid");
+                    throw new ArgumentException($"string property is invalid: '{property}' on {target?.GetType().Name ?? "null"}");
                 }
 
                 var current = result;
@@ -1170,7 +1170,7 @@ namespace Tizen.NUI
             {
                 if (result == null)
                 {
-                    throw new ArgumentException("string property is invalid");
+                    throw new ArgumentException($"string property is invalid: '{property}' on {target?.GetType().Name ?? "null"}");
                 }
 
                 var current = result;
