@@ -6,8 +6,16 @@ using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
 {
-  public class HitTestSample : IExample
+  public class HitTestSample : IExample, IApplicationHolder
   {
+    internal static NUIApplication s_application;
+
+    public void SetCurrentApplication(Tizen.NUI.NUIApplication application)
+    {
+        Tizen.Log.Error("NUITEST", $"SetCurrentApplication {application}\n");
+        HitTestSample.s_application = application;
+    }
+
     class LogOutput : ScrollableBase
     {
         public LogOutput()
@@ -40,7 +48,7 @@ namespace Tizen.NUI.Samples
                     ContentContainer.Remove(child);
                 }
             }
-            ElmSharp.EcoreMainloop.Post(() =>
+            HitTestSample.s_application.AddIdle(() =>
             {
                 ScrollTo((ContentContainer.Children.Count) * (txt.NaturalSize.Height), true);
             });
