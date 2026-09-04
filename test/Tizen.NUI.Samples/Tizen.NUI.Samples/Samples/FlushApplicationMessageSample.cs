@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace Tizen.NUI.Samples
 {
-    public class FlushApplicationMessageSample : IExample
+    public class FlushApplicationMessageSample : IExample, IApplicationHolder
     {
         private View root;
         private TextLabel textLabel;
