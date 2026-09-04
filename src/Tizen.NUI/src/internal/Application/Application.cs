@@ -1880,9 +1880,9 @@ namespace Tizen.NUI
             }
             catch (Exception exception)
             {
-                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
-                Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
-                Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
+                Tizen.Log.Fatal("NUI", $"[Error] got exception during Application New(), this should not occur, message : {exception.Message}");
+                Tizen.Log.Fatal("NUI", $"[Error] error line number : {new StackTrace(exception, true).GetFrame(0).GetFileLineNumber()}");
+                Tizen.Log.Fatal("NUI", $"[Error] Stack Trace : {exception.StackTrace}");
                 throw;
             }
 
@@ -1911,9 +1911,9 @@ namespace Tizen.NUI
             }
             catch (Exception exception)
             {
-                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
-                Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
-                Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
+                Tizen.Log.Fatal("NUI", $"[Error] got exception during Application New(), this should not occur, message : {exception.Message}");
+                Tizen.Log.Fatal("NUI", $"[Error] error line number : {new StackTrace(exception, true).GetFrame(0).GetFileLineNumber()}");
+                Tizen.Log.Fatal("NUI", $"[Error] Stack Trace : {exception.StackTrace}");
                 throw;
             }
 
@@ -1934,9 +1934,9 @@ namespace Tizen.NUI
             }
             catch (Exception exception)
             {
-                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
-                Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
-                Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
+                Tizen.Log.Fatal("NUI", $"[Error] got exception during Application New(), this should not occur, message : {exception.Message}");
+                Tizen.Log.Fatal("NUI", $"[Error] error line number : {new StackTrace(exception, true).GetFrame(0).GetFileLineNumber()}");
+                Tizen.Log.Fatal("NUI", $"[Error] Stack Trace : {exception.StackTrace}");
                 throw;
             }
 
@@ -1962,9 +1962,9 @@ namespace Tizen.NUI
             }
             catch (Exception exception)
             {
-                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
-                Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
-                Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
+                Tizen.Log.Fatal("NUI", $"[Error] got exception during Application New(), this should not occur, message : {exception.Message}");
+                Tizen.Log.Fatal("NUI", $"[Error] error line number : {new StackTrace(exception, true).GetFrame(0).GetFileLineNumber()}");
+                Tizen.Log.Fatal("NUI", $"[Error] Stack Trace : {exception.StackTrace}");
                 throw;
             }
 
@@ -1986,9 +1986,9 @@ namespace Tizen.NUI
             }
             catch (Exception exception)
             {
-                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
-                Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
-                Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
+                Tizen.Log.Fatal("NUI", $"[Error] got exception during Application New(), this should not occur, message : {exception.Message}");
+                Tizen.Log.Fatal("NUI", $"[Error] error line number : {new StackTrace(exception, true).GetFrame(0).GetFileLineNumber()}");
+                Tizen.Log.Fatal("NUI", $"[Error] Stack Trace : {exception.StackTrace}");
                 throw;
             }
 

@@ -433,11 +433,11 @@ namespace Tizen.NUI
                     {
                         if (childDesiredHeight == LayoutDimension.MatchParent)
                         {
-                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is MatchParent!");
+                            Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutHeight is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutHeight is MatchParent!");
                         }
                         else
                         {
-                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is 0 with positive weight!");
+                            Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutHeight is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutHeight is 0 with positive weight!");
                         }
                     }
                 }
@@ -462,11 +462,11 @@ namespace Tizen.NUI
                         {
                             if (childDesiredWidth == LayoutDimension.MatchParent)
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is MatchParent!");
+                                Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutWidth is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutWidth is MatchParent!");
                             }
                             else
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is 0 with positive weight!");
+                                Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutWidth is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutWidth is 0 with positive weight!");
                             }
                         }
                     }
@@ -525,11 +525,11 @@ namespace Tizen.NUI
                         {
                             if (childDesiredWidth == LayoutDimension.MatchParent)
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is MatchParent!");
+                                Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutWidth is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutWidth is MatchParent!");
                             }
                             else
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is 0 with positive weight!");
+                                Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutWidth is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutWidth is 0 with positive weight!");
                             }
                         }
                     }
@@ -698,11 +698,11 @@ namespace Tizen.NUI
                     {
                         if (childDesiredWidth == LayoutDimension.MatchParent)
                         {
-                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is MatchParent!");
+                            Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutWidth is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutWidth is MatchParent!");
                         }
                         else
                         {
-                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is 0 with positive weight!");
+                            Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutWidth is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutWidth is 0 with positive weight!");
                         }
                     }
                 }
@@ -727,11 +727,11 @@ namespace Tizen.NUI
                         {
                             if (childDesiredHeight == LayoutDimension.MatchParent)
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is MatchParent!");
+                                Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutHeight is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutHeight is MatchParent!");
                             }
                             else
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is 0 with positive weight!");
+                                Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutHeight is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutHeight is 0 with positive weight!");
                             }
                         }
                     }
@@ -790,11 +790,11 @@ namespace Tizen.NUI
                         {
                             if (childDesiredHeight == LayoutDimension.MatchParent)
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is MatchParent!");
+                                Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutHeight is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutHeight is MatchParent!");
                             }
                             else
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is 0 with positive weight!");
+                                Tizen.Log.Error("NUI", $"There is a recursive reference! Parent layout(Owner: {Owner})'s LayoutHeight is WrapContent and child layout(Owner: {childLayout.Owner})'s LayoutHeight is 0 with positive weight!");
                             }
                         }
                     }

@@ -269,7 +269,7 @@ namespace Tizen.NUI.WindowSystem
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
                 ErrorCodeThrow((Interop.InputGesture.ErrorCode)err);
             }
-            Log.Debug(LogTag, "CreateEdgeSwipeData" + "fingers: " + fingers, "edge: " + (int)edge);
+            Log.Debug(LogTag, $"CreateEdgeSwipeDatafingers: {fingers}", "edge: " + (int)edge);
             return edgeSwipeG;
         }
 
@@ -305,7 +305,7 @@ namespace Tizen.NUI.WindowSystem
             }
             Interop.InputGesture.ErrorCode res = Interop.InputGesture.EdgeSwipeSizeSet(data, (int)edgeSize, startPoint, endPoint);
             ErrorCodeThrow(res);
-            Log.Debug(LogTag, "SetEdgeSwipeSize" + "size: " + (int)edgeSize + "startPoint: " + startPoint + "endPoint: " + endPoint);
+            Log.Debug(LogTag, $"SetEdgeSwipeSizesize: {(int)edgeSize }startPoint: {startPoint}endPoint: {endPoint}");
         }
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace Tizen.NUI.WindowSystem
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
                 ErrorCodeThrow((Interop.InputGesture.ErrorCode)err);
             }
-            Log.Debug(LogTag, "CreateEdgeDragData" + "fingers: " + fingers, "edge: " + (int)edge);
+            Log.Debug(LogTag, $"CreateEdgeDragDatafingers: {fingers}", "edge: " + (int)edge);
             return edgeDragG;
         }
 
@@ -361,7 +361,7 @@ namespace Tizen.NUI.WindowSystem
             }
             Interop.InputGesture.ErrorCode res = Interop.InputGesture.EdgeDragSizeSet(data, (int)edgeSize, startPoint, endPoint);
             ErrorCodeThrow(res);
-            Log.Debug(LogTag, "SetEdgeDragSize" + "size: " + (int)edgeSize + "startPoint: " + startPoint + "endPoint: " + endPoint);
+            Log.Debug(LogTag, $"SetEdgeDragSizesize: {(int)edgeSize }startPoint: {startPoint}endPoint: {endPoint}");
         }
 
         /// <summary>
@@ -381,7 +381,7 @@ namespace Tizen.NUI.WindowSystem
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
                 ErrorCodeThrow((Interop.InputGesture.ErrorCode)err);
             }
-            Log.Debug(LogTag, "CreateTapData" + "fingers: " + fingers, "repeats: " + repeats);
+            Log.Debug(LogTag, $"CreateTapDatafingers: {fingers}", "repeats: " + repeats);
             return tapG;
         }
 
@@ -498,7 +498,7 @@ namespace Tizen.NUI.WindowSystem
                     _edgeSwipeDelegate = (IntPtr userData, int mode,  int fingers, int sx, int sy, int edge) =>
                     {
                         EdgeSwipeEventArgs args = new EdgeSwipeEventArgs(mode, fingers, sx, sy, edge);
-                        Log.Debug(LogTag, "EdgeSwipe Event received. mode: " + mode + ", fingers: " + fingers);
+                        Log.Debug(LogTag, $"EdgeSwipe Event received. mode: {mode}, fingers: {fingers}");
                         _edgeSwipeEventHandler?.Invoke(null, args);
                     };
                     Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetEdgeSwipeCb(_handler, _edgeSwipeDelegate, IntPtr.Zero);
@@ -531,7 +531,7 @@ namespace Tizen.NUI.WindowSystem
                     _edgeDragDelegate = (IntPtr userData, int mode,  int fingers, int cx, int cy, int edge) =>
                     {
                         EdgeDragEventArgs args = new EdgeDragEventArgs(mode, fingers, cx, cy, edge);
-                        Log.Debug(LogTag, "EdgeDrag Event received. mode: " + mode + ", fingers: " + fingers);
+                        Log.Debug(LogTag, $"EdgeDrag Event received. mode: {mode}, fingers: {fingers}");
                         _edgeDragEventHandler?.Invoke(null, args);
                     };
                     Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetEdgeDragCb(_handler, _edgeDragDelegate, IntPtr.Zero);
@@ -564,7 +564,7 @@ namespace Tizen.NUI.WindowSystem
                     _tapDelegate = (IntPtr userData, int mode,  int fingers, int repeats) =>
                     {
                         TapEventArgs args = new TapEventArgs(mode, fingers, repeats);
-                        Log.Debug(LogTag, "Tap Event received. mode: " + mode + ", fingers: " + fingers + ", repeats: " + repeats);
+                        Log.Debug(LogTag, $"Tap Event received. mode: {mode}, fingers: {fingers}, repeats: {repeats}");
                         _tapEventHandler?.Invoke(null, args);
                     };
                     Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetTapCb(_handler, _tapDelegate, IntPtr.Zero);
@@ -596,7 +596,7 @@ namespace Tizen.NUI.WindowSystem
                     _palmCoverDelegate = (IntPtr userData, int mode,  int duration, int cx, int cy, int size, double pressure) =>
                     {
                         PalmCoverEventArgs args = new PalmCoverEventArgs(mode, duration, cx, cy, size, pressure);
-                        Log.Debug(LogTag, "PalmCover Event received. mode: " + mode + ", duration: " + duration);
+                        Log.Debug(LogTag, $"PalmCover Event received. mode: {mode}, duration: {duration}");
                         _palmCoverEventHandler?.Invoke(null, args);
                     };
                     Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetPalmCoverCb(_handler, _palmCoverDelegate, IntPtr.Zero);

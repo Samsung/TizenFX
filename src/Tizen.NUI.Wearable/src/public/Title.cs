@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -356,7 +356,7 @@ namespace Tizen.NUI.Components
             }
             catch(Exception e)
             {
-                Tizen.Log.Error("NUI", "Exception in Title : " + e.Message);
+                Tizen.Log.Error("NUI", $"Exception in Title : {e.Message}");
             }
             finally
             {

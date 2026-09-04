@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -737,8 +737,7 @@ namespace Tizen.NUI.BaseComponents
                         var me = this.GetType().FullName;
 
                         //in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked!
-                        Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
-                            $"process:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        Tizen.Log.Error("NUI", $"in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \nprocess:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
                         return;
                     }
                 }
@@ -775,8 +774,7 @@ namespace Tizen.NUI.BaseComponents
                         var me = this.GetType().FullName;
 
                         //in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked!
-                        Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
-                            $"process:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        Tizen.Log.Error("NUI", $"in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \nprocess:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
                         return;
                     }
                 }

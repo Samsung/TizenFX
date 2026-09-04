@@ -78,7 +78,7 @@ namespace Tizen.NUI
                 }
             }
 
-            Tizen.Log.Info("Palette", "ValidColorCount = " + validColorCount + "\n");
+            Tizen.Log.Info("Palette", $"ValidColorCount = {validColorCount}\n");
             if (validColorCount <= maxColors)
             {
                 // The image has fewer colors than the maximum requested, so just return the colors
@@ -92,7 +92,7 @@ namespace Tizen.NUI
             else
             {
 
-                Tizen.Log.Info("Palette", "validColorCount = " + validColorCount + " maxColors = " + maxColors + "\n");
+                Tizen.Log.Info("Palette", $"validColorCount = {validColorCount} maxColors = {maxColors}\n");
                 // We need use quantization to reduce the number of colors
                 quantizedColors = QuantizePixels(validColorCount - 1, maxColors);
             }
@@ -229,7 +229,7 @@ namespace Tizen.NUI
                 }
             }
 
-            Tizen.Log.Info("Palette", "Final generated color count = " + colors.Count + "\n");
+            Tizen.Log.Info("Palette", $"Final generated color count = {colors.Count}\n");
             return colors;
         }
 
