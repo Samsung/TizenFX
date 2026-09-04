@@ -17,8 +17,6 @@ while getopts ":r:n:" opt; do
   esac
 done
 
-RPM_VERSION=$RPM_VERSION+$RPM_VERSION_SUFFIX
-
 # Update RPM Spec
 echo "# Auto-generated from $(basename $RPMSPEC_IN) by makespec.sh" | cat - $RPMSPEC_IN > $RPMSPEC
 sed -i -e "s/@api_version@/$API_VERSION/g" $RPMSPEC
