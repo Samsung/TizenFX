@@ -350,7 +350,7 @@ namespace Tizen.NUI.Xaml
                         }
                         catch (Exception e)
                         {
-                            Tizen.Log.Fatal("NUI", "Load referenced assemblies e.Message: " + e.Message);
+                            Tizen.Log.Fatal("NUI", $"Load referenced assemblies e.Message: {e.Message}");
                             Console.WriteLine("\n[FATAL] Load referenced assemblies e.Message: {0}\n", e.Message);
                             throw new XamlParseException(e.Message);
                         }
