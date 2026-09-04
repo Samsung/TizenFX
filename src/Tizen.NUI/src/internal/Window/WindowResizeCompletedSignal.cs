@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class WindowResizeCompletedSignal : Disposable
+    internal sealed class WindowResizeCompletedSignal : Disposable
     {
         internal WindowResizeCompletedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

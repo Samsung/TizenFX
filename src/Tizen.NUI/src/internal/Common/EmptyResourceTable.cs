@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class EmptyResourceTable<T> : ITokenTable<T>
+    internal sealed class EmptyResourceTable<T> : ITokenTable<T>
     {
 #pragma warning disable CS0067 // The event 'EmptyResourceTable<T>.Updated' is never used
         public event EventHandler Updated;

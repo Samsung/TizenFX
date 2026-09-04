@@ -22,7 +22,7 @@ namespace Tizen.NUI.Xaml
 {
     [ContentProperty(nameof(TypeName))]
     [ProvideCompiled("Tizen.NUI.Xaml.Build.Tasks.TypeExtension")]
-    internal class TypeExtension : IMarkupExtension<Type>
+    internal sealed class TypeExtension : IMarkupExtension<Type>
     {
         public string TypeName { get; set; }
 

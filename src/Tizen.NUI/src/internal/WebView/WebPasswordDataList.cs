@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// It is an internal class for password data list of web view.
     /// </summary>
-    internal class WebPasswordDataList : Disposable
+    internal sealed class WebPasswordDataList : Disposable
     {
         internal WebPasswordDataList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

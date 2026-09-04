@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The helper class for calculating what property indexes should be assigned to the C# View (view) classes.
     /// </summary>
-    internal class PropertyRangeManager
+    internal sealed class PropertyRangeManager
     {
         private Dictionary<String, PropertyRange> propertyRange;
 

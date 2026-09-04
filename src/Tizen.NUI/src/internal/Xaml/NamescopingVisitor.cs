@@ -20,7 +20,7 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml
 {
-    internal class NamescopingVisitor : IXamlNodeVisitor
+    internal sealed class NamescopingVisitor : IXamlNodeVisitor
     {
         readonly Dictionary<INode, INameScope> scopes = new Dictionary<INode, INameScope>();
 

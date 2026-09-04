@@ -16,7 +16,7 @@
  */
 namespace Tizen.NUI
 {
-    internal class GlyphInfo : Disposable
+    internal sealed class GlyphInfo : Disposable
     {
         internal GlyphInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {

@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class LinearConstrainer : BaseHandle
+    internal sealed class LinearConstrainer : BaseHandle
     {
         internal LinearConstrainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

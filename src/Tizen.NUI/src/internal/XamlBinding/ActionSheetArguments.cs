@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 namespace Tizen.NUI.Binding
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class ActionSheetArguments
+    internal sealed class ActionSheetArguments
     {
         public ActionSheetArguments(string title, string cancel, string destruction, IEnumerable<string> buttons)
         {

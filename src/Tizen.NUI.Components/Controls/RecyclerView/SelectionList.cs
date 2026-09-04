@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
+/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ using System.Collections.Specialized;
 namespace Tizen.NUI.Components
 {
     // Used by the CollectionView to keep track of (and respond to changes in) the SelectedItems property
-    internal class SelectionList : IList<object>
+    internal sealed class SelectionList : IList<object>
     {
         static readonly IList<object> selectEmpty = new List<object>(0);
         readonly CollectionView ColView;

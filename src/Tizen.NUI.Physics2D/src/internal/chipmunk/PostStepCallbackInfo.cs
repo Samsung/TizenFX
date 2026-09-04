@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Codefoco (codefoco@codefoco.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,7 +29,7 @@ namespace Tizen.NUI.Physics2D.Chipmunk
     /// <summary>
     /// This class stores the data for the post-step callback.
     /// </summary>
-    internal class PostStepCallbackInfo
+    internal sealed class PostStepCallbackInfo
     {
         Action<Space, object, object> callback;
         object data;

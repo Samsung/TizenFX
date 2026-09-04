@@ -32,7 +32,7 @@ namespace Tizen.NUI.Visuals
     /// this container has an internal limitation of the number of visual objects.
     /// If user try to add visual object over the limitation, it will be ignored.
     /// </remarks>
-    internal class VisualObjectsContainer : BaseHandle
+    internal sealed class VisualObjectsContainer : BaseHandle
     {
         private List<Tizen.NUI.Visuals.VisualBase> visuals = new List<Tizen.NUI.Visuals.VisualBase>(); // Keep visual object reference.
 

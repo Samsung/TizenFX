@@ -127,7 +127,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An class for ConstraintsFunction for boolean.
     /// </summary>
-    internal class ConstraintBooleanFunction : ConstraintFunctionBase
+    internal sealed class ConstraintBooleanFunction : ConstraintFunctionBase
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InternalCallbackType(ref bool current, uint id, IntPtr inputContainerCPtr);
@@ -163,7 +163,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An class for ConstraintsFunction for float.
     /// </summary>
-    internal class ConstraintFloatFunction : ConstraintFunctionBase
+    internal sealed class ConstraintFloatFunction : ConstraintFunctionBase
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InternalCallbackType(ref float current, uint id, IntPtr inputContainerCPtr);
@@ -199,7 +199,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An class for ConstraintsFunction for int.
     /// </summary>
-    internal class ConstraintIntegerFunction : ConstraintFunctionBase
+    internal sealed class ConstraintIntegerFunction : ConstraintFunctionBase
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InternalCallbackType(ref int current, uint id, IntPtr inputContainerCPtr);
@@ -235,7 +235,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An class for ConstraintsFunction for Vector2.
     /// </summary>
-    internal class ConstraintVector2Function : ConstraintFunctionBase
+    internal sealed class ConstraintVector2Function : ConstraintFunctionBase
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InternalCallbackType(IntPtr current, uint id, IntPtr inputContainerCPtr);
@@ -275,7 +275,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An class for ConstraintsFunction for Vector3.
     /// </summary>
-    internal class ConstraintVector3Function : ConstraintFunctionBase
+    internal sealed class ConstraintVector3Function : ConstraintFunctionBase
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InternalCallbackType(IntPtr current, uint id, IntPtr inputContainerCPtr);
@@ -316,7 +316,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An class for ConstraintsFunction for Color. (Special case of Vector4, that we can use UIColor)
     /// </summary>
-    internal class ConstraintColorFunction : ConstraintFunctionBase
+    internal sealed class ConstraintColorFunction : ConstraintFunctionBase
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InternalCallbackType(IntPtr current, uint id, IntPtr inputContainerCPtr);
@@ -358,7 +358,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An class for ConstraintsFunction for Vector4.
     /// </summary>
-    internal class ConstraintVector4Function : ConstraintFunctionBase
+    internal sealed class ConstraintVector4Function : ConstraintFunctionBase
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InternalCallbackType(IntPtr current, uint id, IntPtr inputContainerCPtr);
@@ -403,7 +403,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An class for ConstraintsFunction for Matrix3.
     /// </summary>
-    internal class ConstraintMatrix3Function : ConstraintFunctionBase
+    internal sealed class ConstraintMatrix3Function : ConstraintFunctionBase
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InternalCallbackType(IntPtr current, uint id, IntPtr inputContainerCPtr);
@@ -445,7 +445,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An class for ConstraintsFunction for Matrix.
     /// </summary>
-    internal class ConstraintMatrixFunction : ConstraintFunctionBase
+    internal sealed class ConstraintMatrixFunction : ConstraintFunctionBase
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InternalCallbackType(IntPtr current, uint id, IntPtr inputContainerCPtr);
@@ -487,7 +487,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An class for ConstraintsFunction for Rotation.
     /// </summary>
-    internal class ConstraintRotationFunction : ConstraintFunctionBase
+    internal sealed class ConstraintRotationFunction : ConstraintFunctionBase
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InternalCallbackType(IntPtr current, uint id, IntPtr inputContainerCPtr);

@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 namespace Tizen.NUI.Binding
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class AlertArguments
+    internal sealed class AlertArguments
     {
         public AlertArguments(string title, string message, string accept, string cancel)
         {

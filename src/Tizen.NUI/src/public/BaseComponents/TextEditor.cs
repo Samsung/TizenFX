@@ -5092,7 +5092,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal class InputStyle
+        internal sealed class InputStyle
         {
             internal enum Mask
             {
@@ -5142,7 +5142,7 @@ namespace Tizen.NUI.BaseComponents
             GrabHandleColor = new Color(r, g, b, a);
         }
 
-        internal class TextEditorLayout : LayoutItem
+        internal sealed class TextEditorLayout : LayoutItem
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {

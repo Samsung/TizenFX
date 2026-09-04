@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class GLWindowVisibilityChangedEvent : Disposable
+    internal sealed class GLWindowVisibilityChangedEvent : Disposable
     {
         internal GLWindowVisibilityChangedEvent(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

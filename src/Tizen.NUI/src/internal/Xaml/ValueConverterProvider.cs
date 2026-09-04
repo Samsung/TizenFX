@@ -22,7 +22,7 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Xaml
 {
-    internal class ValueConverterProvider : IValueConverterProvider
+    internal sealed class ValueConverterProvider : IValueConverterProvider
     {
         public object Convert(object value, Type toType, Func<MemberInfo> minfoRetriever, IServiceProvider serviceProvider)
         {

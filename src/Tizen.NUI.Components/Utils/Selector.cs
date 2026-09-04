@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -77,7 +77,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Bool selector.
     /// </summary>
-    internal class BoolSelector : Selector<bool?>
+    internal sealed class BoolSelector : Selector<bool?>
     {
         /// <summary>
         /// Bool selector clone function.
@@ -164,7 +164,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Size2D selector.
     /// </summary>
-    internal class Size2DSelector : Selector<Size2D>
+    internal sealed class Size2DSelector : Selector<Size2D>
     {
         /// <summary>
         /// Size2D selector clone function.
@@ -179,7 +179,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Position2D selector.
     /// </summary>
-    internal class Position2DSelector : Selector<Position2D>
+    internal sealed class Position2DSelector : Selector<Position2D>
     {
         /// <summary>
         /// Position2D selector clone function.
@@ -195,7 +195,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Position selector.
     /// </summary>
-    internal class PositionSelector : Selector<Position>
+    internal sealed class PositionSelector : Selector<Position>
     {
         /// <summary>
         /// Position selector clone function.
@@ -231,7 +231,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Vector3 selector.
     /// </summary>
-    internal class Vector3Selector : Selector<Vector3>
+    internal sealed class Vector3Selector : Selector<Vector3>
     {
         /// <summary>
         /// Vector3 selector clone function.
@@ -267,7 +267,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Horizontal alignment selector.
     /// </summary>
-    internal class HorizontalAlignmentSelector : Selector<HorizontalAlignment?>
+    internal sealed class HorizontalAlignmentSelector : Selector<HorizontalAlignment?>
     {
         /// <summary>
         /// Horizontal alignment selector clone function.
@@ -282,7 +282,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Vertical alignment selector.
     /// </summary>
-    internal class VerticalAlignmentSelector : Selector<VerticalAlignment?>
+    internal sealed class VerticalAlignmentSelector : Selector<VerticalAlignment?>
     {
         /// <summary>
         /// Vertical alignment selector clone function.
@@ -298,7 +298,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// AutoScrollStopMode selector.
     /// </summary>
-    internal class AutoScrollStopModeSelector : Selector<AutoScrollStopMode?>
+    internal sealed class AutoScrollStopModeSelector : Selector<AutoScrollStopMode?>
     {
         /// <summary>
         /// AutoScrollStopMode selector clone function.
@@ -314,7 +314,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// ResizePolicyType selector.
     /// </summary>
-    internal class ResizePolicyTypeSelector : Selector<ResizePolicyType?>
+    internal sealed class ResizePolicyTypeSelector : Selector<ResizePolicyType?>
     {
         /// <summary>
         /// ResizePolicyType selector clone function.

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -176,7 +176,7 @@ namespace Tizen.NUI.Components
         }
     }
 
-    internal class HorizontalHelper : OrientationHelper
+    internal sealed class HorizontalHelper : OrientationHelper
     {
         public HorizontalHelper(FlexibleViewLayoutManager layoutManager) : base(layoutManager)
         {
@@ -241,7 +241,7 @@ namespace Tizen.NUI.Components
 
     }
 
-    internal class VerticalHelper : OrientationHelper
+    internal sealed class VerticalHelper : OrientationHelper
     {
         public VerticalHelper(FlexibleViewLayoutManager layoutManager) : base(layoutManager)
         {

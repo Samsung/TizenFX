@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class DeviceOrientationChangedSignalType : Disposable
+    internal sealed class DeviceOrientationChangedSignalType : Disposable
     {
         internal DeviceOrientationChangedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

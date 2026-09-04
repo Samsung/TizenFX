@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,7 @@ using System.Text.Json.Serialization;
 
 namespace Tizen.NUI.AIAvatar
 {
-    internal class VisemeData
+    internal sealed class VisemeData
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonPropertyName("visemeParameters")]
@@ -58,7 +58,7 @@ namespace Tizen.NUI.AIAvatar
         }
     }
 
-    internal class VisemeParameters
+    internal sealed class VisemeParameters
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonPropertyName("keyFormat")]
@@ -73,7 +73,7 @@ namespace Tizen.NUI.AIAvatar
         public List<int> blendShapeCount { get; set; }
     }
 
-    internal class Viseme
+    internal sealed class Viseme
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonPropertyName("name")]
@@ -89,7 +89,7 @@ namespace Tizen.NUI.AIAvatar
     }
 
 
-    internal class BlendShapeValue
+    internal sealed class BlendShapeValue
     {
         [JsonPropertyName("nodeName")]
         public string nodeName { get; set; }

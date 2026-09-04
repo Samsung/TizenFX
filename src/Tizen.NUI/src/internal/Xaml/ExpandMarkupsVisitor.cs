@@ -22,7 +22,7 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml
 {
-    internal class ExpandMarkupsVisitor : IXamlNodeVisitor
+    internal sealed class ExpandMarkupsVisitor : IXamlNodeVisitor
     {
         public ExpandMarkupsVisitor(HydrationContext context)
         {

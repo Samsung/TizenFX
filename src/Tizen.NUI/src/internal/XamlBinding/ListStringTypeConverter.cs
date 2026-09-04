@@ -23,7 +23,7 @@ namespace Tizen.NUI.Binding
 {
     [Xaml.ProvideCompiled("Tizen.NUI.Core.XamlC.ListStringTypeConverter")]
     [Xaml.TypeConversion(typeof(List<string>))]
-    internal class ListStringTypeConverter : TypeConverter
+    internal sealed class ListStringTypeConverter : TypeConverter
     {
         public override object ConvertFromInvariantString(string value)
         {

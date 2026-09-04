@@ -19,7 +19,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class ClipboardSignal : Disposable
+    internal sealed class ClipboardSignal : Disposable
     {
         internal ClipboardSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

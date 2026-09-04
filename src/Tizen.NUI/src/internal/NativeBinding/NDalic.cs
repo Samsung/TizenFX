@@ -20,7 +20,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class NDalic
+    internal sealed class NDalic
     {
         public static readonly int VisualPropertyTransform = Interop.Visual.TransformGet();
         public static readonly int VisualPropertyPremultipliedAlpha = Interop.Visual.PremultipliedAlphaGet();

@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// [Draft] The class that initiates the Measuring and Layouting of the tree,
     ///         It sets a callback that becomes the entry point into the C# Layouting.
     /// </summary>
-    internal class LayoutController : Disposable
+    internal sealed class LayoutController : Disposable
     {
         private static int layoutControllerID = 1;
 

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.NUI.Binding.Internals
 {
     [AttributeUsage(AttributeTargets.All)]
-    internal class PreserveAttribute : Attribute
+    internal sealed class PreserveAttribute : Attribute
     {
         public bool AllMembers;
         public bool Conditional;

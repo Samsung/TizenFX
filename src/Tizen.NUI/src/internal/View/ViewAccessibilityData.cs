@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.NUI.BaseComponents
 {
-    internal class ViewAccessibilityData
+    internal sealed class ViewAccessibilityData
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VoidHandlerType();

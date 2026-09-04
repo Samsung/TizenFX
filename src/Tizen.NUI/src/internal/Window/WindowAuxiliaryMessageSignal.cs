@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class WindowAuxiliaryMessageSignal : Disposable
+    internal sealed class WindowAuxiliaryMessageSignal : Disposable
     {
         internal WindowAuxiliaryMessageSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

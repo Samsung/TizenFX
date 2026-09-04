@@ -19,7 +19,7 @@ using System.Globalization;
 
 namespace Tizen.NUI.Binding
 {
-    internal class TemplateBinding : BindingBase
+    internal sealed class TemplateBinding : BindingBase
     {
         internal const string SelfPath = ".";
         private IValueConverter converter;

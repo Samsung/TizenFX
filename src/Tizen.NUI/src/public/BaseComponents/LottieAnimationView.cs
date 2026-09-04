@@ -1593,7 +1593,7 @@ namespace Tizen.NUI.BaseComponents
         internal static readonly int ActionFlush = Interop.LottieAnimationView.AnimatedVectorImageVisualActionFlushGet();
         internal static readonly int ActionRefreshDynamicProperty = Interop.LottieAnimationView.AnimatedVectorImageVisualActionRefreshDynamicPropertyGet();
 
-        internal class VisualEventSignalArgs : EventArgs
+        internal sealed class VisualEventSignalArgs : EventArgs
         {
             public int VisualIndex
             {

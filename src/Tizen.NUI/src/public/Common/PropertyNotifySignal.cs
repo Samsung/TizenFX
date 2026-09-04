@@ -23,7 +23,7 @@ namespace Tizen.NUI
     ///<summary>
     /// Signal connection class for PropertyNotification
     ///</summary>
-    internal class PropertyNotifySignal : Disposable
+    internal sealed class PropertyNotifySignal : Disposable
     {
         /// <summary>
         /// The constructor.

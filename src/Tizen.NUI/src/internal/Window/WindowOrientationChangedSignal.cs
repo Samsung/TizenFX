@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class WindowOrientationChangedSignal : Disposable
+    internal sealed class WindowOrientationChangedSignal : Disposable
     {
         internal WindowOrientationChangedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

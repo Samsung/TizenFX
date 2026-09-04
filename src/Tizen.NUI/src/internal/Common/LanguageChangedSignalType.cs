@@ -20,7 +20,7 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal class LanguageChangedSignalType : Disposable
+    internal sealed class LanguageChangedSignalType : Disposable
     {
         internal LanguageChangedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

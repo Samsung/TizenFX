@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class TransitionSetFinishedSignal : Disposable
+    internal sealed class TransitionSetFinishedSignal : Disposable
     {
         internal TransitionSetFinishedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

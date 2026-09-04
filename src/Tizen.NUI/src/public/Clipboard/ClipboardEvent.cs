@@ -55,7 +55,7 @@ namespace Tizen.NUI
     /// ClipboardEventArgs is a class to record clipboard event arguments which will be sent to user.<br/>
     /// This is for internal use only.
     /// </summary>
-    internal class ClipboardEventArgs : EventArgs
+    internal sealed class ClipboardEventArgs : EventArgs
     {
         /// <summary>
         /// True if data receive is successful.

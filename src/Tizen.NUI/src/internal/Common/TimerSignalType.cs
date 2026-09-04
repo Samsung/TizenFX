@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class TimerSignalType : Disposable
+    internal sealed class TimerSignalType : Disposable
     {
         internal TimerSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

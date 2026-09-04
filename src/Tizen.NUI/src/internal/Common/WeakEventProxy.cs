@@ -86,7 +86,7 @@ namespace Tizen.NUI
         }
     }
 
-    internal class SystemFontTypeChanged : WeakEventProxy<FontTypeChangedEventArgs>
+    internal sealed class SystemFontTypeChanged : WeakEventProxy<FontTypeChangedEventArgs>
     {
         protected override void ConnectToEvent(EventHandler<FontTypeChangedEventArgs> handler)
         {
@@ -99,7 +99,7 @@ namespace Tizen.NUI
         }
     }
 
-    internal class SystemFontSizeChanged : WeakEventProxy<FontSizeChangedEventArgs>
+    internal sealed class SystemFontSizeChanged : WeakEventProxy<FontSizeChangedEventArgs>
     {
         protected override void ConnectToEvent(EventHandler<FontSizeChangedEventArgs> handler)
         {
@@ -112,7 +112,7 @@ namespace Tizen.NUI
         }
     }
 
-    internal class SystemLocaleLanguageChanged : WeakEventProxy<LocaleLanguageChangedEventArgs>
+    internal sealed class SystemLocaleLanguageChanged : WeakEventProxy<LocaleLanguageChangedEventArgs>
     {
         protected override void ConnectToEvent(EventHandler<LocaleLanguageChangedEventArgs> handler)
         {

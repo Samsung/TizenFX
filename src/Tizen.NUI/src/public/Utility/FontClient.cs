@@ -486,7 +486,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal class GlyphBufferData : Disposable
+        internal sealed class GlyphBufferData : Disposable
         {
             public GlyphBufferData() : this(Interop.FontClient.NewFontClientGlyphBufferData(), true)
             {

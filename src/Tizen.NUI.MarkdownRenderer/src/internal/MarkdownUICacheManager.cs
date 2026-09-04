@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +32,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// Generates unique cache keys per block and provides
     /// cache lifecycle management (add, lookup, visit, purge, clear).
     /// </summary>
-    internal class MarkdownUICacheManager
+    internal sealed class MarkdownUICacheManager
     {
         private Dictionary<string, View> cache = new();
         private HashSet<string> visited = new();

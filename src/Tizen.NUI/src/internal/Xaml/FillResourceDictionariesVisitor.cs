@@ -23,7 +23,7 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Xaml
 {
-    internal class FillResourceDictionariesVisitor : IXamlNodeVisitor
+    internal sealed class FillResourceDictionariesVisitor : IXamlNodeVisitor
     {
         public FillResourceDictionariesVisitor(HydrationContext context)
         {

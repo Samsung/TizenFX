@@ -19,7 +19,7 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
-    internal class OnIdiom<T>
+    internal sealed class OnIdiom<T>
     {
         public T Phone { get; set; }
 

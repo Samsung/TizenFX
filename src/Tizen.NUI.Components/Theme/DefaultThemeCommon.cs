@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     // It is a C# version of res/Tizen.NUI.Components_Tizen.NUI.Theme.Common.xaml
-    internal partial class DefaultThemeCreator : IThemeCreator
+    internal sealed partial class DefaultThemeCreator : IThemeCreator
     {
         /// <summary>
         /// The base theme description.

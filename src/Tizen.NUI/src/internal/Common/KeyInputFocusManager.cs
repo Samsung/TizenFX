@@ -19,7 +19,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class KeyInputFocusManager : BaseHandle
+    internal sealed class KeyInputFocusManager : BaseHandle
     {
         private static readonly KeyInputFocusManager instance = KeyInputFocusManager.GetInternal();
         internal KeyInputFocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

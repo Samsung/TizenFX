@@ -21,7 +21,7 @@ using static System.String;
 
 namespace Tizen.NUI.Binding
 {
-    internal class WeakEventManager
+    internal sealed class WeakEventManager
     {
         readonly Dictionary<string, List<Subscription>> eventHandlers = new Dictionary<string, List<Subscription>>();
 

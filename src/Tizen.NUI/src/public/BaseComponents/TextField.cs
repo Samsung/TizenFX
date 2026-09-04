@@ -3477,7 +3477,7 @@ namespace Tizen.NUI.BaseComponents
         /// <code>
         /// var hiddenInput = new Tizen.NUI.Text.HiddenInput();
         /// hiddenInput.Mode = HiddenInputModeType.ShowLastCharacter;
-        /// hiddenInput.SubstituteCharacter = '★';
+        /// hiddenInput.SubstituteCharacter = '??;
         /// hiddenInput.SubstituteCount = 0;
         /// hiddenInput.ShowLastCharacterDuration = 1000;
         /// field.SetHiddenInput(hiddenInput);
@@ -5030,7 +5030,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal class InputStyle
+        internal sealed class InputStyle
         {
             internal enum Mask
             {
@@ -5087,7 +5087,7 @@ namespace Tizen.NUI.BaseComponents
             GrabHandleColor = new Color(r, g, b, a);
         }
 
-        internal class TextFieldLayout : LayoutItem
+        internal sealed class TextFieldLayout : LayoutItem
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {

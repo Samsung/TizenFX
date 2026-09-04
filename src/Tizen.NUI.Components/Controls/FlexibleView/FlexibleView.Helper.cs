@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,7 @@ namespace Tizen.NUI.Components
 {
     public partial class FlexibleView
     {
-        internal class RecycledViewPool
+        internal sealed class RecycledViewPool
         {
             private FlexibleView flexibleView;
 
@@ -86,7 +86,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        internal class ChildHelper : Disposable
+        internal sealed class ChildHelper : Disposable
         {
             private FlexibleView flexibleView;
             private List<FlexibleViewViewHolder> viewList = new List<FlexibleViewViewHolder>();

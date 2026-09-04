@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Contains and encapsulates Native Window handle.
     /// </summary>
-    internal class SafeNativeWindowHandle : SafeHandle
+    internal sealed class SafeNativeWindowHandle : SafeHandle
     {
         /// <summary>
         /// Initializes a new instance of SafeNativeWindowHandle referencing the given window.
