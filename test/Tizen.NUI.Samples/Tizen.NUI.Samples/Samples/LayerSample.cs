@@ -178,6 +178,12 @@ namespace Tizen.NUI.Samples
             };
             var rootView = new View() {
                 Layout = new AbsoluteLayout(),
+                InheritPosition = false,
+                InheritScale = false,
+                InheritOrientation = false,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.Center,
+                PivotPoint = NUI.PivotPoint.Center,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 BackgroundColor = new Color(1.0f, 0.0f, 0.0f, 0.1f),
@@ -209,6 +215,12 @@ namespace Tizen.NUI.Samples
 
             var rootView = new View() {
                 Layout = new AbsoluteLayout(),
+                InheritPosition = false,
+                InheritScale = false,
+                InheritOrientation = false,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.Center,
+                PivotPoint = NUI.PivotPoint.Center,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 BackgroundColor = new Color(0.0f, 1.0f, 0.0f, 0.1f),
@@ -241,6 +253,12 @@ namespace Tizen.NUI.Samples
 
             var rootView = new View() {
                 Layout = new AbsoluteLayout(),
+                InheritPosition = false,
+                InheritScale = false,
+                InheritOrientation = false,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.Center,
+                PivotPoint = NUI.PivotPoint.Center,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 BackgroundColor = new Color(0.0f, 0.0f, 1.0f, 0.1f),
@@ -273,6 +291,12 @@ namespace Tizen.NUI.Samples
 
             var rootView = new View() {
                 Layout = new AbsoluteLayout(),
+                InheritPosition = false,
+                InheritScale = false,
+                InheritOrientation = false,
+                PositionUsesPivotPoint = true,
+                ParentOrigin = NUI.ParentOrigin.Center,
+                PivotPoint = NUI.PivotPoint.Center,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 BorderlineColor = Color.Purple,
