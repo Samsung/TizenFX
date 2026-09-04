@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,7 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.AIAvatar
 {
-    internal class KeyFrame
+    internal sealed class KeyFrame
     {
         public KeyFrame(float t, float v)
         {
@@ -31,7 +31,7 @@ namespace Tizen.NUI.AIAvatar
         public float value;
     }
 
-    internal class LipData
+    internal sealed class LipData
     {
         private Dictionary<string, List<KeyFrame>[]> blendShapeKeyFrames;
 

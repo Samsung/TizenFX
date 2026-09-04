@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// Simple class for window position pairs of  integers.
     /// Use this for integer position with window coordinates.
     /// </summary>
-    internal class Int32Pair : Disposable
+    internal sealed class Int32Pair : Disposable
     {
         internal Int32Pair(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {

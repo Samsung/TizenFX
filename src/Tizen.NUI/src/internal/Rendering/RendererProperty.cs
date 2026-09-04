@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for instances of properties belonging to the Renderer class.
     /// </summary>
-    internal class RendererProperty
+    internal sealed class RendererProperty
     {
         internal static readonly int DepthIndex = Interop.Renderer.DepthIndexGet();
         internal static readonly int FaceCullingMode = Interop.Renderer.FaceCullingModeGet();

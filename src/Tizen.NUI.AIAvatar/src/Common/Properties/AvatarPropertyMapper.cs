@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,7 @@ namespace Tizen.NUI.AIAvatar
     /// This approach provides consistency and convenience when working with Avatar models.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class AvatarPropertyMapper
+    internal sealed class AvatarPropertyMapper
     {
         /// <summary>
         /// Mapper between index and property name

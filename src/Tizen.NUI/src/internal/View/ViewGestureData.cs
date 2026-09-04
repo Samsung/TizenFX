@@ -19,7 +19,7 @@ using System;
 
 namespace Tizen.NUI.BaseComponents
 {
-    internal class ViewGestureData
+    internal sealed class ViewGestureData
     {
         private PanGestureDetector _panGestureDetector;
         private LongPressGestureDetector _longGestureDetector;

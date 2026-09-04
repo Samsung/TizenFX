@@ -23,7 +23,7 @@ using Tizen.NUI.Components.Extension;
 namespace Tizen.NUI.Components
 {
     // It is a C# version of res/Tizen.NUI.Components_Tizen.NUI.Theme.Wearable.xaml
-    internal partial class DefaultThemeCreator : IThemeCreator
+    internal sealed partial class DefaultThemeCreator : IThemeCreator
     {
         public Theme Create()
         {

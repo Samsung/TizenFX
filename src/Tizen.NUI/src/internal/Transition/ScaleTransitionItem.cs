@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// ScaleTransitionItem is an object to set scale transition of a View that will appear or disappear.
     /// ScaleTransitionItem object is required to be added to the TransitionSet to play.
     /// </summary>
-    internal class ScaleTransitionItem : TransitionItemBase
+    internal sealed class ScaleTransitionItem : TransitionItemBase
     {
         /// <summary>
         /// Creates an initialized ScaleTransition.<br />

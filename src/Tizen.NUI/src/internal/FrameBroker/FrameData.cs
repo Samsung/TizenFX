@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents the Frame Data.
     /// </summary>
-    internal class FrameData
+    internal sealed class FrameData
     {
         private const string logTag = "NUI";
         private readonly IntPtr frame;

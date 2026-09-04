@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// FadeTransitionItem is an object to set Fade transition of a View that will appear or disappear.
     /// FadeTransitionItem object is required to be added to the TransitionSet to play.
     /// </summary>
-    internal class SamplerUtility
+    internal sealed class SamplerUtility
     {
         public enum PresetFilter
         {

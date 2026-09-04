@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class VectorVector2 : Disposable
+    internal sealed class VectorVector2 : Disposable
     {
         internal VectorVector2(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {

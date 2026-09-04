@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,7 @@ using System.Linq;
 
 namespace Tizen.NUI.Xaml
 {
-    internal class PruneIgnoredNodesVisitor : IXamlNodeVisitor
+    internal sealed class PruneIgnoredNodesVisitor : IXamlNodeVisitor
     {
         public TreeVisitingMode VisitingMode => TreeVisitingMode.TopDown;
         public bool StopOnDataTemplate => false;

@@ -23,7 +23,7 @@ using Tizen.NUI;
 
 namespace Tizen.NUI.Binding
 {
-    internal class ExtentsTypeConverter : TypeConverter
+    internal sealed class ExtentsTypeConverter : TypeConverter
     {
         public override object ConvertFromInvariantString(string value)
         {

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +26,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// Renders a heading element as a styled paragraph with configurable heading levels.
     /// Applies heading-specific styles and sizing based on the markdown heading level.
     /// </summary>
-    internal class UIHeading : UIParagraph
+    internal sealed class UIHeading : UIParagraph
     {
         private readonly HeadingStyle heading;
         private int level;

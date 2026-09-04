@@ -28,7 +28,7 @@ namespace Tizen.NUI
     /// One of these can be passed in a single 32 bit integer register on
     /// common architectures.<br />
     /// </summary>
-    internal class Uint16Pair : Disposable
+    internal sealed class Uint16Pair : Disposable
     {
 
         internal Uint16Pair(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)

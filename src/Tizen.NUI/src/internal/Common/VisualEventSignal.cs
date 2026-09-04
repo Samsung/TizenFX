@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
-    internal class VisualEventSignal : Disposable
+    internal sealed class VisualEventSignal : Disposable
     {
         public VisualEventSignal() : this(Interop.VisualEventSignal.New(), true)
         {

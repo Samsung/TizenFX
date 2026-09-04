@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +19,7 @@ using System.Linq.Expressions;
 
 namespace Tizen.NUI.AIAvatar
 {
-    internal class FaceAnimationData
+    internal sealed class FaceAnimationData
     {
         public string name { get; set; }
         public string version { get; set; }
@@ -28,7 +28,7 @@ namespace Tizen.NUI.AIAvatar
         public List<int> time { get; set; }
         public int frames { get; set; }
     }
-    internal class FaceAnimBlendShape
+    internal sealed class FaceAnimBlendShape
     {
         public string name { get; set; }
         public string fullName { get; set; }
@@ -39,20 +39,20 @@ namespace Tizen.NUI.AIAvatar
     }
 
 
-    internal class Expression
+    internal sealed class Expression
     {
         public string name { get; set; }
         public List<string> filename { get; set; }
     }
 
-    internal class IgnoreBlendShape
+    internal sealed class IgnoreBlendShape
     {
         public string name { get; set; }
         public List<string> morphname { get; set; }
     }
 
 
-    internal class EmotionConfig
+    internal sealed class EmotionConfig
     {
         public List<Expression> expressions { get; set; }
         public List<IgnoreBlendShape> ignoreBlendShapes { get; set; }

@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class WindowTransitionEffectSignal : Disposable
+    internal sealed class WindowTransitionEffectSignal : Disposable
     {
         internal WindowTransitionEffectSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

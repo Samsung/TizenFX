@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class StageWheelSignal : Disposable
+    internal sealed class StageWheelSignal : Disposable
     {
         internal StageWheelSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

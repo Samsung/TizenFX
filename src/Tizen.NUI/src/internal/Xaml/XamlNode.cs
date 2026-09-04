@@ -54,7 +54,7 @@ namespace Tizen.NUI.Xaml
     }
 
     [DebuggerDisplay("{NamespaceUri}:{Name}")]
-    internal class XmlType
+    internal sealed class XmlType
     {
         public XmlType(string namespaceUri, string name, IList<XmlType> typeArguments)
         {
@@ -90,7 +90,7 @@ namespace Tizen.NUI.Xaml
     }
 
     [DebuggerDisplay("{Value}")]
-    internal class ValueNode : BaseNode, IValueNode
+    internal sealed class ValueNode : BaseNode, IValueNode
     {
         public ValueNode(object value, IXmlNamespaceResolver namespaceResolver, int linenumber = -1, int lineposition = -1)
             : base(namespaceResolver, linenumber, lineposition)
@@ -112,7 +112,7 @@ namespace Tizen.NUI.Xaml
     }
 
     [DebuggerDisplay("{MarkupString}")]
-    internal class MarkupNode : BaseNode, IValueNode
+    internal sealed class MarkupNode : BaseNode, IValueNode
     {
         public MarkupNode(string markupString, IXmlNamespaceResolver namespaceResolver, int linenumber = -1, int lineposition = -1)
             : base(namespaceResolver, linenumber, lineposition)
@@ -231,7 +231,7 @@ namespace Tizen.NUI.Xaml
         }
     }
 
-    internal class ListNode : BaseNode, IListNode, IValueNode
+    internal sealed class ListNode : BaseNode, IListNode, IValueNode
     {
         public ListNode(IList<INode> nodes, IXmlNamespaceResolver namespaceResolver, int linenumber = -1, int lineposition = -1)
             : base(namespaceResolver, linenumber, lineposition)

@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class AngleThresholdPair : Disposable
+    internal sealed class AngleThresholdPair : Disposable
     {
 
         internal AngleThresholdPair(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

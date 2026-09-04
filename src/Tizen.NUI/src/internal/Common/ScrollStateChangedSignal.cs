@@ -19,7 +19,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class ScrollStateChangedSignal : Disposable
+    internal sealed class ScrollStateChangedSignal : Disposable
     {
 
         internal ScrollStateChangedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

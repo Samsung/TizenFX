@@ -13,7 +13,7 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal class SWIGTYPE_p_Dali__CallbackBase
+    internal sealed class SWIGTYPE_p_Dali__CallbackBase
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

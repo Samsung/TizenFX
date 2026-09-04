@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,7 @@ namespace Tizen.NUI.Binding
 {
     [Xaml.ProvideCompiled("Tizen.NUI.Core.XamlC.UriTypeConverter")]
     [Xaml.TypeConversion(typeof(Uri))]
-    internal class UriTypeConverter : TypeConverter
+    internal sealed class UriTypeConverter : TypeConverter
     {
         public override object ConvertFromInvariantString(string value)
         {

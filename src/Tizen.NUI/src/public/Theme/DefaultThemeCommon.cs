@@ -20,7 +20,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal partial class DefaultThemeCreator
+    internal sealed partial class DefaultThemeCreator
     {
         /// <summary>
         /// The base theme description.

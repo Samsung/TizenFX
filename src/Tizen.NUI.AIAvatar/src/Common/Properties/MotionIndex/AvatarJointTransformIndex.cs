@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,7 +35,7 @@ namespace Tizen.NUI.AIAvatar
     /// </code>
     /// </example>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class AvatarJointTransformIndex : MotionTransformIndex
+    internal sealed class AvatarJointTransformIndex : MotionTransformIndex
     {
         internal AvatarPropertyMapper nameMapper = null;
         internal uint jointType;

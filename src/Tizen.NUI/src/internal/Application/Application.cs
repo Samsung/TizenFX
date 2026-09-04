@@ -25,7 +25,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI
 {
     // Event arguments that passed via NUIApplicationInit signal
-    internal class NUIApplicationInitEventArgs : EventArgs
+    internal sealed class NUIApplicationInitEventArgs : EventArgs
     {
         private Application application;
 
@@ -44,7 +44,7 @@ namespace Tizen.NUI
     }
 
     // Event arguments that passed via NUIApplicationTerminate signal
-    internal class NUIApplicationTerminatingEventArgs : EventArgs
+    internal sealed class NUIApplicationTerminatingEventArgs : EventArgs
     {
         private Application application;
 
@@ -63,7 +63,7 @@ namespace Tizen.NUI
     }
 
     // Event arguments that passed via NUIApplicationPause signal
-    internal class NUIApplicationPausedEventArgs : EventArgs
+    internal sealed class NUIApplicationPausedEventArgs : EventArgs
     {
         private Application application;
 
@@ -82,7 +82,7 @@ namespace Tizen.NUI
     }
 
     // Event arguments that passed via NUIApplicationResume signal
-    internal class NUIApplicationResumedEventArgs : EventArgs
+    internal sealed class NUIApplicationResumedEventArgs : EventArgs
     {
         private Application application;
         // Application - is the application that is being Resumed
@@ -100,7 +100,7 @@ namespace Tizen.NUI
     }
 
     // Event arguments that passed via NUIApplicationReset signal
-    internal class NUIApplicationResetEventArgs : EventArgs
+    internal sealed class NUIApplicationResetEventArgs : EventArgs
     {
         private Application application;
 
@@ -119,7 +119,7 @@ namespace Tizen.NUI
     }
 
     // Event arguments that passed via NUIApplicationLanguageChanged signal
-    internal class NUIApplicationLanguageChangedEventArgs : EventArgs
+    internal sealed class NUIApplicationLanguageChangedEventArgs : EventArgs
     {
         private Application application;
 
@@ -138,7 +138,7 @@ namespace Tizen.NUI
     }
 
     // Event arguments that passed via NUIApplicationRegionChanged signal
-    internal class NUIApplicationRegionChangedEventArgs : EventArgs
+    internal sealed class NUIApplicationRegionChangedEventArgs : EventArgs
     {
         private Application application;
 
@@ -157,7 +157,7 @@ namespace Tizen.NUI
     }
 
     // Event arguments that passed via NUIApplicationBatteryLow signal
-    internal class NUIApplicationBatteryLowEventArgs : EventArgs
+    internal sealed class NUIApplicationBatteryLowEventArgs : EventArgs
     {
         private Application.BatteryStatus status;
 
@@ -176,7 +176,7 @@ namespace Tizen.NUI
     }
 
     // Event arguments that passed via NUIApplicationMemoryLow signal
-    internal class NUIApplicationMemoryLowEventArgs : EventArgs
+    internal sealed class NUIApplicationMemoryLowEventArgs : EventArgs
     {
         private Application.MemoryStatus status;
 
@@ -195,7 +195,7 @@ namespace Tizen.NUI
     }
 
     // Event arguments that passed via NUIApplicationDeviceOrientationChanged signal
-    internal class NUIApplicationDeviceOrientationChangedEventArgs : EventArgs
+    internal sealed class NUIApplicationDeviceOrientationChangedEventArgs : EventArgs
     {
         private Application.DeviceOrientationStatus status;
 
@@ -214,7 +214,7 @@ namespace Tizen.NUI
     }
 
     // Event arguments that passed via NUIApplicationAppControl	 signal
-    internal class NUIApplicationAppControlEventArgs : EventArgs
+    internal sealed class NUIApplicationAppControlEventArgs : EventArgs
     {
         private Application application;
         private IntPtr voidp;

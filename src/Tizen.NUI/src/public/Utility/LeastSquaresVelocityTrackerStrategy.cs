@@ -30,7 +30,7 @@ namespace Tizen.NUI.Utility
     /*
     * Velocity tracker algorithm based on least-squares linear regression.
     */
-    internal class LeastSquaresVelocityTrackerStrategy : AccumulatingVelocityTrackerStrategy
+    internal sealed class LeastSquaresVelocityTrackerStrategy : AccumulatingVelocityTrackerStrategy
     {
         public enum Weighting
         {

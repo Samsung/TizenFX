@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +26,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// Renders a list item as a horizontal layout with a bullet and styled text.
     /// Used for unordered or ordered markdown list items.
     /// </summary>
-    internal class UIListItemParagraph : View
+    internal sealed class UIListItemParagraph : View
     {
         private readonly ListStyle list;
         private readonly ParagraphStyle paragraph;
@@ -130,7 +130,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// Represents a single list item container with vertical layout and indentation.
     /// Used to group one or more list item paragraphs or nested lists.
     /// </summary>
-    internal class UIListItem : View
+    internal sealed class UIListItem : View
     {
         private readonly CommonStyle common;
 
@@ -155,7 +155,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// Represents a markdown list (ordered or unordered) with vertical layout and outer margin.
     /// Acts as a container for list items.
     /// </summary>
-    internal class UIList : View
+    internal sealed class UIList : View
     {
         public static int GetBulletSize(ParagraphStyle paragraph)
         {

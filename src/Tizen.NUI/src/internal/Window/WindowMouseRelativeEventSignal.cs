@@ -18,7 +18,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class WindowMouseRelativeEventSignal : Disposable
+    internal sealed class WindowMouseRelativeEventSignal : Disposable
     {
         internal WindowMouseRelativeEventSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

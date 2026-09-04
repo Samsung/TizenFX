@@ -21,7 +21,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class Builder : BaseHandle
+    internal sealed class Builder : BaseHandle
     {
         internal Builder(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

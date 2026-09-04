@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class LayoutTransitionManager : Disposable
+    internal sealed class LayoutTransitionManager : Disposable
     {
         private bool overrideCoreAnimation;
         private Animation coreAnimation;

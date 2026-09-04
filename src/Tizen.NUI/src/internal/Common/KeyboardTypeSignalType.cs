@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// KeyboardTypeSignalType
     /// </summary>
-    internal class KeyboardTypeSignalType : Disposable
+    internal sealed class KeyboardTypeSignalType : Disposable
     {
 
         internal KeyboardTypeSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

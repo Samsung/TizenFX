@@ -20,7 +20,7 @@ using System;
 namespace Tizen.NUI.Binding
 {
     [AttributeUsage(AttributeTargets.Assembly)]
-    internal class ResolutionGroupNameAttribute : Attribute
+    internal sealed class ResolutionGroupNameAttribute : Attribute
     {
         public ResolutionGroupNameAttribute(string name)
         {

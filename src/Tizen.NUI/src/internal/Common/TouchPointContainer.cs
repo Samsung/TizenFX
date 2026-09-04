@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
-    internal class TouchPointContainer : Disposable, IEnumerable, IEnumerable<TouchPoint>
+    internal sealed class TouchPointContainer : Disposable, IEnumerable, IEnumerable<TouchPoint>
     {
         internal TouchPointContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

@@ -18,7 +18,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class PanGestureDetectedSignal : Disposable
+    internal sealed class PanGestureDetectedSignal : Disposable
     {
         internal PanGestureDetectedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

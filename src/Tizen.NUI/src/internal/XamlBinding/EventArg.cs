@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.NUI.Binding
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class EventArg<T> : EventArgs
+    internal sealed class EventArg<T> : EventArgs
     {
         // Property variable
 

@@ -497,7 +497,7 @@ namespace Tizen.NUI.ParticleSystem
     /// Register binding Source/Modifier interface to the pointer of a native counterpart
     /// </summary>
     /// <typeparam name="T">Class type of objects to be stored in the register</typeparam>
-    internal class ParticleInterfaceRegister<T> where T : class
+    internal sealed class ParticleInterfaceRegister<T> where T : class
     {
         internal void Register(IntPtr cPtr, T iface)
         {

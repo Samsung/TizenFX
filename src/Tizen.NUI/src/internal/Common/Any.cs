@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class Any : Disposable
+    internal sealed class Any : Disposable
     {
         internal Any(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

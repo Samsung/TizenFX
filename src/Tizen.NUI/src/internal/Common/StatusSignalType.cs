@@ -20,7 +20,7 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal class StatusSignalType : Disposable
+    internal sealed class StatusSignalType : Disposable
     {
         internal StatusSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

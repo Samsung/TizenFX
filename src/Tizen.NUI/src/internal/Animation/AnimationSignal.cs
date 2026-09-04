@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class AnimationSignal : Disposable
+    internal sealed class AnimationSignal : Disposable
     {
         internal AnimationSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

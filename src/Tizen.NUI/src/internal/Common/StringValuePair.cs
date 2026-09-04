@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class StringValuePair : Disposable
+    internal sealed class StringValuePair : Disposable
     {
         internal StringValuePair(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {

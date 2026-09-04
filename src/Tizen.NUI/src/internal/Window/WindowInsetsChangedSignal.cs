@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class WindowInsetsChangedSignal : Disposable
+    internal sealed class WindowInsetsChangedSignal : Disposable
     {
         internal WindowInsetsChangedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

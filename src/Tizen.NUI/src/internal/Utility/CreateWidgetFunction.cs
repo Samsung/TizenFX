@@ -16,7 +16,7 @@
  */
 namespace Tizen.NUI
 {
-    internal class CreateWidgetFunction
+    internal sealed class CreateWidgetFunction
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

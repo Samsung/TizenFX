@@ -20,7 +20,7 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal class KeyboardResizedSignalType : Disposable
+    internal sealed class KeyboardResizedSignalType : Disposable
     {
         internal KeyboardResizedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

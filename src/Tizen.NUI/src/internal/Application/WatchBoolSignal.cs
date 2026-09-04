@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class WatchBoolSignal : Disposable
+    internal sealed class WatchBoolSignal : Disposable
     {
         internal WatchBoolSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

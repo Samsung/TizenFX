@@ -23,7 +23,7 @@ namespace Tizen.NUI
 
     internal delegate IntPtr SwigDelegatePreFocusChangeSignal(IntPtr current, IntPtr proposed, View.FocusDirection direction);
 
-    internal class PreFocusChangeSignal : Disposable
+    internal sealed class PreFocusChangeSignal : Disposable
     {
 
         internal PreFocusChangeSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

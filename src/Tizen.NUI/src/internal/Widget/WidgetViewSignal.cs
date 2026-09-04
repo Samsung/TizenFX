@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// WidgetViewSignal
     /// </summary>
-    internal class WidgetViewSignal : Disposable
+    internal sealed class WidgetViewSignal : Disposable
     {
 
         internal WidgetViewSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

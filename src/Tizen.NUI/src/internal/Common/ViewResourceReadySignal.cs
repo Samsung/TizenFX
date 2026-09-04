@@ -19,7 +19,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class ViewResourceReadySignal : Disposable
+    internal sealed class ViewResourceReadySignal : Disposable
     {
         internal ViewResourceReadySignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
