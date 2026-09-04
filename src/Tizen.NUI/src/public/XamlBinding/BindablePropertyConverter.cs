@@ -57,7 +57,7 @@ namespace Tizen.NUI.Binding
             {
                 if (parentValuesProvider == null)
                 {
-                    string msg = string.Format("Can't resolve {0}", parts[0]);
+                    string msg = $"Can't resolve {parts[0]}";
                     throw new XamlParseException(msg, lineinfo);
                 }
                 object parent = parentValuesProvider.ParentObjects.Skip(1).FirstOrDefault();
@@ -84,7 +84,7 @@ namespace Tizen.NUI.Binding
             {
                 if (!typeResolver.TryResolve(parts[0], out type))
                 {
-                    string msg = string.Format("Can't resolve {0}", parts[0]);
+                    string msg = $"Can't resolve {parts[0]}";
                     throw new XamlParseException(msg, lineinfo);
                 }
                 return ConvertFrom(type, parts[1], lineinfo);

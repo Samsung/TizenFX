@@ -382,7 +382,7 @@ namespace Tizen.NUI.Xaml
                         String msg = "";
                         if (propname != null)
                         {
-                            msg = String.Format("The Property {0} is required to create a {1} object.", propname, ctorInfo.DeclaringType.FullName);
+                            msg = $"The Property {propname} is required to create a {ctorInfo.DeclaringType.FullName} object.";
                         }
                         else
                         {

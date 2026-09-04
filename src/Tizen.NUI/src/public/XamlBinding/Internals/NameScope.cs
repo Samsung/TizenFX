@@ -88,7 +88,7 @@ namespace Tizen.NUI.Binding.Internals
             }
             catch (ArgumentException)
             {
-                throw new XamlParseException(string.Format("An element with the name \"{0}\" already exists in this NameScope", name), xmlLineInfo);
+                throw new XamlParseException($"An element with the name \"{name}\" already exists in this NameScope", xmlLineInfo);
             }
         }
 
