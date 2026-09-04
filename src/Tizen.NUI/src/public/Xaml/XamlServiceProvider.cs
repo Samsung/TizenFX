@@ -284,7 +284,7 @@ namespace Tizen.NUI.Xaml
             var namespaceuri = namespaceResolver.LookupNamespace(prefix);
             if (namespaceuri == null)
             {
-                exception = new XamlParseException(string.Format("No xmlns declaration for prefix \"{0}\"", prefix), xmlLineInfo);
+                exception = new XamlParseException($"No xmlns declaration for prefix \"{prefix}\"", xmlLineInfo);
                 return null;
             }
 

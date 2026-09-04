@@ -844,7 +844,7 @@ namespace Tizen.NUI.Binding
                 throw new ArgumentNullException(nameof(property));
 
             if (checkAccess && property.IsReadOnly)
-                throw new InvalidOperationException(string.Format("The BindableProperty \"{0}\" is readonly.", property.PropertyName));
+                throw new InvalidOperationException($"The BindableProperty \"{property.PropertyName}\" is readonly.");
 
             BindablePropertyContext bpcontext = GetContext(property);
             if (bpcontext == null)
@@ -939,7 +939,7 @@ namespace Tizen.NUI.Binding
                 throw new ArgumentNullException(nameof(property));
 
             if (checkAccess && property.IsReadOnly)
-                throw new InvalidOperationException(string.Format("The BindableProperty \"{0}\" is readonly.", property.PropertyName));
+                throw new InvalidOperationException($"The BindableProperty \"{property.PropertyName}\" is readonly.");
 
             if (fromStyle && !CanBeSetFromStyle(property))
                 return;
