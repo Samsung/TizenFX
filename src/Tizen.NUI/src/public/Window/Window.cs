@@ -1664,7 +1664,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderTaskList GetRenderTaskList()
         {
-            global::System.IntPtr cPtr = Interop.Stage.GetRenderTaskList(stageCPtr);
+            global::System.IntPtr cPtr = Interop.Window.GetRenderTaskList(SwigCPtr);
 
             RenderTaskList ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as RenderTaskList;
             if (ret != null)
@@ -1735,9 +1735,12 @@ namespace Tizen.NUI
 
         internal Vector2 GetDpi()
         {
-            Vector2 ret = new Vector2(Interop.Stage.GetDpi(stageCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            using (var val = new Uint16Pair(Interop.Window.GetDpi(SwigCPtr), true))
+            {
+                Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
         }
 
         internal void SetRenderingBehavior(RenderingBehaviorType renderingBehavior)
