@@ -324,13 +324,25 @@ namespace Tizen.Network.Nfc
         void TransceiveCompletedCallback(int result, IntPtr resultData, int dataSize, IntPtr userData)
         {
             int requestId = (int)userData;
-            if (_transceiveTaskSource.ContainsKey(requestId))
+            if (_transceiveTaskSource.TryGetValue(requestId, out var taskSource))
             {
                 if (result == (int)NfcError.None)
                 {
                     byte[] resultBuffer = new byte[dataSize];
                     Marshal.Copy(resultData, resultBuffer, 0, dataSize);
-                    _transceiveTaskSource[requestId].TrySetResult(resultBuffer);
+                    taskSource.TrySetResult(resultBuffer);
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, $"Failed to transceive data, Error - {(NfcError)result}");
+                    try
+                    {
+                        NfcErrorFactory.ThrowNfcException(result);
+                    }
+                    catch (Exception e)
+                    {
+                        taskSource.TrySetException(e);
+                    }
                 }
                 _transceiveTaskSource.Remove(requestId);
             }
@@ -351,13 +363,25 @@ namespace Tizen.Network.Nfc
         {
             bool ret = false;
             int requestId = (int)userData;
-            if (_readNdefTaskSource.ContainsKey(requestId))
+            if (_readNdefTaskSource.TryGetValue(requestId, out var taskSource))
             {
                 if (result == (int)NfcError.None)
                 {
                     var ndefMsg = new NfcNdefMessage(ndefMessage);
-                    _readNdefTaskSource[requestId].TrySetResult(ndefMsg);
+                    taskSource.TrySetResult(ndefMsg);
                     ret = true;
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, $"Failed to read ndef message, Error - {(NfcError)result}");
+                    try
+                    {
+                        NfcErrorFactory.ThrowNfcException(result);
+                    }
+                    catch (Exception e)
+                    {
+                        taskSource.TrySetException(e);
+                    }
                 }
                 _readNdefTaskSource.Remove(requestId);
             }
