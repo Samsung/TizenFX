@@ -15,8 +15,22 @@ INSERT/UPDATE/DELETE notifications, signed 64-bit rowids, a custom negative sign
 and identical table names in main, attached, and temporary databases. Assertions
 run outside the native callback; failures exit with a nonzero status.
 
-This verifies identifier handling, not the safety of querying within an update
-hook. The existing same-connection callback reentrancy is unchanged. Tizen runtime
+Callback tests cover a throwing subscriber, an authorizer-denied callback SELECT,
+and a throwing diagnostic writer. All five INSERTs must persist, and notifications
+must resume after the failures. A throwing subscriber stops the current multicast
+notification; later subscribers are not invoked for that notification. The driver
+contains ordinary managed notification exceptions and emits a fixed diagnostic
+without exception details. Notification failure does not signal a failed write.
+
+Before the callback guard, the throwing-subscriber test exits with code 134 and
+`PAL_SEHException` on the Linux .NET 9 host. This confirms a host availability
+impact; it does not establish a Tizen runtime result or an external attack path.
+Sensitive data reaching an unauthorized recipient remains unproven, so this
+observation alone does not establish a higher security severity.
+
+This verifies identifiers and managed exception containment, not the safety of
+querying within an update hook or recovery from fatal runtime/native failures.
+The existing same-connection callback reentrancy is unchanged. Tizen runtime
 validation remains necessary. On a host with only .NET 9, build the net8.0 project
 and use `DOTNET_ROLL_FORWARD=Major dotnet` to execute its output; that does not
 constitute a .NET 8 runtime test.

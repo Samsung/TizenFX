@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="CallbackRegression.cs" />
     <Compile Include="../../src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/*.cs" />
     <Compile Include="../../src/Tizen.Data.Tdbc.Driver.Sqlite/Tizen.Data.Tdbc.Driver.Sqlite/**/*.cs" />
   </ItemGroup>

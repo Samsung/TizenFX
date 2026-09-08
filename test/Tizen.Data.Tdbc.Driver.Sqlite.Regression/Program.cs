@@ -16,6 +16,7 @@ internal static class Program
         try
         {
             Run(path);
+            CallbackRegression.Run(path);
         }
         finally
         {

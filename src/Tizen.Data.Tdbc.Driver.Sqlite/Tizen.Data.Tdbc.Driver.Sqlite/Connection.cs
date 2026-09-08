@@ -77,6 +77,27 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
 
         private void UpdateHookCallback(IntPtr data, int action, string db_name, string table_name, long rowid)
         {
+            try
+            {
+                NotifyRecordChanged(action, db_name, table_name, rowid);
+            }
+            catch (Exception)
+            {
+                // Notification failures must not escape the native SQLite callback.
+                // Do not expose SQL, identifiers or subscriber exception details.
+                try
+                {
+                    Console.Error.WriteLine("TDBC SQLite change notification failed.");
+                }
+                catch (Exception)
+                {
+                    // A failing diagnostic sink must not cross the native boundary either.
+                }
+            }
+        }
+
+        private void NotifyRecordChanged(int action, string db_name, string table_name, long rowid)
+        {
             OperationType operationType = OperationType.None;
             switch (((Interop.Sqlite.UpdateHookAction)action))
             {
