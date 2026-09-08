@@ -16,6 +16,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 
 namespace Tizen.Data.Tdbc.Driver.Sqlite
@@ -90,7 +91,13 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
                     break;
             }
 
-            Sql sql = new Sql($"SELECT * from {table_name} WHERE rowid = {rowid}");
+            // Callback names are identifiers, not SQL fragments. Qualify the table
+            // to avoid resolving a same-named table in another attached database.
+            string database = db_name.Replace("\"", "\"\"");
+            string table = table_name.Replace("\"", "\"\"");
+            // Sql.Bind has no Int64 overload; preserve the native rowid exactly.
+            string row = rowid.ToString(CultureInfo.InvariantCulture);
+            Sql sql = new Sql($"SELECT * from \"{database}\".\"{table}\" WHERE rowid = {row}");
             using (IStatement stmt = CreateStatement())
             using (IResultSet resultSet = stmt.ExecuteQuery(sql))
             {
