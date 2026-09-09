@@ -33,7 +33,7 @@ namespace Tizen.Multimedia.Vision
                 Validate("Failed to get result count.");
 
             RequestId = requestId;
-            var labels = new List<string>();
+            var labels = new List<string>((int)count);
 
             for (uint i = 0 ; i < count ; i++)
             {

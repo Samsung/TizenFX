@@ -32,7 +32,7 @@ namespace Tizen.Multimedia.Vision
                 Validate("Failed to get result count.");
 
             RequestId = requestId;
-            var boundingBoxes = new List<Rectangle>();
+            var boundingBoxes = new List<Rectangle>((int)count);
 
             for (uint i = 0 ; i < count ; i++)
             {

@@ -188,7 +188,7 @@ namespace Tizen.Multimedia.Vision
                 return Enumerable.Empty<FaceDetectionResult>();
             }
 
-            var results = new List<FaceDetectionResult>();
+            var results = new List<FaceDetectionResult>(number);
 
             for (int i = 0; i < number; i++)
             {
