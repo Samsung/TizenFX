@@ -195,6 +195,9 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_set_streaming_user_agent")]
         internal static extern PlayerErrorCode SetStreamingUserAgent(IntPtr player, string userAgent, int size);
 
+        [DllImport(Libraries.Player, EntryPoint = "player_set_streaming_authorization_token")]
+        internal static extern PlayerErrorCode SetStreamingAuthorizationToken(IntPtr player, string token);
+
         [DllImport(Libraries.Player, EntryPoint = "player_get_streaming_download_progress")]
         internal static extern PlayerErrorCode GetStreamingDownloadProgress(IntPtr player, out int start, out int current);
 
