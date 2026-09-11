@@ -728,32 +728,23 @@ namespace Tizen.NUI
         /// Gets and Sets extents of partial update area.
         /// </summary>
         /// <remarks>
-        /// Extents the area - the position and the size - used for the attached View's partial update area calculation.
+        /// Extends the area - the position and the size - used for the attached View's partial update area calculation.
         /// This value be appended after calculate all update area, like visual offset.
         /// Change  <see cref="Tizen.NUI.BaseComponents.View.UpdateAreaHint"/> value if you want to change View's partial update area.
-        /// Warning : Only 0u ~ 65535u integer values are allowed for each parameters.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public UIExtents UpdateArea
         {
             get
             {
-                // TODO : Clean up below logics
-                using Extents temp = new Extents();
-                using var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.UpdateAreaExtents);
-                pValue.Get(temp);
-
-                if (temp == null)
-                {
-                    return new UIExtents(0.0f);
-                }
-                UIExtents result = new UIExtents((float)temp.Start, (float)temp.End, (float)temp.Top, (float)temp.Bottom);
-                return result;
+                Interop.Renderer.GetUpdateAreaMargin(SwigCPtr, out float start, out float end, out float top, out float bottom);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return new UIExtents(start, end, top, bottom);
             }
             set
             {
-                using var temp = new Tizen.NUI.PropertyValue((Extents)value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.UpdateAreaExtents, temp);
+                Interop.Renderer.SetUpdateAreaMargin(SwigCPtr, value.Start, value.End, value.Top, value.Bottom);
+                NDalicPINVOKE.ThrowExceptionIfExists();
             }
         }
 
@@ -972,7 +963,6 @@ namespace Tizen.NUI
             internal static readonly int VertexRangeFirst = Interop.Renderer.IndexRangeFirstGet();
             internal static readonly int VertexRangeCount = Interop.Renderer.IndexRangeCountGet();
             internal static readonly int InstanceCount = Interop.Renderer.InstanceCountGet();
-            internal static readonly int UpdateAreaExtents = Interop.Renderer.UpdateAreaExtentsGet();
         }
     }
 }

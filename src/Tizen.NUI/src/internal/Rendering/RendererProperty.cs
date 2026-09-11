@@ -59,6 +59,5 @@ namespace Tizen.NUI
         internal static readonly int VertexRangeFirst = IndexRangeFirst;
         internal static readonly int VertexRangeCount = IndexRangeCount;
         internal static readonly int InstanceCount = Interop.Renderer.InstanceCountGet();
-        internal static readonly int UpdateAreaExtents = Interop.Renderer.UpdateAreaExtentsGet();
     }
 }
