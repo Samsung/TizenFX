@@ -407,5 +407,340 @@ namespace Tizen.NUI
             Interop.GestureOptions.SetTapMaximumMotionAllowedDistance(distance);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// Returns a copy of the pan recognition thresholds used when no device-specific thresholds match.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all pan gesture detectors.</remarks>
+        /// <returns>A new PanThresholds object. Dispose it when no longer needed.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PanThresholds GetDefaultPanThresholds()
+        {
+            PanThresholds ret = new PanThresholds(Interop.GestureThresholds.GetDefaultPanThresholds(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Registers the pan recognition thresholds to use for gestures that start on a device matching the selector.<br />
+        /// Registering with an equal selector replaces the earlier thresholds. The values are copied, so later changes to
+        /// <paramref name="thresholds"/> have no effect until they are set again.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all pan gesture detectors, including those created by components.</remarks>
+        /// <param name="selector">The devices the thresholds apply to.</param>
+        /// <param name="thresholds">The complete thresholds for those devices.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPanThresholds(GestureDeviceSelector selector, PanThresholds thresholds)
+        {
+            Interop.GestureThresholds.SetPanThresholds(GestureDeviceSelector.getCPtr(selector), PanThresholds.getCPtr(thresholds));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves the pan recognition thresholds registered for exactly this selector. Fallback to a less specific selector is not applied.
+        /// </summary>
+        /// <param name="selector">The selector the thresholds were registered with.</param>
+        /// <param name="thresholds">The registered thresholds, or null when none are registered for the selector.</param>
+        /// <returns>True when thresholds are registered for the selector.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TryGetPanThresholds(GestureDeviceSelector selector, out PanThresholds thresholds)
+        {
+            PanThresholds result = new PanThresholds();
+            bool found = Interop.GestureThresholds.GetPanThresholds(GestureDeviceSelector.getCPtr(selector), PanThresholds.getCPtr(result));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                result.Dispose();
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            if (!found)
+            {
+                result.Dispose();
+                thresholds = null;
+                return false;
+            }
+
+            thresholds = result;
+            return true;
+        }
+
+        /// <summary>
+        /// Removes the pan recognition thresholds registered for exactly this selector. Does nothing when none are registered.
+        /// </summary>
+        /// <param name="selector">The selector the thresholds were registered with.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ClearPanThresholds(GestureDeviceSelector selector)
+        {
+            Interop.GestureThresholds.ClearPanThresholds(GestureDeviceSelector.getCPtr(selector));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns a copy of the tap recognition thresholds used when no device-specific thresholds match.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all tap gesture detectors.</remarks>
+        /// <returns>A new TapThresholds object. Dispose it when no longer needed.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TapThresholds GetDefaultTapThresholds()
+        {
+            TapThresholds ret = new TapThresholds(Interop.GestureThresholds.GetDefaultTapThresholds(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Registers the tap recognition thresholds to use for gestures that start on a device matching the selector.<br />
+        /// Registering with an equal selector replaces the earlier thresholds. The values are copied, so later changes to
+        /// <paramref name="thresholds"/> have no effect until they are set again.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all tap gesture detectors, including those created by components.</remarks>
+        /// <param name="selector">The devices the thresholds apply to.</param>
+        /// <param name="thresholds">The complete thresholds for those devices.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTapThresholds(GestureDeviceSelector selector, TapThresholds thresholds)
+        {
+            Interop.GestureThresholds.SetTapThresholds(GestureDeviceSelector.getCPtr(selector), TapThresholds.getCPtr(thresholds));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves the tap recognition thresholds registered for exactly this selector. Fallback to a less specific selector is not applied.
+        /// </summary>
+        /// <param name="selector">The selector the thresholds were registered with.</param>
+        /// <param name="thresholds">The registered thresholds, or null when none are registered for the selector.</param>
+        /// <returns>True when thresholds are registered for the selector.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TryGetTapThresholds(GestureDeviceSelector selector, out TapThresholds thresholds)
+        {
+            TapThresholds result = new TapThresholds();
+            bool found = Interop.GestureThresholds.GetTapThresholds(GestureDeviceSelector.getCPtr(selector), TapThresholds.getCPtr(result));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                result.Dispose();
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            if (!found)
+            {
+                result.Dispose();
+                thresholds = null;
+                return false;
+            }
+
+            thresholds = result;
+            return true;
+        }
+
+        /// <summary>
+        /// Removes the tap recognition thresholds registered for exactly this selector. Does nothing when none are registered.
+        /// </summary>
+        /// <param name="selector">The selector the thresholds were registered with.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ClearTapThresholds(GestureDeviceSelector selector)
+        {
+            Interop.GestureThresholds.ClearTapThresholds(GestureDeviceSelector.getCPtr(selector));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns a copy of the long press recognition thresholds used when no device-specific thresholds match.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all long press gesture detectors.</remarks>
+        /// <returns>A new LongPressThresholds object. Dispose it when no longer needed.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LongPressThresholds GetDefaultLongPressThresholds()
+        {
+            LongPressThresholds ret = new LongPressThresholds(Interop.GestureThresholds.GetDefaultLongPressThresholds(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Registers the long press recognition thresholds to use for gestures that start on a device matching the selector.<br />
+        /// Registering with an equal selector replaces the earlier thresholds. The values are copied, so later changes to
+        /// <paramref name="thresholds"/> have no effect until they are set again.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all long press gesture detectors, including those created by components.</remarks>
+        /// <param name="selector">The devices the thresholds apply to.</param>
+        /// <param name="thresholds">The complete thresholds for those devices.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetLongPressThresholds(GestureDeviceSelector selector, LongPressThresholds thresholds)
+        {
+            Interop.GestureThresholds.SetLongPressThresholds(GestureDeviceSelector.getCPtr(selector), LongPressThresholds.getCPtr(thresholds));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves the long press recognition thresholds registered for exactly this selector. Fallback to a less specific selector is not applied.
+        /// </summary>
+        /// <param name="selector">The selector the thresholds were registered with.</param>
+        /// <param name="thresholds">The registered thresholds, or null when none are registered for the selector.</param>
+        /// <returns>True when thresholds are registered for the selector.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TryGetLongPressThresholds(GestureDeviceSelector selector, out LongPressThresholds thresholds)
+        {
+            LongPressThresholds result = new LongPressThresholds();
+            bool found = Interop.GestureThresholds.GetLongPressThresholds(GestureDeviceSelector.getCPtr(selector), LongPressThresholds.getCPtr(result));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                result.Dispose();
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            if (!found)
+            {
+                result.Dispose();
+                thresholds = null;
+                return false;
+            }
+
+            thresholds = result;
+            return true;
+        }
+
+        /// <summary>
+        /// Removes the long press recognition thresholds registered for exactly this selector. Does nothing when none are registered.
+        /// </summary>
+        /// <param name="selector">The selector the thresholds were registered with.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ClearLongPressThresholds(GestureDeviceSelector selector)
+        {
+            Interop.GestureThresholds.ClearLongPressThresholds(GestureDeviceSelector.getCPtr(selector));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns a copy of the pinch recognition thresholds used when no device-specific thresholds match.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all pinch gesture detectors.</remarks>
+        /// <returns>A new PinchThresholds object. Dispose it when no longer needed.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PinchThresholds GetDefaultPinchThresholds()
+        {
+            PinchThresholds ret = new PinchThresholds(Interop.GestureThresholds.GetDefaultPinchThresholds(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Registers the pinch recognition thresholds to use for gestures that start on a device matching the selector.<br />
+        /// Registering with an equal selector replaces the earlier thresholds. The values are copied, so later changes to
+        /// <paramref name="thresholds"/> have no effect until they are set again.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all pinch gesture detectors, including those created by components.</remarks>
+        /// <param name="selector">The devices the thresholds apply to.</param>
+        /// <param name="thresholds">The complete thresholds for those devices.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPinchThresholds(GestureDeviceSelector selector, PinchThresholds thresholds)
+        {
+            Interop.GestureThresholds.SetPinchThresholds(GestureDeviceSelector.getCPtr(selector), PinchThresholds.getCPtr(thresholds));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves the pinch recognition thresholds registered for exactly this selector. Fallback to a less specific selector is not applied.
+        /// </summary>
+        /// <param name="selector">The selector the thresholds were registered with.</param>
+        /// <param name="thresholds">The registered thresholds, or null when none are registered for the selector.</param>
+        /// <returns>True when thresholds are registered for the selector.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TryGetPinchThresholds(GestureDeviceSelector selector, out PinchThresholds thresholds)
+        {
+            PinchThresholds result = new PinchThresholds();
+            bool found = Interop.GestureThresholds.GetPinchThresholds(GestureDeviceSelector.getCPtr(selector), PinchThresholds.getCPtr(result));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                result.Dispose();
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            if (!found)
+            {
+                result.Dispose();
+                thresholds = null;
+                return false;
+            }
+
+            thresholds = result;
+            return true;
+        }
+
+        /// <summary>
+        /// Removes the pinch recognition thresholds registered for exactly this selector. Does nothing when none are registered.
+        /// </summary>
+        /// <param name="selector">The selector the thresholds were registered with.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ClearPinchThresholds(GestureDeviceSelector selector)
+        {
+            Interop.GestureThresholds.ClearPinchThresholds(GestureDeviceSelector.getCPtr(selector));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns a copy of the rotation recognition thresholds used when no device-specific thresholds match.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all rotation gesture detectors.</remarks>
+        /// <returns>A new RotationThresholds object. Dispose it when no longer needed.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public RotationThresholds GetDefaultRotationThresholds()
+        {
+            RotationThresholds ret = new RotationThresholds(Interop.GestureThresholds.GetDefaultRotationThresholds(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Registers the rotation recognition thresholds to use for gestures that start on a device matching the selector.<br />
+        /// Registering with an equal selector replaces the earlier thresholds. The values are copied, so later changes to
+        /// <paramref name="thresholds"/> have no effect until they are set again.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all rotation gesture detectors, including those created by components.</remarks>
+        /// <param name="selector">The devices the thresholds apply to.</param>
+        /// <param name="thresholds">The complete thresholds for those devices.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetRotationThresholds(GestureDeviceSelector selector, RotationThresholds thresholds)
+        {
+            Interop.GestureThresholds.SetRotationThresholds(GestureDeviceSelector.getCPtr(selector), RotationThresholds.getCPtr(thresholds));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves the rotation recognition thresholds registered for exactly this selector. Fallback to a less specific selector is not applied.
+        /// </summary>
+        /// <param name="selector">The selector the thresholds were registered with.</param>
+        /// <param name="thresholds">The registered thresholds, or null when none are registered for the selector.</param>
+        /// <returns>True when thresholds are registered for the selector.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TryGetRotationThresholds(GestureDeviceSelector selector, out RotationThresholds thresholds)
+        {
+            RotationThresholds result = new RotationThresholds();
+            bool found = Interop.GestureThresholds.GetRotationThresholds(GestureDeviceSelector.getCPtr(selector), RotationThresholds.getCPtr(result));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                result.Dispose();
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            if (!found)
+            {
+                result.Dispose();
+                thresholds = null;
+                return false;
+            }
+
+            thresholds = result;
+            return true;
+        }
+
+        /// <summary>
+        /// Removes the rotation recognition thresholds registered for exactly this selector. Does nothing when none are registered.
+        /// </summary>
+        /// <param name="selector">The selector the thresholds were registered with.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ClearRotationThresholds(GestureDeviceSelector selector)
+        {
+            Interop.GestureThresholds.ClearRotationThresholds(GestureDeviceSelector.getCPtr(selector));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
 }
