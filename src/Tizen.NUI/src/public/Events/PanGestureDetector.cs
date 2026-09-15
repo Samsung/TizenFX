@@ -750,6 +750,255 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Recognition options of a pan gesture detector that can differ per input device: the touches required,
+        /// the maximum motion event age and the allowed angles.<br />
+        /// An Options object is a complete snapshot of the settings; the detector applies the snapshot registered for the
+        /// most specific matching <see cref="GestureDeviceSelector"/> and otherwise its own settings.<br />
+        /// Start from <see cref="GetDefaultOptions"/> to keep the values you do not want to change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public sealed class Options : Disposable
+        {
+            /// <summary>
+            /// Creates an Options object holding the built-in default settings.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Options() : this(Interop.PanGestureDetector.NewOptions(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal Options(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
+            {
+            }
+
+            /// <summary>
+            /// Gets or sets the minimum number of touches required for the pan gesture to be detected. The default is 1.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint MinimumTouchesRequired
+            {
+                get
+                {
+                    uint ret = Interop.PanGestureDetector.OptionsGetMinimumTouchesRequired(SwigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                    return ret;
+                }
+                set
+                {
+                    Interop.PanGestureDetector.OptionsSetMinimumTouchesRequired(SwigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets the maximum number of touches required for the pan gesture to be detected. The default is 1.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint MaximumTouchesRequired
+            {
+                get
+                {
+                    uint ret = Interop.PanGestureDetector.OptionsGetMaximumTouchesRequired(SwigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                    return ret;
+                }
+                set
+                {
+                    Interop.PanGestureDetector.OptionsSetMaximumTouchesRequired(SwigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets the maximum age, in milliseconds, of a motion event for the pan gesture to be emitted. The default is unlimited (uint.MaxValue).
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint MaximumMotionEventAge
+            {
+                get
+                {
+                    uint ret = Interop.PanGestureDetector.OptionsGetMaximumMotionEventAge(SwigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                    return ret;
+                }
+                set
+                {
+                    Interop.PanGestureDetector.OptionsSetMaximumMotionEventAge(SwigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+
+            /// <summary>
+            /// Adds an angle, with a +/- threshold allowance, in which the pan gesture is emitted.
+            /// </summary>
+            /// <param name="angle">The angle that pan should be allowed.</param>
+            /// <param name="threshold">The threshold around that angle.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public void AddAngle(Radian angle, Radian threshold)
+            {
+                Interop.PanGestureDetector.OptionsAddAngle(SwigCPtr, Radian.getCPtr(angle), Radian.getCPtr(threshold));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Adds an angle in which the pan gesture is emitted, using the default threshold (PI * 0.25).
+            /// </summary>
+            /// <param name="angle">The angle that pan should be allowed.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public void AddAngle(Radian angle)
+            {
+                Interop.PanGestureDetector.OptionsAddAngle(SwigCPtr, Radian.getCPtr(angle));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Adds a direction, with a +/- threshold allowance, in which the pan gesture is emitted. Both the direction and its opposite are allowed.
+            /// </summary>
+            /// <param name="direction">The direction of panning that should be allowed.</param>
+            /// <param name="threshold">The threshold around that direction.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public void AddDirection(Radian direction, Radian threshold)
+            {
+                Interop.PanGestureDetector.OptionsAddDirection(SwigCPtr, Radian.getCPtr(direction), Radian.getCPtr(threshold));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Adds a direction in which the pan gesture is emitted, using the default threshold (PI * 0.25).
+            /// </summary>
+            /// <param name="direction">The direction of panning that should be allowed.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public void AddDirection(Radian direction)
+            {
+                Interop.PanGestureDetector.OptionsAddDirection(SwigCPtr, Radian.getCPtr(direction));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Returns the number of angles registered in these options.
+            /// </summary>
+            /// <returns>The number of angles.</returns>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint GetAngleCount()
+            {
+                uint ret = Interop.PanGestureDetector.OptionsGetAngleCount(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+
+            internal AngleThresholdPair GetAngle(uint index)
+            {
+                AngleThresholdPair ret = new AngleThresholdPair(Interop.PanGestureDetector.OptionsGetAngle(SwigCPtr, index), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+
+            /// <summary>
+            /// Removes all angles, so the pan gesture is emitted regardless of direction.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public void ClearAngles()
+            {
+                Interop.PanGestureDetector.OptionsClearAngles(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Removes the angle specified from these options.
+            /// </summary>
+            /// <param name="angle">The angle to remove.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public void RemoveAngle(Radian angle)
+            {
+                Interop.PanGestureDetector.OptionsRemoveAngle(SwigCPtr, Radian.getCPtr(angle));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Removes the direction specified from these options.
+            /// </summary>
+            /// <param name="direction">The direction to remove.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public void RemoveDirection(Radian direction)
+            {
+                Interop.PanGestureDetector.OptionsRemoveDirection(SwigCPtr, Radian.getCPtr(direction));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            /// This will not be public opened.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
+            {
+                Interop.PanGestureDetector.DeleteOptions(swigCPtr);
+            }
+        }
+
+        /// <summary>
+        /// Returns a copy of the settings this detector uses when no device-specific options match.
+        /// </summary>
+        /// <returns>A new Options object. Dispose it when no longer needed.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Options GetDefaultOptions()
+        {
+            Options ret = new Options(Interop.PanGestureDetector.GetDefaultOptions(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Registers the settings to use for gestures that start on a device matching the selector.<br />
+        /// Registering with an equal selector replaces the earlier settings. The detector copies the options,
+        /// so later changes to <paramref name="options"/> have no effect until it is set again.
+        /// </summary>
+        /// <param name="selector">The devices the options apply to.</param>
+        /// <param name="options">The complete settings for those devices.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDeviceOptions(GestureDeviceSelector selector, Options options)
+        {
+            Interop.PanGestureDetector.SetDeviceOptions(SwigCPtr, GestureDeviceSelector.getCPtr(selector), Options.getCPtr(options));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves the settings registered for exactly this selector. Fallback to a less specific selector is not applied.
+        /// </summary>
+        /// <param name="selector">The selector the options were registered with.</param>
+        /// <param name="options">The registered settings, or null when none are registered for the selector.</param>
+        /// <returns>True when settings are registered for the selector.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TryGetDeviceOptions(GestureDeviceSelector selector, out Options options)
+        {
+            Options result = new Options();
+            bool found = Interop.PanGestureDetector.GetDeviceOptions(SwigCPtr, GestureDeviceSelector.getCPtr(selector), Options.getCPtr(result));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                result.Dispose();
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            if (!found)
+            {
+                result.Dispose();
+                options = null;
+                return false;
+            }
+
+            options = result;
+            return true;
+        }
+
+        /// <summary>
+        /// Removes the settings registered for exactly this selector. Does nothing when none are registered.
+        /// </summary>
+        /// <param name="selector">The selector the options were registered with.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ClearDeviceOptions(GestureDeviceSelector selector)
+        {
+            Interop.PanGestureDetector.ClearDeviceOptions(SwigCPtr, GestureDeviceSelector.getCPtr(selector));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal class Property
         {
             internal static readonly int ScreenPosition = Interop.PanGestureDetector.ScreenPositionGet();
