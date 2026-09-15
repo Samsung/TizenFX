@@ -168,6 +168,70 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PanGestureDetectedSignal")]
             public static extern void DeletePanGestureDetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PanGestureDetector_Options")]
+            public static extern global::System.IntPtr NewOptions();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PanGestureDetector_Options")]
+            public static extern void DeleteOptions(global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_GetDefaultOptions")]
+            public static extern global::System.IntPtr GetDefaultOptions(global::System.Runtime.InteropServices.HandleRef nuiDetector);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_SetDeviceOptions")]
+            public static extern void SetDeviceOptions(global::System.Runtime.InteropServices.HandleRef nuiDetector, global::System.Runtime.InteropServices.HandleRef nuiSelector, global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_GetDeviceOptions")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool GetDeviceOptions(global::System.Runtime.InteropServices.HandleRef nuiDetector, global::System.Runtime.InteropServices.HandleRef nuiSelector, global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_ClearDeviceOptions")]
+            public static extern void ClearDeviceOptions(global::System.Runtime.InteropServices.HandleRef nuiDetector, global::System.Runtime.InteropServices.HandleRef nuiSelector);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_SetMinimumTouchesRequired")]
+            public static extern void OptionsSetMinimumTouchesRequired(global::System.Runtime.InteropServices.HandleRef nuiOptions, uint value);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_GetMinimumTouchesRequired")]
+            public static extern uint OptionsGetMinimumTouchesRequired(global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_SetMaximumTouchesRequired")]
+            public static extern void OptionsSetMaximumTouchesRequired(global::System.Runtime.InteropServices.HandleRef nuiOptions, uint value);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_GetMaximumTouchesRequired")]
+            public static extern uint OptionsGetMaximumTouchesRequired(global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_SetMaximumMotionEventAge")]
+            public static extern void OptionsSetMaximumMotionEventAge(global::System.Runtime.InteropServices.HandleRef nuiOptions, uint value);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_GetMaximumMotionEventAge")]
+            public static extern uint OptionsGetMaximumMotionEventAge(global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_AddAngle__SWIG_0")]
+            public static extern void OptionsAddAngle(global::System.Runtime.InteropServices.HandleRef nuiOptions, global::System.Runtime.InteropServices.HandleRef nuiAngle, global::System.Runtime.InteropServices.HandleRef nuiThreshold);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_AddAngle__SWIG_1")]
+            public static extern void OptionsAddAngle(global::System.Runtime.InteropServices.HandleRef nuiOptions, global::System.Runtime.InteropServices.HandleRef nuiAngle);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_AddDirection__SWIG_0")]
+            public static extern void OptionsAddDirection(global::System.Runtime.InteropServices.HandleRef nuiOptions, global::System.Runtime.InteropServices.HandleRef nuiDirection, global::System.Runtime.InteropServices.HandleRef nuiThreshold);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_AddDirection__SWIG_1")]
+            public static extern void OptionsAddDirection(global::System.Runtime.InteropServices.HandleRef nuiOptions, global::System.Runtime.InteropServices.HandleRef nuiDirection);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_GetAngleCount")]
+            public static extern uint OptionsGetAngleCount(global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_GetAngle")]
+            public static extern global::System.IntPtr OptionsGetAngle(global::System.Runtime.InteropServices.HandleRef nuiOptions, uint index);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_ClearAngles")]
+            public static extern void OptionsClearAngles(global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_RemoveAngle")]
+            public static extern void OptionsRemoveAngle(global::System.Runtime.InteropServices.HandleRef nuiOptions, global::System.Runtime.InteropServices.HandleRef nuiAngle);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Options_RemoveDirection")]
+            public static extern void OptionsRemoveDirection(global::System.Runtime.InteropServices.HandleRef nuiOptions, global::System.Runtime.InteropServices.HandleRef nuiDirection);
         }
     }
 }

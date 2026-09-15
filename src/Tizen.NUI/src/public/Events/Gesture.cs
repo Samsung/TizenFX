@@ -294,6 +294,22 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The name of the input device that started this gesture (read-only).<br />
+        /// Empty when the device did not report a name. Pass it to <see cref="GestureDeviceSelector.ByDeviceName(string)"/>
+        /// to register options or thresholds for exactly that device.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string DeviceName
+        {
+            get
+            {
+                string ret = Interop.Gesture.GetDeviceName(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new global::System.InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+
         private Gesture.GestureType type
         {
             get
