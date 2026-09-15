@@ -388,6 +388,7 @@ namespace Tizen.NUI.BaseComponents
                 e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
                 //here we send all data to user event handlers
                 textFieldTextChangedEventHandler(this, e);
+                ProcessorController.Instance.Awake();
             }
         }
 
