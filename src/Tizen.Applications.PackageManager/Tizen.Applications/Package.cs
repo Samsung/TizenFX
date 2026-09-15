@@ -309,7 +309,7 @@ namespace Tizen.Applications
                 {
                     _packageManagerSizeInfoCallbackDict.Remove(callbackId);
                 }
-                tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get total package size info of " + Id));
+                tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get package size info of " + Id));
             }
             var result = await tcs.Task.ConfigureAwait(false);
             GC.KeepAlive(sizeInfoCb);
