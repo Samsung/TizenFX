@@ -44,6 +44,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_sourceSubType_get")]
             public static extern int SourceSubTypeGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_GetDeviceName")]
+            public static extern string GetDeviceName(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

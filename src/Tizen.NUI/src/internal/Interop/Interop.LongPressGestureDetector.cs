@@ -54,6 +54,37 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_DetectedSignal")]
             public static extern global::System.IntPtr DetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_LongPressGestureDetector_Options")]
+            public static extern global::System.IntPtr NewOptions();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_LongPressGestureDetector_Options")]
+            public static extern void DeleteOptions(global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_GetDefaultOptions")]
+            public static extern global::System.IntPtr GetDefaultOptions(global::System.Runtime.InteropServices.HandleRef nuiDetector);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_SetDeviceOptions")]
+            public static extern void SetDeviceOptions(global::System.Runtime.InteropServices.HandleRef nuiDetector, global::System.Runtime.InteropServices.HandleRef nuiSelector, global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_GetDeviceOptions")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool GetDeviceOptions(global::System.Runtime.InteropServices.HandleRef nuiDetector, global::System.Runtime.InteropServices.HandleRef nuiSelector, global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_ClearDeviceOptions")]
+            public static extern void ClearDeviceOptions(global::System.Runtime.InteropServices.HandleRef nuiDetector, global::System.Runtime.InteropServices.HandleRef nuiSelector);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_Options_SetTouchesRequired__SWIG_0")]
+            public static extern void OptionsSetTouchesRequired(global::System.Runtime.InteropServices.HandleRef nuiOptions, uint touches);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_Options_SetTouchesRequired__SWIG_1")]
+            public static extern void OptionsSetTouchesRequired(global::System.Runtime.InteropServices.HandleRef nuiOptions, uint minTouches, uint maxTouches);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_Options_GetMinimumTouchesRequired")]
+            public static extern uint OptionsGetMinimumTouchesRequired(global::System.Runtime.InteropServices.HandleRef nuiOptions);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_Options_GetMaximumTouchesRequired")]
+            public static extern uint OptionsGetMaximumTouchesRequired(global::System.Runtime.InteropServices.HandleRef nuiOptions);
         }
     }
 }

@@ -332,5 +332,150 @@ namespace Tizen.NUI
                 }
             }
         }
+
+        /// <summary>
+        /// Recognition options of a long press gesture detector that can differ per input device: the touches required.<br />
+        /// An Options object is a complete snapshot of the settings; the detector applies the snapshot registered for the
+        /// most specific matching <see cref="GestureDeviceSelector"/> and otherwise its own settings.<br />
+        /// Start from <see cref="GetDefaultOptions"/> to keep the values you do not want to change.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public sealed class Options : Disposable
+        {
+            /// <summary>
+            /// Creates an Options object holding the built-in default settings.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Options() : this(Interop.LongPressGestureDetector.NewOptions(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal Options(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
+            {
+            }
+
+            /// <summary>
+            /// Sets the exact number of touches required for the long press gesture to be detected.
+            /// </summary>
+            /// <param name="touches">The number of touches required.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public void SetTouchesRequired(uint touches)
+            {
+                Interop.LongPressGestureDetector.OptionsSetTouchesRequired(SwigCPtr, touches);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Sets the minimum and maximum number of touches required for the long press gesture to be detected.
+            /// </summary>
+            /// <param name="minTouches">The minimum number of touches required.</param>
+            /// <param name="maxTouches">The maximum number of touches required.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public void SetTouchesRequired(uint minTouches, uint maxTouches)
+            {
+                Interop.LongPressGestureDetector.OptionsSetTouchesRequired(SwigCPtr, minTouches, maxTouches);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Gets the minimum number of touches required (read-only). The default is 1.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint MinimumTouchesRequired
+            {
+                get
+                {
+                    uint ret = Interop.LongPressGestureDetector.OptionsGetMinimumTouchesRequired(SwigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// Gets the maximum number of touches required (read-only). The default is 1.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint MaximumTouchesRequired
+            {
+                get
+                {
+                    uint ret = Interop.LongPressGestureDetector.OptionsGetMaximumTouchesRequired(SwigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                    return ret;
+                }
+            }
+            /// This will not be public opened.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
+            {
+                Interop.LongPressGestureDetector.DeleteOptions(swigCPtr);
+            }
+        }
+
+        /// <summary>
+        /// Returns a copy of the settings this detector uses when no device-specific options match.
+        /// </summary>
+        /// <returns>A new Options object. Dispose it when no longer needed.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Options GetDefaultOptions()
+        {
+            Options ret = new Options(Interop.LongPressGestureDetector.GetDefaultOptions(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Registers the settings to use for gestures that start on a device matching the selector.<br />
+        /// Registering with an equal selector replaces the earlier settings. The detector copies the options,
+        /// so later changes to <paramref name="options"/> have no effect until it is set again.
+        /// </summary>
+        /// <param name="selector">The devices the options apply to.</param>
+        /// <param name="options">The complete settings for those devices.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDeviceOptions(GestureDeviceSelector selector, Options options)
+        {
+            Interop.LongPressGestureDetector.SetDeviceOptions(SwigCPtr, GestureDeviceSelector.getCPtr(selector), Options.getCPtr(options));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves the settings registered for exactly this selector. Fallback to a less specific selector is not applied.
+        /// </summary>
+        /// <param name="selector">The selector the options were registered with.</param>
+        /// <param name="options">The registered settings, or null when none are registered for the selector.</param>
+        /// <returns>True when settings are registered for the selector.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TryGetDeviceOptions(GestureDeviceSelector selector, out Options options)
+        {
+            Options result = new Options();
+            bool found = Interop.LongPressGestureDetector.GetDeviceOptions(SwigCPtr, GestureDeviceSelector.getCPtr(selector), Options.getCPtr(result));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                result.Dispose();
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            if (!found)
+            {
+                result.Dispose();
+                options = null;
+                return false;
+            }
+
+            options = result;
+            return true;
+        }
+
+        /// <summary>
+        /// Removes the settings registered for exactly this selector. Does nothing when none are registered.
+        /// </summary>
+        /// <param name="selector">The selector the options were registered with.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ClearDeviceOptions(GestureDeviceSelector selector)
+        {
+            Interop.LongPressGestureDetector.ClearDeviceOptions(SwigCPtr, GestureDeviceSelector.getCPtr(selector));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
 }
