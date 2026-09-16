@@ -56,10 +56,11 @@ namespace Tizen.NUI
             remove
             {
                 focusChangedEventHandler -= value;
-                using var signal = FocusChangedSignal();
-                if (focusChangedEventHandler == null && signal.Empty() == false && focusChangedEventCallback != null)
+                if (focusChangedEventHandler == null && focusChangedEventCallback != null)
                 {
+                    using var signal = FocusChangedSignal();
                     signal.Disconnect(focusChangedEventCallback);
+                    focusChangedEventCallback = null;
                 }
             }
         }
@@ -114,10 +115,11 @@ namespace Tizen.NUI
             remove
             {
                 stageKeyHandler -= value;
-                using var signal = KeyEventSignal();
-                if (stageKeyHandler == null && signal.Empty() == false)
+                if (stageKeyHandler == null && windowKeyCallbackDelegate != null)
                 {
+                    using var signal = KeyEventSignal();
                     signal.Disconnect(windowKeyCallbackDelegate);
+                    windowKeyCallbackDelegate = null;
                 }
             }
         }
@@ -142,10 +144,11 @@ namespace Tizen.NUI
             remove
             {
                 windowResizedEventHandler -= value;
-                using var signal = GLWindowResizedSignal();
-                if (windowResizedEventHandler == null && signal.Empty() == false && windowResizedEventCallback != null)
+                if (windowResizedEventHandler == null && windowResizedEventCallback != null)
                 {
+                    using var signal = GLWindowResizedSignal();
                     signal.Disconnect(windowResizedEventCallback);
+                    windowResizedEventCallback = null;
                 }
             }
         }
@@ -185,24 +188,28 @@ namespace Tizen.NUI
             {
                 using var signal = FocusChangedSignal();
                 signal.Disconnect(focusChangedEventCallback);
+                focusChangedEventCallback = null;
             }
 
             if (windowTouchDataCallback != null)
             {
                 Interop.GLWindow.GlWindowTouchSignalDisconnect(SwigCPtr, windowTouchDataCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
+                windowTouchDataCallback = null;
             }
 
             if (windowKeyCallbackDelegate != null)
             {
                 using var signal = KeyEventSignal();
                 signal.Disconnect(windowKeyCallbackDelegate);
+                windowKeyCallbackDelegate = null;
             }
 
             if (windowResizedEventCallback != null)
             {
                 using var signal = GLWindowResizedSignal();
                 signal.Disconnect(windowResizedEventCallback);
+                windowResizedEventCallback = null;
             }
         }
 
@@ -425,15 +432,15 @@ namespace Tizen.NUI
             remove
             {
                 visibilityChangedEventHandler -= value;
-                if (visibilityChangedEventHandler == null)
+                if (visibilityChangedEventHandler == null && glVisibilityChangedEventCallback != null)
                 {
                     if (glVisibilityChangedEventSignal != null)
                     {
-                        if (glVisibilityChangedEventSignal.Empty() == false)
-                        {
-                            glVisibilityChangedEventSignal.Disconnect(glVisibilityChangedEventCallback);
-                        }
+                        glVisibilityChangedEventSignal.Disconnect(glVisibilityChangedEventCallback);
+                        glVisibilityChangedEventSignal.Dispose();
+                        glVisibilityChangedEventSignal = null;
                     }
+                    glVisibilityChangedEventCallback = null;
                 }
             }
         }
@@ -442,13 +449,11 @@ namespace Tizen.NUI
         /// VisibiltyChangedSignalEmit
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this, which is not supported.")]
         public void VisibiltyChangedSignalEmit(bool visibility)
         {
-            if (glVisibilityChangedEventSignal == null)
-            {
-                glVisibilityChangedEventSignal = new GLWindowVisibilityChangedEvent(this);
-            }
-            glVisibilityChangedEventSignal.Emit(this, visibility);
+            Tizen.Log.Fatal("NUI", "VisibiltyChangedSignalEmit is not supported. Do not use this function.");
+            NUILog.ErrorBacktrace("VisibiltyChangedSignalEmit is not supported. Do not use this function.");
         }
     }
 }
