@@ -7,7 +7,7 @@ SLN_NAME=_Build
 SLN_FILE=$SCRIPT_DIR/$SLN_NAME.sln
 OUTDIR=$SCRIPT_DIR/Artifacts
 
-PROFILES=(mobile tv wearable)
+PROFILES=(tv)
 TARGET_ASSEMBLY_DIR=/usr/share/dotnet.tizen/framework
 TARGET_PRELOAD_DIR=/usr/share/dotnet.tizen/preload
 

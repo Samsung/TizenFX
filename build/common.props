@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AllTizenProfiles>mobile;tv;wearable</AllTizenProfiles>
+    <AllTizenProfiles>tv</AllTizenProfiles>
     <SupportedProfiles Condition="'$(SupportedProfiles)' == ''">$(AllTizenProfiles)</SupportedProfiles>
   </PropertyGroup>
 
