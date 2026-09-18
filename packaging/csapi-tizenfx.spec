@@ -112,15 +112,6 @@ AutoReqProv: no
 %description debug
 All .pdb files of Tizen .NET
 
-%package mobile
-Summary:   Tizen .NET assemblies for Mobile profile
-Group:     Development/Libraries
-Requires:  %{name} = %{version}-%{release}
-AutoReqProv: no
-
-%description mobile
-Tizen .NET assemblies for Mobile profile
-
 %package tv
 Summary:   Tizen .NET assemblies for TV profile
 Group:     Development/Libraries
@@ -129,15 +120,6 @@ AutoReqProv: no
 
 %description tv
 Tizen .NET assemblies for TV profile
-
-%package wearable
-Summary:   Tizen .NET assemblies for Wearable profile
-Group:     Development/Libraries
-Requires:  %{name} = %{version}-%{release}
-AutoReqProv: no
-
-%description wearable
-Tizen .NET assemblies for Wearable profile
 
 %prep
 %setup -q
@@ -249,11 +231,5 @@ echo "db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS}" >> %{D
 %manifest %{name}.manifest
 %attr(644,root,root) %{DOTNET_ASSEMBLY_PATH}/*.pdb
 
-%files mobile -f Artifacts/mobile.filelist
-%manifest %{name}.manifest
-
 %files tv -f Artifacts/tv.filelist
-%manifest %{name}.manifest
-
-%files wearable -f Artifacts/wearable.filelist
 %manifest %{name}.manifest
