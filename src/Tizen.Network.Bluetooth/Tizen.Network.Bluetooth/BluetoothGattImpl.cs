@@ -135,7 +135,7 @@ namespace Tizen.Network.Bluetooth
 
         internal Task<bool> SendIndicationAsync(BluetoothGattServer server, BluetoothGattCharacteristic characteristic, string clientAddress)
         {
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             int requestId = 0;
 
             lock (this)
@@ -320,7 +320,7 @@ namespace Tizen.Network.Bluetooth
 
         internal Task<bool> ReadValueAsyncTask(BluetoothGattAttributeHandle handle)
         {
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             int requestId = 0;
 
             lock (this)
@@ -359,7 +359,7 @@ namespace Tizen.Network.Bluetooth
 
         internal Task<bool> WriteValueAsyncTask(BluetoothGattAttributeHandle handle)
         {
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             int requestId = 0;
 
             lock (this)

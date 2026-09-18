@@ -137,7 +137,7 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
             }
 
-            _taskForConnection = new TaskCompletionSource<bool>();
+            _taskForConnection = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             BluetoothAvrcpControlImpl.Instance.Connect(RemoteAddress);
             return _taskForConnection.Task;
         }
@@ -156,7 +156,7 @@ namespace Tizen.Network.Bluetooth
             {
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
             }
-            _taskForDisconnection = new TaskCompletionSource<bool>();
+            _taskForDisconnection = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             BluetoothAvrcpControlImpl.Instance.Disconnect(RemoteAddress);
             return _taskForDisconnection.Task;
         }

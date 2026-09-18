@@ -105,7 +105,7 @@ namespace Tizen.Network.Bluetooth
             {
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
             }
-            _taskForConnection = new TaskCompletionSource<bool>();
+            _taskForConnection = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             int ret = BluetoothHidDeviceImpl.Instance.ConnectHidDevice(RemoteAddress);
             if (ret != (int)BluetoothError.None)
@@ -132,7 +132,7 @@ namespace Tizen.Network.Bluetooth
             {
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
             }
-            _taskForDisconnection = new TaskCompletionSource<bool>();
+            _taskForDisconnection = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             int ret = BluetoothHidDeviceImpl.Instance.DisconnectHidDevice(RemoteAddress);
             if (ret != (int)BluetoothError.None)
