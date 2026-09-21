@@ -17,6 +17,7 @@
 namespace Tizen.Applications.NotificationEventListener
 {
     using System;
+    using System.Globalization;
 
     internal static class NotificationEventArgsBinder
     {
@@ -132,7 +133,7 @@ namespace Tizen.Applications.NotificationEventListener
             {
                 try
                 {
-                    eventargs.Count = int.Parse(text);
+                    eventargs.Count = int.Parse(text, CultureInfo.InvariantCulture);
                 }
                 catch (Exception ex)
                 {
