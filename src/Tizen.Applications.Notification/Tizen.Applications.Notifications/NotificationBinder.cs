@@ -17,6 +17,7 @@
 namespace Tizen.Applications.Notifications
 {
     using System;
+    using System.Globalization;
 
     internal static class NotificationBinder
     {
@@ -193,7 +194,7 @@ namespace Tizen.Applications.Notifications
             {
                 try
                 {
-                    notification.Count = int.Parse(text);
+                    notification.Count = int.Parse(text, CultureInfo.InvariantCulture);
                 }
                 catch (Exception ex)
                 {
