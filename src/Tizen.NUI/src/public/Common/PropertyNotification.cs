@@ -81,17 +81,11 @@ namespace Tizen.NUI
             remove
             {
                 propertyNotificationNotifyEventHandler -= value;
-                if (propertyNotificationNotifyEventHandler == null)
+                if (propertyNotificationNotifyEventHandler == null && propertyNotificationNotifyEventCallback != null)
                 {
                     using PropertyNotifySignal signal = new PropertyNotifySignal(Interop.PropertyNotification.NotifySignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(propertyNotificationNotifyEventCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            propertyNotificationNotifyEventCallback = null;
-                        }
-                    }
+                    signal?.Disconnect(propertyNotificationNotifyEventCallback);
+                    propertyNotificationNotifyEventCallback = null;
                 }
             }
         }
