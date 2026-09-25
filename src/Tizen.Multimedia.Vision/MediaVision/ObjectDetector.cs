@@ -101,7 +101,7 @@ namespace Tizen.Multimedia.Vision
                 return Enumerable.Empty<ObjectDetectionResult>();
             }
 
-            var results = new List<ObjectDetectionResult>();
+            var results = new List<ObjectDetectionResult>(number);
 
             for (int i = 0; i < number; i++)
             {
