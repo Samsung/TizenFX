@@ -213,7 +213,7 @@ namespace Tizen.Network.Nfc
         public Task<byte[]> TransceiveAsync(byte[] buffer)
         {
             int requestId = 0;
-            var task = new TaskCompletionSource<byte[]>();
+            var task = new TaskCompletionSource<byte[]>(TaskCreationOptions.RunContinuationsAsynchronously);
             lock (this)
             {
                 requestId = _requestId++;
@@ -240,7 +240,7 @@ namespace Tizen.Network.Nfc
         public Task<NfcNdefMessage> ReadNdefMessageAsync()
         {
             int requestId = 0;
-            var task = new TaskCompletionSource<NfcNdefMessage>();
+            var task = new TaskCompletionSource<NfcNdefMessage>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             lock (this)
             {
@@ -270,7 +270,7 @@ namespace Tizen.Network.Nfc
         public Task<NfcError> WriteNdefMessageAsync(NfcNdefMessage ndefMessage)
         {
             int requestId = 0;
-            var task = new TaskCompletionSource<NfcError>();
+            var task = new TaskCompletionSource<NfcError>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             lock (this)
             {
@@ -302,7 +302,7 @@ namespace Tizen.Network.Nfc
         public Task<NfcError> FormatNdefMessageAsync(byte[] keyValue)
         {
             int requestId = 0;
-            var task = new TaskCompletionSource<NfcError>();
+            var task = new TaskCompletionSource<NfcError>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             lock (this)
             {
