@@ -2752,7 +2752,9 @@ namespace Tizen.NUI
             }
             set
             {
-                IntPtr colorPtr = Color.getCPtr(value.BehindBlurDimInfo.DimColor).Handle;
+                // Guard against a null DimColor (e.g. default(WindowBlurInfo)) by falling back to the documented default color.
+                Color dimColor = value.BehindBlurDimInfo.DimColor ?? new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                IntPtr colorPtr = Color.getCPtr(dimColor).Handle;
                 IntPtr internalDimInfo = Interop.WindowDimInfo.New(
                     value.BehindBlurDimInfo.IsEnabled,
                     colorPtr
