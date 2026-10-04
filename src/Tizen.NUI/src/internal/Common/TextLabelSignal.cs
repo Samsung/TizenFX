@@ -31,13 +31,6 @@ namespace Tizen.NUI
             Interop.TextLabel.DeleteTextLabelSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.TextLabel.TextLabelSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.TextLabel.TextLabelSignalGetConnectionCount(SwigCPtr);
@@ -61,12 +54,6 @@ namespace Tizen.NUI
                 Interop.TextLabel.TextLabelSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(TextLabel arg)
-        {
-            Interop.TextLabel.TextLabelSignalEmit(SwigCPtr, TextLabel.getCPtr(arg));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public TextLabelSignal() : this(Interop.TextLabel.NewTextLabelSignal(), true)

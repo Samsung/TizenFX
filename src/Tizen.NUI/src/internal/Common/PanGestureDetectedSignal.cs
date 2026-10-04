@@ -29,13 +29,6 @@ namespace Tizen.NUI
             Interop.PanGestureDetector.DeletePanGestureDetectedSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.PanGestureDetector.PanGestureDetectedSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.PanGestureDetector.PanGestureDetectedSignalGetConnectionCount(SwigCPtr);
@@ -59,12 +52,6 @@ namespace Tizen.NUI
                 Interop.PanGestureDetector.PanGestureDetectedSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(View arg1, PanGesture arg2)
-        {
-            Interop.PanGestureDetector.PanGestureDetectedSignalEmit(SwigCPtr, View.getCPtr(arg1), PanGesture.getCPtr(arg2));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public PanGestureDetectedSignal() : this(Interop.PanGestureDetector.NewPanGestureDetectedSignal(), true)

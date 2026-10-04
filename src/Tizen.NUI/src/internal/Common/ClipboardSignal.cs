@@ -30,13 +30,6 @@ namespace Tizen.NUI
             Interop.Clipboard.DeleteClipboardSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.Clipboard.ClipboardSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.Clipboard.ClipboardSignalGetConnectionCount(SwigCPtr);
@@ -60,12 +53,6 @@ namespace Tizen.NUI
                 Interop.Clipboard.ClipboardSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(Clipboard clipboard)
-        {
-            Interop.Clipboard.ClipboardSignalEmit(SwigCPtr, Clipboard.getCPtr(clipboard));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ClipboardSignal() : this(Interop.Clipboard.NewClipboardSignal(), true)

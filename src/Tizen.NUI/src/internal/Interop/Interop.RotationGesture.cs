@@ -52,10 +52,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_localCenterPoint_get")]
             public static extern global::System.IntPtr LocalCenterPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_Empty")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool RotationGestureDetectedSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_GetConnectionCount")]
             public static extern uint RotationGestureDetectedSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -64,9 +60,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_Disconnect")]
             public static extern void RotationGestureDetectedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_Emit")]
-            public static extern void RotationGestureDetectedSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RotationGestureDetectedSignal")]
             public static extern global::System.IntPtr NewRotationGestureDetectedSignal();

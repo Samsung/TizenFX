@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.StyleChangedSignal.DeleteStyleChangedSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.StyleChangedSignal.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.StyleChangedSignal.GetConnectionCount(SwigCPtr);
@@ -58,12 +51,6 @@ namespace Tizen.NUI
                 Interop.StyleChangedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(StyleManager arg1, StyleChangeType arg2)
-        {
-            Interop.StyleChangedSignal.Emit(SwigCPtr, StyleManager.getCPtr(arg1), (int)arg2);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public StyleChangedSignal() : this(Interop.StyleChangedSignal.NewStyleChangedSignal(), true)
