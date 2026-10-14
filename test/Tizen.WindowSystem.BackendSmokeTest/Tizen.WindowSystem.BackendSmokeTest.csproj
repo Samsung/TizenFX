@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <TizenCreateTpkOnBuild>true</TizenCreateTpkOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(BUILD_TCORE_ENABLE)' == '1' Or '$(BUILD_TCORE_ENABLE)' == 'true' Or '$(BUILD_TCORE_ENABLE)' == 'yes' Or '$(BUILD_TCORE_ENABLE)' == 'on'">
+    <DefineConstants>$(DefineConstants);BUILD_TCORE_ENABLE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+    <ProjectReference Include="../../src/Tizen/Tizen.csproj" />
+    <ProjectReference Include="../../src/Tizen.Applications.Common/Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="../../src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.csproj" />
+    <ProjectReference Include="../../src/Tizen.Log/Tizen.Log.csproj" />
+    <ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
+    <ProjectReference Include="../../src/Tizen.WindowSystem/Tizen.WindowSystem.csproj" />
+    <ProjectReference Include="../../src/Tizen.NUI.WindowSystem/Tizen.NUI.WindowSystem.csproj" />
+  </ItemGroup>
+
+</Project>
