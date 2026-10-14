@@ -43,7 +43,11 @@ namespace Tizen.WindowSystem.Shell
         /// <since_tizen> 8 </since_tizen>
         public TizenShell()
         {
+#if BUILD_TCORE_ENABLE
+            _tizenShell = Interop.TizenShell.Create((int)Interop.TizenShell.ToolKitType.TcoreWayland);
+#else
             _tizenShell = Interop.TizenShell.Create((int)Interop.TizenShell.ToolKitType.Efl);
+#endif
             if (_tizenShell.IsInvalid)
             {
                 int error = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
