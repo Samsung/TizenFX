@@ -126,6 +126,14 @@ cp %{SOURCE1} .
 
 %build
 
+%if %{defined BUILD_TCORE_ENABLE}
+%if "%{?BUILD_TCORE_ENABLE}" == ""
+%define tcore_enable_msbuild_arg /p:BUILD_TCORE_ENABLE=1
+%else
+%define tcore_enable_msbuild_arg /p:BUILD_TCORE_ENABLE=%{BUILD_TCORE_ENABLE}
+%endif
+%endif
+
 # configure for ASAN
 %{?asan:export ASAN_OPTIONS=use_sigaltstack=false:allow_user_segv_handler=true:handle_sigfpe=false:`cat /ASAN_OPTIONS`}
 
@@ -135,9 +143,9 @@ export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 
 # build full assemblies
 %if %{defined profile}
-%{build_cmd} --full /p:BuildProfile=%{profile}
+%{build_cmd} --full /p:BuildProfile=%{profile} %{?tcore_enable_msbuild_arg}
 %else
-%{build_cmd} --full
+%{build_cmd} --full %{?tcore_enable_msbuild_arg}
 %endif
 
 # pack nuget package
