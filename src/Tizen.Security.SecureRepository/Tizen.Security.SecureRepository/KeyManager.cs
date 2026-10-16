@@ -39,6 +39,7 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="alias"/> argument is null.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="alias"/> argument has an invalid format.
+        /// Thrown when <paramref name="password"/> contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when key does not exist with given <paramref name="alias"/>
@@ -48,6 +49,8 @@ namespace Tizen.Security.SecureRepository
         {
             if (alias == null)
                 throw new ArgumentNullException("alias cannot be null");
+
+            Interop.CheckPassword(password, nameof(password));
 
             IntPtr ptr = IntPtr.Zero;
 
@@ -109,6 +112,8 @@ namespace Tizen.Security.SecureRepository
         /// </exception>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="alias"/> or <paramref name="key"/> argument has an invalid format.
+        /// Thrown when password of <paramref name="key"/> or <paramref name="policy"/>
+        /// contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when key with given alias already exists.
@@ -148,6 +153,8 @@ namespace Tizen.Security.SecureRepository
         /// Thrown when <paramref name="size"/> is invalid.
         /// Thrown when <paramref name="privateKeyAlias"/> or
         /// <paramref name="publicKeyAlias"/> has an invalid format.
+        /// Thrown when password of <paramref name="privateKeyPolicy"/> or
+        /// <paramref name="publicKeyPolicy"/> contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when key with <paramref name="privateKeyAlias"/> or <paramref name="publicKeyAlias"/> already exists.
@@ -193,6 +200,8 @@ namespace Tizen.Security.SecureRepository
         /// Thrown when <paramref name="size"/> is invalid.
         /// Thrown when <paramref name="privateKeyAlias"/> or
         /// <paramref name="publicKeyAlias"/> has an invalid format.
+        /// Thrown when password of <paramref name="privateKeyPolicy"/> or
+        /// <paramref name="publicKeyPolicy"/> contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when key with <paramref name="privateKeyAlias"/> or
@@ -236,6 +245,8 @@ namespace Tizen.Security.SecureRepository
         /// Thrown when <paramref name="type"/> is invalid.
         /// Thrown when <paramref name="privateKeyAlias"/> or
         /// <paramref name="publicKeyAlias"/> has an invalid format.
+        /// Thrown when password of <paramref name="privateKeyPolicy"/> or
+        /// <paramref name="publicKeyPolicy"/> contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when key with <paramref name="privateKeyAlias"/> or
@@ -276,6 +287,7 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="size"/> is invalid.
         /// Thrown when <paramref name="keyAlias"/> has an invalid format.
+        /// Thrown when password of <paramref name="policy"/> contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when key with <paramref name="keyAlias"/> already exists.
