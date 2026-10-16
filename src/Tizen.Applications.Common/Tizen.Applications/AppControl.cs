@@ -913,7 +913,7 @@ namespace Tizen.Applications
                 throw new ArgumentNullException(nameof(launchRequest));
             }
 
-            var task = new TaskCompletionSource<AppControlResult>();
+            var task = new TaskCompletionSource<AppControlResult>(TaskCreationOptions.RunContinuationsAsynchronously);
             Interop.AppControl.ErrorCode err;
             int requestId = 0;
 
