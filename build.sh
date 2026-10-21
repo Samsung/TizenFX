@@ -57,7 +57,7 @@ cleanup_solution() {
 
 remove_intermediates() {
   find $1 -type d \
-    \( -name obj -o -name bin \) -print0 | xargs -0 -I {} rm -fr "{}"
+    \( -name obj -o -name bin \) -print0 | xargs -0 rm -fr
 }
 
 clean() {
