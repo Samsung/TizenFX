@@ -201,7 +201,7 @@ internal static partial class Interop
         internal static extern IntPtr BaseAddWidgetComponent(IntPtr comp_class, string compId, ref WidgetLifecycleCallbacks callback, IntPtr userData);
 
         [LibraryImport(Libraries.CompCoreBase, EntryPoint = "base_frame_create_window")]
-        internal static partial IntPtr BaseFrameCreateWindow(out IntPtr winHandle, int winId, IntPtr raw);
+        internal static partial ErrorCode BaseFrameCreateWindow(out IntPtr winHandle, int winId, IntPtr raw);
 
         [LibraryImport(Libraries.CompCoreBase, EntryPoint = "base_frame_window_get_compId")]
         internal static partial IntPtr BaseFrameWindowGetId(IntPtr winHandle, out int winId);
