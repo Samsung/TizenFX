@@ -46,6 +46,7 @@ namespace Tizen.Multimedia
         private IList<Rotation> _streamRotations;
         private IList<Flips> _streamFlips;
         private IList<CameraPtzType> _ptzTypes;
+        private IList<int> _mosaicBlockSizes;
         private delegate CameraError GetRangeDelegate(IntPtr handle, out int min, out int max);
         private delegate bool IsSupportedDelegate(IntPtr handle);
 
@@ -62,6 +63,8 @@ namespace Tizen.Multimedia
             IsAntiShakeSupported = IsFeatureSupported(NativeCapabilities.IsAntiShakeSupported);
             IsVideoStabilizationSupported = IsFeatureSupported(NativeCapabilities.IsVideoStabilizationSupported);
             IsAutoContrastSupported = IsFeatureSupported(NativeCapabilities.IsAutoContrastSupported);
+            IsPrivacyShutterSupported = IsFeatureSupported(NativeCapabilities.IsPrivacyShutterSupported);
+            IsMosaicSupported = IsFeatureSupported(NativeCapabilities.IsMosaicSupported);
             IsBrigtnessSupported = CheckRangeValid(NativeSettings.GetBrightnessRange);
             IsExposureSupported = CheckRangeValid(NativeSettings.GetExposureRange);
             IsZoomSupported = CheckRangeValid(NativeSettings.GetZoomRange);
@@ -227,6 +230,20 @@ namespace Tizen.Multimedia
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 11 </since_tizen>
         public bool IsWhiteBalanceTemperatureSupported { get; }
+
+        /// <summary>
+        /// Gets the privacy shutter feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 14 </since_tizen>
+        public bool IsPrivacyShutterSupported { get; }
+
+        /// <summary>
+        /// Gets the mosaic feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 14 </since_tizen>
+        public bool IsMosaicSupported { get; }
 
         /// <summary>
         /// Retrieves all the preview resolutions supported by the camera.
@@ -627,6 +644,29 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// Retrieves all the mosaic block sizes supported by the camera.
+        /// </summary>
+        /// <since_tizen> 14 </since_tizen>
+        /// <returns>
+        /// It returns a list containing all the supported mosaic block sizes.
+        /// </returns>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public IEnumerable<int> SupportedMosaicBlockSizes
+        {
+            get
+            {
+                _camera.ValidateNotDisposed();
+
+                if (_mosaicBlockSizes == null)
+                {
+                    _mosaicBlockSizes = GetSupportedMosaicBlockSizes();
+                }
+
+                return _mosaicBlockSizes;
+            }
+        }
+
         #region Methods for getting supported values
         private IList<Size> GetSupportedPreviewResolutions()
         {
@@ -898,6 +938,22 @@ namespace Tizen.Multimedia
                 ThrowIfFailed("Failed to get the supported Ptz types.");
 
             return ptzTypes.AsReadOnly();
+        }
+
+        private IList<int> GetSupportedMosaicBlockSizes()
+        {
+            var mosaicBlockSizes = new List<int>();
+
+            NativeCapabilities.MosaicBlockSizeCallback callback = (blockSize, _) =>
+            {
+                mosaicBlockSizes.Add(blockSize);
+                return true;
+            };
+
+            NativeCapabilities.SupportedMosaicBlockSizes(_camera.GetHandle(), callback).
+                ThrowIfFailed("Failed to get the supported mosaic block sizes.");
+
+            return mosaicBlockSizes.AsReadOnly();
         }
         #endregion Methods for getting supported values
     }

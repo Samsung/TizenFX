@@ -125,6 +125,45 @@ namespace Tizen.Multimedia
         public event EventHandler<CameraStateChangedEventArgs> StateChanged;
         private Native.StateChangedCallback _stateChangedCallback;
 
+        private Native.PrivacyShutterStateChangedCallback _privacyShutterStateChangedCallback;
+        private event EventHandler<CameraPrivacyShutterStateChangedEventArgs> _privacyShutterStateChanged;
+        private object _privacyShutterStateChangedEventLock = new object();
+
+        /// <summary>
+        /// An event that occurs when the privacy shutter state is changed.
+        /// Checks whether the <see cref="CameraCapabilities.IsPrivacyShutterSupported"/> is supported or not before adding this EventHandler.
+        /// </summary>
+        /// <since_tizen> 14 </since_tizen>
+        /// <exception cref="NotSupportedException">In case of privacy shutter feature is not supported.</exception>
+        public event EventHandler<CameraPrivacyShutterStateChangedEventArgs> PrivacyShutterStateChanged
+        {
+            add
+            {
+                lock (_privacyShutterStateChangedEventLock)
+                {
+                    if (_privacyShutterStateChanged == null)
+                    {
+                        RegisterPrivacyShutterStateChangedCallback();
+                    }
+
+                    _privacyShutterStateChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (_privacyShutterStateChangedEventLock)
+                {
+                    _privacyShutterStateChanged -= value;
+
+                    if (_privacyShutterStateChanged == null)
+                    {
+                        UnregisterPrivacyShutterStateChangedCallback();
+                    }
+                }
+            }
+        }
+
         private static Native.DeviceStateChangedCallback _deviceStateChangedCallback;
         private static event EventHandler<CameraDeviceStateChangedEventArgs> _deviceStateChanged;
         private static object _deviceStateChangedEventLock = new object();
@@ -460,6 +499,25 @@ namespace Tizen.Multimedia
             _previewBuffer?.Dispose();
             _previewBuffer = null;
             _extraPreviewCallback = null;
+        }
+
+        private void RegisterPrivacyShutterStateChangedCallback()
+        {
+            _privacyShutterStateChangedCallback = (state, _) =>
+            {
+                _privacyShutterStateChanged?.Invoke(this, new CameraPrivacyShutterStateChangedEventArgs(state));
+            };
+
+            Native.SetPrivacyShutterStateChangedCallback(_handle, _privacyShutterStateChangedCallback).
+                ThrowIfFailed("Failed to set privacy shutter state changed callback.");
+        }
+
+        private void UnregisterPrivacyShutterStateChangedCallback()
+        {
+            Native.UnsetPrivacyShutterStateChangedCallback(_handle).
+                ThrowIfFailed("Failed to unset privacy shutter state changed callback.");
+
+            _privacyShutterStateChangedCallback = null;
         }
     }
 }
