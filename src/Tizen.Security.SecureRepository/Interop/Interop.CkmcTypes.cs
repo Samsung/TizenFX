@@ -26,6 +26,7 @@ internal static partial class Interop
     {
         public CkmcPolicy(string password, bool extractable)
         {
+            CheckPassword(password, nameof(password));
             this.password = password;
             this.extractable = extractable;
         }
@@ -41,6 +42,7 @@ internal static partial class Interop
     {
         public CkmcKey(IntPtr binary, int keySize, int keyType, string password)
         {
+            CheckPassword(password, nameof(password));
             this.rawKey = binary;
             this.size = (UIntPtr)keySize;
             this.keyType = keyType;

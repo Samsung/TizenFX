@@ -55,6 +55,10 @@ namespace Tizen.Security.SecureRepository
         /// Used to encrypt data in secure repository. If it is not null, the data
         /// (or key, or certificate) is stored encrypted with this password inside secure repository.
         /// </value>
+        /// <remarks>
+        /// The password must not contain a null character (U+0000). Methods which take
+        /// a policy with such a password throw <see cref="ArgumentException"/>.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public String Password
         {
