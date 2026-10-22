@@ -16,11 +16,15 @@
 
 namespace Tizen.Multimedia
 {
+    // Matches player_display_type_e in the public player.h header.
     internal enum PlayerDisplayType
     {
-        Overlay,
+        Overlay = 0,
         Evas = 3,
         None = 4,
-        OverlayUISync = 5
+        OverlayUISync = 5,
+        Overlay2 = 6,
+        OverlayUISync2 = 7,
+        NativeImage = 8
     }
 }
