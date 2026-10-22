@@ -180,6 +180,26 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Gets the privacy shutter state.
+        /// </summary>
+        /// <since_tizen> 14 </since_tizen>
+        /// <value>A <see cref="CameraPrivacyShutterState"/> that specifies the privacy shutter state.</value>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public CameraPrivacyShutterState PrivacyShutterState
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                Native.GetPrivacyShutterState(_handle, out var val).ThrowIfFailed("Failed to get the privacy shutter state");
+
+                return val;
+            }
+        }
+
+        /// <summary>
         /// Gets the camera device count.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
