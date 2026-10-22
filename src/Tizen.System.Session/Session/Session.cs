@@ -325,6 +325,8 @@ namespace Tizen.System
             {
                 lock (_addUserWaitLock)
                 {
+                    if (value == null)
+                        return;
                     if (_addUserWaitHandler == null)
                         RegisterCallbackForEvent(SessionEventType.AddUserWait, ref _addUserWaitCB, OnAddUserWait);
                     _addUserWaitHandler += value;
@@ -334,6 +336,8 @@ namespace Tizen.System
             {
                 lock (_addUserWaitLock)
                 {
+                    if (_addUserWaitHandler == null)
+                        return;
                     _addUserWaitHandler -= value;
                     if (_addUserWaitHandler == null)
                         UnregisterCallbackForEvent(SessionEventType.AddUserWait, ref _addUserWaitCB);
@@ -367,6 +371,8 @@ namespace Tizen.System
             {
                 lock (_removeUserWaitLock)
                 {
+                    if (value == null)
+                        return;
                     if (_removeUserWaitHandler == null)
                         RegisterCallbackForEvent(SessionEventType.RemoveUserWait, ref _removeUserWaitCB, OnRemoveUserWait);
                     _removeUserWaitHandler += value;
@@ -376,6 +382,8 @@ namespace Tizen.System
             {
                 lock (_removeUserWaitLock)
                 {
+                    if (_removeUserWaitHandler == null)
+                        return;
                     _removeUserWaitHandler -= value;
                     if (_removeUserWaitHandler == null)
                         UnregisterCallbackForEvent(SessionEventType.RemoveUserWait, ref _removeUserWaitCB);
@@ -409,6 +417,8 @@ namespace Tizen.System
             {
                 lock (_switchUserWaitLock)
                 {
+                    if (value == null)
+                        return;
                     if (_switchUserWaitHandler == null)
                         RegisterCallbackForEvent(SessionEventType.SwitchUserWait, ref _switchUserWaitCB, OnSwitchUserWait);
                     _switchUserWaitHandler += value;
@@ -418,6 +428,8 @@ namespace Tizen.System
             {
                 lock (_switchUserWaitLock)
                 {
+                    if (_switchUserWaitHandler == null)
+                        return;
                     _switchUserWaitHandler -= value;
                     if (_switchUserWaitHandler == null)
                         UnregisterCallbackForEvent(SessionEventType.SwitchUserWait, ref _switchUserWaitCB);
@@ -451,6 +463,8 @@ namespace Tizen.System
             {
                 lock (_switchUserCompletionLock)
                 {
+                    if (value == null)
+                        return;
                     if (_switchUserCompletionHandler == null)
                         RegisterCallbackForEvent(SessionEventType.SwitchUserCompletion, ref _switchUserCompletionCB, OnSwitchUserCompletion);
                     _switchUserCompletionHandler += value;
@@ -460,6 +474,8 @@ namespace Tizen.System
             {
                 lock (_switchUserCompletionLock)
                 {
+                    if (_switchUserCompletionHandler == null)
+                        return;
                     _switchUserCompletionHandler -= value;
                     if (_switchUserCompletionHandler == null)
                         UnregisterCallbackForEvent(SessionEventType.SwitchUserCompletion, ref _switchUserCompletionCB);
