@@ -53,10 +53,6 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsExclusive(HandleRef capture);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Empty")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool SignalEmpty(HandleRef jarg1);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_GetConnectionCount")]
             public static extern uint SignalGetConnectionCount(HandleRef jarg1);
 
@@ -65,9 +61,6 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Disconnect")]
             public static extern void SignalDisconnect(HandleRef jarg1, HandleRef jarg2);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Emit")]
-            public static extern void SignalEmit(HandleRef jarg1, HandleRef jarg2, int jarg3);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Get")]
             public static extern IntPtr Get(HandleRef jarg1);

@@ -24,10 +24,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowPointerConstraintsEventSignal")]
             public static extern global::System.IntPtr GetSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowPointerConstraintsEventSignal_Empty")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowPointerConstraintsEventSignal_GetConnectionCount")]
             public static extern uint GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -36,9 +32,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowPointerConstraintsEventSignal_Disconnect")]
             public static extern void Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowPointerConstraintsEventSignal_Emit")]
-            public static extern void Emit(global::System.Runtime.InteropServices.HandleRef signalType, global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef mouseEvent);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowPointerConstraintsEventSignal")]
             public static extern void DeleteWindowPointerConstraintsSignal(global::System.Runtime.InteropServices.HandleRef jarg1);

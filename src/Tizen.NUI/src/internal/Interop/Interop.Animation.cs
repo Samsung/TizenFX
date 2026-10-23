@@ -231,10 +231,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Hide")]
             public static extern void Hide(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_Empty")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AnimationSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_GetConnectionCount")]
             public static extern uint AnimationSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -244,6 +240,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_Disconnect")]
             public static extern void AnimationSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+            // TODO : This function only be used at Tizen.NUI.Components Navigator, to emit finished callback immediatly.
+            // Finished callback immediatly is not recommended, because it may cause unexpected behavior. So, must fix Navigator codes in future.
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_Emit")]
             public static extern void AnimationSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 

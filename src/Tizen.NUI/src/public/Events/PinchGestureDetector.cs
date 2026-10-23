@@ -85,10 +85,11 @@ namespace Tizen.NUI
             remove
             {
                 detectedEventHandler -= value;
-                using var signal = DetectedSignal();
-                if (detectedEventHandler == null && signal.Empty() == false)
+                if (detectedEventHandler == null && detectedCallback != null)
                 {
+                    using var signal = DetectedSignal();
                     signal.Disconnect(detectedCallback);
+                    detectedCallback = null;
                 }
             }
         }

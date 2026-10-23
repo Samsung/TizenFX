@@ -117,9 +117,8 @@ namespace Tizen.NUI
             {
                 if (animationFinishedEventHandler == null && disposed == false)
                 {
-                    AnimationSignal finishedSignal = FinishedSignal();
-                    finishedSignal.Connect(finishedCallbackOfNative);
-                    finishedSignal.Dispose();
+                    using AnimationSignal finishedSignal = FinishedSignal();
+                    finishedSignal?.Connect(finishedCallbackOfNative);
                 }
                 animationFinishedEventHandler += value;
             }
@@ -127,12 +126,11 @@ namespace Tizen.NUI
             {
                 animationFinishedEventHandler -= value;
 
-                AnimationSignal finishedSignal = FinishedSignal();
-                if (animationFinishedEventHandler == null && finishedSignal.Empty() == false)
+                if (animationFinishedEventHandler == null && disposed == false)
                 {
-                    finishedSignal.Disconnect(finishedCallbackOfNative);
+                    using AnimationSignal finishedSignal = FinishedSignal();
+                    finishedSignal?.Disconnect(finishedCallbackOfNative);
                 }
-                finishedSignal.Dispose();
             }
         }
 
@@ -153,9 +151,8 @@ namespace Tizen.NUI
                 if (animationProgressReachedEventHandler == null)
                 {
                     animationProgressReachedEventCallback = OnProgressReached;
-                    AnimationSignal progressReachedSignal = ProgressReachedSignal();
+                    using AnimationSignal progressReachedSignal = ProgressReachedSignal();
                     progressReachedSignal?.Connect(animationProgressReachedEventCallback);
-                    progressReachedSignal?.Dispose();
                 }
 
                 animationProgressReachedEventHandler += value;
@@ -164,12 +161,12 @@ namespace Tizen.NUI
             {
                 animationProgressReachedEventHandler -= value;
 
-                AnimationSignal progressReachedSignal = ProgressReachedSignal();
-                if (animationProgressReachedEventHandler == null && progressReachedSignal?.Empty() == false)
+                if (animationProgressReachedEventHandler == null && animationProgressReachedEventCallback != null)
                 {
+                    using AnimationSignal progressReachedSignal = ProgressReachedSignal();
                     progressReachedSignal?.Disconnect(animationProgressReachedEventCallback);
+                    animationProgressReachedEventCallback = null;
                 }
-                progressReachedSignal.Dispose();
             }
         }
 
@@ -1890,17 +1887,15 @@ namespace Tizen.NUI
 
             if (animationFinishedEventHandler != null)
             {
-                AnimationSignal finishedSignal = FinishedSignal();
+                using AnimationSignal finishedSignal = FinishedSignal();
                 finishedSignal?.Disconnect(finishedCallbackOfNative);
-                finishedSignal?.Dispose();
                 animationFinishedEventHandler = null;
             }
 
             if (animationProgressReachedEventCallback != null)
             {
-                AnimationSignal progressReachedSignal = ProgressReachedSignal();
+                using AnimationSignal progressReachedSignal = ProgressReachedSignal();
                 progressReachedSignal?.Disconnect(animationProgressReachedEventCallback);
-                progressReachedSignal?.Dispose();
                 animationProgressReachedEventCallback = null;
             }
 

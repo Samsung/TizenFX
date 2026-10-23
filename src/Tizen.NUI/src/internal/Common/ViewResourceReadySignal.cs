@@ -30,13 +30,6 @@ namespace Tizen.NUI
             Interop.ViewResourceReadySignal.DeleteViewResourceReadySignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.ViewResourceReadySignal.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.ViewResourceReadySignal.GetConnectionCount(SwigCPtr);
@@ -60,12 +53,6 @@ namespace Tizen.NUI
                 Interop.ViewResourceReadySignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(View arg)
-        {
-            Interop.ViewResourceReadySignal.Emit(SwigCPtr, View.getCPtr(arg));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ViewResourceReadySignal() : this(Interop.ViewResourceReadySignal.NewViewResourceReadySignal(), true)
