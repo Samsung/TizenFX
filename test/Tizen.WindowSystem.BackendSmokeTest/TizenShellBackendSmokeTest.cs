@@ -15,13 +15,9 @@ namespace Tizen.WindowSystem.BackendSmokeTest
         {
             base.OnCreate();
 
-            List<string> results = RunSmokeTests();
-            foreach (string result in results)
-            {
-                Tizen.Log.Debug(LogTag, result);
-            }
-
             Window window = NUIApplication.GetDefaultWindow();
+            List<string> results = RunSmokeTests(window);
+
             window.BackgroundColor = Color.White;
 
             TextLabel summary = new TextLabel(string.Join("\n", results))
@@ -35,7 +31,7 @@ namespace Tizen.WindowSystem.BackendSmokeTest
             window.Add(summary);
         }
 
-        static List<string> RunSmokeTests()
+        static List<string> RunSmokeTests(Window window)
         {
             List<string> results = new List<string>();
 
@@ -47,7 +43,47 @@ namespace Tizen.WindowSystem.BackendSmokeTest
             RunCreateTest(results, "NUI.WindowSystem configured backend (EFL)", () => new NuiShell());
 #endif
 
+            RunActionTest(results, "WindowSystem QuickPanelClient window interop", () =>
+            {
+                using (WindowSystemShell shell = new WindowSystemShell())
+                using (Tizen.WindowSystem.Shell.QuickPanelClient client = new Tizen.WindowSystem.Shell.QuickPanelClient(
+                    shell, (Tizen.Common.IWindowProvider)window, Tizen.WindowSystem.Shell.QuickPanelCategory.SystemDefault))
+                {
+                }
+            });
+
+            RunActionTest(results, "NUI.WindowSystem QuickPanelClient window interop", () =>
+            {
+                using (NuiShell shell = new NuiShell())
+                using (Tizen.NUI.WindowSystem.Shell.QuickPanelClient client = new Tizen.NUI.WindowSystem.Shell.QuickPanelClient(
+                    shell, (Tizen.Common.IWindowProvider)window, Tizen.NUI.WindowSystem.Shell.QuickPanelClient.Types.SystemDefault))
+                {
+                }
+            });
+
+            RunActionTest(results, "NUI.WindowSystem QuickPanelClient Window overload", () =>
+            {
+                using (NuiShell shell = new NuiShell())
+                using (Tizen.NUI.WindowSystem.Shell.QuickPanelClient client = new Tizen.NUI.WindowSystem.Shell.QuickPanelClient(
+                    shell, window, Tizen.NUI.WindowSystem.Shell.QuickPanelClient.Types.SystemDefault))
+                {
+                }
+            });
+
             return results;
+        }
+
+        static void RunActionTest(List<string> results, string name, Action action)
+        {
+            try
+            {
+                action();
+                AddResult(results, $"PASS  {name}: created and disposed");
+            }
+            catch (Exception exception)
+            {
+                AddResult(results, $"FAIL  {name}: {exception.GetType().Name}: {exception.Message}");
+            }
         }
 
         static void RunCreateTest(List<string> results, string name, Func<IDisposable> create)
@@ -58,12 +94,18 @@ namespace Tizen.WindowSystem.BackendSmokeTest
                 {
                 }
 
-                results.Add($"PASS  {name}: created and disposed");
+                AddResult(results, $"PASS  {name}: created and disposed");
             }
             catch (Exception exception)
             {
-                results.Add($"FAIL  {name}: {exception.GetType().Name}: {exception.Message}");
+                AddResult(results, $"FAIL  {name}: {exception.GetType().Name}: {exception.Message}");
             }
+        }
+
+        static void AddResult(List<string> results, string result)
+        {
+            results.Add(result);
+            Tizen.Log.Debug(LogTag, result);
         }
 
         static void Main(string[] args)
