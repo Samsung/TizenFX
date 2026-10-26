@@ -300,8 +300,12 @@ namespace Tizen.NUI.WindowSystem.Shell
                 _tzsh.ErrorCodeThrow(err);
             }
 
+#if BUILD_TCORE_ENABLE
+            _tzsh.GetWindowScreenSize(((IWindowProvider)win).WindowHandle, out width, out height);
+#else
             Information.TryGetValue("http://tizen.org/feature/screen.width", out width);
             Information.TryGetValue("http://tizen.org/feature/screen.height", out height);
+#endif
             if (width > height) _screenOrientation = Window.WindowOrientation.Landscape;
         }
 
@@ -336,7 +340,7 @@ namespace Tizen.NUI.WindowSystem.Shell
             }
 
             _tzsh = tzShell;
-            _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);
+            _tzshWin = _tzsh.GetWindowId(win.WindowHandle);
             _tzshQpClient = Interop.QuickPanelClient.CreateWithType(_tzsh.GetNativeHandle(), (uint)_tzshWin, (int)type);
             if (_tzshQpClient == IntPtr.Zero)
             {
@@ -344,8 +348,12 @@ namespace Tizen.NUI.WindowSystem.Shell
                 _tzsh.ErrorCodeThrow(err);
             }
 
+#if BUILD_TCORE_ENABLE
+            _tzsh.GetWindowScreenSize(win.WindowHandle, out width, out height);
+#else
             Information.TryGetValue("http://tizen.org/feature/screen.width", out width);
             Information.TryGetValue("http://tizen.org/feature/screen.height", out height);
+#endif
             if (width > height) _screenOrientation = (Window.WindowOrientation)(90);
         }
 
