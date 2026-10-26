@@ -138,7 +138,7 @@ namespace Tizen.NUI.WindowSystem.Shell
             }
 
             _tzsh = tzShell;
-            _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);
+            _tzshWin = _tzsh.GetWindowId(win.WindowHandle);
             _tzshQpService = Interop.QuickPanelService.CreateWithType(_tzsh.GetNativeHandle(), (uint)_tzshWin, (int)type);
             if (_tzshQpService == IntPtr.Zero)
             {

@@ -148,5 +148,64 @@ namespace Tizen.NUI.WindowSystem.Shell
         {
             return _tzsh;
         }
+
+        internal int GetWindowId(IntPtr window)
+        {
+#if BUILD_TCORE_ENABLE
+            int result = global::Tizen.NUI.WindowSystem.Interop.TizenCoreWl.WindowGetNativeSurface(window, out IntPtr surface);
+            ErrorCodeThrow(result);
+            if (surface == IntPtr.Zero)
+                throw new InvalidOperationException("Failed to get native window surface");
+
+            uint id = global::Tizen.NUI.WindowSystem.Interop.TizenCoreWl.ProxyGetId(surface);
+            if (id == 0)
+                throw new InvalidOperationException("Native window surface has no Wayland object ID");
+
+            return unchecked((int)id);
+#else
+            return global::Tizen.NUI.WindowSystem.Interop.EcoreWl2.GetWindowId(window);
+#endif
+        }
+
+#if BUILD_TCORE_ENABLE
+        internal void GetWindowScreenSize(IntPtr window, out int width, out int height)
+        {
+            width = 0;
+            height = 0;
+
+            int result = global::Tizen.NUI.WindowSystem.Interop.TizenCoreWl.WindowGetDisplay(window, out IntPtr display);
+            ErrorCodeThrow(result);
+            if (display == IntPtr.Zero)
+            {
+                return;
+            }
+
+            // Output handles are borrowed; only the returned GList nodes are freed below.
+            IntPtr outputList = IntPtr.Zero;
+            try
+            {
+                result = global::Tizen.NUI.WindowSystem.Interop.TizenCoreWl.DisplayGetOutputDeviceList(display, out outputList);
+                ErrorCodeThrow(result);
+                if (outputList == IntPtr.Zero)
+                {
+                    return;
+                }
+
+                global::Tizen.NUI.WindowSystem.Interop.TizenCoreWl.GList firstOutput = global::System.Runtime.InteropServices.Marshal.PtrToStructure<global::Tizen.NUI.WindowSystem.Interop.TizenCoreWl.GList>(outputList);
+                if (firstOutput.Data != IntPtr.Zero)
+                {
+                    result = global::Tizen.NUI.WindowSystem.Interop.TizenCoreWl.OutputDeviceGetGeometry(firstOutput.Data, out width, out height);
+                    ErrorCodeThrow(result);
+                }
+            }
+            finally
+            {
+                if (outputList != IntPtr.Zero)
+                {
+                    global::Tizen.NUI.WindowSystem.Interop.TizenCoreWl.GListFree(outputList);
+                }
+            }
+        }
+#endif
     }
 }
