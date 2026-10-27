@@ -663,9 +663,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public Size GetScreenSize()
         {
-            var ret = new Size(Interop.Application.GetScreenSize(), true);
+            // CSharp_Dali_GetScreenSize returns Dali::Size which is an alias of Vector2
+            // (8 bytes, two floats). Consume it as Vector2 and project onto a 3D Size;
+            // the Size(IntPtr, bool) constructor must not be used here because it reads
+            // a third float (Depth) past the end of the buffer.
+            var ptr = Interop.Application.GetScreenSize();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+
+            var handleRef = new global::System.Runtime.InteropServices.HandleRef(null, ptr);
+            float width = Interop.Vector2.WidthGet(handleRef);
+            float height = Interop.Vector2.HeightGet(handleRef);
+            Interop.Vector2.DeleteVector2(handleRef);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            return new Size(width, height, 0.0f);
         }
 
         /// <summary>
