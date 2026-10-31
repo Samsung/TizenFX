@@ -62,6 +62,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void DeviceStateChangedCallback(CameraDevice device, CameraDeviceState state, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PrivacyShutterStateChangedCallback(CameraPrivacyShutterState state, IntPtr userData);
+
         [DllImport(Libraries.Camera, EntryPoint = "camera_create")]
         internal static extern CameraError Create(CameraDevice device, out IntPtr handle);
 
@@ -219,6 +222,15 @@ internal static partial class Interop
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_unset_hdr_capture_progress_cb")]
         internal static extern CameraError UnsetHdrCaptureProgressCallback(IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_get_privacy_shutter_state")]
+        internal static extern CameraError GetPrivacyShutterState(IntPtr handle, out CameraPrivacyShutterState state);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_set_privacy_shutter_state_changed_cb")]
+        internal static extern CameraError SetPrivacyShutterStateChangedCallback(IntPtr handle, PrivacyShutterStateChangedCallback callback, IntPtr userData = default);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_unset_privacy_shutter_state_changed_cb")]
+        internal static extern CameraError UnsetPrivacyShutterStateChangedCallback(IntPtr handle);
 
 
         [NativeStruct("camera_image_data_s", Include="camera.h", PkgConfig="capi-media-camera")]
