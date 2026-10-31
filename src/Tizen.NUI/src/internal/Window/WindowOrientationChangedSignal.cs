@@ -28,14 +28,6 @@ namespace Tizen.NUI
             Interop.WindowOrientationChangedSignal.DeleteSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.WindowOrientationChangedSignal.Empty(SwigCPtr);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.WindowOrientationChangedSignal.GetConnectionCount(SwigCPtr);
@@ -60,13 +52,6 @@ namespace Tizen.NUI
                 Interop.WindowOrientationChangedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public bool Emit(Window window, int orientation)
-        {
-            bool ret = Interop.WindowOrientationChangedSignal.Emit(SwigCPtr, Window.getCPtr(window), orientation);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public WindowOrientationChangedSignal(Window window) : this(Interop.WindowOrientationChangedSignal.GetSignal(Window.getCPtr(window)), false)

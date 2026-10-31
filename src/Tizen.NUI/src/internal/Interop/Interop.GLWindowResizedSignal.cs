@@ -23,10 +23,6 @@ namespace Tizen.NUI
     {
         internal static partial class GLWindowResizedSignal
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Empty")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GlWindowResizedSignalEmpty(HandleRef jarg1);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_GetConnectionCount")]
             public static extern uint GlWindowResizedSignalGetConnectionCount(HandleRef jarg1);
 
@@ -35,9 +31,6 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Disconnect")]
             public static extern void GlWindowResizedSignalDisconnect(HandleRef jarg1, HandleRef jarg2);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Emit")]
-            public static extern void GlWindowResizedSignalEmit(HandleRef jarg1, HandleRef jarg2);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlWindow_ResizedSignal")]
             public static extern global::System.IntPtr NewGlWindowResizedSignal();

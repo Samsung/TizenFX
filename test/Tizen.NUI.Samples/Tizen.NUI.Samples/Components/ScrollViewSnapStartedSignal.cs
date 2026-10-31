@@ -31,13 +31,6 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Interop.ScrollView.DeleteScrollViewSnapStartedSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Tizen.NUI.Interop.ScrollView.ScrollViewSnapStartedSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Tizen.NUI.Interop.ScrollView.ScrollViewSnapStartedSignalGetConnectionCount(SwigCPtr);
@@ -61,12 +54,6 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Interop.ScrollView.ScrollViewSnapStartedSignalDisconnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(ScrollView.SnapEvent arg)
-        {
-            Tizen.NUI.Interop.ScrollView.ScrollViewSnapStartedSignalEmit(SwigCPtr, ScrollView.SnapEvent.getCPtr(arg));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ScrollViewSnapStartedSignal() : this(Tizen.NUI.Interop.ScrollView.NewScrollViewSnapStartedSignal(), true)

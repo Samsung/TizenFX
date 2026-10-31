@@ -28,13 +28,6 @@ namespace Tizen.NUI
             Interop.Timer.DeleteTimerSignalType(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.Timer.TimerSignalTypeEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.Timer.TimerSignalTypeGetConnectionCount(SwigCPtr);
@@ -70,13 +63,6 @@ namespace Tizen.NUI
         {
             Interop.Timer.TimerSignalTypeDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public bool Emit()
-        {
-            bool ret = Interop.Timer.TimerSignalTypeEmit(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public TimerSignalType() : this(Interop.Timer.NewTimerSignalType(), true)

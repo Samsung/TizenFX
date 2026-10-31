@@ -24,10 +24,6 @@ namespace Tizen.NUI
     {
         internal static partial class VisualEventSignal
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualEventSignal_Empty")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Empty(HandleRef jarg1);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualEventSignal_GetConnectionCount")]
             public static extern uint GetConnectionCount(HandleRef jarg1);
 
@@ -36,9 +32,6 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualEventSignal_Disconnect")]
             public static extern void Disconnect(HandleRef jarg1, HandleRef jarg2);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualEventSignal_Emit")]
-            public static extern void Emit(HandleRef jarg1, HandleRef jarg2, int jarg3, int jarg4);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VisualEventSignal")]
             public static extern IntPtr New();
