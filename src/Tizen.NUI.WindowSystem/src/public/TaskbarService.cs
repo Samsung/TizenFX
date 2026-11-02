@@ -81,7 +81,7 @@ namespace Tizen.NUI.WindowSystem.Shell
             }
 
             _tzsh = tzShell;
-            _tzshWin = win.GetNativeId();
+            _tzshWin = _tzsh.GetWindowId(((IWindowProvider)win).WindowHandle);
             _taskbarService = Interop.TaskbarService.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
             if (_taskbarService == IntPtr.Zero)
             {

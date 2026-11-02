@@ -59,7 +59,7 @@ namespace Tizen.NUI.WindowSystem.Shell
             }
 
             _tzsh = tzShell;
-            _tzshWin = win.GetNativeId();
+            _tzshWin = _tzsh.GetWindowId(((IWindowProvider)win).WindowHandle);
             _screensaverService = Interop.ScreensaverService.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
             if (_screensaverService == IntPtr.Zero)
             {
