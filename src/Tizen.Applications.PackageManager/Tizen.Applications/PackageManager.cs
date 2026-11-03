@@ -538,13 +538,17 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public static async Task<PackageSizeInformation> GetTotalSizeInformationAsync()
         {
-            TaskCompletionSource<PackageSizeInformation> tcs = new TaskCompletionSource<PackageSizeInformation>();
+            TaskCompletionSource<PackageSizeInformation> tcs = new TaskCompletionSource<PackageSizeInformation>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             Interop.PackageManager.PackageManagerTotalSizeInfoCallback cb = (handle, userData) =>
             {
                 if (handle != IntPtr.Zero)
                 {
                     tcs.TrySetResult(PackageSizeInformation.GetPackageSizeInformation(handle));
+                }
+                else
+                {
+                    tcs.TrySetException(new InvalidOperationException("Failed to get total package size information"));
                 }
 
                 lock (s_totalSizeInfoCallbackDict)
@@ -563,6 +567,10 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.PackageManagerGetTotalSizeInfo(cb, callbackId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
+                lock (s_totalSizeInfoCallbackDict)
+                {
+                    s_totalSizeInfoCallbackDict.Remove(callbackId);
+                }
                 tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get total package size info"));
             }
             var result = await tcs.Task.ConfigureAwait(false);

@@ -276,13 +276,17 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public async Task<PackageSizeInformation> GetSizeInformationAsync()
         {
-            TaskCompletionSource<PackageSizeInformation> tcs = new TaskCompletionSource<PackageSizeInformation>();
+            TaskCompletionSource<PackageSizeInformation> tcs = new TaskCompletionSource<PackageSizeInformation>(TaskCreationOptions.RunContinuationsAsynchronously);
             Interop.PackageManager.PackageManagerSizeInfoCallback sizeInfoCb = (pkgId, sizeInfoHandle, userData) =>
             {
                 if (sizeInfoHandle != IntPtr.Zero && Id == pkgId)
                 {
                     var pkgSizeInfo = PackageSizeInformation.GetPackageSizeInformation(sizeInfoHandle);
                     tcs.TrySetResult(pkgSizeInfo);
+                }
+                else
+                {
+                    tcs.TrySetException(new InvalidOperationException("Failed to get size information of " + Id));
                 }
 
                 lock (_packageManagerSizeInfoCallbackDict)
@@ -301,7 +305,11 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerGetSizeInfo(Id, sizeInfoCb, callbackId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get total package size info of " + Id));
+                lock (_packageManagerSizeInfoCallbackDict)
+                {
+                    _packageManagerSizeInfoCallbackDict.Remove(callbackId);
+                }
+                tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get package size info of " + Id));
             }
             var result = await tcs.Task.ConfigureAwait(false);
             GC.KeepAlive(sizeInfoCb);
