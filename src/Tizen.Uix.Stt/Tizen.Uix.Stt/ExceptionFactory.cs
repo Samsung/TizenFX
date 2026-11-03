@@ -25,127 +25,28 @@ namespace Tizen.Uix.Stt
         internal static Exception CreateException(SttError err)
         {
             Tizen.Log.Error(LogTag, $"Error {err}");
-            Exception exp;
-            switch (err)
+            return err switch
             {
-                case SttError.OutOfMemory:
-                    {
-                        exp = new OutOfMemoryException("Out Of Memory");
-                        break;
-                    }
-
-                case SttError.IoError:
-                    {
-                        exp = new InvalidOperationException("I/O Error Occurred");
-                        break;
-                    }
-
-                case SttError.InvalidParameter:
-                    {
-                        exp = new ArgumentException("Invalid Parameters Provided");
-                        break;
-                    }
-
-                case SttError.TimedOut:
-                    {
-                        exp = new TimeoutException("No answer from the STT service");
-                        break;
-                    }
-
-                case SttError.OutOfNetwork:
-                    {
-                        exp = new InvalidOperationException("Network is down");
-                        break;
-                    }
-
-                case SttError.PermissionDenied:
-                    {
-                        exp = new UnauthorizedAccessException("Permission Denied");
-                        break;
-                    }
-
-                case SttError.NotSupported:
-                    {
-                        exp = new NotSupportedException("STT NOT supported");
-                        break;
-                    }
-
-                case SttError.InvalidState:
-                    {
-                        exp = new InvalidOperationException("Invalid state");
-                        break;
-                    }
-
-                case SttError.InvalidLanguage:
-                    {
-                        exp = new InvalidOperationException("Invalid language");
-                        break;
-                    }
-
-                case SttError.EngineNotFound:
-                    {
-                        exp = new InvalidOperationException("No available engine");
-                        break;
-                    }
-
-                case SttError.OperationFailed:
-                    {
-                        exp = new InvalidOperationException("Operation Failed");
-                        break;
-                    }
-
-                case SttError.NotSupportedFeature:
-                    {
-                        exp = new InvalidOperationException("Not supported feature of current engine");
-                        break;
-                    }
-
-                case SttError.RecordingTimedOut:
-                    {
-                        exp = new InvalidOperationException("Recording timed out");
-                        break;
-                    }
-
-                case SttError.NoSpeech:
-                    {
-                        exp = new InvalidOperationException("No speech while recording");
-                        break;
-                    }
-
-                case SttError.InProgressToReady:
-                    {
-                        exp = new InvalidOperationException("Progress to ready is not finished");
-                        break;
-                    }
-
-                case SttError.InProgressToRecording:
-                    {
-                        exp = new InvalidOperationException("Progress to recording is not finished");
-                        break;
-                    }
-
-                case SttError.InProgressToProcessing:
-                    {
-                        exp = new InvalidOperationException("Progress to processing is not finished");
-                        break;
-                    }
-
-                case SttError.ServiceReset:
-                    {
-                        exp = new InvalidOperationException("Service reset");
-                        break;
-                    }
-
-                default:
-                    {
-                        exp = new Exception("");
-                        break;
-                    }
-
-            }
-
-            return exp;
-
+                SttError.OutOfMemory => new OutOfMemoryException("Out Of Memory"),
+                SttError.IoError => new InvalidOperationException("I/O Error Occurred"),
+                SttError.InvalidParameter => new ArgumentException("Invalid Parameters Provided"),
+                SttError.TimedOut => new TimeoutException("No answer from the STT service"),
+                SttError.OutOfNetwork => new InvalidOperationException("Network is down"),
+                SttError.PermissionDenied => new UnauthorizedAccessException("Permission Denied"),
+                SttError.NotSupported => new NotSupportedException("STT NOT supported"),
+                SttError.InvalidState => new InvalidOperationException("Invalid state"),
+                SttError.InvalidLanguage => new InvalidOperationException("Invalid language"),
+                SttError.EngineNotFound => new InvalidOperationException("No available engine"),
+                SttError.OperationFailed => new InvalidOperationException("Operation Failed"),
+                SttError.NotSupportedFeature => new InvalidOperationException("Not supported feature of current engine"),
+                SttError.RecordingTimedOut => new InvalidOperationException("Recording timed out"),
+                SttError.NoSpeech => new InvalidOperationException("No speech while recording"),
+                SttError.InProgressToReady => new InvalidOperationException("Progress to ready is not finished"),
+                SttError.InProgressToRecording => new InvalidOperationException("Progress to recording is not finished"),
+                SttError.InProgressToProcessing => new InvalidOperationException("Progress to processing is not finished"),
+                SttError.ServiceReset => new InvalidOperationException("Service reset"),
+                _ => new Exception(""),
+            };
         }
     }
 }

@@ -37,51 +37,17 @@ namespace Tizen.Uix.Stt
         internal RecognitionResultEventArgs(ResultEvent e, IntPtr data, int count, string msg)
         {
             _result = e;
-            switch (msg)
+            _msg = msg switch
             {
-                case "stt.result.message.none":
-                    {
-                        _msg = ResultMessage.None;
-                        break;
-                    }
-
-                case "stt.result.message.error.too.soon":
-                    {
-                        _msg = ResultMessage.TooSoon;
-                        break;
-                    }
-
-                case "stt.result.message.error.too.short":
-                    {
-                        _msg = ResultMessage.TooShort;
-                        break;
-                    }
-
-                case "stt.result.message.error.too.long":
-                    {
-                        _msg = ResultMessage.TooLong;
-                        break;
-                    }
-
-                case "stt.result.message.error.too.quiet":
-                    {
-                        _msg = ResultMessage.TooQuiet;
-                        break;
-                    }
-
-                case "stt.result.message.error.too.loud":
-                    {
-                        _msg = ResultMessage.TooLoud;
-                        break;
-                    }
-
-                case "stt.result.message.error.too.fast":
-                    {
-                        _msg = ResultMessage.TooFast;
-                        break;
-                    }
-
-            }
+                "stt.result.message.none" => ResultMessage.None,
+                "stt.result.message.error.too.soon" => ResultMessage.TooSoon,
+                "stt.result.message.error.too.short" => ResultMessage.TooShort,
+                "stt.result.message.error.too.long" => ResultMessage.TooLong,
+                "stt.result.message.error.too.quiet" => ResultMessage.TooQuiet,
+                "stt.result.message.error.too.loud" => ResultMessage.TooLoud,
+                "stt.result.message.error.too.fast" => ResultMessage.TooFast,
+                _ => ResultMessage.None,
+            };
 
             this._dataCount = count;
 
