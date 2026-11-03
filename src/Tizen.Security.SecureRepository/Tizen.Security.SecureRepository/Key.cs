@@ -64,6 +64,7 @@ namespace Tizen.Security.SecureRepository
             IntPtr ptr = IntPtr.Zero;
             try
             {
+                CheckPassword(this.BinaryPassword, nameof(BinaryPassword));
                 CheckNThrowException(
                     Interop.CkmcTypes.KeyNew(
                         this.Binary, (UIntPtr)this.Binary.Length, (int)this.Type,
@@ -111,6 +112,10 @@ namespace Tizen.Security.SecureRepository
         /// <value>
         /// Password used to decrypt binary when it's encrypted (Optional).
         /// </value>
+        /// <remarks>
+        /// The password must not contain a null character (U+0000). Methods which take
+        /// a key with such a password throw <see cref="ArgumentException"/>.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public string BinaryPassword
         {

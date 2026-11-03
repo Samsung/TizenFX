@@ -43,4 +43,17 @@ internal static partial class Interop
                 throw new InvalidOperationException($"[{LogTag}] {msg}, error={ErrorFacts.GetErrorMessage(err)}");
         }
     }
+
+    /// <summary>
+    /// Passwords cross into native code as NUL-terminated C strings. An embedded
+    /// U+0000 silently truncates the password at that boundary, so the native side
+    /// would store or compare against only the prefix before it. Reject it here,
+    /// while the full managed string is still available, rather than allowing a
+    /// caller-supplied password to be weakened without their knowledge.
+    /// </summary>
+    internal static void CheckPassword(string password, string paramName)
+    {
+        if (password != null && password.IndexOf('\0') >= 0)
+            throw new ArgumentException($"[{LogTag}] {paramName} must not contain U+0000", paramName);
+    }
 }

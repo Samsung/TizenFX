@@ -43,6 +43,9 @@ namespace Tizen.Security.SecureRepository
         /// <param name="filePassword">Passphrase used to decrypt the PCKS12 file.</param>
         /// <returns>Pkcs12 class instance.</returns>
         /// <exception cref="ArgumentNullException">Thrown when filePath is null.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="filePassword"/> contains a null character (U+0000).
+        /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when there's no existing file on <paramref name="filePath"/>.
         /// Thrown when there are not sufficient permissions to access the file.
@@ -53,6 +56,8 @@ namespace Tizen.Security.SecureRepository
         {
             if (filePath == null)
                 throw new ArgumentNullException("filePath should not be null");
+
+            Interop.CheckPassword(filePassword, nameof(filePassword));
 
             IntPtr ptr = IntPtr.Zero;
 

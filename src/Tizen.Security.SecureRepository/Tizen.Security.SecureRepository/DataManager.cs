@@ -42,6 +42,7 @@ namespace Tizen.Security.SecureRepository
         /// </exception>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="alias"/> argument has an invalid format.
+        /// Thrown when <paramref name="password"/> contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when data does not exist with the <paramref name="alias"/>
@@ -51,6 +52,8 @@ namespace Tizen.Security.SecureRepository
         {
             if (alias == null)
                 throw new ArgumentNullException("alias cannot be null");
+
+            Interop.CheckPassword(password, nameof(password));
 
             IntPtr ptr = IntPtr.Zero;
 
@@ -103,6 +106,7 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="alias"/> argument has an invalid format.
         /// Thrown when <paramref name="policy"/> cannot be unextractable.
+        /// Thrown when password of <paramref name="policy"/> contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when data with given <paramref name="alias"/> already exists.

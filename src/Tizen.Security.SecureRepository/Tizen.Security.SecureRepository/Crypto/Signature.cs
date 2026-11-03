@@ -72,6 +72,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// </exception>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="privateKeyAlias"/> has invalid format.
+        /// Thrown when <paramref name="password"/> contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when key-protecting password does not match.
@@ -81,6 +82,8 @@ namespace Tizen.Security.SecureRepository.Crypto
         {
             if (privateKeyAlias == null || message == null)
                 throw new ArgumentNullException("alias and message should not be null");
+
+            Interop.CheckPassword(password, nameof(password));
 
             int hash = (int)HashAlgorithm.None;
             try
@@ -144,6 +147,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// </exception>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="publicKeyAlias"/> has invalid format.
+        /// Thrown when <paramref name="password"/> contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when key-protecting password does not match.
@@ -154,6 +158,8 @@ namespace Tizen.Security.SecureRepository.Crypto
         {
             if (publicKeyAlias == null || message == null || signature == null)
                 throw new ArgumentNullException("mandatory arg should not be null");
+
+            Interop.CheckPassword(password, nameof(password));
 
             int hash = (int)HashAlgorithm.None;
             try
