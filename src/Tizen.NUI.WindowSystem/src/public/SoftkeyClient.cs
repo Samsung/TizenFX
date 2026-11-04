@@ -61,7 +61,7 @@ namespace Tizen.NUI.WindowSystem.Shell
             }
 
             _tzsh = tzShell;
-            _tzshWin = win.GetNativeId();
+            _tzshWin = _tzsh.GetWindowId(((IWindowProvider)win).WindowHandle);
             _softkeyClient = Interop.SoftkeyClient.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
             if (_softkeyClient == IntPtr.Zero)
             {
