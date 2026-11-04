@@ -131,7 +131,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// An event that occurs when the privacy shutter state is changed.
-        /// Checks whether the <see cref="CameraCapabilities.IsPrivacyShutterSupported"/> is supported or not before adding this EventHandler.
+        /// Checks whether the privacy shutter is supported via <see cref="CameraCapabilities.IsPrivacyShutterSupported"/> before adding this EventHandler.
         /// </summary>
         /// <since_tizen> 14 </since_tizen>
         /// <exception cref="NotSupportedException">In case of privacy shutter feature is not supported.</exception>
