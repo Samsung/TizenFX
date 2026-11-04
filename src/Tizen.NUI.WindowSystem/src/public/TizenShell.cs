@@ -79,7 +79,7 @@ namespace Tizen.NUI.WindowSystem.Shell
         {
 #if BUILD_TCORE_ENABLE
             _tzsh = Interop.TizenShell.Create((int)Interop.TizenShell.ToolKitType.TcoreWayland);
-#else
+#elif !BUILD_EFL_DISABLE
             _tzsh = Interop.TizenShell.Create((int)Interop.TizenShell.ToolKitType.Efl);
 #endif
             if (_tzsh == IntPtr.Zero)
@@ -162,7 +162,7 @@ namespace Tizen.NUI.WindowSystem.Shell
                 throw new InvalidOperationException("Native window surface has no Wayland object ID");
 
             return unchecked((int)id);
-#else
+#elif !BUILD_EFL_DISABLE
             return global::Tizen.NUI.WindowSystem.Interop.EcoreWl2.GetWindowId(window);
 #endif
         }

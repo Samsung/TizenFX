@@ -45,7 +45,7 @@ namespace Tizen.WindowSystem.Shell
         {
 #if BUILD_TCORE_ENABLE
             _tizenShell = Interop.TizenShell.Create((int)Interop.TizenShell.ToolKitType.TcoreWayland);
-#else
+#elif !BUILD_EFL_DISABLE
             _tizenShell = Interop.TizenShell.Create((int)Interop.TizenShell.ToolKitType.Efl);
 #endif
             if (_tizenShell.IsInvalid)
@@ -97,7 +97,7 @@ namespace Tizen.WindowSystem.Shell
                 throw new InvalidOperationException("Native window surface has no Wayland object ID");
 
             return unchecked((int)id);
-#else
+#elif !BUILD_EFL_DISABLE
             return global::Tizen.WindowSystem.Interop.EcoreWl2.GetWindowId(window);
 #endif
         }
@@ -140,7 +140,7 @@ namespace Tizen.WindowSystem.Shell
                     global::Tizen.WindowSystem.Interop.TizenCoreWl.GListFree(outputList);
                 }
             }
-#else
+#elif !BUILD_EFL_DISABLE
             width = 0;
             height = 0;
             IntPtr display = global::Tizen.WindowSystem.Interop.EcoreWl2.GetDisplay(window);
