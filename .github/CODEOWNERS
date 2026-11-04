@@ -146,7 +146,6 @@
 /src/Tizen.Telephony/ @dh79pyun @wootak-jung
 
 # UIX
-/src/Tizen.Uix.InputMethod/ @imfine98 @Inhong
 /src/Tizen.Uix.InputMethodManager/ @imfine98 @Inhong
 /src/Tizen.Uix.Sticker/ @imfine98 @Inhong
 /src/Tizen.Uix.Stt/ @urmain @syeonholic
