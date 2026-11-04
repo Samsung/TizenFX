@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !BUILD_EFL_DISABLE
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,3 +16,4 @@ namespace Tizen.NUI.WindowSystem
         }
     }
 }
+#endif
