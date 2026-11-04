@@ -1254,22 +1254,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 UpdateImage(ImageVisualProperty.URL, urlValue, false);
             }
-            if (_desired_width != -1)
-            {
-                _desired_width = -1;
-                using (PropertyValue desiredWidthValue = new PropertyValue(_desired_width))
-                {
-                    UpdateImage(ImageVisualProperty.DesiredWidth, desiredWidthValue, false);
-                }
-            }
-            if (_desired_height != -1)
-            {
-                _desired_height = -1;
-                using (PropertyValue desiredHeightValue = new PropertyValue(_desired_height))
-                {
-                    UpdateImage(ImageVisualProperty.DesiredHeight, desiredHeightValue, false);
-                }
-            }
             if (_fastTrackUploading)
             {
                 _fastTrackUploading = false;
