@@ -1611,6 +1611,97 @@ namespace Tizen.Multimedia
 
             return rotation;
         }
+
+        #region Mosaic
+        /// <summary>
+        /// Enables or disables the mosaic feature.
+        /// If true, the mosaic is applied to the area set by <see cref="MosaicArea"/>.
+        /// </summary>
+        /// <since_tizen> 14 </since_tizen>
+        /// <remarks>
+        /// The camera must be in the <see cref="CameraState.Created"/> or the <see cref="CameraState.Preview"/> state to set this property.
+        /// Checks whether the <see cref="CameraCapabilities.IsMosaicSupported"/> is supported or not before using this property.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public bool Mosaic
+        {
+            get
+            {
+                Native.IsEnabledMosaic(_camera.GetHandle(), out bool val).
+                    ThrowIfFailed("Failed to get camera mosaic state");
+
+                return val;
+            }
+
+            set
+            {
+                Native.EnableMosaic(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera mosaic state.");
+            }
+        }
+
+        /// <summary>
+        /// The mosaic area.
+        /// </summary>
+        /// <since_tizen> 14 </since_tizen>
+        /// <remarks>
+        /// The coordinates are mapped to the preview area and X and Y are the upper-left corner of the area.
+        /// Only a single mosaic area is supported.
+        /// The camera must be in the <see cref="CameraState.Created"/> or the <see cref="CameraState.Preview"/> state to set this property.
+        /// </remarks>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public Rectangle MosaicArea
+        {
+            get
+            {
+                Native.GetMosaicArea(_camera.GetHandle(), out int x, out int y, out int width, out int height).
+                    ThrowIfFailed("Failed to get camera mosaic area");
+
+                return new Rectangle(x, y, width, height);
+            }
+
+            set
+            {
+                Native.SetMosaicArea(_camera.GetHandle(), value.X, value.Y, value.Width, value.Height).
+                    ThrowIfFailed("Failed to set camera mosaic area.");
+            }
+        }
+
+        /// <summary>
+        /// The mosaic block size.
+        /// </summary>
+        /// <since_tizen> 14 </since_tizen>
+        /// <remarks>
+        /// The block size is the side length in pixels of the square mosaic block.
+        /// The supported block sizes can be retrieved by <see cref="CameraCapabilities.SupportedMosaicBlockSizes"/>.
+        /// The camera must be in the <see cref="CameraState.Created"/> or the <see cref="CameraState.Preview"/> state to set this property.
+        /// </remarks>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public int MosaicBlockSize
+        {
+            get
+            {
+                Native.GetMosaicBlockSize(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera mosaic block size");
+
+                return val;
+            }
+
+            set
+            {
+                Native.SetMosaicBlockSize(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera mosaic block size.");
+            }
+        }
+        #endregion Mosaic
     }
 
     /// <summary>

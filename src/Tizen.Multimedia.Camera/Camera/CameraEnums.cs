@@ -144,6 +144,22 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
+    /// Enumeration for the privacy shutter state.
+    /// </summary>
+    /// <since_tizen> 14 </since_tizen>
+    public enum CameraPrivacyShutterState
+    {
+        /// <summary>
+        /// Privacy shutter is closed, lens is covered.
+        /// </summary>
+        Closed,
+        /// <summary>
+        /// Privacy shutter is opened, lens is exposed.
+        /// </summary>
+        Opened
+    }
+
+    /// <summary>
     /// Enumeration for the camera focus state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>

@@ -306,5 +306,23 @@ internal static partial class Interop
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_preview_frame_rotation")]
         internal static extern CameraError GetPreviewFrameRotation(IntPtr handle, out Rotation rotation);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_enable_mosaic")]
+        internal static extern CameraError EnableMosaic(IntPtr handle, bool enable);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_enabled_mosaic")]
+        internal static extern CameraError IsEnabledMosaic(IntPtr handle, out bool enabled);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_mosaic_area")]
+        internal static extern CameraError SetMosaicArea(IntPtr handle, int x, int y, int width, int height);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_mosaic_area")]
+        internal static extern CameraError GetMosaicArea(IntPtr handle, out int x, out int y, out int width, out int height);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_mosaic_block_size")]
+        internal static extern CameraError SetMosaicBlockSize(IntPtr handle, int blockSize);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_mosaic_block_size")]
+        internal static extern CameraError GetMosaicBlockSize(IntPtr handle, out int blockSize);
     }
 }

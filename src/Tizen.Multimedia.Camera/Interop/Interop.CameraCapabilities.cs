@@ -73,6 +73,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool PtzTypeCallback(CameraPtzType type, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool MosaicBlockSizeCallback(int blockSize, IntPtr userData);
+
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_face_detection")]
         [return: MarshalAs(UnmanagedType.I1)]
@@ -94,6 +97,10 @@ internal static partial class Interop
         [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool IsExtraPreviewSupported(IntPtr handle);
 
+        [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_privacy_shutter")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        internal static extern bool IsPrivacyShutterSupported(IntPtr handle);
+
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_hdr_capture")]
         [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool IsHdrCaptureSupported(IntPtr handle);
@@ -109,6 +116,10 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_auto_contrast")]
         [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool IsAutoContrastSupported(IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_mosaic")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        internal static extern bool IsMosaicSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_foreach_supported_preview_resolution")]
         internal static extern CameraError SupportedPreviewResolutions(IntPtr handle, PreviewResolutionCallback callback, IntPtr userData = default);
@@ -160,5 +171,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_ptz_type")]
         internal static extern CameraError SupportedPtzTypes(IntPtr handle, PtzTypeCallback callback, IntPtr userData = default);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_mosaic_block_size")]
+        internal static extern CameraError SupportedMosaicBlockSizes(IntPtr handle, MosaicBlockSizeCallback callback, IntPtr userData = default);
     }
 }
