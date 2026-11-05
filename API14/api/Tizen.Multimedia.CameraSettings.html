@@ -1620,6 +1620,211 @@ The range for the image quality is 1 to 100.</p>
 
 
 
+  <a id="Tizen_Multimedia_CameraSettings_Mosaic_" data-uid="Tizen.Multimedia.CameraSettings.Mosaic*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraSettings.cs/#L1628">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraSettings_Mosaic" data-uid="Tizen.Multimedia.CameraSettings.Mosaic">Mosaic</h4>
+    <section>
+    <p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">Enables or disables the mosaic feature.
+If true, the mosaic is applied to the area set by <a class="xref" href="Tizen.Multimedia.CameraSettings.html#Tizen_Multimedia_CameraSettings_MosaicArea">MosaicArea</a>.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">public bool Mosaic { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_CameraSettings_Mosaic_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Created">Created</a> or the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Preview">Preview</a> state to set this property.
+Checks whether the <a class="xref" href="Tizen.Multimedia.CameraCapabilities.html#Tizen_Multimedia_CameraCapabilities_IsMosaicSupported">IsMosaicSupported</a> is supported or not before using this property.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">The camera has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_CameraSettings_MosaicArea_" data-uid="Tizen.Multimedia.CameraSettings.MosaicArea*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraSettings.cs/#L1658">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraSettings_MosaicArea" data-uid="Tizen.Multimedia.CameraSettings.MosaicArea">MosaicArea</h4>
+    <section>
+    <p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">The mosaic area.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">public Rectangle MosaicArea { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_CameraSettings_MosaicArea_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">The coordinates are mapped to the preview area and X and Y are the upper-left corner of the area.
+Only a single mosaic area is supported.
+The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Created">Created</a> or the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Preview">Preview</a> state to set this property.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">In case of invalid parameters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">The camera has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_CameraSettings_MosaicBlockSize_" data-uid="Tizen.Multimedia.CameraSettings.MosaicBlockSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraSettings.cs/#L1688">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraSettings_MosaicBlockSize" data-uid="Tizen.Multimedia.CameraSettings.MosaicBlockSize">MosaicBlockSize</h4>
+    <section>
+    <p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">The mosaic block size.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang- hljs">public int MosaicBlockSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_CameraSettings_MosaicBlockSize_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">The block size is the side length in pixels of the square mosaic block.
+The supported block sizes can be retrieved by <a class="xref" href="Tizen.Multimedia.CameraCapabilities.html#Tizen_Multimedia_CameraCapabilities_SupportedMosaicBlockSizes">SupportedMosaicBlockSizes</a>.
+The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Created">Created</a> or the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Preview">Preview</a> state to set this property.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">In case of invalid parameters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p sourcefile="obj/API14/api/Tizen.Multimedia.CameraSettings.yml" sourcestartlinenumber="1">The camera has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
   <a id="Tizen_Multimedia_CameraSettings_OrientationTag_" data-uid="Tizen.Multimedia.CameraSettings.OrientationTag*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
