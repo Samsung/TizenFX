@@ -146,14 +146,22 @@ namespace Tizen.Multimedia.Remoting
             }
 
             display.SetOwner(this);
-            display.ApplyTo(this).ThrowIfError("Failed to set display.");
+            try
+            {
+                display.ApplyTo(this).ThrowIfError("Failed to set display.");
+            }
+            catch
+            {
+                display.SetOwner(null);
+                throw;
+            }
 
             _display = display;
         }
 
-        ScreenMirroringErrorCode IDisplayable<ScreenMirroringErrorCode>.ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation)
+        ScreenMirroringErrorCode IDisplayable<ScreenMirroringErrorCode>.ApplyTcoreWindow(IntPtr windowHandle)
         {
-            return Native.SetEcoreDisplay(Handle, windowHandle);
+            return Native.SetDisplay(Handle, 2, windowHandle);
         }
         #endregion
 

@@ -295,12 +295,23 @@ namespace Tizen.Multimedia
         private Display _display;
 
         private bool _uiSync;
+        private TcoreVideoShellSurface _tcoreVideoShellSurface;
+
+        private void ReleaseTcoreVideoShell()
+        {
+            var surface = _tcoreVideoShellSurface;
+            _tcoreVideoShellSurface = null;
+            _handle.ReleaseDisplayResource(surface);
+        }
 
         private PlayerErrorCode SetDisplay(Display display)
         {
             if (display == null)
             {
-                return NativeDisplay.SetDisplay(Handle, PlayerDisplayType.None, IntPtr.Zero);
+                var result = NativeDisplay.SetDisplay(Handle, PlayerDisplayType.None, IntPtr.Zero);
+                if (result == PlayerErrorCode.None)
+                    ReleaseTcoreVideoShell();
+                return result;
             }
 
             return display.ApplyTo(this);
@@ -347,22 +358,55 @@ namespace Tizen.Multimedia
                     throw new ArgumentException("The display has already been assigned to another.");
                 }
 
+                var previousUiSync = _uiSync;
                 _uiSync = value?.UiSync ?? false;
-
-                SetDisplay(value).ThrowIfFailed(this, "Failed to configure display of the player");
+                try
+                {
+                    SetDisplay(value).ThrowIfFailed(this, "Failed to configure display of the player");
+                }
+                catch
+                {
+                    _uiSync = previousUiSync;
+                    try
+                    {
+                        SetDisplay(_display).ThrowIfFailed(this, "Failed to restore the previous player display");
+                    }
+                    catch (Exception rollbackError)
+                    {
+                        Log.Error(PlayerLog.Tag, rollbackError.ToString());
+                    }
+                    throw;
+                }
 
                 ReplaceDisplay(value);
             }
         }
 
-        PlayerErrorCode IDisplayable<PlayerErrorCode>.ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation)
+        PlayerErrorCode IDisplayable<PlayerErrorCode>.ApplyTcoreWindow(IntPtr windowHandle)
         {
             Debug.Assert(IsDisposed == false);
 
-            return NativeDisplay.SetEcoreDisplay(Handle,
-                _uiSync ? PlayerDisplayType.OverlayUISync : PlayerDisplayType.Overlay, windowHandle, rect.X, rect.Y,
-                rotation == Rotation.Rotate0 || rotation == Rotation.Rotate180 ? rect.Height : rect.Width,
-                rotation == Rotation.Rotate0 || rotation == Rotation.Rotate180 ? rect.Width : rect.Height);
+            TcoreVideoShellSurface surface = null;
+            try
+            {
+                if (_uiSync)
+                    surface = new TcoreVideoShellSurface(windowHandle);
+                var result = NativeDisplay.SetDisplay(Handle,
+                    _uiSync ? PlayerDisplayType.OverlayUISync2 : PlayerDisplayType.Overlay2,
+                    surface?.Handle ?? windowHandle);
+                if (result == PlayerErrorCode.None)
+                {
+                    ReleaseTcoreVideoShell();
+                    _handle.RetainDisplayResource(surface);
+                    _tcoreVideoShellSurface = surface;
+                    surface = null;
+                }
+                return result;
+            }
+            finally
+            {
+                surface?.Dispose();
+            }
         }
         #endregion
 

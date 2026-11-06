@@ -47,11 +47,20 @@ namespace Tizen.Multimedia.Remoting
         private WebRTCErrorCode SetDisplay(Display display)
             => display.ApplyTo(this);
 
-        private void ReplaceDisplay(Display newDisplay)
+        internal void ReplaceDisplay(Display newDisplay)
         {
-            _display?.SetOwner(null);
-            _display = newDisplay;
-            _display?.SetOwner(this);
+            lock (_webRtc.DisplayLock)
+            {
+                if (newDisplay != null)
+                    _webRtc.ValidateNotDisposed();
+                _display?.SetOwner(null);
+                _display = newDisplay;
+                _display?.SetOwner(this);
+                if (newDisplay != null)
+                    _webRtc.RegisterDisplayTrack(this);
+                else
+                    _webRtc.UnregisterDisplayTrack(this);
+            }
         }
 
         /// <summary>
@@ -116,9 +125,9 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
-        WebRTCErrorCode IDisplayable<WebRTCErrorCode>.ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation)
+        WebRTCErrorCode IDisplayable<WebRTCErrorCode>.ApplyTcoreWindow(IntPtr windowHandle)
         {
-            return NativeWebRTC.SetEcoreDisplay(_webRtc.Handle, _trackId, windowHandle);
+            return NativeWebRTC.SetDisplay(_webRtc.Handle, _trackId, WebRTCDisplayType.Overlay2, windowHandle);
         }
 
         /// <summary>
