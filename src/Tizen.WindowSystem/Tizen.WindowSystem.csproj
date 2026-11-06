@@ -9,6 +9,23 @@
     <DefineConstants>$(DefineConstants);BUILD_TCORE_ENABLE</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(BUILD_EFL_DISABLE)' == '1' Or '$(BUILD_EFL_DISABLE)' == 'true' Or '$(BUILD_EFL_DISABLE)' == 'yes' Or '$(BUILD_EFL_DISABLE)' == 'on'">
+    <DefineConstants>$(DefineConstants);BUILD_EFL_DISABLE</DefineConstants>
+  </PropertyGroup>
+
+  <!-- At least one toolkit backend must be compiled in. -->
+  <PropertyGroup>
+    <TzshBuildTcore Condition="'$(BUILD_TCORE_ENABLE)' == '1' Or '$(BUILD_TCORE_ENABLE)' == 'true' Or '$(BUILD_TCORE_ENABLE)' == 'yes' Or '$(BUILD_TCORE_ENABLE)' == 'on'">true</TzshBuildTcore>
+    <TzshBuildTcore Condition="'$(TzshBuildTcore)' == ''">false</TzshBuildTcore>
+    <TzshBuildEfl Condition="'$(BUILD_EFL_DISABLE)' == '1' Or '$(BUILD_EFL_DISABLE)' == 'true' Or '$(BUILD_EFL_DISABLE)' == 'yes' Or '$(BUILD_EFL_DISABLE)' == 'on'">false</TzshBuildEfl>
+    <TzshBuildEfl Condition="'$(TzshBuildEfl)' == ''">true</TzshBuildEfl>
+  </PropertyGroup>
+
+  <Target Name="ValidateTzshBackendConfiguration" BeforeTargets="BeforeBuild">
+    <Error Condition="'$(TzshBuildTcore)' != 'true' And '$(TzshBuildEfl)' != 'true'"
+           Text="No toolkit backend selected: set BUILD_TCORE_ENABLE=1 or remove BUILD_EFL_DISABLE." />
+  </Target>
+
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
     <ProjectReference Include="..\Tizen.System.Information\Tizen.System.Information.csproj" />
