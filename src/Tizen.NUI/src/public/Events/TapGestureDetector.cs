@@ -97,10 +97,11 @@ namespace Tizen.NUI
             remove
             {
                 _detectedEventHandler -= value;
-                using var signal = DetectedSignal();
-                if (_detectedEventHandler == null && signal.Empty() == false)
+                if (_detectedEventHandler == null && _detectedCallback != null)
                 {
+                    using var signal = DetectedSignal();
                     signal.Disconnect(_detectedCallback);
+                    _detectedCallback = null;
                 }
             }
         }

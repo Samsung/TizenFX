@@ -499,6 +499,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool AccessibilityDoAction(string name)
         {
+            // TODO : Can we emit native callback signal directly here?
             if (name == AccessibilityActivateAction)
             {
                 using var handle = GetControl();
