@@ -476,6 +476,7 @@ namespace Tizen.Multimedia.Remoting
         Overlay,
 
         Evas,
+        Overlay2,
     }
 
     /// <summary>
