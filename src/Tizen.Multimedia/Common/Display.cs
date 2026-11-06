@@ -41,6 +41,11 @@ namespace Tizen.Multimedia
         TError ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation);
     }
 
+    internal interface ITcoreDisplayable<TError>
+    {
+        TError ApplyTcoreWindow(IntPtr windowHandle);
+    }
+
     internal interface IDisplaySetter
     {
         TError SetDisplay<TError>(IDisplayable<TError> target);
@@ -62,6 +67,26 @@ namespace Tizen.Multimedia
         public TError SetDisplay<TError>(IDisplayable<TError> target)
         {
             return target.ApplyEcoreWindow(_windowHandle, _rect, _rotation);
+        }
+    }
+
+    internal sealed class TcoreDisplaySetter : IDisplaySetter
+    {
+        private readonly IntPtr _windowHandle;
+
+        internal TcoreDisplaySetter(IntPtr windowHandle)
+        {
+            _windowHandle = windowHandle;
+        }
+
+        public TError SetDisplay<TError>(IDisplayable<TError> target)
+        {
+            if (target is ITcoreDisplayable<TError> tcoreTarget)
+            {
+                return tcoreTarget.ApplyTcoreWindow(_windowHandle);
+            }
+
+            throw new NotSupportedException("The target does not support TCORE window displays.");
         }
     }
 
@@ -112,7 +137,7 @@ namespace Tizen.Multimedia
             var windowSize = new Rectangle(window.WindowPositionSize.X, window.WindowPositionSize.Y,
                 window.WindowPositionSize.Width, window.WindowPositionSize.Height);
 
-            _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler(), windowSize, window.GetCurrentOrientation().ToMmRotation());
+            _setter = CreateNuiDisplaySetter(window, windowSize, window.GetCurrentOrientation().ToMmRotation());
 
             UiSync = uiSync;
         }
@@ -144,11 +169,28 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(window));
             }
 
-            _setter = new EcoreDisplaySetter(window.WindowHandle,
-                new Rectangle((int)window.X, (int)window.Y, (int)window.Width, (int)window.Height),
-                window.Rotation.ToMmRotation());
+            var windowSize = new Rectangle((int)window.X, (int)window.Y, (int)window.Width, (int)window.Height);
+            var rotation = window.Rotation.ToMmRotation();
+
+            // IWindowProvider documents an Ecore handle. NUI windows can also
+            // expose TCORE handles, including when passed through this overload.
+            _setter = window is NUI.Window nuiWindow
+                ? CreateNuiDisplaySetter(nuiWindow, windowSize, rotation)
+                : new EcoreDisplaySetter(window.WindowHandle, windowSize, rotation);
 
             UiSync = uiSync;
+        }
+
+        private static IDisplaySetter CreateNuiDisplaySetter(NUI.Window window, Rectangle rect, Rotation rotation)
+        {
+            var handle = ((IWindowProvider)window).WindowHandle;
+
+            // Use the same build-time backend selection as TizenShell.
+#if BUILD_TCORE_ENABLE
+            return new TcoreDisplaySetter(handle);
+#else
+            return new EcoreDisplaySetter(handle, rect, rotation);
+#endif
         }
 
         private DisplayType Type { get; }
