@@ -155,10 +155,6 @@
 /src/Tizen.Uix.VoiceControl/ @urmain @syeonholic
 /src/Tizen.Uix.VoiceControlManager/ @urmain @syeonholic
 
-# ELMSHARP (Deprecated)
-/src/ElmSharp.Wearable/ @rookiejava @myroot @JoonghyunCho
-/src/ElmSharp/ @rookiejava @myroot @JoonghyunCho
-
 # Internals
 # /src/Tizen.AIAvatar
 # /src/Tizen.Data.Tdbc.Driver.Sqlite
