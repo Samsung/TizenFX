@@ -40,6 +40,20 @@ namespace Tizen.Multimedia.Remoting
     {
         private readonly WebRTCHandle _handle;
         private List<MediaSource> _source;
+        private readonly HashSet<MediaStreamTrack> _displayTracks = new HashSet<MediaStreamTrack>();
+        internal object DisplayLock { get; } = new object();
+
+        internal void RegisterDisplayTrack(MediaStreamTrack track)
+        {
+            lock (DisplayLock)
+                _displayTracks.Add(track);
+        }
+
+        internal void UnregisterDisplayTrack(MediaStreamTrack track)
+        {
+            lock (DisplayLock)
+                _displayTracks.Remove(track);
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WebRTC"/> class.
@@ -106,13 +120,21 @@ namespace Tizen.Multimedia.Remoting
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
-            if (_disposed || !disposing)
-                return;
-
-            if (_handle != null)
+            lock (DisplayLock)
             {
-                _handle.Dispose();
-                _disposed = true;
+                if (_disposed || !disposing)
+                    return;
+
+                if (_handle != null)
+                {
+                    _handle.Dispose();
+                    foreach (var source in new List<MediaSource>(_source))
+                        source.ReplaceDisplay(null);
+                    foreach (var track in new List<MediaStreamTrack>(_displayTracks))
+                        track.ReplaceDisplay(null);
+                    _displayTracks.Clear();
+                    _disposed = true;
+                }
             }
         }
 

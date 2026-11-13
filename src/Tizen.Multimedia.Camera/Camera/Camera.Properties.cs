@@ -108,11 +108,11 @@ namespace Tizen.Multimedia
             }
         }
 
-        CameraError IDisplayable<CameraError>.ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation)
+        CameraError IDisplayable<CameraError>.ApplyTcoreWindow(IntPtr windowHandle)
         {
             Debug.Assert(_disposed == false);
 
-            return CameraDisplay.SetEcoreDisplay(GetHandle(), windowHandle);
+            return CameraDisplay.SetDisplay(GetHandle(), DisplayType.Overlay2, windowHandle);
         }
 
         /// <summary>
