@@ -46,7 +46,7 @@ internal static partial class Interop
         internal static extern ScreenMirroringErrorCode SetIpAndPort(IntPtr handle, string ip, string port);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_display")]
-        internal static extern ScreenMirroringErrorCode SetDisplay(IntPtr handle, int type, IntPtr display);
+        internal static extern ScreenMirroringErrorCode SetDisplay(IntPtr handle, ScreenMirroringDisplayType type, IntPtr display);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_display_mode")]
         internal static extern ScreenMirroringErrorCode SetDisplayMode(IntPtr handle, ScreenMirroringDisplayMode mode);

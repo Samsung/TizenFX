@@ -161,7 +161,7 @@ namespace Tizen.Multimedia.Remoting
 
         ScreenMirroringErrorCode IDisplayable<ScreenMirroringErrorCode>.ApplyTcoreWindow(IntPtr windowHandle)
         {
-            return Native.SetDisplay(Handle, 2, windowHandle);
+            return Native.SetDisplay(Handle, ScreenMirroringDisplayType.Overlay2, windowHandle);
         }
         #endregion
 

@@ -128,7 +128,7 @@ namespace Tizen.Multimedia.Remoting
                 if (_handle != null)
                 {
                     _handle.Dispose();
-                    foreach (var source in _source)
+                    foreach (var source in new List<MediaSource>(_source))
                         source.ReplaceDisplay(null);
                     foreach (var track in new List<MediaStreamTrack>(_displayTracks))
                         track.ReplaceDisplay(null);

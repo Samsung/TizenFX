@@ -33,7 +33,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// This disposes off buffers.
         /// </summary>
-        None,
+        None = 2,
 
         /// <summary>
         /// TCore overlay surface display.
@@ -107,7 +107,6 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(window));
             }
 
-            Tizen.Log.Info("Tizen.Multimedia", "Set TcoreDisplaySetter");
             _setter = new TcoreDisplaySetter(((IWindowProvider)window).WindowHandle);
 
             UiSync = uiSync;
