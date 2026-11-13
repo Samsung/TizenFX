@@ -53,6 +53,7 @@ namespace Tizen.Pims.Contacts
             if ((int)ContactsError.None != error)
             {
                 Interop.Filter.ContactsFilterDestroy(_filterHandle);
+                _filterHandle = IntPtr.Zero;
                 Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
@@ -84,6 +85,7 @@ namespace Tizen.Pims.Contacts
             if ((int)ContactsError.None != error)
             {
                 Interop.Filter.ContactsFilterDestroy(_filterHandle);
+                _filterHandle = IntPtr.Zero;
                 Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
@@ -115,6 +117,7 @@ namespace Tizen.Pims.Contacts
             if ((int)ContactsError.None != error)
             {
                 Interop.Filter.ContactsFilterDestroy(_filterHandle);
+                _filterHandle = IntPtr.Zero;
                 Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
@@ -146,6 +149,7 @@ namespace Tizen.Pims.Contacts
             if ((int)ContactsError.None != error)
             {
                 Interop.Filter.ContactsFilterDestroy(_filterHandle);
+                _filterHandle = IntPtr.Zero;
                 Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
@@ -176,6 +180,7 @@ namespace Tizen.Pims.Contacts
             if ((int)ContactsError.None != error)
             {
                 Interop.Filter.ContactsFilterDestroy(_filterHandle);
+                _filterHandle = IntPtr.Zero;
                 Log.Error(Globals.LogTag, $"ContactsFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
@@ -314,6 +319,7 @@ namespace Tizen.Pims.Contacts
                     Log.Error(Globals.LogTag, $"ContactsFilterDestroy Failed with error {error}");
                 }
 
+                _filterHandle = IntPtr.Zero;
                 disposedValue = true;
             }
         }
