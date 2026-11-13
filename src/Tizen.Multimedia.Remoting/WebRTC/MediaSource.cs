@@ -69,6 +69,7 @@ namespace Tizen.Multimedia.Remoting
         internal void DetachFrom(WebRTC webRtc)
         {
             OnDetached(webRtc);
+            ReplaceDisplay(null);
             IsDetached = true;
         }
 
@@ -715,11 +716,10 @@ namespace Tizen.Multimedia.Remoting
             return new MediaStreamTrack(WebRtc, MediaType, trackId);
         }
 
-        uint IDisplayable<uint>.ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation)
+        uint IDisplayable<uint>.ApplyTcoreWindow(IntPtr windowHandle)
         {
-            NativeWebRTC.SetEcoreVideoLoopback(WebRtc.Handle, SourceId.Value, windowHandle, out uint trackId).
-                ThrowIfFailed("Failed to set ecore video loopback");
-
+            NativeWebRTC.SetVideoLoopback(WebRtc.Handle, SourceId.Value, WebRTCDisplayType.Overlay2, windowHandle, out uint trackId).
+                ThrowIfFailed("Failed to set TCORE video loopback");
             return trackId;
         }
     }

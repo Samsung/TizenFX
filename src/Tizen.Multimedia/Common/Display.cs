@@ -20,49 +20,47 @@ namespace Tizen.Multimedia
 {
     internal enum DisplayType
     {
-        /// <summary>
-        /// Overlay surface display.
-        /// </summary>
-        Overlay,
+        // /// <summary>
+        // /// Overlay surface display.
+        // /// </summary>
+        // Overlay,
 
-        /// <summary>
-        ///  Evas image object surface display.
-        /// </summary>
-        Surface,
+        // /// <summary>
+        // ///  Evas image object surface display.
+        // /// </summary>
+        // Surface,
 
         /// <summary>
         /// This disposes off buffers.
         /// </summary>
-        None,
+        None = 2,
+
+        /// <summary>
+        /// TCore overlay surface display.
+        /// </summary>
+        Overlay2 = 3,
     }
 
     internal interface IDisplayable<TError>
     {
-        TError ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation);
+        TError ApplyTcoreWindow(IntPtr windowHandle);
+    }
+
+    internal sealed class TcoreDisplaySetter : IDisplaySetter
+    {
+        private readonly IntPtr _windowHandle;
+
+        internal TcoreDisplaySetter(IntPtr windowHandle) => _windowHandle = windowHandle;
+
+        public TError SetDisplay<TError>(IDisplayable<TError> target)
+        {
+            return target.ApplyTcoreWindow(_windowHandle);
+        }
     }
 
     internal interface IDisplaySetter
     {
         TError SetDisplay<TError>(IDisplayable<TError> target);
-    }
-
-    internal sealed class EcoreDisplaySetter : IDisplaySetter
-    {
-        private readonly IntPtr _windowHandle;
-        private readonly Rectangle _rect;
-        private readonly Rotation _rotation;
-
-        internal EcoreDisplaySetter(IntPtr windowHandle, Rectangle rect, Rotation rotation)
-        {
-            _windowHandle = windowHandle;
-            _rect = rect;
-            _rotation = rotation;
-        }
-
-        public TError SetDisplay<TError>(IDisplayable<TError> target)
-        {
-            return target.ApplyEcoreWindow(_windowHandle, _rect, _rotation);
-        }
     }
 
     /// <summary>
@@ -109,10 +107,7 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(window));
             }
 
-            var windowSize = new Rectangle(window.WindowPositionSize.X, window.WindowPositionSize.Y,
-                window.WindowPositionSize.Width, window.WindowPositionSize.Height);
-
-            _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler(), windowSize, window.GetCurrentOrientation().ToMmRotation());
+            _setter = new TcoreDisplaySetter(((IWindowProvider)window).WindowHandle);
 
             UiSync = uiSync;
         }
@@ -120,7 +115,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="Tizen.Common.IWindowProvider"/> interface.
         /// </summary>
-        /// <param name="window">An <see cref="Tizen.Common.IWindowProvider"/> object that provides a handle to a window.</param>
+        /// <param name="window">An <see cref="Tizen.Common.IWindowProvider"/> object whose WindowHandle provides a TCORE window handle.</param>
         /// <since_tizen> 12 </since_tizen>
         public Display(IWindowProvider window)
             : this(window, false)
@@ -130,7 +125,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="Tizen.Common.IWindowProvider"/> interface.
         /// </summary>
-        /// <param name="window">An <see cref="Tizen.Common.IWindowProvider"/> object that provides a handle to a window.</param>
+        /// <param name="window">An <see cref="Tizen.Common.IWindowProvider"/> object whose WindowHandle provides a TCORE window handle.</param>
         /// <param name="uiSync">A value indicating whether video and UI are in sync or not.</param>
         /// <remarks>
         /// UI sync is only for <see cref="T:Tizen.Multimedia.Player"/> and
@@ -144,9 +139,7 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(window));
             }
 
-            _setter = new EcoreDisplaySetter(window.WindowHandle,
-                new Rectangle((int)window.X, (int)window.Y, (int)window.Width, (int)window.Height),
-                window.Rotation.ToMmRotation());
+            _setter = new TcoreDisplaySetter(window.WindowHandle);
 
             UiSync = uiSync;
         }
@@ -172,47 +165,6 @@ namespace Tizen.Multimedia
         internal TError ApplyTo<TError>(IDisplayable<TError> target)
         {
             return _setter.SetDisplay(target);
-        }
-    }
-
-    internal static class WindowOrientationExtension
-    {
-        internal static Tizen.Multimedia.Rotation ToMmRotation(this NUI.Window.WindowOrientation rotation)
-        {
-            switch (rotation)
-            {
-                case NUI.Window.WindowOrientation.Portrait:
-                    return Tizen.Multimedia.Rotation.Rotate0;
-                case NUI.Window.WindowOrientation.Landscape:
-                    return Tizen.Multimedia.Rotation.Rotate90;
-                case NUI.Window.WindowOrientation.PortraitInverse:
-                    return Tizen.Multimedia.Rotation.Rotate180;
-                case NUI.Window.WindowOrientation.LandscapeInverse:
-                    return Tizen.Multimedia.Rotation.Rotate270;
-                default:
-                    break;
-            }
-
-            return Tizen.Multimedia.Rotation.Rotate90;
-        }
-
-        internal static Rotation ToMmRotation(this int rotation)
-        {
-            switch (rotation)
-            {
-                case 0:
-                    return Rotation.Rotate0;
-                case 90:
-                    return Rotation.Rotate90;
-                case 180:
-                    return Rotation.Rotate180;
-                case 270:
-                    return Rotation.Rotate270;
-                default:
-                    break;
-            }
-
-            return Rotation.Rotate90;
         }
     }
 }

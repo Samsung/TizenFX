@@ -45,10 +45,5 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_display")]
         internal static extern PlayerErrorCode SetDisplay(IntPtr player, PlayerDisplayType type, IntPtr display);
-
-        [DllImport(Libraries.Player, EntryPoint = "player_set_ecore_wl_display")]
-        internal static extern PlayerErrorCode SetEcoreDisplay(IntPtr player, PlayerDisplayType type, IntPtr
-              ecoreWindow, int x = 0, int y = 0, int width = 1920, int height = 1080);
-
     }
 }
