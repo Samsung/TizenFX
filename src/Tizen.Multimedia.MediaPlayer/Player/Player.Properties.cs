@@ -296,11 +296,18 @@ namespace Tizen.Multimedia
 
         private bool _uiSync;
 
+        private IntPtr _tcoreVideoShellSurface;
+
         private PlayerErrorCode SetDisplay(Display display)
         {
             if (display == null)
             {
-                return NativeDisplay.SetDisplay(Handle, PlayerDisplayType.None, IntPtr.Zero);
+                var result = NativeDisplay.SetDisplay(Handle, PlayerDisplayType.None, IntPtr.Zero);
+                if (result == PlayerErrorCode.None)
+                {
+                    ReleaseTcoreVideoShell();
+                }
+                return result;
             }
 
             return display.ApplyTo(this);
@@ -347,9 +354,17 @@ namespace Tizen.Multimedia
                     throw new ArgumentException("The display has already been assigned to another.");
                 }
 
+                var previousUiSync = _uiSync;
                 _uiSync = value?.UiSync ?? false;
-
-                SetDisplay(value).ThrowIfFailed(this, "Failed to configure display of the player");
+                try
+                {
+                    SetDisplay(value).ThrowIfFailed(this, "Failed to configure display of the player");
+                }
+                catch
+                {
+                    _uiSync = previousUiSync;
+                    throw;
+                }
 
                 ReplaceDisplay(value);
             }
@@ -359,10 +374,87 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(IsDisposed == false);
 
-            return NativeDisplay.SetEcoreDisplay(Handle,
+            var result = NativeDisplay.SetEcoreDisplay(Handle,
                 _uiSync ? PlayerDisplayType.OverlayUISync : PlayerDisplayType.Overlay, windowHandle, rect.X, rect.Y,
                 rotation == Rotation.Rotate0 || rotation == Rotation.Rotate180 ? rect.Height : rect.Width,
                 rotation == Rotation.Rotate0 || rotation == Rotation.Rotate180 ? rect.Width : rect.Height);
+            if (result == PlayerErrorCode.None)
+            {
+                ReleaseTcoreVideoShell();
+            }
+            return result;
+        }
+
+        PlayerErrorCode ITcoreDisplayable<PlayerErrorCode>.ApplyTcoreWindow(IntPtr windowHandle)
+        {
+            Debug.Assert(IsDisposed == false);
+
+            IntPtr surface = IntPtr.Zero;
+            try
+            {
+                var displayHandle = windowHandle;
+                var type = PlayerDisplayType.Overlay2;
+                if (_uiSync)
+                {
+                    CheckTcoreVideoShellError(NativeDisplay.TcoreVideoShell.Create(windowHandle, out surface), "create");
+                    if (surface == IntPtr.Zero)
+                    {
+                        throw new InvalidOperationException("TCORE video shell creation returned an empty surface.");
+                    }
+
+                    CheckTcoreVideoShellError(NativeDisplay.TcoreVideoShell.PlaceBelow(surface, IntPtr.Zero), "place below");
+                    CheckTcoreVideoShellError(NativeDisplay.TcoreVideoShell.Map(surface), "map");
+                    CheckTcoreVideoShellError(NativeDisplay.TcoreVideoShell.GetHandle(surface, out displayHandle), "get handle");
+                    if (displayHandle == IntPtr.Zero)
+                    {
+                        throw new InvalidOperationException("TCORE video shell returned an empty handle.");
+                    }
+
+                    // SYNC_UI takes the exported handle string, not the window pointer.
+                    type = PlayerDisplayType.OverlayUISync2;
+                }
+
+                var result = NativeDisplay.SetDisplay(Handle, type, displayHandle);
+                if (result == PlayerErrorCode.None)
+                {
+                    ReleaseTcoreVideoShell();
+                    _tcoreVideoShellSurface = surface;
+                    surface = IntPtr.Zero;
+                }
+                return result;
+            }
+            finally
+            {
+                // Keep the previous display alive if binding the new one fails.
+                DestroyTcoreVideoShell(surface);
+            }
+        }
+
+        private static void CheckTcoreVideoShellError(int error, string operation)
+        {
+            if (error != 0)
+            {
+                throw new InvalidOperationException($"Failed to {operation} the TCORE video shell: {error}.");
+            }
+        }
+
+        private static void DestroyTcoreVideoShell(IntPtr surface)
+        {
+            if (surface != IntPtr.Zero)
+            {
+                var error = NativeDisplay.TcoreVideoShell.Destroy(surface);
+                if (error != 0)
+                {
+                    Log.Error(PlayerLog.Tag, $"Failed to destroy the TCORE video shell: {error}.");
+                }
+            }
+        }
+
+        private void ReleaseTcoreVideoShell()
+        {
+            var surface = _tcoreVideoShellSurface;
+            _tcoreVideoShellSurface = IntPtr.Zero;
+            DestroyTcoreVideoShell(surface);
         }
         #endregion
 

@@ -4,6 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(BUILD_TCORE_ENABLE)' == '1' Or '$(BUILD_TCORE_ENABLE)' == 'true' Or '$(BUILD_TCORE_ENABLE)' == 'yes' Or '$(BUILD_TCORE_ENABLE)' == 'on'">
+    <DefineConstants>$(DefineConstants);BUILD_TCORE_ENABLE</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
     <ProjectReference Include="..\Tizen.System.Information\Tizen.System.Information.csproj" />

@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
     /// It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
     /// Note that only one video player can be played at one time.
     /// </remarks>
-    public partial class Player : IDisposable, IDisplayable<PlayerErrorCode>
+    public partial class Player : IDisposable, IDisplayable<PlayerErrorCode>, ITcoreDisplayable<PlayerErrorCode>
     {
         private readonly PlayerHandle _handle;
 
@@ -164,6 +164,7 @@ namespace Tizen.Multimedia
                 if (_handle != null)
                 {
                     _handle.Dispose();
+                    ReleaseTcoreVideoShell();
                     _disposed = true;
                 }
             }
