@@ -190,9 +190,6 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_video_loopback")]
         internal static extern WebRTCErrorCode SetVideoLoopback(IntPtr handle, uint sourceId, WebRTCDisplayType type, IntPtr display, out uint trackId);
 
-        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_video_loopback_to_ecore_wl")]
-        internal static extern WebRTCErrorCode SetEcoreVideoLoopback(IntPtr handle, uint sourceId, IntPtr display, out uint trackId);
-
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_bundle_policy")]
         internal static extern WebRTCErrorCode SetBundlePolicy(IntPtr handle, WebRTCBundlePolicy bundlePolicy);
 
@@ -213,9 +210,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_display")]
         internal static extern WebRTCErrorCode SetDisplay(IntPtr handle, uint trackId, WebRTCDisplayType type, IntPtr display);
-
-        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_ecore_wl_display")]
-        internal static extern WebRTCErrorCode SetEcoreDisplay(IntPtr handle, uint trackId, IntPtr display);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_display_mode")]
         internal static extern WebRTCErrorCode SetDisplayMode(IntPtr handle, uint trackId, WebRTCDisplayMode mode);
