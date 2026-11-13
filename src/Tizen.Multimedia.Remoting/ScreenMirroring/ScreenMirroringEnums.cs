@@ -20,6 +20,18 @@ using System.ComponentModel;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
+    /// Specifies the display type for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    internal enum ScreenMirroringDisplayType
+    {
+        /// <summary>
+        /// TCore overlay surface display. The value follows the native
+        /// scmirroring_display_type_e numbering (SCMIRRORING_DISPLAY_TYPE_OVERLAY2).
+        /// </summary>
+        Overlay2 = 2,
+    }
+
+    /// <summary>
     /// Specifies the audio codecs for <see cref="ScreenMirroring"/>.
     /// </summary>
     /// <seealso cref="ScreenMirroringAudioInfo"/>
