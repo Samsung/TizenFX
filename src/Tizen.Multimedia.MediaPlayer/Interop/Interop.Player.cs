@@ -394,30 +394,4 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_get_video_codec_type")]
         internal static extern PlayerErrorCode GetVideoCodecType(IntPtr player, out CodecType type);
     }
-
-    internal sealed class PlayerHandle : SafeHandle
-    {
-        protected PlayerHandle() : base(IntPtr.Zero, true)
-        {
-        }
-
-        internal PlayerHandle(IntPtr rawHandle) : this()
-        {
-            handle = rawHandle;
-        }
-
-        public override bool IsInvalid => handle == IntPtr.Zero;
-
-        protected override bool ReleaseHandle()
-        {
-            var ret = NativePlayer.Destroy(handle);
-            if (ret != PlayerErrorCode.None)
-            {
-                Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
-                return false;
-            }
-
-            return true;
-        }
-    }
 }
