@@ -1072,39 +1072,7 @@ namespace Tizen.Uix.Stt
         public bool IsRecognitionTypeSupported(RecognitionType type)
         {
             bool supported;
-            string recType = "stt.recognition.type.FREE";
-            switch (type)
-            {
-                case RecognitionType.Free:
-                    {
-                        recType = "stt.recognition.type.FREE";
-                        break;
-                    }
-
-                case RecognitionType.Partial:
-                    {
-                        recType = "stt.recognition.type.FREE.PARTIAL";
-                        break;
-                    }
-
-                case RecognitionType.Search:
-                    {
-                        recType = "stt.recognition.type.SEARCH";
-                        break;
-                    }
-
-                case RecognitionType.WebSearch:
-                    {
-                        recType = "stt.recognition.type.WEB_SEARCH";
-                        break;
-                    }
-
-                case RecognitionType.Map:
-                    {
-                        recType = "stt.recognition.type.MAP";
-                        break;
-                    }
-            }
+            string recType = ToNativeRecognitionType(type);
 
             SttError error = SttIsRecognitionTypeSupported(_handle, recType, out supported);
             if (error != SttError.None)
@@ -1115,6 +1083,15 @@ namespace Tizen.Uix.Stt
 
             return supported;
         }
+
+        private static string ToNativeRecognitionType(RecognitionType type) => type switch
+        {
+            RecognitionType.Partial => "stt.recognition.type.FREE.PARTIAL",
+            RecognitionType.Search => "stt.recognition.type.SEARCH",
+            RecognitionType.WebSearch => "stt.recognition.type.WEB_SEARCH",
+            RecognitionType.Map => "stt.recognition.type.MAP",
+            _ => "stt.recognition.type.FREE",
+        };
 
         /// <summary>
         /// Sets the silence detection.
@@ -1323,39 +1300,7 @@ namespace Tizen.Uix.Stt
         /// </post>
         public void Start(string language, RecognitionType type)
         {
-            string recType = "stt.recognition.type.FREE";
-            switch (type)
-            {
-                case RecognitionType.Free:
-                    {
-                        recType = "stt.recognition.type.FREE";
-                        break;
-                    }
-
-                case RecognitionType.Partial:
-                    {
-                        recType = "stt.recognition.type.FREE.PARTIAL";
-                        break;
-                    }
-
-                case RecognitionType.Search:
-                    {
-                        recType = "stt.recognition.type.SEARCH";
-                        break;
-                    }
-
-                case RecognitionType.WebSearch:
-                    {
-                        recType = "stt.recognition.type.WEB_SEARCH";
-                        break;
-                    }
-
-                case RecognitionType.Map:
-                    {
-                        recType = "stt.recognition.type.MAP";
-                        break;
-                    }
-            }
+            string recType = ToNativeRecognitionType(type);
 
             SttError error = SttStart(_handle, language, recType);
             if (error != SttError.None)
