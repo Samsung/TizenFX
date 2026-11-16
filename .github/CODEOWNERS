@@ -81,24 +81,24 @@
 /src/Tizen.Multimedia.Vision/ @hsgwon
 
 # UI FW (NUI)
-/src/Tizen.NUI.Components.Design/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/src/Tizen.NUI.Components/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/src/Tizen.NUI.Design/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/src/Tizen.NUI.Extension/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/src/Tizen.NUI.Physics2D/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/src/Tizen.NUI.Scene3D/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/src/Tizen.NUI.WindowSystem/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/src/Tizen.NUI.XamlBuild/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/src/Tizen.NUI/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/test/NUITestSample/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/test/NUITizenGallery/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/test/Tizen.NUI.ComponentApplication/ @bshsqa @rabbitfor @JoogabYun
-/test/Tizen.NUI.Samples/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/test/Tizen.NUI.SeamlessSamples/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/test/Tizen.NUI.StyleGuide/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/test/Tizen.NUI.Tests/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/test/Tizen.NUI.WebViewTest/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
-/test/Tizen.NUI.WindowSystem.Samples/ @dongsug-song @bshsqa @rabbitfor @JoogabYun
+/src/Tizen.NUI.Components.Design/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/src/Tizen.NUI.Components/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/src/Tizen.NUI.Design/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/src/Tizen.NUI.Extension/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/src/Tizen.NUI.Physics2D/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/src/Tizen.NUI.Scene3D/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/src/Tizen.NUI.WindowSystem/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/src/Tizen.NUI.XamlBuild/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/src/Tizen.NUI/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/test/NUITestSample/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/test/NUITizenGallery/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/test/Tizen.NUI.ComponentApplication/ @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/test/Tizen.NUI.Samples/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/test/Tizen.NUI.SeamlessSamples/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/test/Tizen.NUI.StyleGuide/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/test/Tizen.NUI.Tests/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/test/Tizen.NUI.WebViewTest/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
+/test/Tizen.NUI.WindowSystem.Samples/ @dongsug-song @bshsqa @rabbitfor @JoogabYun @jaehyun0cho
 
 # NETWORK
 /src/Tizen.Network.Bluetooth/ @dh79pyun @wootak-jung
