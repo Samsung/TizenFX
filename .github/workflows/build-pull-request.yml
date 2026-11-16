@@ -18,7 +18,9 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 3.1.402
+        dotnet-version: |
+          3.1.402
+          8.0.x
 
     - name: Get Changed Files
       uses: lots0logs/gh-action-get-changed-files@2.1.4
@@ -71,7 +73,9 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: |
+          3.1.x
+          8.0.x
 
     - name: Download Artifacts
       uses: actions/download-artifact@v4
@@ -85,6 +89,10 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.base.sha }}
         path: base
+
+    - name: Setup global.json for base branch
+      run: |
+        echo '{"sdk":{"version":"8.0.400","rollForward":"latestFeature"}}' > base/global.json
 
     - name: Build Base Branch
       uses: TizenAPI/tizenfx-build-actions/problem-filter@master
