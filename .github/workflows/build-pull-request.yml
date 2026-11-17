@@ -48,7 +48,9 @@ jobs:
         echo $BUILD_ERRORS > Artifacts/errors.json
 
     - name: Pack
-      run: ./build.sh pack
+      run: |
+        ./build.sh pack
+        rm -f global.json
 
     - name: Checkout APITool
       uses: actions/checkout@v3
@@ -103,6 +105,9 @@ jobs:
       with:
         run: ./build.sh full
         working-directory: base
+
+    - name: Clean global.json for base branch
+      run: rm -f base/global.json
 
     - name: Checkout APITool
       uses: actions/checkout@v3
