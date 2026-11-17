@@ -30,7 +30,11 @@ jobs:
     
     - uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '6.0.102'
+        dotnet-version: '8.0.x'
+
+    - name: Setup global.json for build
+      run: |
+        echo '{"sdk":{"version":"8.0.400","rollForward":"latestFeature"}}' > global.json
 
     - name: Git Config
       run: |
@@ -59,6 +63,7 @@ jobs:
       run: |
         ./build.sh full
         ./build.sh pack $VERSION
+        rm -f global.json
 
     - name: Tag Version
       env:
