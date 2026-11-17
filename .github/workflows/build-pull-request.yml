@@ -22,6 +22,10 @@ jobs:
           3.1.402
           8.0.x
 
+    - name: Setup global.json for build
+      run: |
+        echo '{"sdk":{"version":"8.0.400","rollForward":"latestFeature"}}' > global.json
+
     - name: Get Changed Files
       uses: lots0logs/gh-action-get-changed-files@2.1.4
       id: getChangedFiles
@@ -44,7 +48,9 @@ jobs:
         echo $BUILD_ERRORS > Artifacts/errors.json
 
     - name: Pack
-      run: ./build.sh pack
+      run: |
+        ./build.sh pack
+        rm -f global.json
 
     - name: Checkout APITool
       uses: actions/checkout@v3
@@ -100,6 +106,9 @@ jobs:
       with:
         run: ./build.sh full
         working-directory: base
+
+    - name: Clean global.json for base branch
+      run: rm -f base/global.json
 
     - name: Checkout APITool
       uses: actions/checkout@v3
