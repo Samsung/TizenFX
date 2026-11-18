@@ -90,8 +90,9 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Equals(WindowDimInfo other)
         {
+            // Use the null-safe Color equality operator since DimColor can be null (e.g. default(WindowDimInfo)).
             return IsEnabled == other.IsEnabled &&
-                   DimColor.Equals(other.DimColor);
+                   DimColor == other.DimColor;
         }
 
         ///  <inheritdoc/>
@@ -112,7 +113,7 @@ namespace Tizen.NUI
             unchecked
             {
                 int hashcode = IsEnabled.GetHashCode();
-                hashcode = hashcode * 397 ^ DimColor.GetHashCode();
+                hashcode = hashcode * 397 ^ (DimColor?.GetHashCode() ?? 0);
                 return hashcode;
             }
         }
