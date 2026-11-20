@@ -32,17 +32,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Empty
-        /// </summary>
-        /// <returns>true if there is no signal attached</returns>
-        public bool Empty()
-        {
-            bool ret = Interop.LowBatterySignal.LowBatterySignalTypeEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// GetConnectionCount
         /// </summary>
         /// <returns>number of attached signals</returns>
@@ -77,12 +66,6 @@ namespace Tizen.NUI
                 Interop.LowBatterySignal.LowBatterySignalTypeDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        internal void Emit(Application.BatteryStatus arg)
-        {
-            Interop.LowBatterySignal.LowBatterySignalTypeEmit(SwigCPtr, (int)arg);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

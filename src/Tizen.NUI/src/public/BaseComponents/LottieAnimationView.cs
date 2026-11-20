@@ -1418,7 +1418,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent?.Disconnect(visualEventSignalCallback);
-                    if (visualEvent?.Empty() == true)
+                    if (visualEvent?.GetConnectionCount() == 0u)
                     {
                         ReleaseSafeCallback(ref visualEventSignalCallback);
                     }
@@ -1626,18 +1626,12 @@ namespace Tizen.NUI.BaseComponents
                 {
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent?.Disconnect(visualEventSignalCallback);
-                    if (visualEvent?.Empty() == true)
+                    if (visualEvent?.GetConnectionCount() == 0u)
                     {
                         ReleaseSafeCallback(ref visualEventSignalCallback);
                     }
                 }
             }
-        }
-
-        internal void EmitVisualEventSignal(int visualIndex, int signalId)
-        {
-            using VisualEventSignal visualEvent = VisualEventSignal();
-            visualEvent?.Emit(this, visualIndex, signalId);
         }
 
         internal VisualEventSignal VisualEventSignal()

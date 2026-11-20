@@ -26,10 +26,6 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_Visibility_Changed_Signal")]
             public static extern global::System.IntPtr GetSignal(HandleRef glWindow);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_Visibility_Changed_Signal_Empty")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Empty(HandleRef signalType);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_Visibility_Changed_Signal_GetConnectionCount")]
             public static extern uint GetConnectionCount(HandleRef signalType);
 
@@ -38,9 +34,6 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_Visibility_Changed_Signal_Disconnect")]
             public static extern void Disconnect(HandleRef signalType, HandleRef callback);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_Visibility_Changed_Signal_Emit")]
-            public static extern void Emit(HandleRef signalType, HandleRef window, bool visibility);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_Visibility_Changed_Signal_delete")]
             public static extern void DeleteSignal(HandleRef signalType);

@@ -1744,7 +1744,6 @@ namespace Tizen.NUI
         private delegate void VisibilityChangedEventCallbackType(IntPtr window, bool visibility);
         private VisibilityChangedEventCallbackType VisibilityChangedEventCallback;
         private event EventHandler<VisibilityChangedEventArgs> VisibilityChangedEventHandler;
-        private WindowVisibilityChangedEvent VisibilityChangedEventSignal;
 
         /// <summary>
         /// EffectStart
@@ -1778,13 +1777,11 @@ namespace Tizen.NUI
         /// VisibiltyChangedSignalEmit
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this, which is not supported.")]
         public void VisibiltyChangedSignalEmit(bool visibility)
         {
-            if (VisibilityChangedEventSignal == null)
-            {
-                VisibilityChangedEventSignal = new WindowVisibilityChangedEvent(this);
-            }
-            VisibilityChangedEventSignal.Emit(this, visibility);
+            Tizen.Log.Fatal("NUI", "VisibiltyChangedSignalEmit is not supported. Do not use this function.");
+            NUILog.ErrorBacktrace("VisibiltyChangedSignalEmit is not supported. Do not use this function.");
         }
 
         private void OnAuxiliaryMessage(IntPtr kData, IntPtr vData, IntPtr optionsArray)

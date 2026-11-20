@@ -33,17 +33,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Queries whether there are any connected slots.
-        /// </summary>
-        /// <returns>True if there are any slots connected to the signal</returns>
-        public bool Empty()
-        {
-            bool ret = Interop.WindowPointerConstraintsSignal.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
@@ -78,17 +67,6 @@ namespace Tizen.NUI
                 Interop.WindowPointerConstraintsSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        /// <summary>
-        /// Emits the signal.
-        /// </summary>
-        /// <param name="window">The first value to pass to callbacks</param>
-        /// <param name="pointerConstraints">The second value to pass to callbacks</param>
-        public void Emit(Window window, PointerConstraints pointerConstraints)
-        {
-            Interop.WindowPointerConstraintsSignal.Emit(SwigCPtr, Window.getCPtr(window), PointerConstraints.getCPtr(pointerConstraints));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

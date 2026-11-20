@@ -32,13 +32,6 @@ namespace Tizen.NUI
             Interop.VisualEventSignal.Delete(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.VisualEventSignal.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.VisualEventSignal.GetConnectionCount(SwigCPtr);
@@ -66,12 +59,6 @@ namespace Tizen.NUI
                 Interop.VisualEventSignal.Disconnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(BaseComponents.View target, int visualIndex, int signalId)
-        {
-            Interop.VisualEventSignal.Emit(SwigCPtr, BaseComponents.View.getCPtr(target), visualIndex, signalId);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal VisualEventSignal(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

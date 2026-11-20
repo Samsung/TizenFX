@@ -100,17 +100,11 @@ namespace Tizen.NUI
             remove
             {
                 detectedEventHandler -= value;
-                if (detectedEventHandler == null)
+                if (detectedEventHandler == null && detectedCallback != null)
                 {
                     using PanGestureDetectedSignal signal = new PanGestureDetectedSignal(Interop.PanGestureDetector.DetectedSignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(detectedCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            detectedCallback = null;
-                        }
-                    }
+                    signal?.Disconnect(detectedCallback);
+                    detectedCallback = null;
                 }
             }
         }
