@@ -132,8 +132,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_INSTANCE_COUNT_get")]
             public static extern int InstanceCountGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_UPDATE_AREA_EXTENTS_get")]
-            public static extern int UpdateAreaExtentsGet();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_SetUpdateAreaMargin")]
+            public static extern void SetUpdateAreaMargin(global::System.Runtime.InteropServices.HandleRef renderer, float start, float end, float top, float bottom);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_GetUpdateAreaMargin")]
+            public static extern void GetUpdateAreaMargin(global::System.Runtime.InteropServices.HandleRef renderer, out float start, out float end, out float top, out float bottom);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_New")]
             public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);

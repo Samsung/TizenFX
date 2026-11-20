@@ -30,7 +30,6 @@ namespace Tizen.Security.WebAuthn
     {
         private const int API_VERSION_NUMBER = 0x00000001;
         private static bool _apiVersionSet = false;
-        private static object _userData = null;
         private static Dictionary<int, AuthenticatorStorage> _apiCalls = new();
         private static int _callId = 0;
 
@@ -199,17 +198,15 @@ namespace Tizen.Security.WebAuthn
         }
         private static void WrapMcCallbacks(MakeCredentialCallbacks callbacks, AuthenticatorMakeCredentialStorage storage, int id)
         {
-            _userData = callbacks.UserData;
-
             void qrCodeWrapper(string qrContents, IntPtr _)
             {
-                callbacks.QrcodeCallback(qrContents, _userData);
+                callbacks.QrcodeCallback(qrContents, callbacks.UserData);
             }
 
             void onResponseWrapper(WauthnPubkeyCredentialAttestation pubkeyCred, WauthnError result, IntPtr _)
             {
                 PubkeyCredAttestation pubkeyCredManaged = pubkeyCred is not null ? new(pubkeyCred) : null;
-                callbacks.ResponseCallback(pubkeyCredManaged, result, _userData);
+                callbacks.ResponseCallback(pubkeyCredManaged, result, callbacks.UserData);
 
                 if (result != WauthnError.None)
                     Cleanup(id);
@@ -218,7 +215,7 @@ namespace Tizen.Security.WebAuthn
             void linkedDataWrapper(IntPtr linkedData, WauthnError result, IntPtr _)
             {
                 HybridLinkedData linkedDataManaged = linkedData != IntPtr.Zero ? new(Marshal.PtrToStructure<WauthnHybridLinkedData>(linkedData)) : null;
-                callbacks.LinkedDataCallback(linkedDataManaged, result, _userData);
+                callbacks.LinkedDataCallback(linkedDataManaged, result, callbacks.UserData);
 
                 if (result != WauthnError.NoneAndWait)
                     Cleanup(id);
@@ -233,17 +230,15 @@ namespace Tizen.Security.WebAuthn
 
         private static void WrapGaCallbacks(GetAssertionCallbacks callbacks, AuthenticatorGetAssertionStorage storage, int id)
         {
-            _userData = callbacks.UserData;
-
             void qrCodeWrapper(string qrContents, IntPtr _)
             {
-                callbacks.QrcodeCallback(qrContents, _userData);
+                callbacks.QrcodeCallback(qrContents, callbacks.UserData);
             }
 
             void onResponseWrapper(WauthnPubkeyCredentialAssertion pubkeyCred, WauthnError result, IntPtr _)
             {
                 PubkeyCredAssertion pubkeyCredManaged = pubkeyCred is not null ? new(pubkeyCred) : null;
-                callbacks.ResponseCallback(pubkeyCredManaged, result, _userData);
+                callbacks.ResponseCallback(pubkeyCredManaged, result, callbacks.UserData);
 
                 if (result != WauthnError.None)
                     Cleanup(id);
@@ -252,7 +247,7 @@ namespace Tizen.Security.WebAuthn
             void linkedDataWrapper(IntPtr linkedData, WauthnError result, IntPtr _)
             {
                 HybridLinkedData linkedDataManaged = linkedData != IntPtr.Zero ? new(Marshal.PtrToStructure<WauthnHybridLinkedData>(linkedData)) : null;
-                callbacks.LinkedDataCallback(linkedDataManaged, result, _userData);
+                callbacks.LinkedDataCallback(linkedDataManaged, result, callbacks.UserData);
 
                 if (result != WauthnError.NoneAndWait)
                     Cleanup(id);

@@ -112,15 +112,6 @@ AutoReqProv: no
 %description debug
 All .pdb files of Tizen .NET
 
-%package mobile
-Summary:   Tizen .NET assemblies for Mobile profile
-Group:     Development/Libraries
-Requires:  %{name} = %{version}-%{release}
-AutoReqProv: no
-
-%description mobile
-Tizen .NET assemblies for Mobile profile
-
 %package tv
 Summary:   Tizen .NET assemblies for TV profile
 Group:     Development/Libraries
@@ -130,20 +121,19 @@ AutoReqProv: no
 %description tv
 Tizen .NET assemblies for TV profile
 
-%package wearable
-Summary:   Tizen .NET assemblies for Wearable profile
-Group:     Development/Libraries
-Requires:  %{name} = %{version}-%{release}
-AutoReqProv: no
-
-%description wearable
-Tizen .NET assemblies for Wearable profile
-
 %prep
 %setup -q
 cp %{SOURCE1} .
 
 %build
+
+%if %{defined BUILD_TCORE_ENABLE}
+%if "%{?BUILD_TCORE_ENABLE}" == ""
+%define tcore_enable_msbuild_arg /p:BUILD_TCORE_ENABLE=1
+%else
+%define tcore_enable_msbuild_arg /p:BUILD_TCORE_ENABLE=%{BUILD_TCORE_ENABLE}
+%endif
+%endif
 
 # configure for ASAN
 %{?asan:export ASAN_OPTIONS=use_sigaltstack=false:allow_user_segv_handler=true:handle_sigfpe=false:`cat /ASAN_OPTIONS`}
@@ -154,9 +144,9 @@ export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 
 # build full assemblies
 %if %{defined profile}
-%{build_cmd} --full /p:BuildProfile=%{profile}
+%{build_cmd} --full /p:BuildProfile=%{profile} %{?tcore_enable_msbuild_arg}
 %else
-%{build_cmd} --full
+%{build_cmd} --full %{?tcore_enable_msbuild_arg}
 %endif
 
 # pack nuget package
@@ -249,11 +239,5 @@ echo "db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS}" >> %{D
 %manifest %{name}.manifest
 %attr(644,root,root) %{DOTNET_ASSEMBLY_PATH}/*.pdb
 
-%files mobile -f Artifacts/mobile.filelist
-%manifest %{name}.manifest
-
 %files tv -f Artifacts/tv.filelist
-%manifest %{name}.manifest
-
-%files wearable -f Artifacts/wearable.filelist
 %manifest %{name}.manifest

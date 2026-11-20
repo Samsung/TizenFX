@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Window information class for ComponentApplication
     /// </summary>
-    internal class NUIWindowInfo : IWindowInfo
+    internal class NUIWindowInfo : INativeWindowInfo
     {
         private const string logTag = "Tizen.NUI";
         private Window window;
@@ -50,13 +50,16 @@ namespace Tizen.NUI
                 if (resourceId == 0)
                 {
                     resourceId = window.GetNativeId();
-                    if (resourceId != 0)
+                    if (resourceId == 0)
                         Log.Info(logTag, "Fail to get resource ID");
                 }
 
                 return resourceId;
             }
         }
+
+        // Borrow the handle; its lifetime is owned by window and Dispose().
+        IntPtr INativeWindowInfo.NativeHandle => window.GetNativeWindowHandler();
 
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.

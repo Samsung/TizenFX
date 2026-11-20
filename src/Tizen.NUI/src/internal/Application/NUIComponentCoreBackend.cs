@@ -115,6 +115,9 @@ namespace Tizen.NUI
         /// <param name="args">Arguments from commandline.</param>
         public void Run(string[] args)
         {
+            // Resolve component APIs through DALi's model and its backend-specific
+            // dependency so managed callbacks use the same native component runtime.
+            ComponentNativeLibrary.UseLibrary("libdali2-adaptor-application-component-based.so");
             TizenSynchronizationContext.Initialize();
 
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;

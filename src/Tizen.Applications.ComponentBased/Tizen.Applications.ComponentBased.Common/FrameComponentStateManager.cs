@@ -70,7 +70,15 @@ namespace Tizen.Applications.ComponentBased.Common
                 Log.Error(LogTag, "OnCreate fail");
                 return IntPtr.Zero;
             }
-            Interop.CBApplication.BaseFrameCreateWindow(out winHandle, win.ResourceId, IntPtr.Zero);
+            IntPtr raw = win is INativeWindowInfo nativeWindow ? nativeWindow.NativeHandle : IntPtr.Zero;
+            Interop.CBApplication.ErrorCode error = Interop.CBApplication.BaseFrameCreateWindow(out winHandle, win.ResourceId, raw);
+            if (error != Interop.CBApplication.ErrorCode.None || winHandle == IntPtr.Zero)
+            {
+                Log.Error(LogTag, "Failed to create the frame window. Error = " + error);
+                _winDic.Remove(id);
+                win.Dispose();
+                return IntPtr.Zero;
+            }
 
             AddComponent(fc);
             return winHandle;

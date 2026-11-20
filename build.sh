@@ -7,7 +7,7 @@ SLN_NAME=_Build
 SLN_FILE=$SCRIPT_DIR/$SLN_NAME.sln
 OUTDIR=$SCRIPT_DIR/Artifacts
 
-PROFILES=(mobile tv wearable)
+PROFILES=(tv)
 TARGET_ASSEMBLY_DIR=/usr/share/dotnet.tizen/framework
 TARGET_PRELOAD_DIR=/usr/share/dotnet.tizen/preload
 
@@ -57,7 +57,7 @@ cleanup_solution() {
 
 remove_intermediates() {
   find $1 -type d \
-    \( -name obj -o -name bin \) -print0 | xargs -0 -I {} rm -fr "{}"
+    \( -name obj -o -name bin \) -print0 | xargs -0 rm -fr
 }
 
 clean() {

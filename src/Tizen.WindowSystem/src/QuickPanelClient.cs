@@ -74,7 +74,7 @@ namespace Tizen.WindowSystem.Shell
             }
 
             _tzsh = tzShell;
-            _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);
+            _tzshWin = _tzsh.GetWindowId(win.WindowHandle);
             _tzshQpClient = Interop.QuickPanelClient.CreateWithType(_tzsh.SafeHandle, (uint)_tzshWin, type);
             if (_tzshQpClient.IsInvalid)
             {
@@ -82,11 +82,7 @@ namespace Tizen.WindowSystem.Shell
                 ErrorUtils.ThrowIfError(err);
             }
 
-            IntPtr display = WindowSystem.Interop.EcoreWl2.GetDisplay(win.WindowHandle);
-            if (display != IntPtr.Zero)
-            {
-                WindowSystem.Interop.EcoreWl2.GetScreenSize(display, out width, out height);
-            }
+            _tzsh.GetWindowScreenSize(win.WindowHandle, out width, out height);
             if (width > height) _screenOrientation = (WindowOrientation)(90);
         }
 

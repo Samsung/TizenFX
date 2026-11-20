@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <TizenCreateTpkOnBuild>true</TizenCreateTpkOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(BUILD_TCORE_ENABLE)' == '1' Or '$(BUILD_TCORE_ENABLE)' == 'true' Or '$(BUILD_TCORE_ENABLE)' == 'yes' Or '$(BUILD_TCORE_ENABLE)' == 'on'">
+    <DefineConstants>$(DefineConstants);BUILD_TCORE_ENABLE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(BUILD_EFL_DISABLE)' == '1' Or '$(BUILD_EFL_DISABLE)' == 'true' Or '$(BUILD_EFL_DISABLE)' == 'yes' Or '$(BUILD_EFL_DISABLE)' == 'on'">
+    <DefineConstants>$(DefineConstants);BUILD_EFL_DISABLE</DefineConstants>
+  </PropertyGroup>
+
+  <!-- At least one toolkit backend must be compiled in. -->
+  <PropertyGroup>
+    <TzshBuildTcore Condition="'$(BUILD_TCORE_ENABLE)' == '1' Or '$(BUILD_TCORE_ENABLE)' == 'true' Or '$(BUILD_TCORE_ENABLE)' == 'yes' Or '$(BUILD_TCORE_ENABLE)' == 'on'">true</TzshBuildTcore>
+    <TzshBuildTcore Condition="'$(TzshBuildTcore)' == ''">false</TzshBuildTcore>
+    <TzshBuildEfl Condition="'$(BUILD_EFL_DISABLE)' == '1' Or '$(BUILD_EFL_DISABLE)' == 'true' Or '$(BUILD_EFL_DISABLE)' == 'yes' Or '$(BUILD_EFL_DISABLE)' == 'on'">false</TzshBuildEfl>
+    <TzshBuildEfl Condition="'$(TzshBuildEfl)' == ''">true</TzshBuildEfl>
+  </PropertyGroup>
+
+  <Target Name="ValidateTzshBackendConfiguration" BeforeTargets="BeforeBuild">
+    <Error Condition="'$(TzshBuildTcore)' != 'true' And '$(TzshBuildEfl)' != 'true'"
+           Text="No toolkit backend selected: set BUILD_TCORE_ENABLE=1 or remove BUILD_EFL_DISABLE." />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+    <ProjectReference Include="../../src/Tizen/Tizen.csproj" />
+    <ProjectReference Include="../../src/Tizen.Applications.Common/Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="../../src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.csproj" />
+    <ProjectReference Include="../../src/Tizen.Log/Tizen.Log.csproj" />
+    <ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
+    <ProjectReference Include="../../src/Tizen.WindowSystem/Tizen.WindowSystem.csproj" />
+    <ProjectReference Include="../../src/Tizen.NUI.WindowSystem/Tizen.NUI.WindowSystem.csproj" />
+  </ItemGroup>
+
+</Project>

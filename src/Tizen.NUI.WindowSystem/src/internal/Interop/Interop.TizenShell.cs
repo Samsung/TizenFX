@@ -23,6 +23,7 @@ namespace Tizen.NUI.WindowSystem.Shell
             {
                 Unknown = 0,
                 Efl = 1,
+                TcoreWayland = 2,
             }
 
             private const int ErrorTzsh = -0x02860000;

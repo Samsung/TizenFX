@@ -8,6 +8,8 @@ namespace Tizen.NUI.WindowSystem
         internal static partial class TizenCoreWl
         {
             const string lib = "libtizen-core-wl.so.0";
+            const string glib = "libglib-2.0.so.0";
+            const string waylandClient = "libwayland-client.so.0";
 
             [DllImport(lib, EntryPoint = "tizen_core_wl_init")]
             internal static extern int Init();
@@ -26,6 +28,32 @@ namespace Tizen.NUI.WindowSystem
 
             [DllImport(lib, EntryPoint = "tizen_core_wl_display_destroy")]
             internal static extern int DisplayDestroy(IntPtr display);
+
+            [DllImport(lib, EntryPoint = "tizen_core_wl_window_get_native_surface")]
+            internal static extern int WindowGetNativeSurface(IntPtr window, out IntPtr surface);
+
+            [DllImport(waylandClient, EntryPoint = "wl_proxy_get_id")]
+            internal static extern uint ProxyGetId(IntPtr proxy);
+
+            [DllImport(lib, EntryPoint = "tizen_core_wl_window_get_display")]
+            internal static extern int WindowGetDisplay(IntPtr window, out IntPtr display);
+
+            [DllImport(lib, EntryPoint = "tizen_core_wl_display_get_output_device_list")]
+            internal static extern int DisplayGetOutputDeviceList(IntPtr display, out IntPtr list);
+
+            [DllImport(lib, EntryPoint = "tizen_core_wl_output_device_get_geometry")]
+            internal static extern int OutputDeviceGetGeometry(IntPtr output, out int width, out int height);
+
+            [DllImport(glib, EntryPoint = "g_list_free")]
+            internal static extern void GListFree(IntPtr list);
+
+            [StructLayout(LayoutKind.Sequential)]
+            internal struct GList
+            {
+                internal IntPtr Data;
+                internal IntPtr Next;
+                internal IntPtr Previous;
+            }
 
             internal enum ErrorCode
             {
