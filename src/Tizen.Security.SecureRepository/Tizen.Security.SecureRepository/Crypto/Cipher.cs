@@ -73,6 +73,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <exception cref="ArgumentException">
         /// Thrown when mandatory algorithm parameter is missing or invalid.
         /// Thrown when optional algorithm parameter is invalid.
+        /// Thrown when <paramref name="password"/> contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when key-protecting password does not match.
@@ -82,6 +83,8 @@ namespace Tizen.Security.SecureRepository.Crypto
         {
             if (keyAlias == null || cipherText == null)
                 throw new ArgumentNullException("alias and ciphertxt should not be null");
+
+            Interop.CheckPassword(password, nameof(password));
 
             IntPtr ptr = IntPtr.Zero;
 
@@ -130,6 +133,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <exception cref="ArgumentException">
         /// Thrown when mandatory algorithm parameter is missing or invalid.
         /// Thrown when optional algorithm parameter is invalid.
+        /// Thrown when <paramref name="password"/> contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when key-protecting password does not match.
@@ -139,6 +143,8 @@ namespace Tizen.Security.SecureRepository.Crypto
         {
             if (keyAlias == null || plainText == null)
                 throw new ArgumentNullException("alias or plaintxt should not be null");
+
+            Interop.CheckPassword(password, nameof(password));
 
             IntPtr ptr = IntPtr.Zero;
 
