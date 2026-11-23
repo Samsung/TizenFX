@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworkIdentifier>Tizen</TargetFrameworkIdentifier>
+    <!-- Let the SDK infer TargetFrameworkIdentifier for legacy and modern .NET targets. -->
     <_IsNETCoreOrNETStandard>true</_IsNETCoreOrNETStandard>
   </PropertyGroup>
 
