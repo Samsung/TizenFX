@@ -89,6 +89,15 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_device_state")]
         internal static extern CameraError GetDeviceState(CameraDevice device, out CameraDeviceState state);
 
+        [DllImport(Libraries.Camera, EntryPoint = "camera_get_isp_firmware_version")]
+        internal static extern CameraError GetIspFirmwareVersion(CameraDevice device, out IntPtr version);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_get_isp_link_speed")]
+        internal static extern CameraError GetIspLinkSpeed(CameraDevice device, out int linkSpeed);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_get_isp_temperature")]
+        internal static extern CameraError GetIspTemperature(CameraDevice device, out int temperature);
+
         [DllImport(Libraries.Camera, EntryPoint = "camera_start_capture")]
         internal static extern CameraError StartCapture(IntPtr handle, CapturingCallback captureCallback,
                                                 CaptureCompletedCallback completedCallback, IntPtr userData = default);

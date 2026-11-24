@@ -278,6 +278,81 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Gets the firmware version of the ISP(Image Signal Processor).
+        /// </summary>
+        /// <param name="device">The hardware camera to access.</param>
+        /// <returns>The firmware version string of the ISP.</returns>
+        /// <feature> http://tizen.org/feature/camera </feature>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="OutOfMemoryException">Out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">The access to the resources cannot be granted.</exception>
+        /// <exception cref="CameraDeviceException">The device is being used in another application or is performing other operations.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string GetIspFirmwareVersion(CameraDevice device)
+        {
+            ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
+
+            IntPtr version = IntPtr.Zero;
+            try
+            {
+                Native.GetIspFirmwareVersion(device, out version).
+                    ThrowIfFailed("Failed to get the ISP firmware version.");
+
+                return Marshal.PtrToStringAnsi(version);
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(version);
+            }
+        }
+
+        /// <summary>
+        /// Gets the link speed between the camera sensor and the ISP (Image Signal Processor).
+        /// </summary>
+        /// <param name="device">The hardware camera to access.</param>
+        /// <returns>The link speed per lane in Mbps.</returns>
+        /// <feature> http://tizen.org/feature/camera </feature>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="UnauthorizedAccessException">The access to the resources cannot be granted.</exception>
+        /// <exception cref="CameraDeviceException">The device is being used in another application or is performing other operations.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetIspLinkSpeed(CameraDevice device)
+        {
+            ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
+
+            Native.GetIspLinkSpeed(device, out int linkSpeed).
+                ThrowIfFailed("Failed to get the ISP link speed.");
+
+            return linkSpeed;
+        }
+
+        /// <summary>
+        /// Gets the temperature of the ISP (Image Signal Processor).
+        /// </summary>
+        /// <param name="device">The hardware camera to access.</param>
+        /// <returns>The temperature of the ISP in Celsius with 0.1°C resolution.</returns>
+        /// <feature> http://tizen.org/feature/camera </feature>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="UnauthorizedAccessException">The access to the resources cannot be granted.</exception>
+        /// <exception cref="CameraDeviceException">The device is being used in another application or is performing other operations.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetIspTemperature(CameraDevice device)
+        {
+            ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
+
+            Native.GetIspTemperature(device, out int temperature).
+                ThrowIfFailed("Failed to get the ISP temperature.");
+
+            return temperature;
+        }
+
+        /// <summary>
         /// Gets the flash state.
         /// </summary>
         /// <param name="device">The device to get the state.</param>
