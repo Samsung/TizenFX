@@ -46,6 +46,8 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="alias"/> argument is null.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="alias"/> argument has an invalid format.
+        /// Thrown when <paramref name="keyPassword"/> or <paramref name="cerificatePassword"/>
+        /// contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when Pkcs12 does not exist with given <paramref name="alias"/>.
@@ -57,6 +59,9 @@ namespace Tizen.Security.SecureRepository
         {
             if (alias == null)
                 throw new ArgumentNullException("alias should not be null");
+
+            Interop.CheckPassword(keyPassword, nameof(keyPassword));
+            Interop.CheckPassword(cerificatePassword, nameof(cerificatePassword));
 
             IntPtr ptr = IntPtr.Zero;
 
@@ -90,6 +95,9 @@ namespace Tizen.Security.SecureRepository
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="alias"/> or
         /// <paramref name="pkcs12"/> argument has an invalid format.
+        /// Thrown when password of private key in <paramref name="pkcs12"/>,
+        /// <paramref name="keyPolicy"/> or <paramref name="certificatePolicy"/>
+        /// contains a null character (U+0000).
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when pkcs12 with given <paramref name="alias"/> already exists.
