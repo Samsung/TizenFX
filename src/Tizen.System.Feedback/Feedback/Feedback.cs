@@ -340,6 +340,8 @@ namespace Tizen.System
             {"Disconnected", 40032},
             {"Welcome", 40033},
             {"AutoDoorOpen", 40034},
+            {"BurnerSelected", 40035},
+            {"HeatLevel", 40036},
         };
 
         /// <summary>
