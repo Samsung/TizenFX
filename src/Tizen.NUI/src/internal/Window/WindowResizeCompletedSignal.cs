@@ -28,14 +28,6 @@ namespace Tizen.NUI
             Interop.WindowResizeCompletedSignal.DeleteSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.WindowResizeCompletedSignal.Empty(SwigCPtr);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.WindowResizeCompletedSignal.GetConnectionCount(SwigCPtr);
@@ -60,13 +52,6 @@ namespace Tizen.NUI
                 Interop.WindowResizeCompletedSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public bool Emit(Window window, Size2D size)
-        {
-            bool ret = Interop.WindowResizeCompletedSignal.Emit(SwigCPtr, Window.getCPtr(window), Size2D.getCPtr(size));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public WindowResizeCompletedSignal(Window window) : this(Interop.WindowResizeCompletedSignal.GetSignal(Window.getCPtr(window)), false)

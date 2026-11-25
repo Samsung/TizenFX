@@ -32,17 +32,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Queries whether there are any connected slots.
-        /// </summary>
-        /// <returns>True if there are any slots connected to the signal</returns>
-        public bool Empty()
-        {
-            bool ret = Interop.LanguageChangedSignalType.Empty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
@@ -77,15 +66,6 @@ namespace Tizen.NUI
                 Interop.LanguageChangedSignalType.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        /// <summary>
-        /// Emits the signal.
-        /// </summary>
-        public void Emit(int arg)
-        {
-            Interop.LanguageChangedSignalType.Emit(SwigCPtr, arg);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

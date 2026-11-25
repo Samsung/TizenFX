@@ -151,10 +151,6 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_AnchorClickedSignal")]
             public static extern global::System.IntPtr AnchorClickedSignal(HandleRef jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabelSignal_Empty")]
-            [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool TextLabelSignalEmpty(HandleRef jarg1);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabelSignal_GetConnectionCount")]
             public static extern uint TextLabelSignalGetConnectionCount(HandleRef jarg1);
 
@@ -163,9 +159,6 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabelSignal_Disconnect")]
             public static extern void TextLabelSignalDisconnect(HandleRef jarg1, HandleRef jarg2);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabelSignal_Emit")]
-            public static extern void TextLabelSignalEmit(HandleRef jarg1, HandleRef jarg2);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TextLabelSignal")]
             public static extern global::System.IntPtr NewTextLabelSignal();

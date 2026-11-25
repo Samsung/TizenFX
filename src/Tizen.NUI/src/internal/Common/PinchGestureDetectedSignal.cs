@@ -30,13 +30,6 @@ namespace Tizen.NUI
             Interop.PinchGesture.DeletePinchGestureDetectedSignal(swigCPtr);
         }
 
-        public bool Empty()
-        {
-            bool ret = Interop.PinchGesture.PinchGestureDetectedSignalEmpty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint GetConnectionCount()
         {
             uint ret = Interop.PinchGesture.PinchGestureDetectedSignalGetConnectionCount(SwigCPtr);
@@ -60,12 +53,6 @@ namespace Tizen.NUI
                 Interop.PinchGesture.PinchGestureDetectedSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        public void Emit(View arg1, PinchGesture arg2)
-        {
-            Interop.PinchGesture.PinchGestureDetectedSignalEmit(SwigCPtr, View.getCPtr(arg1), PinchGesture.getCPtr(arg2));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public PinchGestureDetectedSignal() : this(Interop.PinchGesture.NewPinchGestureDetectedSignal(), true)
